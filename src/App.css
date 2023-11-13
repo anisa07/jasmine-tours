@@ -1,0 +1,13 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+.custom-navbar {
+  background-color: #f4a261; /* Your custom color */
+}
+
+.icon-margin {
+  margin-right: 10px; /* Adjust the margin as needed */
+}
