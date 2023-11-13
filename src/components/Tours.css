@@ -1,0 +1,46 @@
+.tours {
+  text-align: center;
+  margin: 4rem 6rem;
+}
+
+.tours h1 {
+  font-size: 3rem;
+}
+
+.tour-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4.5rem;
+}
+
+.tour-text {
+  width: 45%;
+  text-align: start;
+  font-size: 1.1rem;
+}
+
+.tour-text h2 {
+  padding-bottom: 1rem;
+}
+
+.image-container {
+  width: 50%;
+  display: flex;
+  position: relative;
+}
+
+.image-container img {
+  width: 45%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: -1px 1px 62px -18px rgba(0, 0, 0, 0.19);
+}
+
+/* Adjust the top value to position the second image */
+.image-container img:nth-child(2) {
+  top: -39px;
+  position: absolute;
+  right: 0;
+}
