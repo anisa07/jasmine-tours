@@ -7,7 +7,7 @@
   font-size: 3rem;
 }
 
-first-tour {
+.tour-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -24,24 +24,23 @@ first-tour {
   padding-bottom: 1rem;
 }
 
-.image {
-  position: relative;
+.image-container {
   width: 50%;
   display: flex;
-  justify-content: space-between;
-  z-index: -99;
+  position: relative;
 }
 
-.image img {
-  width: 49%;
+.image-container img {
+  width: 45%;
   height: 350px;
   object-fit: cover;
   border-radius: 6px;
   box-shadow: -1px 1px 62px -18px rgba(0, 0, 0, 0.19);
 }
 
-.image img:nth-child(2) {
+/* Adjust the top value to position the second image */
+.image-container img:nth-child(2) {
+  top: -39px;
   position: absolute;
-  top: -10%;
   right: 0;
 }

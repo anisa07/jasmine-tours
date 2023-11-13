@@ -1,11 +1,7 @@
 import React from "react";
 import "./Tours.css";
 import tour1 from "../assets/tour1.jpeg";
-import tour2 from "../assets/tour2.jpeg";
 import tour3 from "../assets/tour3.jpeg";
-import tour4 from "../assets/tour4.jpeg";
-import tour5 from "../assets/tour5.jpeg";
-import tour6 from "../assets/tour6.jpeg";
 
 const Tours = () => {
   return (
@@ -13,7 +9,7 @@ const Tours = () => {
       <h1>Популярные туры</h1>
       <p>Lorem ipsum</p>
 
-      <div className="first-tour">
+      <div className="tour-container">
         <div className="tour-text">
           <h2>Tour heading</h2>
           <p>
@@ -26,12 +22,9 @@ const Tours = () => {
             veritatis neque provident?
           </p>
         </div>
-        <div
-          className="image
-        "
-        >
+        <div className="image-container">
           <img alt="tour1" src={tour1} />
-          <img alt="tour1" src={tour2} />
+          <img alt="tour1" src={tour3} />
         </div>
       </div>
     </div>
