@@ -4,12 +4,20 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+  width: 80%; /* Adjust width for responsiveness */
+  max-width: 90%; /* Set a maximum width to maintain readability */
 }
 
 .carousel-caption-bg {
-  background-color: rgba(200, 200, 200, 0.385);
+  background-color: rgba(81, 80, 80, 0.86);
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 10px;
+}
+
+.carousel-caption-bg:hover {
+  background-color: rgba(11, 11, 11, 0.86);
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .carousel-caption-content h3 {
@@ -23,12 +31,17 @@
   margin-bottom: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 576px) {
+  .carousel-caption-content {
+    width: 90%; /* Adjust width for smaller screens */
+  }
+
   .carousel-caption-content h3 {
-    font-size: 20px;
+    font-size: 20px; /* Adjust font size for smaller screens */
+    margin-bottom: 8px; /* Adjust margin for smaller screens */
   }
 
   .carousel-caption-content p {
-    font-size: 14px;
+    font-size: 14px; /* Adjust font size for smaller screens */
   }
 }
