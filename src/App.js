@@ -6,6 +6,7 @@ import Home from "./routes/Home";
 import Excursions from "./routes/Excursions";
 import Reviews from "./routes/Reviews";
 import Footer from "./components/Footer";
+import "./App.css";
 
 function App() {
   return (
