@@ -2,9 +2,7 @@ import { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import image1 from "../assets/hero1.jpg";
-// import image2 from "../assets/hero2.jpeg";
-// import image3 from "../assets/hero3.jpg";
+import "./Hero.css";
 
 function ControlledCarousel() {
   const [index, setIndex] = useState(0);
@@ -22,33 +20,38 @@ function ControlledCarousel() {
             alt="image1"
             className="d-block w-100"
           />
-          <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            src="https://images.pexels.com/photos/208733/pexels-photo-208733.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            alt="image2"
-            className="d-block w-100"
-          />
-          <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <Carousel.Caption className="carousel-caption-content">
+            <div className="carousel-caption-bg">
+              <h3>
+                Личный Гид по Амстердаму: Ваше уникальное путешествие начинается
+                здесь.
+              </h3>
+              <p>
+                Откройте с нами тайны этого удивительного города, узнайте его
+                историю, наслаждайтесь культурой и гастрономическими изысками.
+                Давайте вместе создадим историю вашего путешествия в Амстердаме.
+              </p>
+            </div>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img
             src="https://images.pexels.com/photos/967292/pexels-photo-967292.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            alt="image3"
+            alt="image2"
             className="d-block w-100"
           />
-          <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p>
+          <Carousel.Caption className="carousel-caption-content">
+            <div className="carousel-caption-bg">
+              <h3>
+                Личный Гид по Амстердаму: Ваше уникальное путешествие начинается
+                здесь.
+              </h3>
+              <p>
+                Откройте с нами тайны этого удивительного города, узнайте его
+                историю, наслаждайтесь культурой и гастрономическими изысками.
+                Давайте вместе создадим историю вашего путешествия в Амстердаме.
+              </p>
+            </div>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>

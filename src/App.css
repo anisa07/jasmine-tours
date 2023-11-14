@@ -1,0 +1,20 @@
+.carousel-caption-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.carousel-caption-content h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.carousel-caption-content p {
+  font-size: 1.2em;
+  color: #ffffff;
+}
+
+
+
+
