@@ -7,14 +7,14 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 function Navigation() {
   return (
     <Navbar expand="lg" className="bg-dark navbar-dark">
-      <Container>
+      <Container fluid>
         <Navbar.Brand href="/" className="me-3">
           Jasmine Tours
           {/* <img src={logo} style={{ maxWidth: "150px", maxHeight: "50px" }} /> */}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
+          <Nav className="ms-auto" style={{ lineHeight: "2em" }}>
             <Nav.Link
               href="/excursions"
               className="text-white text-decoration-none px-3 py-2 hover-effect"
@@ -36,14 +36,14 @@ function Navigation() {
                 href="https://wa.me/c/31642221525"
                 className="text-white"
               >
-                <i className="fa-brands fa-whatsapp fa-beat icon-margin m-1"></i>
+                <i className="fa-brands fa-whatsapp fa-beat icon-margin m-2"></i>
                 WhatsApp
               </NavDropdown.Item>
               <NavDropdown.Item
                 href="https://www.instagram.com/jasmine.tours.amsterdam/"
                 className="text-white"
               >
-                <i className="fa-brands fa-instagram fa-beat icon-margin m-1"></i>
+                <i className="fa-brands fa-instagram fa-beat icon-margin m-2"></i>
                 Instagram
               </NavDropdown.Item>
             </NavDropdown>

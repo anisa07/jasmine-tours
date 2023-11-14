@@ -33,15 +33,15 @@
 
 @media (max-width: 576px) {
   .carousel-caption-content {
-    width: 90%; /* Adjust width for smaller screens */
+    width: 50%; /* Adjust width for smaller screens */
   }
 
   .carousel-caption-content h3 {
-    font-size: 20px; /* Adjust font size for smaller screens */
-    margin-bottom: 8px; /* Adjust margin for smaller screens */
+    font-size: 10px; /* Adjust font size for smaller screens */
+    margin-bottom: 5px; /* Adjust margin for smaller screens */
   }
 
   .carousel-caption-content p {
-    font-size: 14px; /* Adjust font size for smaller screens */
+    font-size: 8px; /* Adjust font size for smaller screens */
   }
 }

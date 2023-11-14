@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -20,19 +20,6 @@ function ControlledCarousel() {
             alt="image1"
             className="d-block w-100"
           />
-          <Carousel.Caption className="carousel-caption-content">
-            <div className="carousel-caption-bg">
-              <h3>
-                Личный Гид по Амстердаму: Ваше уникальное путешествие начинается
-                здесь.
-              </h3>
-              <p>
-                Откройте с нами тайны этого удивительного города, узнайте его
-                историю, наслаждайтесь культурой и гастрономическими изысками.
-                Давайте вместе создадим историю вашего путешествия в Амстердаме.
-              </p>
-            </div>
-          </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img
@@ -40,21 +27,21 @@ function ControlledCarousel() {
             alt="image2"
             className="d-block w-100"
           />
-          <Carousel.Caption className="carousel-caption-content">
-            <div className="carousel-caption-bg">
-              <h3>
-                Личный Гид по Амстердаму: Ваше уникальное путешествие начинается
-                здесь.
-              </h3>
-              <p>
-                Откройте с нами тайны этого удивительного города, узнайте его
-                историю, наслаждайтесь культурой и гастрономическими изысками.
-                Давайте вместе создадим историю вашего путешествия в Амстердаме.
-              </p>
-            </div>
-          </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
+      <Carousel.Caption className="carousel-caption-content">
+        <div className="carousel-caption-bg">
+          <h3>
+            Личный Гид по Амстердаму: Ваше уникальное путешествие начинается
+            здесь.
+          </h3>
+          <p>
+            Откройте с нами тайны этого удивительного города, узнайте его
+            историю, наслаждайтесь культурой и гастрономическими изысками.
+            Давайте вместе создадим историю вашего путешествия в Амстердаме.
+          </p>
+        </div>
+      </Carousel.Caption>
     </Container>
   );
 }
