@@ -3,7 +3,7 @@ import Hero from "../components/Hero";
 import Main from "../components/Main";
 import Tours from "../components/Tours";
 import Container from "react-bootstrap/Container";
-import tourData from "../components/Toursdata";
+import tourData from "../components/ToursData";
 
 const Home = () => {
   return (

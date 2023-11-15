@@ -28,6 +28,7 @@ function Navigation() {
               Отзывы
             </Nav.Link>
             <NavDropdown
+              className=""
               title="Связаться"
               id="basic-nav-dropdown"
               menuVariant="dark"
@@ -36,15 +37,14 @@ function Navigation() {
                 href="https://wa.me/c/31642221525"
                 className="text-white"
               >
-                <i className="fa-brands fa-whatsapp fa-beat icon-margin m-2"></i>
-                WhatsApp
+                <i className="fa-brands fa-whatsapp fa-beat icon-margin m-2"/>ВП
               </NavDropdown.Item>
               <NavDropdown.Item
                 href="https://www.instagram.com/jasmine.tours.amsterdam/"
                 className="text-white"
               >
-                <i className="fa-brands fa-instagram fa-beat icon-margin m-2"></i>
-                Instagram
+                <i className="fa-brands fa-instagram fa-beat icon-margin m-2"/>
+                ИН
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
