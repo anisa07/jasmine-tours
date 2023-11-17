@@ -8,8 +8,8 @@ import tourData from "../components/ToursData";
 const Home = () => {
   return (
     <div>
+      <Hero />
       <Container>
-        <Hero />
         <Main />
         <div>
           <h2 className="text-center m-5">Популярные туры</h2>

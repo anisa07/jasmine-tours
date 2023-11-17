@@ -1,47 +1,19 @@
-.carousel-caption-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  width: 80%; /* Adjust width for responsiveness */
-  max-width: 90%; /* Set a maximum width to maintain readability */
+/* In your Hero.css file or any applicable CSS file */
+.carousel-caption h1 {
+  font-size: 2.5rem; /* Adjust as needed */
 }
 
-.carousel-caption-bg {
-  background-color: rgba(81, 80, 80, 0.86);
-  padding: 20px;
-  border-radius: 10px;
+.carousel-caption p {
+  font-size: 1.5rem; /* Adjust as needed */
 }
 
-.carousel-caption-bg:hover {
-  background-color: rgba(11, 11, 11, 0.86);
-  padding: 20px;
-  border-radius: 10px;
-}
-
-.carousel-caption-content h3 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.carousel-caption-content p {
-  font-size: 16px;
-  color: #333;
-  margin-bottom: 0;
-}
-
-@media (max-width: 576px) {
-  .carousel-caption-content {
-    width: 50%; /* Adjust width for smaller screens */
+/* Use media queries to change font size on smaller screens */
+@media (max-width: 768px) {
+  .carousel-caption h1 {
+    font-size: 2rem; /* Adjust as needed for smaller screens */
   }
 
-  .carousel-caption-content h3 {
-    font-size: 10px; /* Adjust font size for smaller screens */
-    margin-bottom: 5px; /* Adjust margin for smaller screens */
-  }
-
-  .carousel-caption-content p {
-    font-size: 8px; /* Adjust font size for smaller screens */
+  .carousel-caption p {
+    font-size: 1.2rem; /* Adjust as needed for smaller screens */
   }
 }

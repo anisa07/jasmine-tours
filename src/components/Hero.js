@@ -12,7 +12,7 @@ function ControlledCarousel() {
   };
 
   return (
-    <Container>
+    <Container fluid className="p-0">
       <Carousel activeIndex={index} onSelect={handleSelect}>
         <Carousel.Item>
           <img
@@ -29,18 +29,16 @@ function ControlledCarousel() {
           />
         </Carousel.Item>
       </Carousel>
-      <Carousel.Caption className="carousel-caption-content">
-        <div className="carousel-caption-bg">
-          <h3>
-            Личный Гид по Амстердаму: Ваше уникальное путешествие начинается
-            здесь.
-          </h3>
-          <p>
-            Откройте с нами тайны этого удивительного города, узнайте его
-            историю, наслаждайтесь культурой и гастрономическими изысками.
-            Давайте вместе создадим историю вашего путешествия в Амстердаме.
-          </p>
-        </div>
+      <Carousel.Caption>
+        <h1>
+          Личный Гид по Амстердаму: Ваше уникальное путешествие начинается
+          здесь.
+        </h1>
+        <p>
+          Откройте с нами тайны этого удивительного города, узнайте его историю,
+          наслаждайтесь культурой и гастрономическими изысками. Давайте вместе
+          создадим историю вашего путешествия в Амстердаме.
+        </p>
       </Carousel.Caption>
     </Container>
   );
