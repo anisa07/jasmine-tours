@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
 import Carousel from "react-bootstrap/Carousel";
+import { motion } from "framer-motion";
 
 const Cards = ({ title, text, images, additionalInfo }) => {
   const [showAdditionalInfo, setShowAdditionalInfo] = useState(false);
@@ -46,11 +47,21 @@ const Cards = ({ title, text, images, additionalInfo }) => {
               ))}
             </ul>
           )}
-          <div className="d-flex justify-content-between w-75">
-            <Button variant="primary" className="w-70" onClick={toggleExpanded}>
-              {showAdditionalInfo ? "Скрыть" : "Подробнее"}
-            </Button>
-          </div>
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="d-flex justify-content-center w-100"
+          >
+            <div className="text-center">
+              <Button
+                variant="primary"
+                className="w-80"
+                onClick={toggleExpanded}
+              >
+                {showAdditionalInfo ? "Скрыть" : "Подробнее"}
+              </Button>
+            </div>
+          </motion.div>
         </Card.Body>
       </Card>
       <Modal show={showOverlay} onHide={handleClose} centered>
