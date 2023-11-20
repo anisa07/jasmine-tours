@@ -4,10 +4,20 @@ import Main from "../components/Main";
 import Tours from "../components/Tours";
 import Container from "react-bootstrap/Container";
 import tourData from "../components/ToursData";
+import { motion, } from "framer-motion";
+
+const transition = {
+  duration: 0.5,
+  ease: "easeInOut",
+};
 
 const Home = () => {
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9, transition }}
+    >
       <Hero />
       <Container>
         <Main />
@@ -18,7 +28,7 @@ const Home = () => {
           ))}
         </div>
       </Container>
-    </div>
+    </motion.div>
   );
 };
 

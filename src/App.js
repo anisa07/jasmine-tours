@@ -1,23 +1,19 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/Navbar";
-import Home from "./routes/Home";
-import Excursions from "./routes/Excursions";
-import Reviews from "./routes/Reviews";
 import Footer from "./components/Footer";
 import "./App.css";
+import AnimatedRoutes from "./components/AnimatedRoutes";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/excursions" element={<Excursions />} />
-        <Route path="/reviews" element={<Reviews />} />
-      </Routes>
-      <Footer />
+      <Router>
+        <Navbar />
+        <AnimatedRoutes />
+        <Footer />
+      </Router>
     </div>
   );
 }
