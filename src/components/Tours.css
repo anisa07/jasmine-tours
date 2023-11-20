@@ -46,9 +46,7 @@
   right: 0;
 }
 
-/* Media queries for responsiveness */
 
-/* For smaller screens */
 @media (max-width: 768px) {
   .tours {
     margin: 3rem;
@@ -61,7 +59,6 @@
 
   .tour-text {
     width: 100%;
-    text-align: center;
   }
 
   .image-container {
@@ -80,7 +77,7 @@
   }
 }
 
-/* For smaller mobile screens */
+
 @media (max-width: 480px) {
   .tours {
     margin: 2rem;
