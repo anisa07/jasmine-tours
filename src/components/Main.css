@@ -1,0 +1,26 @@
+.main-custom-bg {
+  background-color: #cfe7e5;
+}
+
+.main-text {
+  margin-top: 6em;
+  margin-bottom: 4em;
+}
+
+.custom-shadow img {
+  transition: 0.5s ease;
+}
+
+.custom-shadow img:hover {
+  box-shadow: 1px 1px #373737, 2px 2px #373737, 3px 3px #373737, 4px 4px #373737,
+    5px 5px #373737, 6px 6px #373737;
+  -webkit-transform: translateX(-3px);
+  transform: translateX(-3px);
+  transition: 0.5s ease;
+}
+
+@media (min-width: 768px) {
+  .m-md-4 {
+    margin: 0 !important; /* Override the margin to 0 */
+  }
+}

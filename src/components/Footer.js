@@ -3,10 +3,11 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import heart from "../assets/heart.gif";
+import "./Footer.css";
 
 function Footer() {
   return (
-    <footer className="bg-dark text-light py-4">
+    <footer className="py-4">
       <Container className="text-center">
         <Row className="mb-3">
           <Col sm={12}>

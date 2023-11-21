@@ -1,5 +1,5 @@
 import React from "react";
-import Hero from "../components/Hero";
+import Hero1 from "../components/Hero1";
 import Main from "../components/Main";
 import Tours from "../components/Tours";
 import Container from "react-bootstrap/Container";
@@ -18,8 +18,8 @@ const Home = () => {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9, transition }}
     >
-      <Hero />
-      <Container>
+      <Hero1 />
+      
         <Main />
         <div>
           <h2 className="text-center m-5">Популярные туры</h2>
@@ -27,7 +27,7 @@ const Home = () => {
             <Tours key={index} tour={tour} />
           ))}
         </div>
-      </Container>
+      
     </motion.div>
   );
 };
