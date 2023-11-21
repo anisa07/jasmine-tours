@@ -5,24 +5,24 @@ import Container from "react-bootstrap/Container";
 const Main = () => {
   return (
     <Container>
-      <div className="container mt-5 bg-light bg-gradient">
-        <div className="row justify-content-center mb-4">
-          <div className="col-md-8 text-center mb-5">
+      <div className="container mt-md-5 pb-md-5 bg-light bg-gradient">
+        <div className="row justify-content-center m-md-4">
+          <div className="col-md-8 text-center m-4">
             <h2>Немного обо мне</h2>
           </div>
         </div>
         <div className="row">
-          <div className="col-md-5 mb-md-0 mb-3">
+          <div className="col-md-5 mb-md-0">
             <img
               src={profile}
               alt="Zara"
-              className="img-fluid thumbnail"
-              style={{ width: "100%", height: "auto" }}
+              className="img-fluid thumbnail "
+              style={{ width: "100%", height: "auto", marginTop: "2.5em" }}
             />
           </div>
           <div className="col-md-7">
-            <h3>Откройте Амстердам вместе с Зарой</h3>
-            <p>
+            <h4 className="mb-md-4 m-sm-4" style={{marginTop: "2em", marginBottom: '2em'}}>Откройте Амстердам вместе с Зарой</h4>
+            <p style={{ fontSize: "1.1em" }}>
               Приветствую вас! Меня зовут Зара, и я живу в Амстердаме уже 5 лет.
               В этом прекрасном городе я стала профессиональным гидом и
               организую индивидуальные и групповые экскурсии по Нидерландам для
@@ -31,14 +31,14 @@ const Main = () => {
               это невероятное путешествие, предоставив интересную экскурсионную
               программу и языковую поддержку.
             </p>
-            <p>
+            <p style={{ fontSize: "1.1em" }}>
               Во время экскурсии я расскажу вам множество удивительных фактов и
               легенд о городе, покажу знаменитые достопримечательности, и вы
               сможете окунуться в атмосферу этого удивительного места. Я
               сосредоточусь на ваших интересах и предпочтениях, чтобы каждый из
               вас получил незабываемые впечатления от поездки.
             </p>
-            <p>
+            <p style={{ fontSize: "1.1em" }}>
               Не стесняйтесь задавать вопросы и делиться своими пожеланиями -
               ваше удовольствие от путешествия для меня превыше всего!
             </p>

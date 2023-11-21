@@ -1,5 +1,5 @@
 import React from "react";
-import Hero from "../components/Hero";
+import Hero1 from "../components/Hero1";
 import Main from "../components/Main";
 import Tours from "../components/Tours";
 import Container from "react-bootstrap/Container";
@@ -18,7 +18,7 @@ const Home = () => {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9, transition }}
     >
-      <Hero />
+      <Hero1 />
       <Container>
         <Main />
         <div>

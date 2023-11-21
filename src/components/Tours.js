@@ -9,7 +9,7 @@ const Tours = ({ tour }) => {
       <div className="tours">
         <div className="tour-container">
           <div className="tour-text">
-            <h3>{description.heading}</h3>
+            <h4 style={{marginBottom: '1em'}}>{description.heading}</h4>
             <p>{description.text}</p>
           </div>
           <div className="image-container">
