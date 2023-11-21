@@ -12,7 +12,7 @@ const Tours = ({ tour }) => {
             <h4 style={{marginBottom: '1em'}}>{description.heading}</h4>
             <p>{description.text}</p>
           </div>
-          <div className="image-container">
+          <div className="image-container custom-shadow">
             {images.map((image, index) => (
               <img key={index} alt={`tour${index}`} src={image} />
             ))}

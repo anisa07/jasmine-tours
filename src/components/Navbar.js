@@ -3,32 +3,32 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import "./Navbar.css";
 
 function Navigation() {
   return (
-    <Navbar expand="lg" className="bg-dark navbar-dark">
+    <Navbar expand="lg" className="navbar-custom-bg">
       <Container fluid>
         <Navbar.Brand href="/" className="me-3">
           Jasmine Tours
-          {/* <img src={logo} style={{ maxWidth: "150px", maxHeight: "50px" }} /> */}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto" style={{ lineHeight: "2em" }}>
             <Nav.Link
               href="/excursions"
-              className="text-white text-decoration-none px-3 py-2 hover-effect"
+              className="text-decoration-none px-3 py-2 hover-effect custom-nav-link"
             >
               Экскурсии
             </Nav.Link>
             <Nav.Link
               href="/reviews"
-              className="text-white text-decoration-none px-3 py-2 hover-effect"
+              className="text-decoration-none px-3 py-2 hover-effect custom-nav-link"
             >
               Отзывы
             </Nav.Link>
             <NavDropdown
-              className=""
+              className="custom-nav-link"
               title="Связаться"
               id="basic-nav-dropdown"
               menuVariant="dark"
@@ -37,13 +37,14 @@ function Navigation() {
                 href="https://wa.me/c/31642221525"
                 className="text-white"
               >
-                <i className="fa-brands fa-whatsapp fa-beat icon-margin m-2"/>ВП
+                <i className="fa-brands fa-whatsapp fa-beat icon-margin m-2" />
+                ВП
               </NavDropdown.Item>
               <NavDropdown.Item
                 href="https://www.instagram.com/jasmine.tours.amsterdam/"
                 className="text-white"
               >
-                <i className="fa-brands fa-instagram fa-beat icon-margin m-2"/>
+                <i className="fa-brands fa-instagram fa-beat icon-margin m-2" />
                 ИН
               </NavDropdown.Item>
             </NavDropdown>

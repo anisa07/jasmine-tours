@@ -1,5 +1,6 @@
 import Carousel from "react-bootstrap/Carousel";
 import "./Hero1.css";
+import { motion } from "framer-motion";
 
 function UncontrolledExample() {
   return (
@@ -15,10 +16,18 @@ function UncontrolledExample() {
         </div>
 
         <Carousel.Caption>
-          <h1>
+          <motion.h1
+            variants={{
+              hidden: { opacity: 0, y: 75 },
+              visible: { opacity: 1, y: 70 },
+            }}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.5, delay: 0.5 }}
+          >
             Личный Гид по Амстердаму: Ваше уникальное путешествие начинается
             здесь.
-          </h1>
+          </motion.h1>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>

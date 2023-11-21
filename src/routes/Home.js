@@ -19,7 +19,7 @@ const Home = () => {
       exit={{ opacity: 0, scale: 0.9, transition }}
     >
       <Hero1 />
-      <Container>
+      
         <Main />
         <div>
           <h2 className="text-center m-5">Популярные туры</h2>
@@ -27,7 +27,7 @@ const Home = () => {
             <Tours key={index} tour={tour} />
           ))}
         </div>
-      </Container>
+      
     </motion.div>
   );
 };
