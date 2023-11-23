@@ -31,14 +31,21 @@ const Excursions = () => {
         </div>
         <div className="row justify-content-around">
           {data.map((card, index) => (
-            <div key={index} className="col-lg-4 col-md-6 mb-4">
+            <motion.div
+              key={index}
+              whileHover={{ scale: 1.1,  }} // Scale effect on hover
+              className="col-lg-4 col-md-6 mb-4"
+              initial={{ opacity: 0, translateY: -50 }}
+              animate={{ opacity: 1, translateY: 0 }}
+              transition={{ duration: 0.3, delay: 0.4 }}
+            >
               <Cards
                 title={card.title}
                 text={card.text}
                 images={card.images}
                 additionalInfo={card.additionalInfo}
               />
-            </div>
+            </motion.div>
           ))}
         </div>
       </Container>

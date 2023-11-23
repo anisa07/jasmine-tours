@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -6,6 +7,17 @@ import heart from "../assets/heart.gif";
 import "./Footer.css";
 
 function Footer() {
+  const iconVariants = {
+    hover: {
+      scale: 1.9,
+      rotate: 360, // Apply a full 360-degree rotation
+      transition: {
+        duration: 0.5,
+        yoyo: Infinity,
+      },
+    },
+  };
+
   return (
     <footer className="py-4">
       <Container className="text-center">
@@ -22,7 +34,12 @@ function Footer() {
               rel="noopener noreferrer"
               className="mr-2"
             >
-              <i className="fa-brands fa-whatsapp icon-margin m-2"></i>
+              <motion.i
+                className="fa-brands fa-whatsapp icon-margin m-2"
+                variants={iconVariants}
+                whileHover="hover"
+                style={{ originX: 0.7, originY: 0.5 }}
+              ></motion.i>
             </a>
             <a
               href="https://www.instagram.com/jasmine.tours.amsterdam/"
@@ -30,14 +47,24 @@ function Footer() {
               rel="noopener noreferrer"
               className="mr-2"
             >
-              <i className="fa-brands fa-instagram icon-margin m-2"></i>
+              <motion.i
+                className="fa-brands fa-instagram icon-margin m-2"
+                variants={iconVariants}
+                whileHover="hover"
+                style={{ originX: 0.7, originY: 0.5 }}
+              ></motion.i>
             </a>
             <a
               href="https://www.facebook.com/zerifegulieva/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <i className="fa-brands fa-facebook icon-margin m-2"></i>
+              <motion.i
+                className="fa-brands fa-facebook icon-margin m-2"
+                variants={iconVariants}
+                whileHover="hover"
+                style={{ originX: 0.7, originY: 0.5 }}
+              ></motion.i>
             </a>
           </Col>
         </Row>
