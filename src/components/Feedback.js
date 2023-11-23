@@ -7,10 +7,11 @@ function Feedback({ feedbackData }) {
     <Container className="client pt-3 pb-5">
       <Row>
         <Col className="mb-5">
-          <h1 className="fw-bold text-black text-center mb-5">
-            Отзывы обо мне
-          </h1>
-          <p className="p-text text-black text-left">
+          <h1 className="text-black text-center m-5">Отзывы обо мне</h1>
+          <p
+            style={{ fontSize: "1.1em" }}
+            className="p-text text-black text-left"
+          >
             За время моей работы в качестве экскурсовода я провела более 500
             туров: от доступных программ до более роскошных. Моя цель состоит в
             том, чтобы каждый гость унёс с собой только положительные
@@ -31,8 +32,8 @@ function Feedback({ feedbackData }) {
             <Row className="d-flex justify-content-center">
               <Col lg={8}>
                 <h5 className="mb-3">{item.name}</h5>
-                <p>{item.tour}</p>
-                <p className="text-muted">
+                <p style={{ fontSize: "1.1em" }}>{item.tour}</p>
+                <p style={{ fontSize: "1.1em" }} className="text-muted">
                   <i className="fas fa-quote-left pe-2"></i>
                   {item.feedback}
                 </p>

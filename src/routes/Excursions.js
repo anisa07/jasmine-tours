@@ -18,8 +18,8 @@ const Excursions = () => {
     >
       <Container>
         <div className="d-flex flex-column align-items-center mt-5">
-          <h1 className="mb-4">Мои Экскурсии</h1>
-          <p>
+          <h1 className="m-5">Мои Экскурсии</h1>
+          <p className="mb-5" style={{ fontSize: "1.1em" }}>
             Путешествие по Нидерландам — это возможность увидеть многообразие
             этой страны: от захватывающих городов до живописных деревень, от
             богатой истории до современной культуры. Мы пройдемся по улочкам

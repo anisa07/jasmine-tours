@@ -20,7 +20,7 @@ function Footer() {
               href="https://wa.me/c/31642221525"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-light mr-2"
+              className="mr-2"
             >
               <i className="fa-brands fa-whatsapp icon-margin m-2"></i>
             </a>
@@ -28,7 +28,7 @@ function Footer() {
               href="https://www.instagram.com/jasmine.tours.amsterdam/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-light mr-2"
+              className="mr-2"
             >
               <i className="fa-brands fa-instagram icon-margin m-2"></i>
             </a>
@@ -36,7 +36,6 @@ function Footer() {
               href="https://www.facebook.com/zerifegulieva/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-light"
             >
               <i className="fa-brands fa-facebook icon-margin m-2"></i>
             </a>
