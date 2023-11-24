@@ -2,8 +2,8 @@ import React from "react";
 import Hero1 from "../components/Hero1";
 import Main from "../components/Main";
 import Tours from "../components/Tours";
-import tourData from "../components/ToursData.js";
-import { motion, } from "framer-motion";
+import ToursData from "../components/ToursData.js";
+import { motion } from "framer-motion";
 
 const transition = {
   duration: 0.5,
@@ -18,15 +18,14 @@ const Home = () => {
       exit={{ opacity: 0, scale: 0.9, transition }}
     >
       <Hero1 />
-      
-        <Main />
-        <div>
-          <h2 className="text-center m-5">Популярные туры</h2>
-          {tourData.map((tour, index) => (
-            <Tours key={index} tour={tour} />
-          ))}
-        </div>
-      
+
+      <Main />
+      <div>
+        <h2 className="text-center m-5">Популярные туры</h2>
+        {ToursData.map((tour, index) => (
+          <Tours key={index} tour={tour} />
+        ))}
+      </div>
     </motion.div>
   );
 };
