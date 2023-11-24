@@ -2,8 +2,7 @@ import React from "react";
 import Hero1 from "../components/Hero1";
 import Main from "../components/Main";
 import Tours from "../components/Tours";
-import Container from "react-bootstrap/Container";
-import tourData from "../components/ToursData";
+import tourData from "../components/ToursData.js";
 import { motion, } from "framer-motion";
 
 const transition = {
