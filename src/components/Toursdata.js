@@ -6,7 +6,7 @@ import tour5 from "../assets/tour5.jpeg";
 import tour6 from "../assets/tour6.jpeg";
 
 
-const tourData = [
+const ToursData = [
   {
     description: {
       heading: "Фотосессия в стиле нидерландского жителя 17 века.",
@@ -31,4 +31,4 @@ const tourData = [
   },
 ];
 
-export default tourData;
+export default ToursData;
