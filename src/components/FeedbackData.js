@@ -4,7 +4,6 @@ import review3 from "../assets/review3.jpeg";
 import review4 from "../assets/review4.jpeg";
 import review5 from "../assets/review5.jpeg";
 import review6 from "../assets/combined3.jpg";
-import Feedback from "./Feedback";
 
 const feedbackData = [
   {
