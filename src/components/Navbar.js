@@ -11,7 +11,7 @@ function Navigation() {
     <Navbar expand="lg" className="navbar-custom-bg sticky-top">
       <Container fluid>
         <Navbar.Brand href="/" className="custom-brand">
-          <LogoSvg />
+          <LogoSvg className="logo-animation"/>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">

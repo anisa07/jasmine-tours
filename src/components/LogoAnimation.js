@@ -29,7 +29,11 @@ const LogoSvg = () => {
       preserveAspectRatio="xMidYMid meet"
       initial="hidden"
       animate="visible"
-      style={{ height: 80, width: 200 }}
+      style={{
+        height: "auto",
+        width: "100%",
+        maxWidth: "200px",
+      }}
     >
       <g
         transform="translate(0.000000,334.000000) scale(0.100000,-0.100000)"
