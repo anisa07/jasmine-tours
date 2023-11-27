@@ -1,11 +1,25 @@
 .navbar-custom-bg {
-  background-color: #DEC0CF;
+  background-color: #fed9ed;
 }
 
 .custom-nav-link {
-  color: #18272f;
+  color: #63496c;
   position: relative;
   text-decoration: none;
+}
+
+.navbar-brand {
+  margin: 0;
+  padding: 0;
+}
+
+.custom-dropdown-icons {
+  color: #45324b;
+}
+
+.custom-dropdown-icons:hover {
+  color: #fed9ed;
+  background-color: #63496c;
 }
 
 .custom-nav-link::before {
@@ -14,7 +28,7 @@
   width: 100%;
   height: 4px;
   border-radius: 4px;
-  background-color: #8C6699;
+  background-color: #8c6699;
   bottom: 0;
   left: 0;
   transform-origin: right;
