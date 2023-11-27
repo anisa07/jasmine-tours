@@ -4,18 +4,17 @@ import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
 import Carousel from "react-bootstrap/Carousel";
 import { motion } from "framer-motion";
+import "./Cards.css";
 
 const Cards = ({ title, text, images, additionalInfo }) => {
   const [showAdditionalInfo, setShowAdditionalInfo] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
 
   const toggleExpanded = () => {
-    setShowAdditionalInfo(!showAdditionalInfo);
     setShowOverlay(!showOverlay);
   };
 
   const handleClose = () => {
-    setShowAdditionalInfo(false);
     setShowOverlay(false);
   };
 
@@ -23,6 +22,7 @@ const Cards = ({ title, text, images, additionalInfo }) => {
     <>
       <Card
         className={`text-left mb-5 ${showAdditionalInfo ? "expanded" : ""}`}
+        style={{ height: "fit-content" }}
       >
         <Carousel>
           {images.map((image, index) => (
@@ -31,7 +31,7 @@ const Cards = ({ title, text, images, additionalInfo }) => {
                 className="d-block w-100"
                 src={image}
                 alt={`Slide ${index}`}
-                style={{ objectFit: "cover", height: "400px", width: "600px" }}
+                style={{ objectFit: "cover", height: "350px", width: "600px" }}
               />
             </Carousel.Item>
           ))}
@@ -48,19 +48,17 @@ const Cards = ({ title, text, images, additionalInfo }) => {
             </ul>
           )}
           <motion.div
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="d-flex justify-content-center w-100"
+            whileHover={{ scale: 1.1, transition: { duration: 0 } }}
+            whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}
+            className="d-flex justify-content-center w-100 text-center"
           >
-            <div className="text-center">
-              <Button
-                variant="primary"
-                className="w-80"
-                onClick={toggleExpanded}
-              >
-                {showAdditionalInfo ? "Скрыть" : "Подробнее"}
-              </Button>
-            </div>
+            <Button
+              variant="primary"
+              className="w-80 custom-button"
+              onClick={toggleExpanded}
+            >
+              Подробнее
+            </Button>
           </motion.div>
         </Card.Body>
       </Card>

@@ -23,7 +23,7 @@ function Footer() {
       <Container className="text-center">
         <Row className="mb-3">
           <Col sm={12}>
-            <h5 className="mb-0">Jasmine Tours&Events</h5>
+            <h5 className="mb-0">Jasmine tours & events</h5>
           </Col>
         </Row>
         <Row className="mb-3">

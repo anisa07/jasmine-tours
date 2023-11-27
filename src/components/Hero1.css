@@ -7,7 +7,7 @@
   text-align: center;
   top: 50%;
   transform: translateY(-50%);
-  color: #fff; /* Adjust the text color if needed */
+  color: #fff;
 }
 .overlay {
   position: relative;
