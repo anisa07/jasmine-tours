@@ -12,7 +12,7 @@ const flowerPathVariants = {
 
     transition: {
       duration: 8,
-      delay: 1.8,
+      delay: 1.5,
       ease: "easeInOut",
       repeat: Infinity,
       repeatType: "mirror",
