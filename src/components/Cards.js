@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import "./Cards.css";
 
 const Cards = ({ title, text, images, additionalInfo }) => {
-  const [showAdditionalInfo, setShowAdditionalInfo] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
 
   const toggleExpanded = () => {
@@ -21,7 +20,7 @@ const Cards = ({ title, text, images, additionalInfo }) => {
   return (
     <>
       <Card
-        className={`text-left mb-5 ${showAdditionalInfo ? "expanded" : ""}`}
+        className={`text-left mb-5 ${showOverlay ? "expanded" : ""}`}
         style={{ height: "fit-content" }}
       >
         <Carousel>
@@ -38,15 +37,11 @@ const Cards = ({ title, text, images, additionalInfo }) => {
         </Carousel>
         <Card.Body className="d-flex flex-column justify-content-center align-items-center">
           <Card.Title className="text-center">{title}</Card.Title>
-          {showAdditionalInfo ? (
-            <Card.Text>{additionalInfo}</Card.Text>
-          ) : (
-            <ul>
-              {text.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
-          )}
+          <ul>
+            {text.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
           <motion.div
             whileHover={{ scale: 1.1, transition: { duration: 0 } }}
             whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}

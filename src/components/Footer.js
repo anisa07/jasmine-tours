@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import heart from "../assets/heart.gif";
+import heart from "../assets/heart1.gif";
 import "./Footer.css";
 
 function Footer() {
@@ -77,7 +77,7 @@ function Footer() {
                   className="heart"
                   src={heart}
                   alt="heart"
-                  style={{ width: "1.5em" }}
+                  style={{ width: "2em" }}
                 />{" "}
                 by nurlanimamali
               </p>
