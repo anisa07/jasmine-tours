@@ -30,7 +30,7 @@ const LogoSvg = () => {
       initial="hidden"
       animate="visible"
       style={{
-        height: "auto",
+        height: "80",
         width: "100%",
         maxWidth: "200px",
       }}
