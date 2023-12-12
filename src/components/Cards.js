@@ -42,12 +42,18 @@ const Cards = ({ title, text, images, additionalInfo }) => {
               <li key={index}>{item}</li>
             ))}
           </ul>
-          <motion.div
-            whileHover={{ scale: 1.1, transition: { duration: 0 } }}
-            whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}
-            className="d-flex justify-content-center w-100 text-center"
-          >
+          <motion.div className="d-flex justify-content-center w-100 text-center">
             <Button
+              as={motion.button}
+              variants={{
+                hover: {
+                  scale: 1.1,
+                  transition: { duration: 0.3 },
+                },
+                initial: { scale: 1 },
+              }}
+              initial="initial"
+              whileHover="hover"
               variant="primary"
               className="w-80 custom-button"
               onClick={toggleExpanded}
@@ -63,7 +69,11 @@ const Cards = ({ title, text, images, additionalInfo }) => {
           <Card.Text>{additionalInfo}</Card.Text>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button
+            className="custom-button"
+            variant="secondary"
+            onClick={handleClose}
+          >
             Закрыть
           </Button>
         </Modal.Footer>

@@ -3,6 +3,8 @@ import Cards from "../components/Cards";
 import Container from "react-bootstrap/Container";
 import data from "../components/CardsData";
 import { motion } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowCircleDown } from "@fortawesome/free-solid-svg-icons";
 
 const transition = {
   duration: 0.5,
@@ -57,8 +59,12 @@ const Excursions = () => {
         </div>
         {!showMore && (
           <div className="text-center mb-5">
-            <button className="btn btn-primary mt-3" onClick={toggleShowMore}>
-              Показать еще
+            <button className="btn" onClick={toggleShowMore}>
+              <FontAwesomeIcon
+                icon={faArrowCircleDown}
+                size="2x"
+                style={{ color: "#4c3254" }}
+              />
             </button>
           </div>
         )}
