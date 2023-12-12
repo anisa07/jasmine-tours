@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Cards from "../components/Cards";
 import Container from "react-bootstrap/Container";
 import data from "../components/CardsData";
@@ -10,6 +10,13 @@ const transition = {
 };
 
 const Excursions = () => {
+  const [showMore, setShowMore] = useState(false);
+  const visibleCards = showMore ? data.length : 6;
+
+  const toggleShowMore = () => {
+    setShowMore(!showMore);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -30,14 +37,14 @@ const Excursions = () => {
           </p>
         </div>
         <div className="row justify-content-around">
-          {data.map((card, index) => (
+          {data.slice(0, visibleCards).map((card, index) => (
             <motion.div
               key={index}
-              whileHover={{ scale: 1.1,  }} // Scale effect on hover
+              whileHover={{ scale: 1.1 }}
               className="col-lg-4 col-md-6 mb-4"
               initial={{ opacity: 0, translateY: -50 }}
               animate={{ opacity: 1, translateY: 0 }}
-              transition={{ duration: 0.3, delay: 0.4 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
             >
               <Cards
                 title={card.title}
@@ -48,6 +55,13 @@ const Excursions = () => {
             </motion.div>
           ))}
         </div>
+        {!showMore && (
+          <div className="text-center mb-5">
+            <button className="btn btn-primary mt-3" onClick={toggleShowMore}>
+              Показать еще
+            </button>
+          </div>
+        )}
       </Container>
     </motion.div>
   );
