@@ -9,11 +9,10 @@ import "./Footer.css";
 function Footer() {
   const iconVariants = {
     hover: {
-      scale: 1.9,
-      rotate: 360, // Apply a full 360-degree rotation
+      scale: 1.5,
+      rotate: 360,
       transition: {
         duration: 0.5,
-        yoyo: Infinity,
       },
     },
   };
