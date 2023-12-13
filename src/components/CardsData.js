@@ -11,7 +11,7 @@ import century1 from "../assets/century1.jpeg";
 import century2 from "../assets/century2.jpeg";
 import century3 from "../assets/century3.jpeg";
 import boat1 from "../assets/boat1.jpg";
-import boat2 from "../assets/boat2.jpg";
+import boat2 from "../assets/boat2.jpeg";
 import boat3 from "../assets/boat3.jpg";
 import flower1 from "../assets/flower1.jpg";
 import flower2 from "../assets/flower2.jpg";
