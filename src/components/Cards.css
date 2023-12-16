@@ -10,3 +10,15 @@
   border-color: #fed9ed;
   color: #ffffff;
 }
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: black;
+  border-radius: 50%;
+  border-color: white;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  filter: invert(100%);
+}
