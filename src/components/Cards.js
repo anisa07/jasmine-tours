@@ -25,9 +25,9 @@ const Cards = ({ title, text, images, additionalInfo }) => {
       >
         <Carousel>
           {images.map((image, index) => (
-            <Carousel.Item key={index}>
+            <Carousel.Item key={index} className="">
               <img
-                className="d-block w-100"
+                className="d-block w-auto mx-auto"
                 src={image}
                 alt={`Slide ${index}`}
                 style={{ objectFit: "cover", height: "350px", width: "600px" }}
