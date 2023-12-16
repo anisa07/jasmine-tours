@@ -1,6 +1,9 @@
 import Carousel from "react-bootstrap/Carousel";
 import "./Hero1.css";
 import { motion } from "framer-motion";
+import image1 from "../assets/flower3.jpg";
+import image2 from "../assets/image5.jpg";
+import image3 from "../assets/image4.jpg";
 
 function UncontrolledExample() {
   return (
@@ -8,10 +11,10 @@ function UncontrolledExample() {
       <Carousel.Item>
         <div className="overlay">
           <img
-            style={{ height: "90vh" }}
-            src="https://images.pexels.com/photos/5225282/pexels-photo-5225282.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            src={image1}
+            style={{ height: "100vh" }}
             alt="image1"
-            className="d-block w-100 "
+            className="d-block w-100"
           />
         </div>
 
@@ -33,9 +36,9 @@ function UncontrolledExample() {
       <Carousel.Item>
         <div className="overlay">
           <img
-            style={{ height: "90vh" }}
-            src="https://images.pexels.com/photos/967292/pexels-photo-967292.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            src={image2}
             alt="image2"
+            style={{ height: "100vh" }}
             className="d-block w-100 "
           />
         </div>
@@ -47,10 +50,10 @@ function UncontrolledExample() {
       <Carousel.Item>
         <div className="overlay">
           <img
-            style={{ height: "90vh" }}
-            src="https://images.pexels.com/photos/2901483/pexels-photo-2901483.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            alt="image2"
-            className="d-block w-100"
+            style={{ height: "100vh" }}
+            src={image3}
+            alt="image3"
+            className="d-block w-100 "
           />
         </div>
 
