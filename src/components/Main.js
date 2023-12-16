@@ -19,7 +19,7 @@ const Main = () => {
                 src={profile}
                 alt="Zara"
                 className="img-fluid thumbnail "
-                style={{ width: "100%", height: "auto", marginTop: "2.5em" }}
+                style={{ width: "90%", height: "auto", marginTop: "2.5em" }}
               />
             </div>
             <div className="col-md-7">
