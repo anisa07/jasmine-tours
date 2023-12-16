@@ -1,12 +1,20 @@
 .carousel-dark .rounded-circle {
-  width: 150px; /* Adjust the width to your preference */
-  height: 150px; /* Ensure the height matches the width */
+  width: 150px;
+  height: 150px; 
   object-fit: cover;
-  border-radius: 50%; /* Makes the image circular */
+  border-radius: 50%;
+}
+
+.carousel-dark .carousel-indicators {
+  display: none;
+}
+
+.review-item {
+  height: 25em;
 }
 
 @media (max-width: 991px) {
-  /* Center the image */
+ 
   .carousel .carousel-item img {
     margin: 0 auto;
     display: block;

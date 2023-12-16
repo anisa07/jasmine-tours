@@ -21,7 +21,12 @@ function Feedback({ feedbackData }) {
           </p>
         </Col>
       </Row>
-      <Carousel controls={true} className="carousel-dark" interval={null}>
+      <Carousel
+        controls={true}
+        className="carousel-dark"
+        interval={null}
+        showIndicatorsAt={3}
+      >
         {feedbackData.map((item, index) => (
           <Carousel.Item key={index} className="mb-5">
             <motion.div
@@ -29,22 +34,24 @@ function Feedback({ feedbackData }) {
               animate={{ opacity: 1, translateY: 0 }}
               transition={{ duration: 0.3, delay: 0.4 }}
             >
-              <img
-                className="rounded-circle shadow-1-strong mb-4"
-                src={item.avatar}
-                alt={`avatar ${index}`}
-                style={{ width: "150px" }}
-              />
-              <Row className="d-flex justify-content-center">
-                <Col lg={8}>
-                  <h5 className="mb-3">{item.name}</h5>
-                  <p style={{ fontSize: "1.1em" }}>{item.tour}</p>
-                  <p style={{ fontSize: "1.1em" }} className="text-muted">
-                    <i className="fas fa-quote-left pe-2"></i>
-                    {item.feedback}
-                  </p>
-                </Col>
-              </Row>
+              <div className="review-item">
+                <img
+                  className="rounded-circle shadow-1-strong mb-4"
+                  src={item.avatar}
+                  alt={`avatar ${index}`}
+                  style={{ width: "150px" }}
+                />
+                <Row className="d-flex justify-content-center">
+                  <Col lg={8}>
+                    <h5 className="mb-3">{item.name}</h5>
+                    <p style={{ fontSize: "1.1em" }}>{item.tour}</p>
+                    <p style={{ fontSize: "1.1em" }} className="text-muted">
+                      <i className="fas fa-quote-left pe-2"></i>
+                      {item.feedback}
+                    </p>
+                  </Col>
+                </Row>
+              </div>
             </motion.div>
           </Carousel.Item>
         ))}
