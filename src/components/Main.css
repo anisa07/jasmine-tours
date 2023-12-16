@@ -1,5 +1,5 @@
 .main-custom-bg {
-  background-color: #fed9ed;
+  background-color: #fed9ed; 
 }
 
 .main-text {
@@ -21,6 +21,6 @@
 
 @media (min-width: 768px) {
   .m-md-4 {
-    margin: 0 !important; /* Override the margin to 0 */
+    margin: 0 !important;
   }
 }
