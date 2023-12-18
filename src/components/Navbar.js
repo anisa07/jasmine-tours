@@ -26,6 +26,18 @@ function Navigation() {
               Экскурсии
             </Nav.Link>
             <Nav.Link
+              href="/"
+              className="text-decoration-none px-3 py-2 hover-effect custom-nav-link"
+            >
+             Дентал Туризм
+            </Nav.Link>
+            <Nav.Link
+              href="/"
+              className="text-decoration-none px-3 py-2 hover-effect custom-nav-link"
+            >
+              Мероприятия
+            </Nav.Link>
+            <Nav.Link
               href="/reviews"
               className="text-decoration-none px-3 py-2 hover-effect custom-nav-link"
             >
