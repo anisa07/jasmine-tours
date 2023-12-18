@@ -27,9 +27,12 @@
     display: block;
   }
 
-  /* Hide carousel control arrows */
   .carousel-control-prev,
   .carousel-control-next {
     display: none;
   }
+
+  .review-item {
+  height: fit-content;
+}
 }

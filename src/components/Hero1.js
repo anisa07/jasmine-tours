@@ -28,8 +28,7 @@ function UncontrolledExample() {
             animate="visible"
             transition={{ duration: 0.5, delay: 0.5 }}
           >
-            Личный Гид по Амстердаму: Ваше уникальное путешествие начинается
-            здесь.
+            Личный Гид по Амстердаму: Ваше путешествие начинается здесь.
           </motion.h1>
         </Carousel.Caption>
       </Carousel.Item>
