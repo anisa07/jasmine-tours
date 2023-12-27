@@ -40,6 +40,7 @@ function Dental() {
                 animate={{ opacity: 1, translateY: 0 }}
                 transition={{ duration: 0.3, delay: 0.2 }}
                 style={{ minHeight: "100%", textAlign: "center" }}
+                className="custom-shadow"
               >
                 <Image src={dentalImage} fluid style={{ maxWidth: "80%" }} />
               </motion.div>
@@ -49,7 +50,10 @@ function Dental() {
             <div className="d-flex flex-column align-items-center mt-5">
               <div className="row">
                 <div className="col-lg-6 d-flex align-items-stretch justify-content-center">
-                  <div style={{ minHeight: "100%", textAlign: "center" }}>
+                  <div
+                    className="custom-shadow"
+                    style={{ minHeight: "100%", textAlign: "center" }}
+                  >
                     <Image
                       src={dentaltour1}
                       fluid
@@ -95,7 +99,7 @@ function Dental() {
                 className="d-flex justify-content-center align-items-center"
                 style={{ minHeight: "100%" }}
               >
-                <div className="images-container">
+                <div className="images-container custom-shadow">
                   <Image className="images" src={city1} fluid />
                   <Image className="images" src={city2} fluid />
                   <Image className="images" src={city3} fluid />
