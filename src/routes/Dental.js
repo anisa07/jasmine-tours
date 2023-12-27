@@ -45,21 +45,11 @@ function Dental() {
               </motion.div>
             </div>
           </div>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9, transition }}
-            style={{ marginBottom: "5em" }}
-          >
+          <div style={{ marginBottom: "5em" }}>
             <div className="d-flex flex-column align-items-center mt-5">
               <div className="row">
                 <div className="col-lg-6 d-flex align-items-stretch justify-content-center">
-                  <motion.div
-                    initial={{ opacity: 0, translateY: -50 }}
-                    animate={{ opacity: 1, translateY: 0 }}
-                    transition={{ duration: 0.3, delay: 0.2 }}
-                    style={{ minHeight: "100%" }}
-                  >
+                  <div style={{ minHeight: "100%" }}>
                     <Image
                       src={dentaltour1}
                       fluid
@@ -75,7 +65,7 @@ function Dental() {
                       fluid
                       style={{ maxWidth: "80%", marginBottom: "2em" }}
                     />
-                  </motion.div>
+                  </div>
                 </div>
                 <div className="col-lg-6 d-flex align-items-stretch">
                   <p style={{ fontSize: "1.1em", marginBottom: 0 }}>
@@ -84,7 +74,7 @@ function Dental() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
           <div className="col-lg-12 d-flex align-items-stretch">
             <div className="d-flex flex-column justify-content-between">
               <h2 className="text-center mb-5">
@@ -101,10 +91,7 @@ function Dental() {
           </div>
           <div className="d-flex align-items-stretch mb-5">
             <div className="d-flex  justify-content-between">
-              <motion.div
-                initial={{ opacity: 0, translateY: -50 }}
-                animate={{ opacity: 1, translateY: 0 }}
-                transition={{ duration: 0.3, delay: 0.2 }}
+              <div
                 className="d-flex justify-content-center align-items-center"
                 style={{ minHeight: "100%" }}
               >
@@ -113,7 +100,7 @@ function Dental() {
                   <Image className="images" src={city2} fluid />
                   <Image className="images" src={city3} fluid />
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
         </div>
