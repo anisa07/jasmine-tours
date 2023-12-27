@@ -1,6 +1,6 @@
 .carousel-dark .rounded-circle {
   width: 150px;
-  height: 150px; 
+  height: 150px;
   object-fit: cover;
   border-radius: 50%;
 }
@@ -21,7 +21,6 @@
 }
 
 @media (max-width: 991px) {
- 
   .carousel .carousel-item img {
     margin: 0 auto;
     display: block;
@@ -33,6 +32,21 @@
   }
 
   .review-item {
-  height: fit-content;
-}
+    height: fit-content;
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    width: 15%;
+    height: auto;
+    font-size: 20px;
+    z-index: 1;
+  }
+
+  .carousel-control-next {
+    right: 5px;
+  }
 }
