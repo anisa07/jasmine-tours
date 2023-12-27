@@ -78,7 +78,14 @@ function Footer() {
                   alt="heart"
                   style={{ width: "2em" }}
                 />{" "}
-                by nurlanimamali
+                by{" "}
+                <a
+                  href="https://www.nurlanimamali.tech"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  NI.
+                </a>
               </p>
             </div>
           </Col>
