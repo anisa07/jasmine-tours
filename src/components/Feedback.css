@@ -26,17 +26,12 @@
     display: block;
   }
 
-  .carousel-control-prev,
-  .carousel-control-next {
-    display: none;
-  }
-
   .review-item {
     height: fit-content;
   }
 
-  .carousel-control-prev,
-  .carousel-control-next {
+  .client .carousel-control-prev,
+  .client .carousel-control-next {
     display: block;
     position: absolute;
     bottom: 10px;
