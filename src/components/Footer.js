@@ -54,7 +54,7 @@ function Footer() {
               ></motion.i>
             </a>
             <a
-              href="https://www.facebook.com/zerifegulieva/"
+              href="https://www.facebook.com/jasmintoursevents/"
               target="_blank"
               rel="noopener noreferrer"
             >
