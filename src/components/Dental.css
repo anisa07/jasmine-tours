@@ -14,7 +14,7 @@
 }
 
 .custom-color {
-background-color: #fed9ed;
+  background-color: #fed9ed;
 }
 
 .custom-shadow .shadow:hover {
@@ -26,6 +26,10 @@ background-color: #fed9ed;
 }
 
 @media (max-width: 768px) {
+  * {
+    text-align: left;
+  }
+
   .images-container {
     flex-direction: column;
     align-items: center;
@@ -33,6 +37,6 @@ background-color: #fed9ed;
 
   .images {
     width: 80%;
-    margin-bottom: 1em; /* Adds space between images */
+    margin-bottom: 1em;
   }
 }

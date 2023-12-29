@@ -1,13 +1,21 @@
 import React from "react";
-import Container from "react-bootstrap/Container";
-import Image from "react-bootstrap/Image";
+import { Container, Row, Col, Image } from "react-bootstrap";
 import dentalImage from "../assets/zaradental.jpg";
 import "../components/Dental.css";
-import dentalDataCopy from "../components/dentalMyStoryData";
-import dentalInfoData from "../components/dentalInfoData";
 import dentaltour1 from "../assets/dentaltour1.jpg";
 import dentaltour2 from "../assets/dentaltour2.jpg";
 import dentaltour3 from "../assets/dentaltour3.jpg";
+import city1 from "../assets/cappadociadental.jpg";
+import city2 from "../assets/erciyesdental.jpg";
+import city3 from "../assets/tbilisidental.jpg";
+import city4 from "../assets/kakhetidental.jpg";
+import city5 from "../assets/mtskhetadental.jpg";
+import city6 from "../assets/bakudental.jpg";
+import city7 from "../assets/lahicdental.jpg";
+import city8 from "../assets/ateshgahdental.jpg";
+
+import dentalDataCopy from "../components/dentalMyStoryData";
+import dentalInfoData from "../components/dentalInfoData";
 
 function Paragraph({ text }) {
   return (
@@ -20,11 +28,15 @@ function Paragraph({ text }) {
   );
 }
 
+function RenderParagraphs({ paragraphs }) {
+  return paragraphs.map((paragraph, index) => (
+    <Paragraph key={index} text={paragraph} />
+  ));
+}
+
 function Dental() {
   const renderParagraphs = (paragraphs) => {
-    return paragraphs.map((paragraph, index) => (
-      <Paragraph key={index} text={paragraph} />
-    ));
+    return <RenderParagraphs paragraphs={paragraphs} />;
   };
 
   return (
@@ -48,7 +60,11 @@ function Dental() {
               style={{ minHeight: "100%", textAlign: "center" }}
               className="custom-shadow"
             >
-              <Image src={dentalImage} fluid style={{ maxWidth: "80%" }} />
+              <Image
+                src={dentalImage}
+                fluid
+                style={{ maxWidth: "80%", marginBottom: "1em" }}
+              />
             </div>
           </div>
         </div>
@@ -66,46 +82,84 @@ function Dental() {
             dentalInfoData.p1,
             dentalInfoData.p2,
             dentalInfoData.p3,
-            dentalInfoData.p4,
           ])}
         </div>
+        <h3 className=" text-center my-4">
+          Какие услуги покрывает стоматологическийтуризм?
+        </h3>
+        <p>{dentalInfoData.p4}</p>
       </div>
-      <div style={{ marginBottom: "5em" }}>
-        <div className="d-flex flex-column align-items-center mt-5">
-          <div className="row">
-            <div className="col-lg-6 d-flex align-items-stretch justify-content-center">
-              <div
-                className="custom-shadow"
-                style={{ minHeight: "100%", textAlign: "center" }}
-              >
-                <Image
-                  src={dentaltour1}
-                  fluid
-                  style={{ maxWidth: "80%", marginBottom: "2em" }}
-                />
-                <Image
-                  src={dentaltour2}
-                  fluid
-                  style={{ maxWidth: "80%", marginBottom: "2em" }}
-                />
-                <Image
-                  src={dentaltour3}
-                  fluid
-                  style={{ maxWidth: "80%", marginBottom: "2em" }}
-                />
-              </div>
-            </div>
-            <div className="col-lg-6 d-flex align-items-stretch">
-              <div className="d-flex flex-column">
-                {renderParagraphs([
-                  dentalInfoData.p1,
-                  dentalInfoData.p2,
-                  dentalInfoData.p3,
-                ])}
-              </div>
-            </div>
-          </div>
-        </div>
+      <div style={{ marginTop: "5em" }}>
+        <Container>
+          <Row style={{ textAlign: "justify" }}>
+            <Col md={6} className="d-flex flex-column mb-3">
+              <h4 className="text-center mb-5">Реставрация зубов</h4>
+              <p>{dentalInfoData.p5}</p>
+            </Col>
+            <Col md={6} className="mb-3 custom-shadow">
+              <Image src={dentaltour3} fluid alt="Related Image" />
+            </Col>
+            <Col md={6} className="d-flex flex-column mb-3">
+              <h4 className="text-center mb-5">Имплантация</h4>
+              <p>{dentalInfoData.p6}</p>
+            </Col>
+            <Col md={6} className="mb-3 custom-shadow">
+              <Image src={dentaltour2} fluid alt="Related Image" />
+            </Col>
+            <Col md={6} className="d-flex flex-column mb-3">
+              <h4 className="text-center mb-5">All-on-4 или all-on-6</h4>
+              <p>{dentalInfoData.p7}</p>
+            </Col>
+            <Col md={6} className="mb-3 custom-shadow">
+              <Image src={dentaltour1} fluid alt="Related Image" />
+            </Col>
+          </Row>
+        </Container>
+        <Container>
+          <Row>
+            <Col md={12}>
+              <p className="my-4">{dentalInfoData.p8}</p>
+            </Col>
+            <Col md={6} className="custom-shadow">
+              <Image src={city1} fluid alt="Related Image" />
+            </Col>
+            <Col md={6} className="custom-shadow">
+              <Image src={city2} fluid alt="Related Image" />
+            </Col>
+            <Col md={12}>
+              <p className="my-4 text-center">
+                <b>
+                  <i>Грузия ( Тбилиси, Кахетия, Мцхета)</i>
+                </b>
+              </p>
+            </Col>
+            <Col md={4} className="custom-shadow">
+              <Image src={city3} fluid alt="Related Image" />
+            </Col>
+            <Col md={4} className="custom-shadow">
+              <Image src={city4} fluid alt="Related Image" />
+            </Col>
+            <Col md={4} className="custom-shadow">
+              <Image src={city5} fluid alt="Related Image" />
+            </Col>
+            <Col md={12}>
+              <p className="my-4 text-center">
+                <b>
+                  <i>Азербайджан( Баку, Лахидж, Атешкях)</i>
+                </b>
+              </p>
+            </Col>
+            <Col md={4} className="custom-shadow">
+              <Image src={city6} fluid alt="Related Image" />
+            </Col>
+            <Col md={4} className="custom-shadow">
+              <Image src={city7} fluid alt="Related Image" />
+            </Col>
+            <Col md={4} className="custom-shadow">
+              <Image src={city8} fluid alt="Related Image" />
+            </Col>
+          </Row>
+        </Container>
       </div>
     </Container>
   );
