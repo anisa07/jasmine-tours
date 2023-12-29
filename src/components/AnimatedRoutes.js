@@ -3,7 +3,7 @@ import Home from "../routes/Home";
 import Excursions from "../routes/Excursions";
 import Reviews from "../routes/Reviews";
 import Events from "../routes/Events";
-import Dental from "../routes/DentalCopy";
+import Dental from "../routes/Dental";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
