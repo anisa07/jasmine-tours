@@ -15,9 +15,10 @@
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  background-color: grey;
+  background-color: #8c6699;
   border-radius: 20%;
-  border-color: white;
+  color: #571a6c;
+  filter: none !important;
 }
 
 @media (max-width: 991px) {
@@ -39,9 +40,5 @@
     height: auto;
     font-size: 20px;
     z-index: 1;
-  }
-
-  .carousel-control-next {
-    right: 5px;
   }
 }

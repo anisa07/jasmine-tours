@@ -13,9 +13,14 @@ import city5 from "../assets/mtskhetadental.jpg";
 import city6 from "../assets/bakudental.jpg";
 import city7 from "../assets/lahicdental.jpg";
 import city8 from "../assets/ateshgahdental.jpg";
-
 import dentalDataCopy from "../components/dentalMyStoryData";
 import dentalInfoData from "../components/dentalInfoData";
+import { motion } from "framer-motion";
+
+const transition = {
+  duration: 0.5,
+  ease: "easeInOut",
+};
 
 function Paragraph({ text }) {
   return (
@@ -41,9 +46,19 @@ function Dental() {
 
   return (
     <Container>
-      <div className="d-flex flex-column align-items-center justify-content-between mt-5">
+      <motion.div
+        className="d-flex flex-column align-items-center justify-content-between mt-5"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.9, transition }}
+      >
         <h1 className="text-center mb-5">Дентал Туризм</h1>
-        <div className="row">
+        <motion.div
+          className="row"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.9, transition }}
+        >
           <div className="col-lg-6 d-flex align-items-stretch">
             <div className="d-flex flex-column justify-content-between">
               {renderParagraphs([
@@ -55,7 +70,12 @@ function Dental() {
               ])}
             </div>
           </div>
-          <div className="col-lg-6 d-flex align-items-stretch justify-content-center">
+          <motion.div
+            className="col-lg-6 d-flex align-items-stretch justify-content-center"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9, transition }}
+          >
             <div
               style={{ minHeight: "100%", textAlign: "center" }}
               className="custom-shadow"
@@ -66,8 +86,8 @@ function Dental() {
                 style={{ maxWidth: "80%", marginBottom: "1em" }}
               />
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
         <div className="d-flex flex-column ">
           {renderParagraphs([
             dentalDataCopy.p6,
@@ -75,7 +95,7 @@ function Dental() {
             dentalDataCopy.p8,
           ])}
         </div>
-      </div>
+      </motion.div>
       <div className="d-flex flex-column">
         <div className="d-flex flex-column">
           {renderParagraphs([
@@ -92,21 +112,21 @@ function Dental() {
       <div style={{ marginTop: "5em" }}>
         <Container>
           <Row style={{ textAlign: "justify" }}>
-            <Col md={6} className="d-flex flex-column mb-3">
+            <Col md={6} className="d-flex flex-column my-3">
               <h4 className="text-center mb-5">Реставрация зубов</h4>
               <p>{dentalInfoData.p5}</p>
             </Col>
             <Col md={6} className="mb-3 custom-shadow">
               <Image src={dentaltour3} fluid alt="Related Image" />
             </Col>
-            <Col md={6} className="d-flex flex-column mb-3">
+            <Col md={6} className="d-flex flex-column my-3">
               <h4 className="text-center mb-5">Имплантация</h4>
               <p>{dentalInfoData.p6}</p>
             </Col>
             <Col md={6} className="mb-3 custom-shadow">
               <Image src={dentaltour2} fluid alt="Related Image" />
             </Col>
-            <Col md={6} className="d-flex flex-column mb-3">
+            <Col md={6} className="d-flex flex-column my-3">
               <h4 className="text-center mb-5">All-on-4 или all-on-6</h4>
               <p>{dentalInfoData.p7}</p>
             </Col>
@@ -157,6 +177,18 @@ function Dental() {
             </Col>
             <Col md={4} className="custom-shadow">
               <Image src={city8} fluid alt="Related Image" />
+            </Col>
+            <Col md={12} className="mt-4">
+              <p>
+                Мы сотрудничаем с лучшими клиниками и специалистами этих стран.
+                Вы получите высокого качества услуги в любой сфере стоматологии.
+              </p>
+              <p>
+                По всем вопросам свяжитесь с нами по телефону:{" "}
+                <b>
+                  <i>+31642065803</i>
+                </b>
+              </p>
             </Col>
           </Row>
         </Container>
