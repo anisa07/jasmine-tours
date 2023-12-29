@@ -112,12 +112,17 @@ function Dental() {
       <div style={{ marginTop: "5em" }}>
         <Container>
           <Row style={{ textAlign: "justify" }}>
-            <Col md={6} className="d-flex flex-column my-3">
+            <Col md={6} className="d-flex flex-column my-1">
               <h4 className="text-center mb-5">Реставрация зубов</h4>
               <p>{dentalInfoData.p5}</p>
             </Col>
             <Col md={6} className="mb-3 custom-shadow">
-              <Image src={dentaltour3} fluid alt="Related Image" />
+              <Image
+                src={dentaltour1}
+                style={{ height: "20em" }}
+                fluid
+                alt="Related Image"
+              />
             </Col>
             <Col md={6} className="d-flex flex-column my-3">
               <h4 className="text-center mb-5">Имплантация</h4>
@@ -131,7 +136,7 @@ function Dental() {
               <p>{dentalInfoData.p7}</p>
             </Col>
             <Col md={6} className="mb-3 custom-shadow">
-              <Image src={dentaltour1} fluid alt="Related Image" />
+              <Image src={dentaltour3} fluid alt="Related Image" />
             </Col>
           </Row>
         </Container>
@@ -140,10 +145,10 @@ function Dental() {
             <Col md={12}>
               <p className="my-4">{dentalInfoData.p8}</p>
             </Col>
-            <Col md={6} className="custom-shadow">
+            <Col md={6} className="custom-shadow my-2">
               <Image src={city1} fluid alt="Related Image" />
             </Col>
-            <Col md={6} className="custom-shadow">
+            <Col md={6} className="custom-shadow my-2">
               <Image src={city2} fluid alt="Related Image" />
             </Col>
             <Col md={12}>
@@ -153,13 +158,13 @@ function Dental() {
                 </b>
               </p>
             </Col>
-            <Col md={4} className="custom-shadow">
+            <Col md={4} className="custom-shadow my-2">
               <Image src={city3} fluid alt="Related Image" />
             </Col>
-            <Col md={4} className="custom-shadow">
+            <Col md={4} className="custom-shadow my-2">
               <Image src={city4} fluid alt="Related Image" />
             </Col>
-            <Col md={4} className="custom-shadow">
+            <Col md={4} className="custom-shadow my-2">
               <Image src={city5} fluid alt="Related Image" />
             </Col>
             <Col md={12}>
@@ -169,13 +174,13 @@ function Dental() {
                 </b>
               </p>
             </Col>
-            <Col md={4} className="custom-shadow">
+            <Col md={4} className="custom-shadow my-2">
               <Image src={city6} fluid alt="Related Image" />
             </Col>
-            <Col md={4} className="custom-shadow">
+            <Col md={4} className="custom-shadow my-2">
               <Image src={city7} fluid alt="Related Image" />
             </Col>
-            <Col md={4} className="custom-shadow">
+            <Col md={4} className="custom-shadow my-2">
               <Image src={city8} fluid alt="Related Image" />
             </Col>
             <Col md={12} className="mt-4">
