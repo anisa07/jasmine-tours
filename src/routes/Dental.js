@@ -24,10 +24,7 @@ const transition = {
 
 function Paragraph({ text }) {
   return (
-    <p
-      className="justified-text"
-      style={{ fontSize: "1.1em", textAlign: "justify" }}
-    >
+    <p className="justified-text" style={{ textAlign: "justify" }}>
       {text}
     </p>
   );
@@ -47,7 +44,7 @@ function Dental() {
   return (
     <Container>
       <motion.div
-        className="d-flex flex-column align-items-center justify-content-between mt-5"
+        className="d-flex flex-column align-items-center justify-content-between mt-5 dental-text"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.9, transition }}
@@ -119,7 +116,7 @@ function Dental() {
             <Col md={6} className="mb-3 custom-shadow">
               <Image
                 src={dentaltour1}
-                style={{ height: "20em" }}
+                style={{ height: "18em", width: "30em" }}
                 fluid
                 alt="Related Image"
               />
@@ -129,59 +126,76 @@ function Dental() {
               <p>{dentalInfoData.p6}</p>
             </Col>
             <Col md={6} className="mb-3 custom-shadow">
-              <Image src={dentaltour2} fluid alt="Related Image" />
+              <Image
+                src={dentaltour2}
+                style={{ height: "16em", width: "30em" }}
+                fluid
+                alt="Related Image"
+              />
             </Col>
             <Col md={6} className="d-flex flex-column my-3">
-              <h4 className="text-center mb-5">All-on-4 или all-on-6</h4>
+              <h4 className="text-center mb-4">All-on-4 или all-on-6</h4>
               <p>{dentalInfoData.p7}</p>
             </Col>
             <Col md={6} className="mb-3 custom-shadow">
-              <Image src={dentaltour3} fluid alt="Related Image" />
+              <Image
+                src={dentaltour3}
+                style={{ height: "16em", width: "30em" }}
+                fluid
+                alt="Related Image"
+              />
             </Col>
           </Row>
         </Container>
         <Container>
           <Row>
             <Col md={12}>
-              <p className="my-4">{dentalInfoData.p8}</p>
-            </Col>
-            <Col md={6} className="custom-shadow my-2">
-              <Image src={city1} fluid alt="Related Image" />
-            </Col>
-            <Col md={6} className="custom-shadow my-2">
-              <Image src={city2} fluid alt="Related Image" />
+              <p className="my-1">{dentalInfoData.p8}</p>
             </Col>
             <Col md={12}>
               <p className="my-4 text-center">
                 <b>
-                  <i>Грузия ( Тбилиси, Кахетия, Мцхета)</i>
+                  <i>Турция (Кападокия, Эрджияс)</i>
                 </b>
               </p>
             </Col>
-            <Col md={4} className="custom-shadow my-2">
-              <Image src={city3} fluid alt="Related Image" />
+            <Col md={6} className="custom-shadow my-2">
+              <Image src={city1} fluid alt="Cappadocia" />
             </Col>
-            <Col md={4} className="custom-shadow my-2">
-              <Image src={city4} fluid alt="Related Image" />
-            </Col>
-            <Col md={4} className="custom-shadow my-2">
-              <Image src={city5} fluid alt="Related Image" />
+            <Col md={6} className="custom-shadow my-2">
+              <Image src={city2} fluid alt="Erciyes" />
             </Col>
             <Col md={12}>
               <p className="my-4 text-center">
                 <b>
-                  <i>Азербайджан( Баку, Лахидж, Атешкях)</i>
+                  <i>Грузия (Тбилиси, Кахетия, Мцхета)</i>
                 </b>
               </p>
             </Col>
             <Col md={4} className="custom-shadow my-2">
-              <Image src={city6} fluid alt="Related Image" />
+              <Image src={city3} style={{height: "14em"}} fluid alt="Tbilisi" />
             </Col>
             <Col md={4} className="custom-shadow my-2">
-              <Image src={city7} fluid alt="Related Image" />
+              <Image src={city4} fluid alt="Kakhetia" />
             </Col>
             <Col md={4} className="custom-shadow my-2">
-              <Image src={city8} fluid alt="Related Image" />
+              <Image src={city5} fluid alt="Mtskheta" />
+            </Col>
+            <Col md={12}>
+              <p className="my-4 text-center">
+                <b>
+                  <i>Азербайджан  (Баку, Лахидж, Атешкях)</i>
+                </b>
+              </p>
+            </Col>
+            <Col md={4} className="custom-shadow my-2">
+              <Image src={city6} fluid alt="Baku" />
+            </Col>
+            <Col md={4} className="custom-shadow my-2">
+              <Image src={city7} fluid alt="Lahic" />
+            </Col>
+            <Col md={4} className="custom-shadow my-2">
+              <Image src={city8} fluid alt="Ateshgah" />
             </Col>
             <Col md={12} className="mt-4">
               <p>
