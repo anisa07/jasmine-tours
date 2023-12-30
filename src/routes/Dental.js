@@ -173,7 +173,7 @@ function Dental() {
               </p>
             </Col>
             <Col md={4} className="custom-shadow my-2">
-              <Image src={city3} style={{height: "14em"}} fluid alt="Tbilisi" />
+              <Image src={city3}  fluid alt="Tbilisi" />
             </Col>
             <Col md={4} className="custom-shadow my-2">
               <Image src={city4} fluid alt="Kakhetia" />
