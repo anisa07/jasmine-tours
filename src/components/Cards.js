@@ -66,7 +66,7 @@ const Cards = ({ title, text, images, additionalInfo }) => {
 			<Modal show={showOverlay} onHide={handleClose} centered>
 				<Modal.Header closeButton />
 				<Modal.Body>
-					<Card.Text className="pl-0">{additionalInfo}</Card.Text>
+					<div className="pl-0">{additionalInfo}</div>
 				</Modal.Body>
 				<Modal.Footer>
 					<Button
