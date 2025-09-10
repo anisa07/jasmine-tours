@@ -4,30 +4,33 @@ import Main from "../components/Main";
 import Tours from "../components/Tours";
 import ToursData from "../components/ToursData.js";
 import { motion } from "framer-motion";
+import Partners from "../components/Partners.js";
 
 const transition = {
-  duration: 0.5,
-  ease: "easeInOut",
+	duration: 0.5,
+	ease: "easeInOut",
 };
 
 const Home = () => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9, transition }}
-    >
-      <Hero1 />
+	return (
+		<motion.div
+			initial={{ opacity: 0, scale: 0.9 }}
+			animate={{ opacity: 1, scale: 1 }}
+			exit={{ opacity: 0, scale: 0.9, transition }}
+		>
+			<Hero1 />
 
-      <Main />
-      <div>
-        <h2 className="text-center m-5">Популярные туры</h2>
-        {ToursData.map((tour, index) => (
-          <Tours key={index} tour={tour} />
-        ))}
-      </div>
-    </motion.div>
-  );
+			<Main />
+
+			<div>
+				<h2 className="text-center m-5">Популярные туры</h2>
+				{ToursData.map((tour, index) => (
+					<Tours key={index} tour={tour} />
+				))}
+			</div>
+			<Partners />
+		</motion.div>
+	);
 };
 
 export default Home;
