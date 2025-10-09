@@ -1,0 +1,17 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import EventsContent from "../components/EventsContent.jsx";
+---
+
+<Layout
+  title="Организация мероприятий в Нидерландах | Jasmine Tours"
+  description="Профессиональная организация концертов, фестивалей, корпоративов и деловых бранчей в Нидерландах."
+>
+  <Navbar />
+  <main>
+    <EventsContent client:load />
+  </main>
+  <Footer />
+</Layout>

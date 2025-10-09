@@ -1,44 +1,12 @@
-.carousel-dark .rounded-circle {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-.carousel-dark .carousel-indicators {
-  display: none;
+.client {
+  background-color: #fff;
 }
 
 .review-item {
-  height: 25em;
+  text-align: center;
+  padding: 2em;
 }
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  background-color: #8c6699;
-  border-radius: 20%;
-  color: #571a6c;
-  filter: none !important;
-}
-
-@media (max-width: 991px) {
-  .carousel .carousel-item img {
-    margin: 0 auto;
-    display: block;
-  }
-
-  .review-item {
-    height: fit-content;
-  }
-
-  .client .carousel-control-prev,
-  .client .carousel-control-next {
-    display: block;
-    position: absolute;
-    bottom: 10px;
-    width: 15%;
-    height: auto;
-    font-size: 20px;
-    z-index: 1;
-  }
+.p-text {
+  text-align: justify;
 }

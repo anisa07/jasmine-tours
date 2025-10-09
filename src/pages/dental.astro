@@ -1,0 +1,17 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import DentalContent from "../components/DentalContent.jsx";
+---
+
+<Layout
+  title="Дентал Туризм в Турции | Jasmine Tours & Events"
+  description="Качественные стоматологические услуги в Турции. Имплантация, эстетическая стоматология, полное сопровождение и организация досуга."
+>
+  <Navbar />
+  <main>
+    <DentalContent client:load />
+  </main>
+  <Footer />
+</Layout>

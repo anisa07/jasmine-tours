@@ -1,18 +1,19 @@
-.custom-link {
-  text-decoration: underline;
-  color: #8c6699;
-  cursor: pointer;
+.custom-hover:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
 }
 
 .custom-shadow-events {
-  transition: box-shadow 0.5s ease-in-out, transform 0.5s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.custom-shadow-events:hover {
-  box-shadow: 1px 1px #8c6699, 2px 2px #8c6699, 3px 3px #8c6699, 4px 4px #8c6699,
-    5px 5px #8c6699, 6px 6px #8c6699;
-  -webkit-transform: translateX(-3px);
-  transform: translateX(-3px);
-  transition: 0.5s ease-in-out;
-  background-color: #fed9ed;
+.custom-link {
+  color: #8c6699;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.custom-link:hover {
+  color: #63496c;
+  text-decoration: underline;
 }

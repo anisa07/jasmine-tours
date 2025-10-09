@@ -1,0 +1,123 @@
+---
+interface Tour {
+  description: {
+    heading: string;
+    text: string;
+  };
+  images: string[];
+}
+
+interface Props {
+  tour: Tour;
+}
+
+const { tour } = Astro.props;
+const { description, images } = tour;
+---
+
+<div class="container">
+  <div class="tours">
+    <div class="tour-container">
+      <div class="tour-text">
+        <h4 style="margin-bottom: 1em;">{description.heading}</h4>
+        <p style="text-align: justify;">{description.text}</p>
+      </div>
+      <div class="image-container custom-shadow">
+        {
+          images.map((image: any, index: number) => (
+            <img
+              alt={`Тур ${index + 1}`}
+              src={image.src || image}
+              loading="lazy"
+            />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .tours {
+    margin: 2em 0;
+  }
+
+  .tour-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    margin-bottom: 3em;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .tour-text {
+    flex: 1;
+    padding: 0 1em;
+  }
+
+  .tour-text h4 {
+    font-size: 1.75rem;
+    margin-bottom: 1em;
+  }
+
+  .tour-text p {
+    font-size: 1.1em;
+    text-align: justify;
+    line-height: 1.7;
+  }
+
+  .image-container {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 1em;
+  }
+
+  .image-container img {
+    width: calc(50% - 0.5em);
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (min-width: 768px) {
+    .tour-container {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 3em;
+    }
+
+    .tour-text,
+    .image-container {
+      flex: 1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .tours {
+      margin: 1em 0;
+    }
+
+    .tour-container {
+      margin-bottom: 2em;
+    }
+
+    .tour-text h4 {
+      font-size: 1.5rem;
+    }
+
+    .tour-text p {
+      text-align: left;
+      font-size: 1em;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 250px;
+    }
+  }
+</style>

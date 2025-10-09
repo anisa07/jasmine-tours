@@ -1,0 +1,57 @@
+.excursions-container {
+  max-width: 1400px;
+  padding: 0 1.5em;
+}
+
+.excursions-header {
+  text-align: center;
+  margin-bottom: 3em;
+}
+
+.excursions-title {
+  font-size: 3rem;
+  margin-bottom: 1.5em;
+  font-weight: 400;
+}
+
+.excursions-description {
+  font-size: 1.1em;
+  line-height: 1.7;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: justify;
+  padding: 0 1em;
+}
+
+.arrow-btn {
+  background: transparent;
+  border: none;
+  transition: transform 0.3s ease;
+}
+
+.arrow-btn:hover {
+  transform: translateY(5px);
+}
+
+@media (max-width: 768px) {
+  .excursions-title {
+    font-size: 2rem;
+    margin-bottom: 1em;
+  }
+
+  .excursions-description {
+    font-size: 1em;
+    text-align: left;
+  }
+
+  .excursions-header {
+    margin-bottom: 2em;
+  }
+}
+
+@media (max-width: 576px) {
+  .excursions-title {
+    font-size: 1.75rem;
+  }
+}
+
