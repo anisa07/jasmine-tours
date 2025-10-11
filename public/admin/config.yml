@@ -21,3 +21,4 @@ backend:
   auth_endpoint: /oauth
   base_url: https://superlative-kitten-1f442a.netlify.app
   repo: https://github.com/anisa07/mvp-netlify-cms
+  auth_endpoint: auth
