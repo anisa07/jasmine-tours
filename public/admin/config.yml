@@ -18,7 +18,6 @@ collections:
 backend:
   name: github
   branch: version-3 # Branch to update (optional; defaults to master)
-  auth_endpoint: /oauth
   base_url: https://superlative-kitten-1f442a.netlify.app
   repo: https://github.com/anisa07/mvp-netlify-cms
   auth_endpoint: auth
