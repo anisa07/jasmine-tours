@@ -1,0 +1,47 @@
+{
+  "404": {
+    "title": "Page Not Found",
+    "description": "The page you are looking for could not be found.",
+    "heading": "Page Not Found",
+    "message": "Sorry, the page you are looking for doesn't exist or has been moved.",
+    "suggestions": "What can you do?",
+    "checkUrl": "Check if the URL is spelled correctly",
+    "useNav": "Use the navigation menu to find what you're looking for",
+    "contact": "Contact us if you think this is an error",
+    "home": "Go to Homepage",
+    "back": "Go Back"
+  },
+  "boundary": {
+    "title": "Something went wrong",
+    "tryAgain": "Try Again",
+    "details": "Error Details",
+    "errorId": "Error ID",
+    "copyError": "Copy error details"
+  },
+  "display": {
+    "info": {
+      "title": "Information",
+      "message": "Please note the following information."
+    },
+    "warning": {
+      "title": "Warning",
+      "message": "Please review the following warning."
+    },
+    "error": {
+      "title": "Something went wrong",
+      "message": "We encountered an error. Please try again."
+    },
+    "critical": {
+      "title": "Critical Error",
+      "message": "A critical error occurred. Please contact support."
+    },
+    "actions": {
+      "retry": "Retry",
+      "goBack": "Go Back"
+    }
+  },
+  "global": {
+    "message": "Something went wrong with the application. Please refresh the page or contact support if the problem persists.",
+    "reload": "Reload Page"
+  }
+}

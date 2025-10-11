@@ -21,3 +21,14 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+RULES.md
+REQUIREMENTS.md
+CHECKLIST.md
+why-need-upgrade.md
+docs
+/public/images/README.md
+
+# Local Netlify folder
+.netlify
+.env

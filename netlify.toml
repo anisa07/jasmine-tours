@@ -1,0 +1,22 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "functions-serve"
+
+[functions]
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/oauth"
+  to   = "/.netlify/functions/oauth"
+  status = 200
+
+[[redirects]]
+  from = "/callback"
+  to   = "/.netlify/functions/oauth"
+  status = 200
+
+[[redirects]]
+  from = "/token"
+  to   = "/.netlify/functions/oauth"
+  status = 200

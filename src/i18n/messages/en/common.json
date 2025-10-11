@@ -1,0 +1,181 @@
+{
+  "site": {
+    "title": "Mega Template",
+    "description": "A powerful Astro template with React, TypeScript, Tailwind CSS, and i18n support",
+    "keywords": "astro, react, typescript, tailwind, i18n, template",
+    "name": "TechFlow"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "language_switcher": "Language switcher",
+    "switch_to_language": "Switch to {{language}}",
+    "select_language": "Select language...",
+    "no_language_found": "No language found.",
+    "features": "Features",
+    "pricing": "Pricing",
+    "team": "Team",
+    "docs": "Documentation"
+  },
+  "actions": {
+    "read_more": "Read More",
+    "get_started": "Get Started",
+    "learn_more": "Learn More"
+  },
+  "team": {
+    "team_lead": "Team Lead",
+    "skills": "Skills",
+    "skills_expertise": "Skills & Expertise",
+    "no_member_available": "No Team Member Available",
+    "help_message": "Select a team member to display their information here"
+  },
+  "testimonial": {
+    "at": "at",
+    "featured": "Featured",
+    "featured_review": "Featured Review",
+    "rating_aria": "{{rating}} out of 5 stars",
+    "no_testimonial_available": "No Testimonial Available",
+    "add_testimonial_message": "Add a testimonial prop to display customer feedback here."
+  },
+  "components": {
+    "alerts": {
+      "title": "Alerts & Notifications",
+      "description": "Various alert styles with icons and actions"
+    },
+    "banners": {
+      "title": "Banners & Announcements",
+      "description": "Eye-catching banners for important messages and announcements"
+    },
+    "empty_state": {
+      "title": "Empty States",
+      "description": "Friendly empty states with actions and clear messaging"
+    }
+  },
+  "alerts": {
+    "success": {
+      "title": "Success!",
+      "message": "Your changes have been saved successfully.",
+      "action": "View Details"
+    },
+    "warning": {
+      "title": "Warning",
+      "message": "Please review your settings before continuing."
+    },
+    "info": {
+      "title": "Information",
+      "message": "New features are available in this version."
+    },
+    "error": {
+      "title": "Error",
+      "message": "Failed to save your changes. Please try again.",
+      "retry": "Retry",
+      "support": "Contact Support"
+    },
+    "minimal": {
+      "message": "This is a minimal alert without an icon or title."
+    }
+  },
+  "banners": {
+    "success": {
+      "message": "Your account has been successfully verified!",
+      "action": "Learn More"
+    },
+    "announcement": {
+      "message": "🎉 New features released! Check out our latest updates.",
+      "action": "Read More"
+    },
+    "warning": {
+      "message": "Scheduled maintenance will occur tonight from 11 PM to 1 AM EST."
+    },
+    "info": {
+      "message": "This is an informational banner without an icon."
+    },
+    "error": {
+      "message": "Service temporarily unavailable. We're working to resolve this issue.",
+      "action": "Contact Support"
+    }
+  },
+  "empty_state": {
+    "default": {
+      "title": "No items to display",
+      "description": "When you have content, it will appear here."
+    },
+    "search": {
+      "title": "No results found",
+      "description": "Try adjusting your search or filter criteria to find what you're looking for."
+    },
+    "error": {
+      "title": "Something went wrong",
+      "description": "We encountered an error while loading this content. Please try again."
+    },
+    "loading": {
+      "title": "Loading...",
+      "description": "Please wait while we load your content."
+    }
+  },
+  "testimonials": {
+    "section_title": "What Our Clients Say",
+    "section_description": "Hear from developers and teams who have built amazing projects with our template.",
+    "card_variant": "Card Variant",
+    "minimal_variant": "Minimal Variant",
+    "featured": {
+      "quote": "This template has been a game-changer for our development workflow. The accessibility features and TypeScript support saved us weeks of development time. Highly recommended for any serious web project."
+    },
+    "grid": {
+      "quote1": "The i18n support is fantastic. We launched our product in 5 languages without any hassle. The component library is well-designed and easy to customize.",
+      "quote2": "Outstanding performance and accessibility features. Our Lighthouse scores improved dramatically after switching to this template.",
+      "quote3": "Clean code, excellent documentation, and responsive design out of the box. Perfect for rapid prototyping and production apps."
+    },
+    "card": {
+      "quote": "Incredible attention to detail and developer experience. The best Astro template I've used."
+    },
+    "minimal": {
+      "quote": "Simple, elegant, and powerful. Everything I needed for my project."
+    }
+  },
+  "newsletter": {
+    "title": "Subscribe to our newsletter",
+    "description": "Get the latest updates and news delivered to your inbox.",
+    "placeholder": "Enter your email address",
+    "button": "Subscribe",
+    "privacy": "We respect your privacy. Unsubscribe at any time.",
+    "success": "Thank you for subscribing! Please check your email for confirmation.",
+    "error": "Please enter a valid email address.",
+    "email_label": "Email address",
+    "subscribing": "Subscribing..."
+  },
+  "footer": {
+    "newsletter": {
+      "title": "Stay Updated",
+      "description": "Get the latest news and updates delivered to your inbox.",
+      "success": "Thank you for subscribing! Please check your email for confirmation.",
+      "error": "Please enter a valid email address",
+      "email_placeholder": "Enter your email",
+      "email_label": "Email address",
+      "subscribe": "Subscribe",
+      "privacy_notice": "We respect your privacy. Unsubscribe at any time."
+    }
+  },
+  "gallery": {
+    "label": "Image gallery",
+    "previousImage": "Previous image",
+    "nextImage": "Next image"
+  },
+  "carousel": {
+    "noItems": "No items to display",
+    "label": "Image carousel",
+    "previous": "Previous slide",
+    "next": "Next slide",
+    "pause": "Pause carousel",
+    "play": "Play carousel",
+    "currentSlide": "Slide {{current}} of {{total}}"
+  },
+  "redirect": {
+    "title": "Redirecting..."
+  },
+  "languages": {
+    "en": "English",
+    "nl": "Nederlands"
+  }
+}

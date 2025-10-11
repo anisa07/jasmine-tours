@@ -1,0 +1,266 @@
+---
+import Container from "@/components/layout/Container.astro";
+import { Image } from "astro:assets";
+import { ChevronLeft, ChevronRight } from "@lucide/astro";
+
+interface Props {
+  t: (
+    key: string,
+    fallback: string,
+    vars?: Record<string, string | number>
+  ) => string;
+}
+
+const { t } = Astro.props;
+
+// Testimonials data
+const testimonials = [
+  {
+    quote: t(
+      "testimonials.edward.quote",
+      "The cuisine, getting tours are pretty interesting. The travel locations in Labuan Bajo are full of tourist attractions spots. The trips is a perfect combination to have a good rest while traveling."
+    ),
+    author: {
+      name: t("testimonials.edward.name", "Edward Cullen"),
+      title: t("testimonials.edward.title", "Tourism Consultant"),
+      company: t("testimonials.edward.company", "Travel Expert"),
+      avatar:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&crop=face",
+    },
+    rating: 5,
+    featured: true,
+  },
+  {
+    quote: t(
+      "testimonials.sarah.quote",
+      "Amazing experience with professional guides and breathtaking destinations. The tour was well organized and exceeded all expectations."
+    ),
+    author: {
+      name: t("testimonials.sarah.name", "Sarah Johnson"),
+      title: t("testimonials.sarah.title", "Travel Blogger"),
+      company: t("testimonials.sarah.company", "Adventure Seeker"),
+      avatar:
+        "https://images.unsplash.com/photo-1494790108755-2616b9e91ce2?w=400&h=500&fit=crop&crop=face",
+    },
+    rating: 5,
+  },
+  {
+    quote: t(
+      "testimonials.michael.quote",
+      "Perfect blend of adventure and relaxation. The local culture immersion and scenic beauty made this trip unforgettable."
+    ),
+    author: {
+      name: t("testimonials.michael.name", "Michael Chen"),
+      title: t("testimonials.michael.title", "Photographer"),
+      company: t("testimonials.michael.company", "Visual Storyteller"),
+      avatar:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=500&fit=crop&crop=face",
+    },
+    rating: 5,
+  },
+];
+---
+
+<!-- Testimonials Section -->
+<section class="py-20 bg-muted/30">
+  <Container size="xl" padding="lg">
+    <div class="text-center mb-16">
+      <h2
+        class="text-3xl md:text-4xl font-bold text-foreground mb-4 animate-fade-up"
+      >
+        {t("testimonials.title", "What Our Travelers Say")}
+      </h2>
+      <p class="text-xl text-muted-foreground animate-fade-up animate-delay-1">
+        {
+          t(
+            "testimonials.description",
+            "Hear from our satisfied customers about their amazing travel experiences."
+          )
+        }
+      </p>
+    </div>
+
+    <!-- Testimonials Carousel -->
+    <div class="relative">
+      <!-- Carousel Container -->
+      <div class="carousel-container overflow-hidden">
+        <div class="carousel-track flex transition-transform duration-500 ease-in-out" data-carousel="testimonials">
+          {
+            testimonials.map((testimonial, index) => (
+              <div class="carousel-slide flex-none w-full">
+                <div class="bg-card rounded-2xl border shadow-sm overflow-hidden mx-4">
+                  <div class="flex flex-col md:flex-row">
+                    <!-- Profile Image -->
+                    <div class="md:w-1/3 lg:w-1/4">
+                      <Image
+                        src={testimonial.author.avatar}
+                        alt={testimonial.author.name}
+                        width={400}
+                        height={500}
+                        class="w-full h-64 md:h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="flex-1 p-8 md:p-12 flex flex-col justify-center">
+                      <!-- Quote Icon -->
+                      <div class="mb-6">
+                        <svg class="w-12 h-12 text-primary/20" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-10zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                        </svg>
+                      </div>
+                      
+                      <!-- Quote Text -->
+                      <blockquote class="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8 italic">
+                        "{testimonial.quote}"
+                      </blockquote>
+                      
+                      <!-- Author Info -->
+                      <div class="flex items-center justify-between">
+                        <div>
+                          <div class="font-semibold text-foreground text-lg">
+                            {testimonial.author.name}
+                          </div>
+                          <div class="text-muted-foreground">
+                            {testimonial.author.title}
+                          </div>
+                        </div>
+                        
+                        <!-- Rating -->
+                        <div class="flex text-yellow-400">
+                          <span class="text-2xl">★★★★★</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Navigation Controls -->
+      <button
+        class="carousel-prev absolute left-4 top-1/2 transform -translate-y-1/2 bg-background/90 hover:bg-background rounded-full p-3 shadow-lg transition-all duration-200 z-10 border"
+        data-carousel="testimonials"
+      >
+        <ChevronLeft size={24} class="text-foreground" />
+      </button>
+      <button
+        class="carousel-next absolute right-4 top-1/2 transform -translate-y-1/2 bg-background/90 hover:bg-background rounded-full p-3 shadow-lg transition-all duration-200 z-10 border"
+        data-carousel="testimonials"
+      >
+        <ChevronRight size={24} class="text-foreground" />
+      </button>
+
+      <!-- Dots Indicator -->
+      <div class="flex justify-center mt-8 space-x-3">
+        {
+          testimonials.map((_, index) => (
+            <button
+              class={`carousel-dot w-3 h-3 rounded-full transition-all duration-200 ${
+                index === 0 ? 'bg-primary' : 'bg-muted hover:bg-muted-foreground'
+              }`}
+              data-carousel="testimonials"
+              data-slide={index}
+            ></button>
+          ))
+        }
+      </div>
+    </div>
+  </Container>
+</section>
+
+<script is:inline>
+  // Testimonials carousel functionality
+  document.addEventListener("DOMContentLoaded", function () {
+    const carouselContainer = document.querySelector('[data-carousel="testimonials"]');
+    if (!carouselContainer) return;
+
+    let currentSlide = 0;
+    const slides = carouselContainer.querySelectorAll('.carousel-slide');
+    const totalSlides = slides.length;
+    const dots = document.querySelectorAll('[data-carousel="testimonials"][data-slide]');
+    const prevBtn = document.querySelector('.carousel-prev[data-carousel="testimonials"]');
+    const nextBtn = document.querySelector('.carousel-next[data-carousel="testimonials"]');
+
+    // Update carousel position
+    function updateCarousel() {
+      const translateX = -(currentSlide * 100);
+      carouselContainer.style.transform = `translateX(${translateX}%)`;
+      updateDots();
+    }
+
+    // Update dots indicators
+    function updateDots() {
+      dots.forEach((dot, index) => {
+        if (index === currentSlide) {
+          dot.classList.remove('bg-muted');
+          dot.classList.add('bg-primary');
+        } else {
+          dot.classList.remove('bg-primary');
+          dot.classList.add('bg-muted');
+        }
+      });
+    }
+
+    // Navigate to next slide
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateCarousel();
+    }
+
+    // Navigate to previous slide
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateCarousel();
+    }
+
+    // Go to specific slide
+    function goToSlide(slideIndex) {
+      currentSlide = slideIndex;
+      updateCarousel();
+    }
+
+    // Event listeners
+    if (nextBtn) {
+      nextBtn.addEventListener('click', nextSlide);
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', prevSlide);
+    }
+
+    // Dot navigation
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => goToSlide(index));
+    });
+
+    // Auto-play carousel (optional)
+    let autoplayInterval;
+    function startAutoplay() {
+      autoplayInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    }
+
+    function stopAutoplay() {
+      if (autoplayInterval) {
+        clearInterval(autoplayInterval);
+      }
+    }
+
+    // Start autoplay
+    startAutoplay();
+
+    // Pause autoplay on hover
+    const carouselSection = carouselContainer.closest('section');
+    if (carouselSection) {
+      carouselSection.addEventListener('mouseenter', stopAutoplay);
+      carouselSection.addEventListener('mouseleave', startAutoplay);
+    }
+
+    // Initialize carousel
+    updateCarousel();
+  });
+</script>

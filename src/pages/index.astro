@@ -1,0 +1,44 @@
+---
+// Root index page - redirects to Russian locale
+import { defaultLocale } from "@/i18n/config";
+import { createT } from "@/i18n/t";
+
+// Since this is a redirect page, we'll provide basic Russian translations
+const redirectTranslations = {
+  ru: {
+    "redirect.title": "Перенаправление...",
+    "redirect.message": "Перенаправление на русскую версию...",
+    "redirect.fallback": "Если вы не были перенаправлены автоматически,",
+    "redirect.clickHere": "нажмите здесь",
+  },
+};
+
+// Create translation function for Russian
+const t = createT([redirectTranslations[defaultLocale]]);
+---
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{t("redirect.title", "Перенаправление...")}</title>
+
+    <script>
+      // Simple redirect to Russian locale
+      function redirectToRussian() {
+        // Always redirect to Russian since it's the only supported language
+        window.location.replace("/ru");
+      }
+
+      // Run immediately
+      redirectToRussian();
+    </script>
+
+    <!-- Fallback meta refresh for users with JS disabled -->
+    <meta http-equiv="refresh" content="0; url={defaultLocale}" />
+  </head>
+  <body>
+    <!-- Empty body - redirect happens instantly via JavaScript -->
+  </body>
+</html>

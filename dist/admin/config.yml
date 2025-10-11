@@ -1,0 +1,24 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "src/assets/images" # Location where files will be stored in the repo
+public_folder: "src/assets/images" # The src attribute for uploaded media
+
+collections:
+  - name: "tours"
+    label: "Tours"
+    folder: "src/content/tours"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "body", widget: "markdown" }
+      - { label: "Price (€)", name: "price", widget: "number" }
+      - { label: "Duration (hours)", name: "duration", widget: "number" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Location", name: "location", widget: "string" }
+
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)

@@ -1,0 +1,19 @@
+{
+  "default": {
+    "name": "Mega Template",
+    "title": "Mega Template - Modern Astro + React Starter",
+    "description": "A powerful, production-ready template built with Astro v5, React v19, TypeScript, Tailwind CSS, and comprehensive i18n support. Perfect for building fast, accessible, and SEO-optimized websites.",
+    "openGraph": {
+      "title": "Mega Template - Modern Astro + React Starter",
+      "description": "Build lightning-fast websites with our comprehensive Astro template featuring React integration, TypeScript, Tailwind CSS, and built-in internationalization support.",
+      "type": "website",
+      "url": "https://mega-template.dev",
+      "image": "/images/og-image.jpg"
+    },
+    "twitter": {
+      "title": "Mega Template - Modern Astro + React Starter 🚀",
+      "description": "⚡ Lightning-fast Astro template with React, TypeScript & Tailwind CSS. Built for modern web development with i18n support out of the box.",
+      "creator": "@megatemplate"
+    }
+  }
+}

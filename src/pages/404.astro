@@ -1,0 +1,89 @@
+---
+// 404 page - handles missing pages and invalid routes
+import { defaultLocale, locales } from "@/i18n/config";
+import type { Locale } from "@/i18n/config";
+import { getPageTranslations } from "@/i18n/i18n";
+import { THEME_KEY } from "@/config/variables";
+import NotFoundContent from "@/components/state/NotFoundContent.astro";
+
+// Import global styles
+import "../styles/global.css";
+
+// Use default locale for root 404 page (static build)
+// Users can use language selector to switch to localized versions
+const detectedLocale = defaultLocale;
+
+// Get translations using centralized system
+const { t } = await getPageTranslations(detectedLocale as Locale, [
+  "errors",
+  "common",
+]);
+
+// Set 404 status
+Astro.response.status = 404;
+---
+
+<!doctype html>
+<html lang={detectedLocale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{t("404.title", "Page Not Found")}</title>
+
+    <!-- No-flash theme restore -->
+    <script is:inline define:vars={{ THEME_KEY }}>
+      try {
+        const theme = localStorage.getItem(THEME_KEY);
+        if (theme === "dark") {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (e) {}
+    </script>
+
+    <!-- Simple back functionality -->
+    <script is:inline>
+      window.goBack = function () {
+        if (window.history.length > 1) {
+          window.history.back();
+        } else {
+          window.location.href = `/${document.documentElement.lang || "en"}`;
+        }
+      };
+    </script>
+  </head>
+
+  <body>
+    <NotFoundContent
+      locale={detectedLocale as Locale}
+      homeHref={`/${detectedLocale}`}
+      onBackClick="goBack()"
+    />
+
+    <!-- Language selector -->
+    <div class="fixed bottom-8 left-1/2 transform -translate-x-1/2">
+      <div
+        class="bg-background/80 backdrop-blur-sm border rounded-lg p-3 shadow-lg"
+      >
+        <div class="flex gap-2 justify-center">
+          <!-- <a
+            href="/en/404"
+            class="btn btn-ghost btn-sm"
+            class:list={[detectedLocale === "en" && "bg-muted"]}
+          >
+            {t("common.languages.en", "English")}
+          </a> -->
+          <a
+            href="/ru/404"
+            class="btn btn-ghost btn-sm"
+            class:list={[detectedLocale === "ru" && "bg-muted"]}
+          >
+            {t("common.languages.nl", "Nederlands")}
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

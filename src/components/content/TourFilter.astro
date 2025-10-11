@@ -1,0 +1,396 @@
+---
+import Container from "@/components/layout/Container.astro";
+import TourFilterCard from "@/components/content/TourFilterCard.astro";
+
+interface Props {
+  t: (
+    key: string,
+    fallback: string,
+    vars?: Record<string, string | number>
+  ) => string;
+}
+
+const { t } = Astro.props;
+
+// Tour data structure
+const tourCategories = [
+  {
+    id: "popular",
+    title: t("tours.filters.popular", "Popular Tours"),
+    tours: [
+      {
+        title: t("tours.popular.1.title", "Labuan Bajo"),
+        price: "$1100",
+        duration: "4 Days",
+        image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=320&fit=crop&crop=center",
+        alt: "Labuan Bajo landscape"
+      },
+      {
+        title: t("tours.popular.2.title", "Nihi Sumba"),
+        price: "$2500",
+        duration: "5 Days",
+        image: "/assets/tour2.jpg",
+        alt: "Nihi Sumba beach resort"
+      },
+      {
+        title: t("tours.popular.3.title", "Pink Beach"),
+        price: "$580",
+        duration: "3 Days",
+        image: "/assets/tour3.jpg",
+        alt: "Pink Beach coastline"
+      },
+      {
+        title: "Komodo Island",
+        price: "$890",
+        duration: "3 Days",
+        image: "/assets/tour4.jpeg",
+        alt: "Komodo Island"
+      }
+    ]
+  },
+  {
+    id: "amsterdam",
+    title: t("tours.filters.amsterdam", "Amsterdam Tours"),
+    tours: [
+      {
+        title: t("tours.amsterdam.1.title", "Canal District Tour"),
+        price: "$120",
+        duration: "Half Day",
+        image: "/images/canals1.jpg",
+        alt: "Amsterdam canals"
+      },
+      {
+        title: t("tours.amsterdam.2.title", "Museums Quarter"),
+        price: "$85",
+        duration: "Full Day",
+        image: "/images/museum1.jpg",
+        alt: "Amsterdam museums"
+      },
+      {
+        title: t("tours.amsterdam.3.title", "Bike City Tour"),
+        price: "$45",
+        duration: "3 Hours",
+        image: "/assets/bike1.jpg",
+        alt: "Amsterdam bike tour"
+      },
+      {
+        title: "Red Light District",
+        price: "$35",
+        duration: "2 Hours",
+        image: "/images/city1.jpg",
+        alt: "Amsterdam Red Light District"
+      }
+    ]
+  },
+  {
+    id: "boat",
+    title: t("tours.filters.boat", "Boat Tours"),
+    tours: [
+      {
+        title: t("tours.boat.1.title", "Sunset Sailing"),
+        price: "$180",
+        duration: "4 Hours",
+        image: "/assets/boat1.jpg",
+        alt: "Sunset sailing boat"
+      },
+      {
+        title: t("tours.boat.2.title", "Island Hopping"),
+        price: "$220",
+        duration: "Full Day",
+        image: "/assets/island1.jpg",
+        alt: "Tropical islands"
+      },
+      {
+        title: t("tours.boat.3.title", "Fishing Adventure"),
+        price: "$150",
+        duration: "6 Hours",
+        image: "/images/fishing1.jpg",
+        alt: "Deep sea fishing"
+      },
+      {
+        title: "Snorkeling Adventure",
+        price: "$95",
+        duration: "3 Hours",
+        image: "/assets/snorkel1.jpg",
+        alt: "Snorkeling adventure"
+      }
+    ]
+  },
+  {
+    id: "other",
+    title: t("tours.filters.other", "Other Tours"),
+    tours: [
+      {
+        title: t("tours.other.1.title", "Mountain Adventure"),
+        price: "$350",
+        duration: "2 Days",
+        image: "/assets/mountain1.jpg",
+        alt: "Mountain landscape"
+      },
+      {
+        title: t("tours.other.2.title", "Night Photography"),
+        price: "$95",
+        duration: "4 Hours",
+        image: "https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?w=400&h=320&fit=crop&crop=center",
+        alt: "Night cityscape"
+      },
+      {
+        title: t("tours.other.3.title", "Theater & Shows"),
+        price: "$75",
+        duration: "3 Hours",
+        image: "https://images.unsplash.com/photo-1507924538820-ede94a04019d?w=400&h=320&fit=crop&crop=center",
+        alt: "Theater performance"
+      },
+      {
+        title: "Wine Tasting",
+        price: "$125",
+        duration: "5 Hours",
+        image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=320&fit=crop&crop=center",
+        alt: "Wine tasting experience"
+      }
+    ]
+  }
+];
+---
+
+<!-- Tour Filter Panel Section -->
+<section class="py-16 bg-card/50 border-y">
+  <Container size="xl" padding="lg">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-4">
+        {t("tours.title", "Explore Our Tours")}
+      </h2>
+      <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+        {
+          t(
+            "tours.description",
+            "Discover amazing experiences with our carefully curated tour packages"
+          )
+        }
+      </p>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="flex flex-wrap justify-center gap-2 mb-8">
+      {tourCategories.map((category, index) => (
+        <button
+          class={`tour-filter-tab px-6 py-3 rounded-full border-2 font-semibold transition-all duration-200 hover:shadow-md ${
+            index === 0 
+              ? 'active border-primary bg-primary text-primary-foreground' 
+              : 'border-border bg-background text-foreground hover:border-primary hover:text-primary'
+          }`}
+          data-filter={category.id}
+        >
+          {category.title}
+        </button>
+      ))}
+    </div>
+
+    <!-- Tour Content Area -->
+    <div class="tour-content-area">
+      {tourCategories.map((category, categoryIndex) => (
+        <div 
+          id={`${category.id}-tours`} 
+          class={`tour-content ${categoryIndex === 0 ? 'active' : 'hidden'}`}
+        >
+          <!-- Tours Grid -->
+          <div 
+            class="tours-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"
+            data-category={category.id}
+          >
+            {category.tours.map((tour, tourIndex) => (
+              <div 
+                class={`tour-card ${tourIndex >= 3 ? 'hidden' : ''}`}
+                data-tour-index={tourIndex}
+              >
+                <TourFilterCard
+                  title={tour.title}
+                  price={tour.price}
+                  duration={tour.duration}
+                  image={tour.image}
+                  alt={tour.alt}
+                />
+              </div>
+            ))}
+          </div>
+
+          <!-- More Tours Button -->
+          {category.tours.length > 3 && (
+            <div class="text-center">
+              <button
+                class="more-tours-btn px-8 py-3 bg-primary text-primary-foreground rounded-full font-semibold hover:bg-primary/90 transition-all duration-200 shadow-md hover:shadow-lg"
+                data-category={category.id}
+              >
+                {t("tours.more", "More Tours")} ({category.tours.length - 3})
+              </button>
+              <button
+                class="less-tours-btn hidden px-8 py-3 bg-muted text-muted-foreground rounded-full font-semibold hover:bg-muted/80 transition-all duration-200 shadow-md hover:shadow-lg ml-4"
+                data-category={category.id}
+              >
+                {t("tours.less", "Show Less")}
+              </button>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>
+
+<style>
+    .tour-card {
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+    .tour-card.hidden {
+        display: none;
+    }
+    .tour-card.showing {
+        animation: fadeInUp 0.5s ease-out forwards;
+    }
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<script is:inline>
+  // Tour filter tab functionality + Grid expand/collapse functionality
+  document.addEventListener("DOMContentLoaded", function () {
+    const filterTabs = document.querySelectorAll(".tour-filter-tab");
+    const tourContents = document.querySelectorAll(".tour-content");
+
+    // Grid expansion states for each category
+    const gridStates = {};
+    document.querySelectorAll('[data-category]').forEach((grid) => {
+      const category = grid.getAttribute('data-category');
+      gridStates[category] = { expanded: false };
+    });
+
+    function switchTab(targetFilter) {
+      // Remove active class from all tabs
+      for (let i = 0; i < filterTabs.length; i++) {
+        const tab = filterTabs[i];
+        tab.classList.remove("active");
+        tab.classList.remove(
+          "border-primary",
+          "bg-primary",
+          "text-primary-foreground"
+        );
+        tab.classList.add("border-border", "bg-background", "text-foreground");
+      }
+
+      // Hide all tour content
+      for (let i = 0; i < tourContents.length; i++) {
+        const content = tourContents[i];
+        content.classList.remove("active");
+        content.classList.add("hidden");
+      }
+
+      // Add active class to clicked tab
+      const activeTab = document.querySelector(
+        '[data-filter="' + targetFilter + '"]'
+      );
+      if (activeTab) {
+        activeTab.classList.add("active");
+        activeTab.classList.remove(
+          "border-border",
+          "bg-background",
+          "text-foreground"
+        );
+        activeTab.classList.add(
+          "border-primary",
+          "bg-primary",
+          "text-primary-foreground"
+        );
+      }
+
+      // Show corresponding content
+      const activeContent = document.getElementById(targetFilter + "-tours");
+      if (activeContent) {
+        activeContent.classList.add("active");
+        activeContent.classList.remove("hidden");
+        
+        // Reset grid state when switching tabs
+        if (gridStates[targetFilter] && gridStates[targetFilter].expanded) {
+          collapseGrid(targetFilter);
+        }
+      }
+    }
+
+    function expandGrid(category) {
+      const grid = document.querySelector(`[data-category="${category}"]`);
+      const moreBtn = document.querySelector(`.more-tours-btn[data-category="${category}"]`);
+      const lessBtn = document.querySelector(`.less-tours-btn[data-category="${category}"]`);
+      
+      if (grid) {
+        const hiddenCards = grid.querySelectorAll('.tour-card.hidden');
+        
+        hiddenCards.forEach((card, index) => {
+          setTimeout(() => {
+            card.classList.remove('hidden');
+            card.classList.add('showing');
+          }, index * 100); // Staggered animation
+        });
+        
+        if (moreBtn) moreBtn.style.display = 'none';
+        if (lessBtn) lessBtn.style.display = 'inline-block';
+        
+        gridStates[category].expanded = true;
+      }
+    }
+
+    function collapseGrid(category) {
+      const grid = document.querySelector(`[data-category="${category}"]`);
+      const moreBtn = document.querySelector(`.more-tours-btn[data-category="${category}"]`);
+      const lessBtn = document.querySelector(`.less-tours-btn[data-category="${category}"]`);
+      
+      if (grid) {
+        const allCards = grid.querySelectorAll('.tour-card');
+        
+        allCards.forEach((card, index) => {
+          if (index >= 3) {
+            card.classList.remove('showing');
+            card.classList.add('hidden');
+          }
+        });
+        
+        if (moreBtn) moreBtn.style.display = 'inline-block';
+        if (lessBtn) lessBtn.style.display = 'none';
+        
+        gridStates[category].expanded = false;
+      }
+    }
+
+    // Add click event listeners to all tabs
+    for (let i = 0; i < filterTabs.length; i++) {
+      const tab = filterTabs[i];
+      tab.addEventListener("click", function () {
+        const filter = tab.getAttribute("data-filter");
+        if (filter) {
+          switchTab(filter);
+        }
+      });
+    }
+
+    // Add grid expansion event listeners
+    document.addEventListener("click", function (e) {
+      // More tours button
+      if (e.target.closest(".more-tours-btn")) {
+        const category = e.target.closest(".more-tours-btn").getAttribute("data-category");
+        expandGrid(category);
+      }
+
+      // Less tours button
+      if (e.target.closest(".less-tours-btn")) {
+        const category = e.target.closest(".less-tours-btn").getAttribute("data-category");
+        collapseGrid(category);
+      }
+    });
+  });
+</script>
