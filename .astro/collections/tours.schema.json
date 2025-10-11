@@ -1,0 +1,111 @@
+{
+  "$ref": "#/definitions/tours",
+  "definitions": {
+    "tours": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        },
+        "duration": {
+          "type": "string"
+        },
+        "groupSize": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "number"
+        },
+        "reviewCount": {
+          "type": "number"
+        },
+        "mainImage": {
+          "type": "string"
+        },
+        "gallery": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "location": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string",
+          "default": "Indonesia"
+        },
+        "highlights": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "itinerary": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "day": {
+                "type": "number"
+              },
+              "title": {
+                "type": "string"
+              },
+              "activities": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "day",
+              "title",
+              "activities"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "included": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "notIncluded": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "published": {
+          "type": "boolean",
+          "default": true
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "price",
+        "duration",
+        "groupSize",
+        "rating",
+        "reviewCount",
+        "mainImage",
+        "location"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

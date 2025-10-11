@@ -392,5 +392,86 @@ const tourCategories = [
         collapseGrid(category);
       }
     });
+
+    // Global search function that can be called from Hero component
+    window.searchTours = function(searchTerm) {
+      let foundResults = false;
+      let matchingCategory = null;
+
+      // Search through all tours in all categories
+      document.querySelectorAll('[data-category]').forEach((grid) => {
+        const category = grid.getAttribute('data-category');
+        const categoryTours = grid.querySelectorAll('.tour-card');
+        let hasMatchInCategory = false;
+
+        categoryTours.forEach((card) => {
+          // Look for tour title in the card
+          const titleElement = card.querySelector('h3, .font-semibold');
+          const title = titleElement?.textContent?.toLowerCase() || '';
+          
+          if (title.includes(searchTerm)) {
+            hasMatchInCategory = true;
+            foundResults = true;
+            // Highlight the card
+            card.style.border = '2px solid rgb(59, 130, 246)'; // primary color
+            card.style.transform = 'scale(1.02)';
+            card.style.transition = 'all 0.3s ease';
+            setTimeout(() => {
+              card.style.border = '';
+              card.style.transform = '';
+            }, 2000);
+          }
+        });
+
+        if (hasMatchInCategory && !matchingCategory) {
+          matchingCategory = category;
+        }
+      });
+
+      // Switch to the category with matches
+      if (matchingCategory) {
+        switchTab(matchingCategory);
+        
+        // Expand the grid to show all tours if collapsed
+        if (!gridStates[matchingCategory].expanded) {
+          setTimeout(() => {
+            expandGrid(matchingCategory);
+          }, 300);
+        }
+      }
+
+      // Show no results message if nothing found
+      if (!foundResults) {
+        // Create or show no results message
+        let noResultsMsg = document.getElementById('no-search-results');
+        if (!noResultsMsg) {
+          noResultsMsg = document.createElement('div');
+          noResultsMsg.id = 'no-search-results';
+          noResultsMsg.className = 'text-center py-8 text-muted-foreground';
+          noResultsMsg.innerHTML = `<p class="text-lg">No tours found for "${searchTerm}". Try searching for destinations like "Amsterdam", "Labuan Bajo", or activities like "boat", "mountain".</p>`;
+          
+          const tourContentArea = document.querySelector('.tour-content-area');
+          if (tourContentArea) {
+            tourContentArea.appendChild(noResultsMsg);
+          }
+        } else {
+          noResultsMsg.innerHTML = `<p class="text-lg">No tours found for "${searchTerm}". Try searching for destinations like "Amsterdam", "Labuan Bajo", or activities like "boat", "mountain".</p>`;
+          noResultsMsg.style.display = 'block';
+        }
+        
+        // Hide the message after 3 seconds
+        setTimeout(() => {
+          if (noResultsMsg) {
+            noResultsMsg.style.display = 'none';
+          }
+        }, 3000);
+      } else {
+        // Hide no results message if it exists
+        const noResultsMsg = document.getElementById('no-search-results');
+        if (noResultsMsg) {
+          noResultsMsg.style.display = 'none';
+        }
+      }
+    };
   });
 </script>

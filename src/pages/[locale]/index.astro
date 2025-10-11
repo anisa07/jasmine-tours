@@ -2,6 +2,7 @@
 import IntlBaseLayout from "@/layouts/IntlBaseLayout.astro";
 import { getPageTranslations, getLocaleStaticPaths } from "@/i18n/i18n";
 import type { Locale } from "@/i18n/config";
+import { getEntry } from "astro:content";
 
 // Layout components
 import Container from "@/components/layout/Container.astro";
@@ -31,65 +32,20 @@ const { t } = await getPageTranslations(locale as Locale, [
   "home",
 ]);
 
-// Features data
-const features = [
-  {
-    title: t("features.performance.title", "Lightning Fast Performance"),
-    description: t(
-      "features.performance.description",
-      "Built with modern web technologies for maximum performance and speed. Experience sub-second load times."
-    ),
-    icon: "⚡",
+// Load hero content from CMS
+const heroEntry = await getEntry("hero", "hero");
+const heroData = heroEntry?.data || {
+  title: "Discover Your Best Trip!",
+  subtitle: "LET'S GO HOLIDAY",
+  description:
+    "Much of beautiful and refreshing places as you need to satisfy your best trip and make an amazing experience. Go explore our Packages.",
+  images: {
+    mainImage: "/assets/hero/hero1.jpg",
+    mainImageAlt: "Sunset in Amsterdam",
+    secondaryImage: "/assets/hero/hero2.jpg",
+    secondaryImageAlt: "Sunset an water",
   },
-  {
-    title: t("features.security.title", "Enterprise Security"),
-    description: t(
-      "features.security.description",
-      "Industry-standard security protocols to keep your data safe. SOC 2 compliant with end-to-end encryption."
-    ),
-    icon: "🛡️",
-  },
-  {
-    title: t("features.scalable.title", "Infinitely Scalable"),
-    description: t(
-      "features.scalable.description",
-      "Grows with your business from startup to enterprise. Handle millions of users without breaking a sweat."
-    ),
-    icon: "🚀",
-  },
-  {
-    title: t("features.collaboration.title", "Team Collaboration"),
-    description: t(
-      "features.collaboration.description",
-      "Built for teams with real-time collaboration tools. Work together seamlessly from anywhere in the world."
-    ),
-    icon: "👥",
-  },
-];
-
-// Statistics data
-const stats = [
-  {
-    label: t("stats.users.label", "Active Users"),
-    value: "10M+",
-    description: t("stats.users.description", "Developers worldwide"),
-  },
-  {
-    label: t("stats.projects.label", "Projects Built"),
-    value: "500K+",
-    description: t("stats.projects.description", "Successful deployments"),
-  },
-  {
-    label: t("stats.uptime.label", "Uptime"),
-    value: "99.9%",
-    description: t("stats.uptime.description", "Service reliability"),
-  },
-  {
-    label: t("stats.rating.label", "Support Rating"),
-    value: "4.9/5",
-    description: t("stats.rating.description", "Customer satisfaction"),
-  },
-];
+};
 
 // Sample gallery images
 const galleryImages = [
@@ -215,9 +171,10 @@ const ctaActions = [
   <section class="relative pt-20">
     <Hero
       variant="split"
-      subtitle="LET'S GO HOLIDAY"
-      title="Discover Your Best Trip!"
-      description="Much of beautiful and refreshing places as you need to satisfy your best trip and make an amazing experience. Go explore our Packages."
+      subtitle={heroData.subtitle}
+      title={heroData.title}
+      description={heroData.description}
+      images={heroData.images}
     />
   </section>
 
