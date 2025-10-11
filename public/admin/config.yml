@@ -80,11 +80,7 @@ collections:
 
 backend:
   name: github
-  branch: version-3 # Branch to update
-  repo: https://github.com/anisa07/mvp-netlify-cms
-  auth_endpoint: /.netlify/functions/oauth-authorize
-  auth_scope: repo # GitHub permission scope
-  api_root: https://api.github.com
-  site_domain: jasmine-tour-events.netlify.app
-  base_url: https://jasmine-tour-events.netlify.app
-  auth_token_endpoint: /.netlify/functions/oauth-token
+  repo: anisa07/mvp-netlify-cms
+  branch: version-3
+  base_url: https://superlative-kitten-1f442a.netlify.app
+  auth_endpoint: /oauth

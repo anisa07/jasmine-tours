@@ -1,6 +1,6 @@
 // Exchanges Auth0 "code" -> tokens, then sets a signed session cookie and redirects to /admin/
 
-const jwt = require("jsonwebtoken");
+import * as jwt from "jsonwebtoken";
 
 const appBaseUrl = (event) => {
   const proto = event.headers["x-forwarded-proto"] || "https";
