@@ -1,5 +1,5 @@
-media_folder: "src/assets/images" # Location where files will be stored in the repo
-public_folder: "src/assets/images" # The src attribute for uploaded media
+media_folder: "public/assets" # Location where files will be stored
+public_folder: "/assets" # The src attribute for uploaded media
 
 collections:
   - name: "tours"
@@ -9,15 +9,82 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "body", widget: "markdown" }
-      - { label: "Price (€)", name: "price", widget: "number" }
-      - { label: "Duration (hours)", name: "duration", widget: "number" }
-      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Detailed Description", name: "body", widget: "markdown" }
+      - { label: "Price (USD)", name: "price", widget: "number" }
+      - { label: "Duration", name: "duration", widget: "string" }
+      - { label: "Group Size", name: "groupSize", widget: "string" }
+      - {
+          label: "Rating",
+          name: "rating",
+          widget: "number",
+          min: 1,
+          max: 5,
+          step: 0.1,
+        }
+      - { label: "Review Count", name: "reviewCount", widget: "number" }
+      - { label: "Main Image", name: "mainImage", widget: "image" }
+      - {
+          label: "Gallery Images",
+          name: "gallery",
+          widget: "list",
+          field: { label: "Image", name: "image", widget: "image" },
+        }
       - { label: "Location", name: "location", widget: "string" }
+      - {
+          label: "Country",
+          name: "country",
+          widget: "string",
+          default: "Indonesia",
+        }
+      - label: "Highlights"
+        name: "highlights"
+        widget: "list"
+        field: { label: "Highlight", name: "highlight", widget: "string" }
+      - label: "Itinerary"
+        name: "itinerary"
+        widget: "list"
+        fields:
+          - { label: "Day", name: "day", widget: "number" }
+          - { label: "Title", name: "title", widget: "string" }
+          - label: "Activities"
+            name: "activities"
+            widget: "list"
+            field: { label: "Activity", name: "activity", widget: "string" }
+      - label: "Included"
+        name: "included"
+        widget: "list"
+        field: { label: "Item", name: "item", widget: "string" }
+      - label: "Not Included"
+        name: "notIncluded"
+        widget: "list"
+        field: { label: "Item", name: "item", widget: "string" }
+      - {
+          label: "Published",
+          name: "published",
+          widget: "boolean",
+          default: true,
+        }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "About Page"
+        name: "about"
+        file: "src/content/pages/about.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - { label: "Content", name: "body", widget: "markdown" }
+          - { label: "Profile Image", name: "profileImage", widget: "image" }
 
 backend:
   name: github
-  branch: version-3 # Branch to update (optional; defaults to master)
-  base_url: https://superlative-kitten-1f442a.netlify.app
+  branch: version-3 # Branch to update
   repo: https://github.com/anisa07/mvp-netlify-cms
   auth_endpoint: /.netlify/functions/oauth-authorize
+  auth_scope: repo # GitHub permission scope
+  api_root: https://api.github.com
+  site_domain: jasmine-tour-events.netlify.app
+  base_url: https://jasmine-tour-events.netlify.app
+  auth_token_endpoint: /.netlify/functions/oauth-token
