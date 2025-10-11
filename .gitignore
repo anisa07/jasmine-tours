@@ -28,3 +28,7 @@ CHECKLIST.md
 why-need-upgrade.md
 docs
 /public/images/README.md
+
+# Local Netlify folder
+.netlify
+.env

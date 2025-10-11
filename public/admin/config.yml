@@ -18,3 +18,5 @@ collections:
 backend:
   name: git-gateway
   branch: version-3 # Branch to update (optional; defaults to master)
+  auth_endpoint: /oauth
+  base_url: https://superlative-kitten-1f442a.netlify.app
