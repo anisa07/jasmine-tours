@@ -79,8 +79,6 @@ collections:
           - { label: "Profile Image", name: "profileImage", widget: "image" }
 
 backend:
-  name: github
+  name: git-gateway
   repo: anisa07/mvp-netlify-cms
   branch: version-3
-  base_url: https://superlative-kitten-1f442a.netlify.app
-  auth_endpoint: /oauth
