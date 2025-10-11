@@ -16,7 +16,8 @@ collections:
       - { label: "Location", name: "location", widget: "string" }
 
 backend:
-  name: git-gateway
+  name: github
   branch: version-3 # Branch to update (optional; defaults to master)
   auth_endpoint: /oauth
   base_url: https://superlative-kitten-1f442a.netlify.app
+  repo: https://github.com/anisa07/mvp-netlify-cms
