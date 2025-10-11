@@ -1,0 +1,172 @@
+{
+  "seo": {
+    "title": "TechFlow - Modern Ontwikkelingsplatform | Bouw de Toekomst",
+    "description": "Stroomlijn je ontwikkelingsworkflow met ons krachtige, veilige en schaalbare platform. Doe mee met 10M+ ontwikkelaars die de toekomst bouwen met TechFlow."
+  },
+  "hero": {
+    "title": "Bouw de Toekomst met TechFlow",
+    "subtitle": "Het Moderne Ontwikkelingsplatform",
+    "description": "Stroomlijn je ontwikkelingsworkflow met ons krachtige, veilige en schaalbare platform. Van prototype tot productie in recordtijd. Doe mee met 10M+ ontwikkelaars die TechFlow vertrouwen."
+  },
+  "features": {
+    "title": "Krachtige Functies voor Moderne Teams",
+    "description": "Alles wat je nodig hebt om je applicaties te bouwen, deployen en schalen met vertrouwen. Gebouwd door ontwikkelaars, voor ontwikkelaars.",
+    "performance": {
+      "title": "Bliksemsnelle Prestaties",
+      "description": "Gebouwd met moderne webtechnologieën voor maximale prestaties en snelheid. Ervaar laadtijden onder de seconde."
+    },
+    "security": {
+      "title": "Enterprise Beveiliging",
+      "description": "Industriestandaard beveiligingsprotocollen om je gegevens veilig te houden. SOC 2 compliant met end-to-end encryptie."
+    },
+    "scalable": {
+      "title": "Oneindig Schaalbaar",
+      "description": "Groeit mee met je bedrijf van startup tot enterprise. Verwerk miljoenen gebruikers zonder moeite."
+    },
+    "collaboration": {
+      "title": "Team Samenwerking",
+      "description": "Gebouwd voor teams met realtime samenwerkingstools. Werk naadloos samen vanaf overal ter wereld."
+    }
+  },
+  "stats": {
+    "users": {
+      "label": "Actieve Gebruikers",
+      "description": "Ontwikkelaars wereldwijd"
+    },
+    "projects": {
+      "label": "Projecten Gebouwd",
+      "description": "Succesvolle implementaties"
+    },
+    "uptime": {
+      "label": "Uptime",
+      "description": "Service betrouwbaarheid"
+    },
+    "rating": {
+      "label": "Ondersteuningsbeoordeling",
+      "description": "Klanttevredenheid"
+    }
+  },
+  "testimonials": {
+    "title": "Vertrouwd door Industrieleiders",
+    "description": "Zie wat onze klanten zeggen over hun ervaring met TechFlow.",
+    "sarah": {
+      "quote": "TechFlow heeft onze ontwikkelingsworkflow volledig getransformeerd. We hebben 3x sneller functies uitgebracht en onze teamproductiviteit is de hoogte ingeschoten.",
+      "name": "Sarah Chen",
+      "title": "CTO",
+      "company": "TechFlow Inc."
+    },
+    "marcus": {
+      "quote": "De beveiligingsfuncties en schaalbaarheid zijn precies wat we nodig hadden voor ons groeiende platform. Uitstekende ondersteuning.",
+      "name": "Marcus Rodriguez",
+      "title": "Lead Developer",
+      "company": "StartupCo"
+    },
+    "emily": {
+      "quote": "De samenwerkingstools hebben een revolutie teweeggebracht in hoe ons remote team samenwerkt. Simpelweg het beste platform.",
+      "name": "Emily Watson",
+      "title": "Product Manager",
+      "company": "InnovateLab"
+    }
+  },
+  "companies": {
+    "title": "Vertrouwd door teams bij"
+  },
+  "gallery": {
+    "title": "Achter de Schermen",
+    "description": "Neem een kijkje in onze innovatieve werkruimte en het gepassioneerde team dat de toekomst van technologie bouwt."
+  },
+  "cta": {
+    "title": "Klaar om je Workflow te Transformeren?",
+    "subtitle": "Doe mee met 10M+ ontwikkelaars die de toekomst bouwen",
+    "description": "Begin vandaag nog met het bouwen van geweldige applicaties met onze 14-daagse gratis proefperiode. Geen creditcard vereist. Altijd opzegbaar."
+  },
+  "actions": {
+    "trial": "Start Gratis Proefperiode",
+    "demo": "Bekijk Demo",
+    "contact": "Neem Contact op met Verkoop"
+  },
+  "values": {
+    "title": "Onze Waarden",
+    "description": "De principes die ons dagelijks werk sturen",
+    "developer_first": {
+      "title": "Ontwikkelaar Eerst",
+      "description": "We bouwen voor ontwikkelaars, door ontwikkelaars. Elke beslissing wordt genomen met de ontwikkelaarservaring in gedachten."
+    },
+    "remote_culture": {
+      "title": "Remote Cultuur",
+      "description": "Gedistribueerd team in 15+ landen. We geloven dat groot talent overal bestaat en omarmen asynchrone samenwerking."
+    },
+    "open_source": {
+      "title": "Open Source",
+      "description": "Teruggeven aan de gemeenschap die ons mogelijk heeft gemaakt. Open source zit in ons DNA."
+    },
+    "continuous_learning": {
+      "title": "Voortdurend Leren",
+      "description": "Technologie evolueert snel, en wij ook. We investeren in de groei van ons team en moedigen experimenten aan."
+    }
+  },
+  "locations": {
+    "title": "Onze Locaties",
+    "description": "Wereldwijd aanwezig, lokaal gefocust",
+    "san_francisco": {
+      "city": "San Francisco",
+      "country": "VS",
+      "address": "123 Tech Street, SOMA District",
+      "type": "Hoofdkantoor"
+    },
+    "berlin": {
+      "city": "Berlijn",
+      "country": "Duitsland",
+      "address": "456 Innovation Ave, Mitte",
+      "type": "Europese Hub"
+    },
+    "singapore": {
+      "city": "Singapore",
+      "country": "Singapore",
+      "address": "789 Digital Way, Marina Bay",
+      "type": "APAC Hub"
+    }
+  },
+  "gallery_items": {
+    "workspace": {
+      "title": "Moderne Ontwikkelomgeving",
+      "description": "State-of-the-art werkruimte ontworpen voor maximale productiviteit"
+    },
+    "collaboration": {
+      "title": "Team Samenwerking",
+      "description": "Onze open kantoorindeling bevordert natuurlijke samenwerking"
+    },
+    "meeting": {
+      "title": "Innovatieve Vergaderruimtes",
+      "description": "Waar grote ideeën tot leven komen"
+    },
+    "coffee": {
+      "title": "Koffie & Gesprekken",
+      "description": "Informele ruimtes voor spontane discussies"
+    },
+    "presentation": {
+      "title": "Presentatie Theater",
+      "description": "Showcase nieuwe functies en ideeën aan het team"
+    },
+    "rooftop": {
+      "title": "Dakterras Lounge",
+      "description": "Ontspan en laad op met uitzicht op de stad"
+    },
+    "development": {
+      "title": "Ontwikkeling in Actie",
+      "description": "Het bouwen van de volgende generatie webapplicaties"
+    },
+    "creative_workspace": {
+      "title": "Creatieve Werkruimte",
+      "description": "Inspirerende omgeving die innovatie en creativiteit bevordert"
+    },
+    "analytics": {
+      "title": "Data Analytics",
+      "description": "Geavanceerde analytics en inzichten die geïnformeerde beslissingen sturen"
+    },
+    "planning": {
+      "title": "Strategische Planning",
+      "description": "De toekomst van technologie plannen met ons expertteam"
+    }
+  }
+}

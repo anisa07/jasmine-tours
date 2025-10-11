@@ -1,0 +1,47 @@
+{
+  "404": {
+    "title": "Pagina Niet Gevonden",
+    "description": "De pagina die je zoekt kon niet worden gevonden.",
+    "heading": "Pagina Niet Gevonden",
+    "message": "Sorry, de pagina die je zoekt bestaat niet of is verplaatst.",
+    "suggestions": "Wat kun je doen?",
+    "checkUrl": "Controleer of de URL correct is gespeld",
+    "useNav": "Gebruik het navigatiemenu om te vinden wat je zoekt",
+    "contact": "Neem contact met ons op als je denkt dat dit een fout is",
+    "home": "Ga naar Startpagina",
+    "back": "Ga Terug"
+  },
+  "boundary": {
+    "title": "Er is iets misgegaan",
+    "tryAgain": "Opnieuw Proberen",
+    "details": "Foutdetails",
+    "errorId": "Fout ID",
+    "copyError": "Foutdetails kopiëren"
+  },
+  "display": {
+    "info": {
+      "title": "Informatie",
+      "message": "Let op de volgende informatie."
+    },
+    "warning": {
+      "title": "Waarschuwing",
+      "message": "Bekijk de volgende waarschuwing."
+    },
+    "error": {
+      "title": "Er is iets misgegaan",
+      "message": "We hebben een fout ondervonden. Probeer het opnieuw."
+    },
+    "critical": {
+      "title": "Kritieke Fout",
+      "message": "Er is een kritieke fout opgetreden. Neem contact op met ondersteuning."
+    },
+    "actions": {
+      "retry": "Opnieuw Proberen",
+      "goBack": "Terug Gaan"
+    }
+  },
+  "global": {
+    "message": "Er is iets misgegaan met de applicatie. Vernieuw de pagina of neem contact op met ondersteuning als het probleem aanhoudt.",
+    "reload": "Pagina Vernieuwen"
+  }
+}

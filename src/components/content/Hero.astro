@@ -1,0 +1,350 @@
+---
+import { getPageTranslations } from "@/i18n/i18n";
+import type { Locale } from "@/i18n/config";
+import { cn } from "@/lib/utils";
+import { Search, ChevronDown } from "@lucide/astro";
+import { Image } from "astro:assets";
+
+export interface HeroAction {
+  label: string;
+  href: string;
+  variant?: 'primary' | 'secondary' | 'outline';
+  external?: boolean;
+  icon?: string;
+}
+
+export interface Props {
+  title: string;
+  subtitle?: string;
+  description?: string;
+  actions?: HeroAction[];
+  variant?: 'default' | 'centered' | 'split' | 'minimal' | 'gradient';
+  backgroundImage?: string;
+  backgroundVideo?: string;
+  overlayOpacity?: number;
+  textAlign?: 'left' | 'center' | 'right';
+  maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
+  class?: string;
+  locale?: Locale;
+}
+
+const {
+  title,
+  subtitle,
+  description,
+  actions = [],
+  variant = 'default',
+  backgroundImage,
+  backgroundVideo,
+  overlayOpacity = 0.4,
+  textAlign = 'left',
+  maxWidth = 'xl',
+  class: className = "",
+  locale = "ru",
+} = Astro.props;
+
+// Get translations
+const { t } = await getPageTranslations(locale, ["hero", "common"]);
+
+const getActionButtonClasses = (actionVariant: string = 'primary') => {
+  const baseClasses = "inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2";
+  
+  switch (actionVariant) {
+    case 'secondary':
+      return cn(baseClasses, "bg-secondary text-secondary-foreground hover:bg-secondary/90 focus:ring-secondary");
+    case 'outline':
+      return cn(baseClasses, "border-2 border-primary text-primary bg-transparent hover:bg-primary hover:text-primary-foreground focus:ring-primary");
+    default:
+      return cn(baseClasses, "bg-primary text-primary-foreground hover:bg-primary/90 focus:ring-primary");
+  }
+};
+
+const sectionClasses = cn(
+  "relative",
+  variant === 'minimal' ? 'py-12 md:py-16' : 'py-20 md:py-28 lg:py-32',
+  variant === 'gradient' ? 'bg-gradient-to-br from-primary/10 via-background to-primary/20' : 'bg-background',
+  variant === 'split' ? "bg-primary/10" : 'bg-background',
+  className
+);
+
+---
+
+<section class={sectionClasses}>
+  <!-- Background Elements -->
+  {backgroundImage && (
+    <div class="absolute inset-0 z-0">
+      <Image
+        src={backgroundImage}
+        alt=""
+        class="w-full h-full object-cover"
+        loading="eager"
+        width={2048}
+        height={1365}
+        format="webp"
+        quality={80}
+      />
+      <div 
+        class="absolute inset-0 bg-background" 
+        style={`opacity: ${overlayOpacity}`}
+      ></div>
+    </div>
+  )}
+
+  {backgroundVideo && (
+    <div class="absolute inset-0 z-0">
+      <video
+        class="w-full h-full object-cover"
+        autoplay
+        muted
+        loop
+        playsinline
+      >
+        <source src={backgroundVideo} type="video/mp4" />
+      </video>
+      <div 
+        class="absolute inset-0 bg-background" 
+        style={`opacity: ${overlayOpacity}`}
+      ></div>
+    </div>
+  )}
+
+  <div class="container mx-auto px-4 relative z-10">
+    {variant === 'split' ? (
+      // Split Layout - Text Left, Images Right
+      <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center min-h-[60vh]">
+        <div class="lg:col-span-5 space-y-6">
+          {subtitle && (
+            <div class="inline-flex items-center text-sm font-medium text-muted-foreground uppercase tracking-wider">
+              <span class="w-8 h-px bg-muted-foreground mr-3"></span>
+              {subtitle}
+            </div>
+          )}
+          
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+            {title}
+          </h1>
+          
+          {description && (
+            <p class="text-lg text-muted-foreground leading-relaxed max-w-lg">
+              {description}
+            </p>
+          )}
+
+          {/* Search Bar */}
+          <div class="flex mt-8">
+            <div class="flex-1 relative">
+              <input
+                type="text"
+                placeholder={t("hero.search_placeholder", "Where would you like to go?")}
+                class="w-full px-4 py-3 border border-border rounded-l-lg"
+              />
+            </div>
+            <button
+              type="submit"
+              class="px-6 py-3 bg-primary text-primary-foreground rounded-r-lg hover:bg-primary/90 transition-colors"
+            >
+              <Search size={20} aria-hidden="true" />
+            </button>
+          </div>
+
+          {actions.length > 0 && (
+            <div class="flex flex-wrap gap-4 pt-4">
+              {actions.map((action) => (
+                <a
+                  href={action.href}
+                  class={getActionButtonClasses(action.variant)}
+                  target={action.external ? '_blank' : undefined}
+                  rel={action.external ? 'noopener noreferrer' : undefined}
+                >
+                  {action.icon && (
+                    <span class="mr-2" aria-hidden="true">{action.icon}</span>
+                  )}
+                  {action.label}
+                  {action.external && (
+                    <span class="ml-2 text-sm" aria-hidden="true">↗</span>
+                  )}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Image Carousel Section */}
+        <div class="lg:col-span-7 relative">
+          <slot name="media">
+            <div class="relative h-[400px] lg:h-[500px]">
+              {/* Main Image Container */}
+              <div class="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/assets/hero1.jpg"
+                  alt="Beautiful mountain lake scenery"
+                  class="w-full h-full object-cover"
+                  loading="eager"
+                  width={2070}
+                  height={1380}
+                  format="webp"
+                  quality={80}
+                />
+              </div>
+              
+              {/* Secondary Image - Floating */}
+              <div class="absolute -right-4 -bottom-4 lg:-right-8 lg:-bottom-8 w-48 h-32 lg:w-64 lg:h-40 rounded-xl overflow-hidden shadow-xl border-4 border-background">
+                <Image
+                  src="/assets/hero3.jpg"
+                  alt="Mountain reflection"
+                  class="w-full h-full object-cover"
+                  loading="eager"
+                  width={640}
+                  height={400}
+                  format="webp"
+                  quality={80}
+                />
+              </div>
+            </div>
+          </slot>
+        </div>
+      </div>
+    ) : (
+      // Standard Layouts (default, centered, minimal, gradient)
+      <div class={cn(
+        "space-y-8",
+        variant === 'centered' ? 'text-center mx-auto' : `text-${textAlign}`,
+        variant === 'centered' && 'max-w-4xl'
+      )}>
+        {subtitle && (
+          <div class={cn(
+            "inline-flex items-center px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium",
+            variant === 'centered' && 'mx-auto'
+          )}>
+            {subtitle}
+          </div>
+        )}
+        
+        <h1 class={cn(
+          "font-bold text-foreground leading-tight",
+          variant === 'minimal' 
+            ? 'text-3xl md:text-4xl lg:text-5xl' 
+            : 'text-4xl md:text-5xl lg:text-6xl xl:text-7xl'
+        )}>
+          {title}
+        </h1>
+        
+        {description && (
+          <p class={cn(
+            "text-muted-foreground leading-relaxed",
+            variant === 'minimal' 
+              ? 'text-base md:text-lg' 
+              : 'text-lg md:text-xl lg:text-2xl',
+            `max-w-${maxWidth}`,
+            (variant === 'centered' || textAlign === 'center') && 'mx-auto'
+          )}>
+            {description}
+          </p>
+        )}
+
+        {actions.length > 0 && (
+          <div class={cn(
+            "flex flex-wrap gap-4 pt-4",
+            variant === 'centered' || textAlign === 'center' 
+              ? 'justify-center' 
+              : textAlign === 'right' 
+                ? 'justify-end' 
+                : 'justify-start'
+          )}>
+            {actions.map((action) => (
+              <a
+                href={action.href}
+                class={getActionButtonClasses(action.variant)}
+                target={action.external ? '_blank' : undefined}
+                rel={action.external ? 'noopener noreferrer' : undefined}
+              >
+                {action.icon && (
+                  <span class="mr-2" aria-hidden="true">{action.icon}</span>
+                )}
+                {action.label}
+                {action.external && (
+                  <span class="ml-2 text-sm" aria-hidden="true">↗</span>
+                )}
+              </a>
+            ))}
+          </div>
+        )}
+
+        <!-- Default Media Slot -->
+        {variant !== 'minimal' && (
+          <div class="pt-8">
+            <slot name="media" />
+          </div>
+        )}
+      </div>
+    )}
+
+    <!-- Additional Content Slot -->
+    <slot name="content" />
+  </div>
+
+  <!-- Decorative Elements for Gradient Variant -->
+  {variant === 'gradient' && (
+    <>
+      <div class="absolute top-10 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-10 right-10 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
+    </>
+  )}
+
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <slot name="scroll-indicator">
+      {variant !== 'minimal' && (
+        <button
+          type="button"
+          class="inline-flex items-center justify-center w-8 h-8 text-muted-foreground hover:text-foreground transition-colors"
+          aria-label={t("hero.scroll_down", "Scroll down")}
+          onclick="window.scrollTo({ top: window.innerHeight - 100, behavior: 'smooth' })"
+        >
+          <ChevronDown size={20} aria-hidden="true" />
+        </button>
+      )}
+    </slot>
+  </div>
+</section>
+
+<style>
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Animation for gradient backgrounds */
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  .bg-gradient-to-br {
+    background-size: 200% 200%;
+    animation: gradient-shift 15s ease infinite;
+  }
+  
+  /* Ensure video backgrounds don't interfere with text */
+  video {
+    pointer-events: none;
+  }
+  
+  /* Focus styles for action buttons */
+  .focus\:ring-primary:focus {
+    --tw-ring-color: rgb(var(--color-primary) / var(--tw-ring-opacity));
+  }
+  
+  .focus\:ring-secondary:focus {
+    --tw-ring-color: rgb(var(--color-secondary) / var(--tw-ring-opacity));
+  }
+  
+  /* Search input focus styles */
+  .search-input:focus {
+    box-shadow: 0 0 0 3px rgba(var(--color-primary), 0.1);
+  }
+</style>

@@ -1,0 +1,141 @@
+---
+// Import global styles
+import "@/styles/global.css";
+import "@/styles/animations.css";
+import SiteData from "@/config/siteData.json";
+// If you already have config files, import them here:
+import { locales, defaultLocale, type Locale } from "@/i18n/config";
+import { getPageTranslations } from "@/i18n/i18n";
+import { Toaster } from "@/components/ui/sonner";
+import { SEO, type SEOProps } from "astro-seo";
+
+// Layout components
+import Header from "@/components/layout/Header.astro";
+import Footer from "@/components/layout/Footer.astro";
+
+// Props:
+// - locale: current locale (can be string from URL params, will be validated)
+// - pageNS: array of namespace names to load, e.g., ["home", "nav"]
+// - title/description: SEO
+// - alternates: map of locale -> URL for hreflang
+const {
+  locale: localeParam,
+  pageNS = [], // e.g., ["home", "nav"]
+  alternates = {} as Record<string, string>,
+  seo,
+} = Astro.props as {
+  locale?: string | Locale;
+  pageNS?: string[];
+  alternates?: Record<string, string>;
+  seo?: SEOProps;
+};
+
+// Validate locale - we assume valid locale since routing handles invalid ones
+const activeLocale = (localeParam as Locale) || defaultLocale;
+
+// Use the utility function to get translations (including navigation and common)
+const { t, dir } = await getPageTranslations(activeLocale, [
+  ...pageNS,
+  "common",
+  "nav",
+]);
+
+// Build absolute URL for canonical
+const site = Astro.site?.origin ?? "https://example.com";
+const url = new URL(Astro.url, site).href;
+---
+
+<html lang={activeLocale} dir={dir}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Canonical + hreflang -->
+    <link rel="canonical" href={url} />
+    {
+      Object.entries(alternates).map(([lc, href]) => (
+        <link rel="alternate" hreflang={lc} href={href} />
+      ))
+    }
+
+    <link rel="alternate" hreflang="x-default" href={`${site}/`} />
+
+    <!-- Sitemap and robots -->
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Add SEO component from astro-seo -->
+    <SEO
+      title={seo?.title || SiteData.default.title}
+      description={seo?.description ?? SiteData.default.description}
+      openGraph={seo?.openGraph ?? {
+        basic: {
+          image: SiteData.default.openGraph.image,
+          title: SiteData.default.openGraph.title,
+          type: SiteData.default.openGraph.type,
+          url: SiteData.default.openGraph.url,
+        },
+        optional: {
+          description: SiteData.default.openGraph.description,
+          siteName: SiteData.default.openGraph.title,
+        },
+      }}
+      twitter={seo?.twitter ?? {
+        title: SiteData.default.twitter.title,
+        description: SiteData.default.twitter.description,
+        creator: SiteData.default.twitter.creator,
+      }}
+    />
+  </head>
+
+  <body>
+    <!-- Navigation Header -->
+    <Header
+      logoText={t("site.name", "Jasmine Tours")}
+      logoHref={`/${activeLocale}`}
+      navItems={[
+        {
+          label: t("nav.features", "Экскурсии"),
+          href: `/${activeLocale}#tours`,
+        },
+        {
+          label: t("nav.team", "Отзывы"),
+          href: `/${activeLocale}#testimonials`,
+        },
+        { label: t("nav.about", "О нас"), href: `/${activeLocale}/about-me` },
+        {
+          label: t("nav.contact", "Связаться"),
+          href: `/${activeLocale}#contact`,
+        },
+      ]}
+      fixed={true}
+      showLanguageSwitcher={false}
+      currentLocale={activeLocale}
+    />
+
+    <main>
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <Footer
+      locale={activeLocale}
+      logoText={t("site.name", "Jasmine Tours")}
+      logoHref={`/${activeLocale}`}
+      copyrightText={t(
+        "footer.copyright",
+        "© 2025 Jasmine Tours. Все права защищены."
+      )}
+      showNewsletter={true}
+      newsletterTitle={t("footer.newsletter.title", "Будьте в курсе")}
+      newsletterDescription={t(
+        "footer.newsletter.description",
+        "Получайте последние новости и обновления на вашу электронную почту."
+      )}
+    />
+
+    <Toaster client:load />
+
+    <!-- Simple Scroll Animations (fallback for older browsers) -->
+    <script src="/src/utils/scroll-animations.ts"></script>
+  </body>
+</html>

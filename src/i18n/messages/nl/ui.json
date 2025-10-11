@@ -1,0 +1,86 @@
+{
+  "theme": {
+    "dark": "Donker",
+    "light": "Licht",
+    "toggle": "Wissel thema",
+    "current": "Huidig thema: {{theme}}"
+  },
+  "buttons": {
+    "submit": "Versturen",
+    "cancel": "Annuleren",
+    "save": "Opslaan",
+    "delete": "Verwijderen",
+    "edit": "Bewerken"
+  },
+  "forms": {
+    "name": "Naam",
+    "email": "E-mail",
+    "message": "Bericht",
+    "required": "Dit veld is verplicht",
+    "invalid_email": "Voer een geldig e-mailadres in"
+  },
+  "status": {
+    "loading": "Laden...",
+    "error": "Fout",
+    "success": "Succes",
+    "warning": "Waarschuwing"
+  },
+  "components": {
+    "error_boundary": {
+      "title": "Foutafhandeling",
+      "description": "Vang en behandel React-fouten netjes met internationalisatie-ondersteuning",
+      "english": "Engelse Foutafhandeling",
+      "dutch": "Nederlandse Foutafhandeling",
+      "demo_text": "Klik op de onderstaande knop om een fout te veroorzaken en de foutafhandeling in actie te zien:",
+      "demo_text_nl": "Klik op de onderstaande knop om een fout te veroorzaken en de foutafhandeling in actie te zien:",
+      "trigger_error": "Fout Veroorzaken",
+      "trigger_error_nl": "Fout Veroorzaken",
+      "features": "Belangrijkste Functies",
+      "feature_1": "Internationalisatie-ondersteuning met useTranslation hook",
+      "feature_2": "Moderne react-error-boundary bibliotheek integratie",
+      "feature_3": "Elegante foutrapportage en herstel",
+      "feature_4": "Kopieer foutdetails functionaliteit",
+      "feature_5": "Laadstatussen tijdens het laden van vertalingen"
+    },
+    "error_display": {
+      "title": "Foutweergave",
+      "description": "Eenvoudige foutweergave component met internationalisatie-ondersteuning voor verschillende foutniveaus"
+    },
+    "loading_states": {
+      "title": "Laadstatussen",
+      "description": "Flexibele laadindicatoren met internationalisatie-ondersteuning voor verschillende laadstatussen"
+    }
+  },
+  "error_display": {
+    "levels": {
+      "title": "Foutniveaus"
+    },
+    "custom": {
+      "title": "Aangepaste Fout",
+      "example_title": "Authenticatie Mislukt",
+      "example_message": "Controleer je inloggegevens en probeer het opnieuw."
+    }
+  },
+  "loading": {
+    "states": {
+      "loading": "Laden...",
+      "processing": "Verwerken...",
+      "saving": "Opslaan...",
+      "uploading": "Uploaden...",
+      "downloading": "Downloaden...",
+      "connecting": "Verbinden...",
+      "validating": "Valideren...",
+      "searching": "Zoeken..."
+    },
+    "messages": {
+      "success": "Operatie succesvol voltooid!",
+      "error": "Er is iets misgegaan. Probeer het opnieuw.",
+      "timeout": "Operatie verlopen. Probeer het opnieuw.",
+      "cancelled": "Operatie werd geannuleerd."
+    },
+    "progress": {
+      "complete": "Voltooid",
+      "percent": "{{progress}}% voltooid"
+    }
+  }
+}

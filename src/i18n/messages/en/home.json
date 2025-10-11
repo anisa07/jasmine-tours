@@ -1,0 +1,88 @@
+{
+  "seo": {
+    "title": "TechFlow - Modern Development Platform | Build the Future",
+    "description": "Streamline your development workflow with our powerful, secure, and scalable platform. Join 10M+ developers building the future with TechFlow."
+  },
+  "hero": {
+    "title": "Build the Future with TechFlow",
+    "subtitle": "The Modern Development Platform",
+    "description": "Streamline your development workflow with our powerful, secure, and scalable platform. From prototype to production in record time. Join 10M+ developers who trust TechFlow."
+  },
+  "features": {
+    "title": "Powerful Features for Modern Teams",
+    "description": "Everything you need to build, deploy, and scale your applications with confidence. Built by developers, for developers.",
+    "performance": {
+      "title": "Lightning Fast Performance",
+      "description": "Built with modern web technologies for maximum performance and speed. Experience sub-second load times."
+    },
+    "security": {
+      "title": "Enterprise Security",
+      "description": "Industry-standard security protocols to keep your data safe. SOC 2 compliant with end-to-end encryption."
+    },
+    "scalable": {
+      "title": "Infinitely Scalable",
+      "description": "Grows with your business from startup to enterprise. Handle millions of users without breaking a sweat."
+    },
+    "collaboration": {
+      "title": "Team Collaboration",
+      "description": "Built for teams with real-time collaboration tools. Work together seamlessly from anywhere in the world."
+    }
+  },
+  "stats": {
+    "users": {
+      "label": "Active Users",
+      "description": "Developers worldwide"
+    },
+    "projects": {
+      "label": "Projects Built",
+      "description": "Successful deployments"
+    },
+    "uptime": {
+      "label": "Uptime",
+      "description": "Service reliability"
+    },
+    "rating": {
+      "label": "Support Rating",
+      "description": "Customer satisfaction"
+    }
+  },
+  "testimonials": {
+    "title": "Trusted by Industry Leaders",
+    "description": "See what our customers have to say about their experience with TechFlow.",
+    "sarah": {
+      "quote": "TechFlow transformed our development workflow completely. We shipped features 3x faster and our team productivity skyrocketed.",
+      "name": "Sarah Chen",
+      "title": "CTO",
+      "company": "TechFlow Inc."
+    },
+    "marcus": {
+      "quote": "The security features and scalability are exactly what we needed for our growing platform. Outstanding support.",
+      "name": "Marcus Rodriguez",
+      "title": "Lead Developer",
+      "company": "StartupCo"
+    },
+    "emily": {
+      "quote": "The collaboration tools have revolutionized how our remote team works together. Simply the best platform.",
+      "name": "Emily Watson",
+      "title": "Product Manager",
+      "company": "InnovateLab"
+    }
+  },
+  "companies": {
+    "title": "Trusted by teams at"
+  },
+  "gallery": {
+    "title": "Behind the Scenes",
+    "description": "Take a look at our innovative workspace and the passionate team building the future of technology."
+  },
+  "cta": {
+    "title": "Ready to Transform Your Workflow?",
+    "subtitle": "Join 10M+ developers building the future",
+    "description": "Start building amazing applications today with our 14-day free trial. No credit card required. Cancel anytime."
+  },
+  "actions": {
+    "trial": "Start Free Trial",
+    "demo": "View Demo",
+    "contact": "Contact Sales"
+  }
+}
