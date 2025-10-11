@@ -20,4 +20,4 @@ backend:
   branch: version-3 # Branch to update (optional; defaults to master)
   base_url: https://superlative-kitten-1f442a.netlify.app
   repo: https://github.com/anisa07/mvp-netlify-cms
-  auth_endpoint: auth
+  auth_endpoint: /.netlify/functions/oauth-authorize
