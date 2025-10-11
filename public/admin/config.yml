@@ -2,6 +2,37 @@ media_folder: "public/assets" # Location where files will be stored
 public_folder: "/assets" # The src attribute for uploaded media
 
 collections:
+  - name: "hero"
+    label: "Hero Section"
+    files:
+      - label: "Hero Content"
+        name: "hero"
+        file: "src/content/hero/hero.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - label: "Hero Images"
+            name: "images"
+            widget: "object"
+            fields:
+              - { label: "Main Image", name: "mainImage", widget: "image" }
+              - {
+                  label: "Main Image Alt Text",
+                  name: "mainImageAlt",
+                  widget: "string",
+                }
+              - {
+                  label: "Secondary Image",
+                  name: "secondaryImage",
+                  widget: "image",
+                }
+              - {
+                  label: "Secondary Image Alt Text",
+                  name: "secondaryImageAlt",
+                  widget: "string",
+                }
+
   - name: "tours"
     label: "Tours"
     folder: "src/content/tours"
@@ -81,4 +112,4 @@ collections:
 backend:
   name: git-gateway
   repo: anisa07/mvp-netlify-cms
-  branch: version-3
+  branch: master
