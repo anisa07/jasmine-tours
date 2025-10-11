@@ -142,10 +142,21 @@ async function handleToken(event) {
   };
 }
 
+// export const handler = async (event) => {
+//   // event.path includes the full path—Netlify redirect will map /oauth, /callback, /token here
+//   if (event.path.endsWith("/oauth")) return handleAuthorize(event);
+//   if (event.path.endsWith("/callback")) return handleCallback(event);
+//   if (event.path.endsWith("/token")) return handleToken(event);
+//   return { statusCode: 404, body: "Not found" };
+// };
+
 export const handler = async (event) => {
-  // event.path includes the full path—Netlify redirect will map /oauth, /callback, /token here
-  if (event.path.endsWith("/oauth")) return handleAuthorize(event);
-  if (event.path.endsWith("/callback")) return handleCallback(event);
-  if (event.path.endsWith("/token")) return handleToken(event);
+  const url = new URL(event.rawUrl || `${appBaseUrl(event)}${event.path}`);
+  const pathname = url.pathname;
+
+  if (pathname.endsWith("/oauth")) return handleAuthorize(event);
+  if (pathname.endsWith("/callback")) return handleCallback(event);
+  if (pathname.endsWith("/token")) return handleToken(event);
+
   return { statusCode: 404, body: "Not found" };
 };

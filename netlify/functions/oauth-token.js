@@ -1,86 +1,66 @@
-// Exchanges Auth0 "code" -> tokens, then sets a signed session cookie and redirects to /admin/
-
+// netlify/functions/oauth-token.js (ESM)
 import * as jwt from "jsonwebtoken";
 
-const appBaseUrl = (event) => {
-  const proto = event.headers["x-forwarded-proto"] || "https";
-  const host = event.headers.host;
-  return `${proto}://${host}`;
-};
+function getPrivateKey() {
+  // If you pasted multiline PEM in Netlify env, return as-is:
+  return process.env.GITHUB_APP_PRIVATE_KEY;
+  // If stored single-line with \n, use:
+  // return process.env.GITHUB_APP_PRIVATE_KEY.replace(/\\n/g, "\n");
+}
 
-const handler = async (event) => {
-  const base = appBaseUrl(event);
-  const redirectUri = `${base}/.netlify/functions/oauth-callback`;
+function parseCookies(header) {
+  const h = header || "";
+  const map = {};
+  h.split(";").forEach((p) => {
+    const [k, ...v] = p.trim().split("=");
+    if (!k) return;
+    map[k] = v.join("=");
+  });
+  return map;
+}
 
-  const code = (event.queryStringParameters || {}).code;
-  if (!code) {
-    return { statusCode: 400, body: "Missing ?code" };
+export const handler = async (event) => {
+  // 1) Verify session cookie set by oauth-callback
+  const cookies = parseCookies(event.headers.cookie || event.headers.Cookie);
+  const session = cookies["decap_session"];
+  if (!session) return { statusCode: 401, body: "No session" };
+
+  try {
+    jwt.verify(session, process.env.SESSION_SECRET, { algorithms: ["HS256"] });
+  } catch {
+    return { statusCode: 401, body: "Invalid session" };
   }
 
-  // Exchange code for tokens at Auth0
-  const tokenRes = await fetch(
-    `https://${process.env.AUTH0_DOMAIN}/oauth/token`,
+  // 2) Create GitHub App JWT (short-lived)
+  const now = Math.floor(Date.now() / 1000);
+  const appJwt = jwt.sign(
+    { iat: now - 60, exp: now + 9 * 60, iss: process.env.GITHUB_APP_ID },
+    getPrivateKey(),
+    { algorithm: "RS256" }
+  );
+
+  // 3) Exchange for installation token
+  const resp = await fetch(
+    `https://api.github.com/app/installations/${process.env.GITHUB_INSTALLATION_ID}/access_tokens`,
     {
       method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({
-        grant_type: "authorization_code",
-        client_id: process.env.AUTH0_CLIENT_ID,
-        client_secret: process.env.AUTH0_CLIENT_SECRET,
-        code,
-        redirect_uri: redirectUri,
-      }),
+      headers: {
+        Authorization: `Bearer ${appJwt}`,
+        Accept: "application/vnd.github+json",
+        "User-Agent": "decap-proxy",
+      },
     }
   );
-
-  if (!tokenRes.ok) {
-    const errText = await tokenRes.text();
-    return { statusCode: 502, body: `Auth0 token exchange failed: ${errText}` };
+  if (!resp.ok) {
+    const t = await resp.text();
+    return { statusCode: 502, body: `GitHub token exchange failed: ${t}` };
   }
+  const data = await resp.json(); // { token, expires_at, ... }
 
-  const tokens = await tokenRes.json();
-  // tokens contains: access_token, id_token, token_type, expires_in, (maybe) scope
-
-  // Decode the ID token just to pull basic profile (we're not verifying here;
-  // we rely on Authorization Code flow + server-side secret).
-  const idPayload = (() => {
-    try {
-      const parts = tokens.id_token.split(".");
-      return JSON.parse(Buffer.from(parts[1], "base64").toString("utf8"));
-    } catch {
-      return {};
-    }
-  })();
-
-  // Create a short session (e.g., 8 hours). You can extend if needed.
-  const session = jwt.sign(
-    {
-      sub: idPayload.sub,
-      email: idPayload.email,
-      name: idPayload.name,
-      // optionally: roles, etc.
-    },
-    process.env.SESSION_SECRET,
-    { algorithm: "HS256", expiresIn: "8h" }
-  );
-
-  // Set HttpOnly Secure cookie
-  const cookie = [
-    `decap_session=${session}`,
-    "HttpOnly",
-    "Secure",
-    "SameSite=Lax",
-    "Path=/",
-    // optionally set a Max-Age=28800 (8h)
-  ].join("; ");
-
+  // 4) Return what Decap expects
   return {
-    statusCode: 302,
-    headers: {
-      "Set-Cookie": cookie,
-      Location: `${base}/admin/`,
-    },
+    statusCode: 200,
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ token: data.token, provider: "github" }),
   };
 };
-
-export { handler };

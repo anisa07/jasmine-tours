@@ -1,12 +1,11 @@
 [build]
   command = "npm run build"
   publish = "dist"
-  functions = "netlify/functions"
+  functions = "functions-serve"
 
 [functions]
   node_bundler = "esbuild"
 
-# Map all three public paths to ONE function
 [[redirects]]
   from = "/oauth"
   to   = "/.netlify/functions/oauth"

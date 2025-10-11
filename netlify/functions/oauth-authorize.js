@@ -1,13 +1,13 @@
-// Redirects the user to Auth0 Universal Login (optionally force Google)
+// netlify/functions/oauth-authorize.js (ESM)
+// Redirect the user to Auth0 Universal Login
 
-const appBaseUrl = (event) => {
+export const handler = async (event) => {
   const proto = event.headers["x-forwarded-proto"] || "https";
   const host = event.headers.host;
-  return `${proto}://${host}`;
-};
+  const base = `${proto}://${host}`;
 
-const handler = async (event) => {
-  const base = appBaseUrl(event);
+  // This MUST match your Auth0 Allowed Callback URL
+  // (you said you're using the direct function URL pattern)
   const redirectUri = `${base}/.netlify/functions/oauth-callback`;
 
   const params = new URLSearchParams({
@@ -17,18 +17,18 @@ const handler = async (event) => {
     scope: "openid profile email",
   });
 
+  // If you later add an API in Auth0 and set AUTH0_AUDIENCE:
   if (process.env.AUTH0_AUDIENCE) {
     params.set("audience", process.env.AUTH0_AUDIENCE);
   }
 
-  // Optional: force Google directly
-  // params.set('connection', 'google-oauth2');
+  // Optionally force Google directly:
+  // params.set("connection", "google-oauth2");
 
   const location = `https://${process.env.AUTH0_DOMAIN}/authorize?${params}`;
+
   return {
     statusCode: 302,
     headers: { Location: location },
   };
 };
-
-export { handler };
