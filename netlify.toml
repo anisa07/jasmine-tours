@@ -3,6 +3,9 @@
   publish = "dist"
   functions = "netlify/functions"
 
+[functions]
+  node_bundler = "esbuild"
+
 # Map all three public paths to ONE function
 [[redirects]]
   from = "/oauth"
