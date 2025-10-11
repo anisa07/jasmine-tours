@@ -1,8 +1,0 @@
-User-agent: *
-Disallow: /api/
-Disallow: /*.json$
-Disallow: /src/
-Disallow: /.env
-Disallow: /node_modules/
-Allow: /
-Sitemap: https://mega-template.dev/sitemap-index.xml
