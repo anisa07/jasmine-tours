@@ -1,5 +1,5 @@
-media_folder: "public/assets" # Location where files will be stored
-public_folder: "/assets" # The src attribute for uploaded media
+media_folder: "public/assets/uploads" # Location where files will be stored
+public_folder: "src/assets/uploads" # The src attribute for uploaded media
 
 publish_mode: simple
 
