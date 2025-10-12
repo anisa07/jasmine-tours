@@ -6,10 +6,10 @@ description: Откройте для себя самые красивые и в�
   по-настоящему незабываемым. Исследуйте наши туры и начните своё приключение
   уже сегодня!
 images:
-  mainImage: /assets/hero100.jpg
-  mainImageAlt: Beautiful girl standing on the boat
-  secondaryImage: /assets/combined3.jpg
-  secondaryImageAlt: Beautiful little girl sitting in the boat
+  mainImage: "/src/assets/hero1.jpg"
+  mainImageAlt: "Beautiful mountain lake scenery"
+  secondaryImage: "/src/assets/hero2.jpg"
+  secondaryImageAlt: "Mountain reflection"
 ---
 
 # Hero Section Content
