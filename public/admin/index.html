@@ -10,18 +10,15 @@
 
 <body>
     <script>
-        // Initialize Identity once
-        netlifyIdentity.on('init', (user) => {
-            // If not logged in, open the modal ONCE
-            if (!user) netlifyIdentity.open();
-        });
-
-        // After successful login, just reload this page (no nested redirects)
-        netlifyIdentity.on('login', () => {
-            window.location.reload();
-        });
-
-        netlifyIdentity.init();
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", (user) => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin/";
+                    });
+                }
+            });
+        }
     </script>
     <!-- Include the script that builds the page and powers Decap CMS -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
