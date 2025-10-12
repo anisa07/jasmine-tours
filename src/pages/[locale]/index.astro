@@ -47,6 +47,10 @@ const heroData = heroEntry?.data || {
   },
 };
 
+// Load tour categories from CMS
+const tourCategoriesEntry = await getEntry("tour-categories", "categories");
+const tourCategoriesData = tourCategoriesEntry?.data?.categories || [];
+
 // Sample gallery images
 const galleryImages = [
   {
@@ -168,7 +172,7 @@ const ctaActions = [
   }}
 >
   <!-- Hero Section -->
-  <section class="relative pt-20">
+  <section class="relative">
     <Hero
       variant="split"
       subtitle={heroData.subtitle}
@@ -180,7 +184,7 @@ const ctaActions = [
 
   <!-- Tour Filter Panel Section -->
   <section id="tours">
-    <TourFilter t={t} />
+    <TourFilter t={t} tourCategories={tourCategoriesData} />
   </section>
 
   <!-- Testimonials Section -->

@@ -15,6 +15,27 @@ const heroCollection = defineCollection({
   }),
 });
 
+const tourCategoriesCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    categories: z.array(
+      z.object({
+        id: z.string(),
+        title: z.string(),
+        tours: z.array(
+          z.object({
+            title: z.string(),
+            price: z.string(),
+            duration: z.string(),
+            image: z.string(),
+            alt: z.string(),
+          })
+        ),
+      })
+    ),
+  }),
+});
+
 const toursCollection = defineCollection({
   type: "content",
   schema: z.object({
@@ -56,6 +77,7 @@ const pagesCollection = defineCollection({
 
 export const collections = {
   hero: heroCollection,
+  "tour-categories": tourCategoriesCollection,
   tours: toursCollection,
   pages: pagesCollection,
 };
