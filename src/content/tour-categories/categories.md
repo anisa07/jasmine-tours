@@ -96,7 +96,7 @@ categories:
         image: "/assets/tours/other/other4.jpg"
         alt: "Tasty tour"
         slug: "tasty-food-tour"
-      - title: "Tasting in an old tavern"
+      - title: "Дегустация в старинном трактире"
         price: ""
         duration: ""
         image: "/assets/tours/other/other5.jpg"
