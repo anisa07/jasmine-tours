@@ -1,13 +1,14 @@
 ---
 import Container from "@/components/layout/Container.astro";
 import TourFilterCard from "@/components/content/TourFilterCard.astro";
+import type { ImageType } from "@/types";
 
 // Type definitions
 type Tour = {
   title: string;
   price: string;
   duration: string;
-  image: string;
+  image: ImageType;
   alt: string;
   slug?: string;
 };
@@ -88,7 +89,7 @@ const tourCategories = rawTourCategories.map(category => ({
                   title={tour.title}
                   price={tour.price}
                   duration={tour.duration}
-                  image={tour.image}
+                  image={tour.image.src}
                   alt={tour.alt}
                   tourSlug={tour.slug}
                   locale={locale}

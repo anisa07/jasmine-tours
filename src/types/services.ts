@@ -23,3 +23,10 @@ export interface EmailResponse {
   success: boolean;
   message: string;
 }
+
+export interface ImageType {
+  src: string;
+  width: number;
+  height: number;
+  format: "png" | "jpg" | "jpeg" | "tiff" | "webp" | "gif" | "svg" | "avif";
+}
