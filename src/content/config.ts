@@ -29,6 +29,7 @@ const tourCategoriesCollection = defineCollection({
             duration: z.string(),
             image: z.string(),
             alt: z.string(),
+            slug: z.string().optional(),
           })
         ),
       })
@@ -75,9 +76,29 @@ const pagesCollection = defineCollection({
   }),
 });
 
+const testimonialsCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    testimonials: z.array(
+      z.object({
+        quote: z.string(),
+        author: z.object({
+          name: z.string(),
+          title: z.string(),
+          company: z.string(),
+          avatar: z.string(),
+        }),
+        rating: z.number(),
+        featured: z.boolean().default(false),
+      })
+    ),
+  }),
+});
+
 export const collections = {
   hero: heroCollection,
   "tour-categories": tourCategoriesCollection,
   tours: toursCollection,
   pages: pagesCollection,
+  testimonials: testimonialsCollection,
 };
