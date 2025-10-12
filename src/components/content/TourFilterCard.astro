@@ -8,6 +8,8 @@ interface Props {
   image: string;
   alt?: string;
   className?: string;
+  tourSlug?: string;
+  locale?: string;
 }
 
 const {
@@ -17,6 +19,8 @@ const {
   image,
   alt,
   className = "",
+  tourSlug,
+  locale = "ru",
 } = Astro.props;
 ---
 
@@ -56,11 +60,12 @@ const {
       </div>
 
       <!-- More Details Button -->
-      <button
-        class="w-full py-2 px-4 bg-primary-foreground/20 backdrop-blur-sm border border-primary-foreground/30 rounded text-primary-foreground text-sm font-medium transition-all duration-200 hover:bg-primary-foreground/30 hover:border-primary-foreground/50"
+      <a
+        href={tourSlug ? `/${locale}/tour/${tourSlug}` : "#"}
+        class="w-full py-2 px-4 bg-primary-foreground/20 backdrop-blur-sm border border-primary-foreground/30 rounded text-primary-foreground text-sm font-medium transition-all duration-200 hover:bg-primary-foreground/30 hover:border-primary-foreground/50 block text-center"
       >
         Подробнее
-      </button>
+      </a>
     </div>
   </div>
 </div>

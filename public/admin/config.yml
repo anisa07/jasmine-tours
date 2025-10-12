@@ -1,6 +1,8 @@
 media_folder: "public/assets" # Location where files will be stored
 public_folder: "/assets" # The src attribute for uploaded media
 
+publish_mode: simple
+
 collections:
   - name: "hero"
     label: "Hero Section"
@@ -55,6 +57,47 @@ collections:
                   - { label: "Duration", name: "duration", widget: "string" }
                   - { label: "Tour Image", name: "image", widget: "image" }
                   - { label: "Image Alt Text", name: "alt", widget: "string" }
+                  - {
+                      label: "Tour Slug",
+                      name: "slug",
+                      widget: "string",
+                      hint: "URL-friendly identifier (e.g., labuan-bajo-adventure)",
+                    }
+
+  - name: "testimonials"
+    label: "Testimonials"
+    files:
+      - label: "Customer Testimonials"
+        name: "testimonials"
+        file: "src/content/testimonials/testimonials.md"
+        fields:
+          - label: "Testimonials"
+            name: "testimonials"
+            widget: "list"
+            fields:
+              - { label: "Quote", name: "quote", widget: "text" }
+              - label: "Author"
+                name: "author"
+                widget: "object"
+                fields:
+                  - { label: "Name", name: "name", widget: "string" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Company", name: "company", widget: "string" }
+                  - { label: "Avatar Image", name: "avatar", widget: "image" }
+              - {
+                  label: "Rating",
+                  name: "rating",
+                  widget: "number",
+                  min: 1,
+                  max: 5,
+                  default: 5,
+                }
+              - {
+                  label: "Featured",
+                  name: "featured",
+                  widget: "boolean",
+                  default: false,
+                }
 
   - name: "tours"
     label: "Tours"

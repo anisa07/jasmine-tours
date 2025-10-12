@@ -3,62 +3,29 @@ import Container from "@/components/layout/Container.astro";
 import { Image } from "astro:assets";
 import { ChevronLeft, ChevronRight } from "@lucide/astro";
 
+// Type definitions
+type Testimonial = {
+  quote: string;
+  author: {
+    name: string;
+    title: string;
+    company: string;
+    avatar: string;
+  };
+  rating: number;
+  featured: boolean;
+};
+
 interface Props {
   t: (
     key: string,
     fallback: string,
     vars?: Record<string, string | number>
   ) => string;
+  testimonials: Testimonial[];
 }
 
-const { t } = Astro.props;
-
-// Testimonials data
-const testimonials = [
-  {
-    quote: t(
-      "testimonials.edward.quote",
-      "The cuisine, getting tours are pretty interesting. The travel locations in Labuan Bajo are full of tourist attractions spots. The trips is a perfect combination to have a good rest while traveling."
-    ),
-    author: {
-      name: t("testimonials.edward.name", "Edward Cullen"),
-      title: t("testimonials.edward.title", "Tourism Consultant"),
-      company: t("testimonials.edward.company", "Travel Expert"),
-      avatar:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&crop=face",
-    },
-    rating: 5,
-    featured: true,
-  },
-  {
-    quote: t(
-      "testimonials.sarah.quote",
-      "Amazing experience with professional guides and breathtaking destinations. The tour was well organized and exceeded all expectations."
-    ),
-    author: {
-      name: t("testimonials.sarah.name", "Sarah Johnson"),
-      title: t("testimonials.sarah.title", "Travel Blogger"),
-      company: t("testimonials.sarah.company", "Adventure Seeker"),
-      avatar:
-        "https://images.unsplash.com/photo-1494790108755-2616b9e91ce2?w=400&h=500&fit=crop&crop=face",
-    },
-    rating: 5,
-  },
-  {
-    quote: t(
-      "testimonials.michael.quote",
-      "Perfect blend of adventure and relaxation. The local culture immersion and scenic beauty made this trip unforgettable."
-    ),
-    author: {
-      name: t("testimonials.michael.name", "Michael Chen"),
-      title: t("testimonials.michael.title", "Photographer"),
-      company: t("testimonials.michael.company", "Visual Storyteller"),
-      avatar:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=500&fit=crop&crop=face",
-    },
-    rating: 5,
-  },
-];
+const { t, testimonials } = Astro.props;
 ---
 
 <!-- Testimonials Section -->
