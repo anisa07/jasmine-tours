@@ -8,7 +8,7 @@ description: Откройте для себя самые красивые и в�
 images:
   mainImage: /src/assets/images/hero1.jpg
   mainImageAlt: Beautiful lake scenery
-  secondaryImage: /src/assets/images/hero2.jpg
+  secondaryImage: src/assets/images/amsterdam1.jpg
   secondaryImageAlt: Beautiful sunset reflection
 ---
 
