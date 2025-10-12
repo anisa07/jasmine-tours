@@ -6,9 +6,9 @@ description: Откройте для себя самые красивые и в�
   по-настоящему незабываемым. Исследуйте наши туры и начните своё приключение
   уже сегодня!
 images:
-  mainImage: /src/assets/uploads/hero1.jpg
+  mainImage: /src/assets/images/hero1.jpg
   mainImageAlt: Beautiful lake scenery
-  secondaryImage: /assets/Zaraprofile.jpg
+  secondaryImage: /src/assets/images/hero2.jpg
   secondaryImageAlt: Beautiful sunset reflection
 ---
 
