@@ -1,12 +1,15 @@
 ---
-title: "Откройте своё лучшее путешествие!"
-subtitle: "ВПЕРЁД ЗА ВПЕЧАТЛЕНИЯМИ"
-description: "Откройте для себя самые красивые и вдохновляющие места Амстердама и Нидерландов. Выберите экскурсию, которая сделает ваше путешествие по-настоящему незабываемым. Исследуйте наши туры и начните своё приключение уже сегодня!"
+title: Откройте своё лучшее путешествие! 123
+subtitle: ВПЕРЁД ЗА ВПЕЧАТЛЕНИЯМИ
+description: Откройте для себя самые красивые и вдохновляющие места Амстердама и
+  Нидерландов. Выберите экскурсию, которая сделает ваше путешествие
+  по-настоящему незабываемым. Исследуйте наши туры и начните своё приключение
+  уже сегодня!
 images:
-  mainImage: "/src/assets/hero/hero1.jpg"
-  mainImageAlt: "Beautiful mountain lake scenery"
-  secondaryImage: "/src/assets/hero/hero2.jpg"
-  secondaryImageAlt: "Mountain reflection"
+  mainImage: /src/assets/hero/hero1.jpg
+  mainImageAlt: Beautiful mountain lake scenery
+  secondaryImage: /src/assets/hero/hero2.jpg
+  secondaryImageAlt: Mountain reflection
 ---
 
 # Hero Section Content
