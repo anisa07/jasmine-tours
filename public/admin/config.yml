@@ -76,13 +76,12 @@ collections:
             widget: "list"
             fields:
               - { label: "Quote", name: "quote", widget: "text" }
+              - { label: "Tour", name: "tour", widget: "text" }
               - label: "Author"
                 name: "author"
                 widget: "object"
                 fields:
                   - { label: "Name", name: "name", widget: "string" }
-                  - { label: "Title", name: "title", widget: "string" }
-                  - { label: "Company", name: "company", widget: "string" }
                   - { label: "Avatar Image", name: "avatar", widget: "image" }
               - {
                   label: "Rating",
@@ -92,12 +91,24 @@ collections:
                   max: 5,
                   default: 5,
                 }
-              - {
-                  label: "Featured",
-                  name: "featured",
-                  widget: "boolean",
-                  default: false,
-                }
+
+  - name: "gallery"
+    label: "Gallery"
+    files:
+      - label: "Image Gallery"
+        name: "gallery"
+        file: "src/content/gallery/gallery.md"
+        fields:
+          - label: "Gallery Images"
+            name: "images"
+            widget: "list"
+            fields:
+              - { label: "Image ID", name: "id", widget: "string" }
+              - { label: "Image", name: "src", widget: "image" }
+              - { label: "Alt Text", name: "alt", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Thumbnail", name: "thumbnail", widget: "image" }
 
   - name: "tours"
     label: "Tours"

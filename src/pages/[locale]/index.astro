@@ -8,7 +8,7 @@ import { getEntry } from "astro:content";
 import Container from "@/components/layout/Container.astro";
 
 // Icons
-import { MessageCircle, Instagram } from "@lucide/astro";
+import { MessageCircle, Instagram, Facebook } from "@lucide/astro";
 
 // Content components
 import Hero from "@/components/content/Hero.astro";
@@ -32,120 +32,50 @@ const { t } = await getPageTranslations(locale as Locale, [
   "home",
 ]);
 
-// Load hero content from CMS
+// Load content from CMS
 const heroEntry = await getEntry("hero", "hero");
 const heroData = heroEntry?.data;
 
-// Load tour categories from CMS
 const tourCategoriesEntry = await getEntry("tour-categories", "categories");
 const tourCategoriesData = tourCategoriesEntry?.data?.categories || [];
 
-// Load testimonials from CMS
 const testimonialsEntry = await getEntry("testimonials", "testimonials");
 const testimonialsData = testimonialsEntry?.data?.testimonials || [];
 
-// Sample gallery images
-const galleryImages = [
-  {
-    id: "1",
-    src: "/assets/tour1.jpg",
-    alt: t(
-      "gallery_items.labuan_bajo.title",
-      "Beautiful landscape of Labuan Bajo with crystal clear waters"
-    ),
-    title: t("gallery_items.labuan_bajo.title", "Labuan Bajo Paradise"),
-    description: t(
-      "gallery_items.labuan_bajo.description",
-      "Experience the breathtaking beauty of Labuan Bajo's pristine waters and stunning landscapes"
-    ),
-    thumbnail: "/assets/tour1.jpg",
-  },
-  {
-    id: "2",
-    src: "/assets/tour2.jpg",
-    alt: t(
-      "gallery_items.beach_sunset.title",
-      "Spectacular sunset over tropical beach"
-    ),
-    title: t("gallery_items.beach_sunset.title", "Tropical Sunset"),
-    description: t(
-      "gallery_items.beach_sunset.description",
-      "Witness unforgettable sunsets on pristine tropical beaches with golden sand"
-    ),
-    thumbnail: "/assets/tour2.jpg",
-  },
-  {
-    id: "3",
-    src: "/assets/bike1.jpg",
-    alt: t(
-      "gallery_items.amsterdam_canals.title",
-      "Historic Amsterdam canals with traditional architecture"
-    ),
-    title: t("gallery_items.amsterdam_canals.title", "Amsterdam Canals"),
-    description: t(
-      "gallery_items.amsterdam_canals.description",
-      "Explore the historic charm of Amsterdam's iconic canals and traditional Dutch architecture"
-    ),
-    thumbnail: "/assets/bike1.jpg",
-  },
-  {
-    id: "4",
-    src: "/assets/mountain1.jpg",
-    alt: t(
-      "gallery_items.mountain_adventure.title",
-      "Majestic mountain peaks and hiking trails"
-    ),
-    title: t("gallery_items.mountain_adventure.title", "Mountain Adventure"),
-    description: t(
-      "gallery_items.mountain_adventure.description",
-      "Discover breathtaking mountain landscapes and thrilling hiking adventures"
-    ),
-    thumbnail: "/assets/mountain1.jpg",
-  },
-  {
-    id: "5",
-    src: "/assets/boat1.jpg",
-    alt: t(
-      "gallery_items.boat_tour.title",
-      "Sailing boat on clear blue waters"
-    ),
-    title: t("gallery_items.boat_tour.title", "Island Hopping"),
-    description: t(
-      "gallery_items.boat_tour.description",
-      "Sail through crystal clear waters and discover hidden islands and secluded beaches"
-    ),
-    thumbnail: "/assets/boat1.jpg",
-  },
-  {
-    id: "6",
-    src: "/images/canals1.jpg",
-    alt: t(
-      "gallery_items.cultural_sites.title",
-      "Historic cultural landmarks and traditional architecture"
-    ),
-    title: t("gallery_items.cultural_sites.title", "Cultural Heritage"),
-    description: t(
-      "gallery_items.cultural_sites.description",
-      "Immerse yourself in rich cultural heritage and explore historic landmarks"
-    ),
-    thumbnail: "/images/canals1.jpg",
-  },
-];
+const galleryEntry = await getEntry("gallery", "gallery");
+const galleryData = galleryEntry?.data?.images || [];
+
+// Transform gallery data to match ImageGallery component expectations
+const galleryImages = galleryData.map((image) => ({
+  id: image.id,
+  src: image.src,
+  alt: t(`gallery_items.${image.id}.alt`, image.alt),
+  title: t(`gallery_items.${image.id}.title`, image.title),
+  description: t(`gallery_items.${image.id}.description`, image.description),
+  thumbnail: image.thumbnail,
+}));
 
 const ctaActions = [
   {
-    label: t("actions.whatsapp", "Book via WhatsApp"),
-    href: "https://wa.me/1234567890?text=Hi! I'm interested in booking a tour",
+    label: "Забронировать через WhatsApp",
+    href: "https://wa.me/c/31642221525",
     variant: "primary" as const,
     size: "lg" as const,
     icon: MessageCircle,
   },
   {
-    label: t("actions.instagram", "Follow on Instagram"),
-    href: "https://instagram.com/jasmintours",
+    label: "Подписаться в Instagram",
+    href: "https://www.instagram.com/jasmine.tours.amsterdam",
     variant: "outline" as const,
     size: "lg" as const,
     icon: Instagram,
+  },
+  {
+    label: "Следить в Facebook",
+    href: "https://www.facebook.com/jasmintoursevents/",
+    variant: "outline" as const,
+    size: "lg" as const,
+    icon: Facebook,
   },
 ];
 ---
@@ -191,24 +121,20 @@ const ctaActions = [
 
   <!-- Gallery Section -->
   <section class="py-20 bg-muted/30">
-    <Container size="lg" padding="lg">
+    <Container size="xl" padding="lg">
       <div class="text-center mb-16 animate-fade-up">
         <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-6">
-          {t("gallery.title", "Explore Amazing Destinations")}
+          Мгновения из наших туров
         </h2>
         <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
-          {
-            t(
-              "gallery.description",
-              "Discover breathtaking landscapes, vibrant cultures, and unforgettable experiences from our curated travel destinations."
-            )
-          }
+          Лучшие кадры, наполненные атмосферой Амстердама и путешествий по
+          Нидерландам
         </p>
       </div>
 
       <div class="animate-fade-up animate-delay-1">
         <ImageGallery
-          images={galleryImages}
+          images={galleryData}
           columns={3}
           gap={24}
           showThumbnails={true}
@@ -229,15 +155,9 @@ const ctaActions = [
   >
     <Container size="md" padding="xs" class="relative z-10">
       <CallToAction
-        title={t("cta.title", "Ready for Your Next Adventure?")}
-        subtitle={t(
-          "cta.subtitle",
-          "Connect with us to book your dream vacation"
-        )}
-        description={t(
-          "cta.description",
-          "Chat with us on WhatsApp for instant booking or follow our Instagram for daily travel inspiration and exclusive offers."
-        )}
+        title="Готовы к новому приключению?"
+        subtitle="Свяжитесь со мной, и я помогу спланировать ваше путешествие мечты"
+        description="Напишите мне в WhatsApp для быстрой брони или загляните в мой Instagram — вдохновляйтесь идеями и атмосферой настоящей Голландии."
         actions={ctaActions}
         variant="default"
         backgroundColor="primary"

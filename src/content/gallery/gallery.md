@@ -1,0 +1,43 @@
+---
+images:
+  - id: "1"
+    src: "src/assets/images/gallery1.jpeg"
+    alt: "Photo in historical costumes"
+    title: "Голландский стиль XVII века"
+    description: "Аутентичные костюмы и атмосфера старого Амстердама в нашей фотосессии"
+    thumbnail: "src/assets/images/gallery1.jpeg"
+  - id: "2"
+    src: "src/assets/images/gallery2.jpg"
+    alt: "Couple on a boat"
+    title: "Прогулка на лодке по каналам"
+    description: "Улыбки, тёплый ветер и отражения старинных домов в воде — прогулка, наполненная радостью и светом"
+    thumbnail: "src/assets/images/gallery2.jpg"
+  - id: "3"
+    src: "src/assets/images/gallery3.jpeg"
+    alt: "Tour to the island"
+    title: "Путешествие к острову"
+    description: "Весёлая компания на борту отправляется к живописному острову — солнце, свежий ветер и предвкушение новых открытий"
+    thumbnail: "src/assets/images/gallery3.jpeg"
+  - id: "4"
+    src: "src/assets/images/gallery4.jpg"
+    alt: "Ladies on the board"
+    title: "Солнце, улыбки и Амстердам"
+    description: "Тёплый день на воде, смех и радость — лучшие моменты путешествия остаются в памяти надолго"
+    thumbnail: "src/assets/images/gallery4.jpg"
+  - id: "5"
+    src: "src/assets/images/gallery5.jpg"
+    alt: "Кекенхоф — царство тюльпанов"
+    title: "Island Hopping"
+    description: "Море ярких цветов, вдохновение и незабываемая атмосфера весенней Голландии"
+    thumbnail: "src/assets/images/gallery5.jpg"
+  - id: "6"
+    src: "src/assets/images/gallery6.jpg"
+    alt: "Girl stands on the boat"
+    title: "На волнах Амстердама"
+    description: "Девушка на лодке любуется городом и ловит момент — ветер, солнце и свобода путешествия"
+    thumbnail: "src/assets/images/gallery6.jpg"
+---
+
+# Gallery Images
+
+This file contains the gallery images for the website.

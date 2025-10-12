@@ -107,7 +107,7 @@ const url = new URL(Astro.url, site).href;
           label: t("nav.team", "Отзывы"),
           href: `/${activeLocale}#testimonials`,
         },
-        { label: t("nav.about", "О нас"), href: `/${activeLocale}/about-me` },
+        { label: t("nav.about", "Обо мне"), href: `/${activeLocale}/about-me` },
         {
           label: t("nav.contact", "Связаться"),
           href: `/${activeLocale}#contact`,
@@ -125,11 +125,11 @@ const url = new URL(Astro.url, site).href;
     <!-- Footer -->
     <Footer
       locale={activeLocale}
-      logoText={t("site.name", "Jasmine Tours")}
+      logoText={t("site.name", "Jasmine Tours & Events")}
       logoHref={`/${activeLocale}`}
       copyrightText={t(
         "footer.copyright",
-        "© 2025 Jasmine Tours. Все права защищены."
+        "© 2025 Jasmine Tours & Events. Все права защищены."
       )}
       showNewsletter={true}
       newsletterTitle={t("footer.newsletter.title", "Будьте в курсе")}

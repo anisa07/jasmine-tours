@@ -1,14 +1,15 @@
 ---
 import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, RotateCcw } from "@lucide/astro";
 import { Image } from "astro:assets";
+import type { ImageType } from "@/types";
 
 export interface GalleryImage {
   id: string;
-  src: string;
+  src: ImageType | string;
   alt: string;
   title?: string;
   description?: string;
-  thumbnail?: string;
+  thumbnail?: ImageType | string;
 }
 
 export interface Props {
@@ -89,8 +90,11 @@ const getGridClasses = () => {
       `}
       data-index={index}
       data-image-id={image.id}
-      data-src={image.src}
-      data-thumbnail={image.thumbnail || image.src}
+      data-src={typeof image.src === 'string' ? image.src : image.src.src}
+      data-thumbnail={(() => {
+        const thumb = image.thumbnail || image.src;
+        return typeof thumb === 'string' ? thumb : thumb.src;
+      })()}
       data-alt={image.alt}
       data-title={image.title || ""}
       data-description={image.description || ""}
@@ -102,15 +106,25 @@ const getGridClasses = () => {
         class="gallery-button w-full h-full p-0 border-0 bg-transparent focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
         aria-label={`View ${image.title || image.alt} in fullscreen`}
       >
-        <Image
-          src={image.thumbnail || image.src}
-          alt={image.alt}
-          class={`w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-90 ${imageClassName}`}
-          loading={lazy ? "lazy" : "eager"}
-          width={400}
-          height={400}
-          format="webp"
-        />
+        {typeof (image.thumbnail || image.src) === 'string' ? (
+          <img
+            src={image.thumbnail as string || image.src as string}
+            alt={image.alt}
+            class={`w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-90 ${imageClassName}`}
+            loading={lazy ? "lazy" : "eager"}
+            style="min-height: 200px; max-height: 400px;"
+          />
+        ) : (
+          <Image
+            src={(image.thumbnail || image.src) as ImageType}
+            alt={image.alt}
+            class={`w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-90 ${imageClassName}`}
+            loading={lazy ? "lazy" : "eager"}
+            width={400}
+            height={400}
+            format="webp"
+          />
+        )}
       </button>
 
       <!-- Overlay -->
@@ -160,7 +174,7 @@ const getGridClasses = () => {
   <button
     type="button"
     id="fullscreen-close"
-    class="absolute top-4 right-4 z-60 text-foreground hover:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md p-2"
+    class="absolute top-4 right-4 z-[70] text-foreground hover:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md p-2 bg-background/80 backdrop-blur-sm"
     aria-label="Close fullscreen view"
   >
     <X class="w-6 h-6" />
@@ -170,7 +184,7 @@ const getGridClasses = () => {
   <button
     type="button"
     id="fullscreen-prev"
-    class="absolute left-4 top-1/2 -translate-y-1/2 z-60 text-foreground hover:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md p-2 hidden"
+    class="absolute left-4 top-1/2 -translate-y-1/2 z-[70] text-foreground hover:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md p-2 hidden bg-background/80 backdrop-blur-sm"
     aria-label="Previous image"
   >
     <ChevronLeft class="w-8 h-8" />
@@ -179,21 +193,22 @@ const getGridClasses = () => {
   <button
     type="button"
     id="fullscreen-next"
-    class="absolute right-4 top-1/2 -translate-y-1/2 z-60 text-foreground hover:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md p-2 hidden"
+    class="absolute right-4 top-1/2 -translate-y-1/2 z-[70] text-foreground hover:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md p-2 hidden bg-background/80 backdrop-blur-sm"
     aria-label="Next image"
   >
     <ChevronRight class="w-8 h-8" />
   </button>
 
   <!-- Main Image Container -->
-  <div id="fullscreen-content" class="max-w-full max-h-full p-8 flex flex-col items-center justify-center overflow-hidden">
-    <div id="image-zoom-container" class="relative cursor-zoom-in">
+  <div id="fullscreen-content" class="max-w-full max-h-full p-8 flex flex-col items-center justify-center overflow-hidden z-10">
+    <div id="image-zoom-container" class="relative cursor-zoom-in z-10 max-w-[90vw] max-h-[80vh] flex items-center justify-center">
       <img
         id="fullscreen-image"
         src=""
         alt=""
-        class="max-w-full max-h-full object-contain transition-transform duration-200"
+        class="max-w-full max-h-full w-auto h-auto object-contain transition-transform duration-200"
         draggable="false"
+        style="max-width: 90vw; max-height: 80vh;"
       />
     </div>
 
@@ -205,21 +220,21 @@ const getGridClasses = () => {
   </div>
 
   <!-- Thumbnails Navigation -->
-  <div id="fullscreen-thumbnails" class="absolute bottom-20 left-1/2 -translate-x-1/2 space-x-2 max-w-full overflow-x-auto px-4 hidden">
+  <div id="fullscreen-thumbnails" class="absolute bottom-20 left-1/2 -translate-x-1/2 space-x-2 max-w-full overflow-x-auto px-4 hidden z-[70] backdrop-blur-sm bg-background/20 rounded-lg py-2">
     <!-- Thumbnails will be populated by JavaScript -->
   </div>
 
   <!-- Image Counter -->
-  <div id="fullscreen-counter" class="absolute top-4 left-4 text-foreground text-sm bg-background/80 border border-border px-3 py-1 rounded-md hidden">
+  <div id="fullscreen-counter" class="absolute top-4 left-4 text-foreground text-sm bg-background/80 border border-border px-3 py-1 rounded-md hidden z-[70] backdrop-blur-sm">
     <span id="current-image-number">1</span> / <span id="total-images">1</span>
   </div>
 
   <!-- Zoom Controls -->
-  <div id="zoom-controls" class="absolute bottom-4 right-4 gap-2 hidden">
+  <div id="zoom-controls" class="absolute bottom-4 right-4 gap-2 hidden z-[70]">
     <button
       type="button"
       id="zoom-out"
-      class="bg-background/80 border border-border text-foreground hover:bg-accent hover:text-accent-foreground p-2 rounded-md transition-colors"
+      class="bg-background/80 border border-border text-foreground hover:bg-accent hover:text-accent-foreground p-2 rounded-md transition-colors backdrop-blur-sm"
       aria-label="Zoom out"
     >
       <ZoomOut class="w-4 h-4" />
@@ -227,7 +242,7 @@ const getGridClasses = () => {
     <button
       type="button"
       id="zoom-in"
-      class="bg-background/80 border border-border text-foreground hover:bg-accent hover:text-accent-foreground p-2 rounded-md transition-colors"
+      class="bg-background/80 border border-border text-foreground hover:bg-accent hover:text-accent-foreground p-2 rounded-md transition-colors backdrop-blur-sm"
       aria-label="Zoom in"
     >
       <ZoomIn class="w-4 h-4" />
@@ -235,7 +250,7 @@ const getGridClasses = () => {
     <button
       type="button"
       id="zoom-reset"
-      class="bg-background/80 border border-border text-foreground hover:bg-accent hover:text-accent-foreground p-2 rounded-md transition-colors"
+      class="bg-background/80 border border-border text-foreground hover:bg-accent hover:text-accent-foreground p-2 rounded-md transition-colors backdrop-blur-sm"
       aria-label="Reset zoom"
     >
       <RotateCcw class="w-4 h-4" />
@@ -323,6 +338,12 @@ const getGridClasses = () => {
       
       fullscreenImage.src = image.src;
       fullscreenImage.alt = image.alt;
+      
+      // Reset image constraints for consistent sizing
+      fullscreenImage.style.maxWidth = '90vw';
+      fullscreenImage.style.maxHeight = '80vh';
+      fullscreenImage.style.width = 'auto';
+      fullscreenImage.style.height = 'auto';
       
       // Update caption
       if (showCaption && fullscreenTitle && fullscreenDescription && fullscreenCaption) {
@@ -439,7 +460,21 @@ const getGridClasses = () => {
 
     function updateImageTransform() {
       if (fullscreenImage) {
-        fullscreenImage.style.transform = `scale(${currentZoom}) translate(${imagePosition.x}px, ${imagePosition.y}px)`;
+        // Ensure image doesn't exceed viewport even when zoomed
+        const maxWidth = window.innerWidth * 0.9;
+        const maxHeight = window.innerHeight * 0.8;
+        const scaledWidth = fullscreenImage.naturalWidth * currentZoom;
+        const scaledHeight = fullscreenImage.naturalHeight * currentZoom;
+        
+        // Constrain zoom if image would exceed viewport
+        let constrainedZoom = currentZoom;
+        if (scaledWidth > maxWidth || scaledHeight > maxHeight) {
+          const widthRatio = maxWidth / fullscreenImage.naturalWidth;
+          const heightRatio = maxHeight / fullscreenImage.naturalHeight;
+          constrainedZoom = Math.min(constrainedZoom, Math.min(widthRatio, heightRatio));
+        }
+        
+        fullscreenImage.style.transform = `scale(${constrainedZoom}) translate(${imagePosition.x}px, ${imagePosition.y}px)`;
       }
     }
 
