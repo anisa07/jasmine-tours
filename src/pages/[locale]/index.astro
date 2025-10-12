@@ -3,29 +3,20 @@ import IntlBaseLayout from "@/layouts/IntlBaseLayout.astro";
 import { getPageTranslations, getLocaleStaticPaths } from "@/i18n/i18n";
 import type { Locale } from "@/i18n/config";
 import { getEntry } from "astro:content";
-
-// Layout components
 import Container from "@/components/layout/Container.astro";
-
-// Icons
-import { MessageCircle, Instagram, Facebook } from "@lucide/astro";
-
-// Content components
 import Hero from "@/components/content/Hero.astro";
-import CallToAction from "@/components/content/CallToAction.astro";
 import TourFilter from "@/components/content/TourFilter.astro";
 import Testemonials from "@/components/content/Testemonials.astro";
 import ImageGallery from "@/components/ImageGallery.astro";
+import CTASection from "@/components/content/CTASection.astro";
 
 // Generate static paths for all supported locales
 export async function getStaticPaths() {
   return getLocaleStaticPaths();
 }
 
-// Get locale from dynamic route params
 const { locale } = Astro.params;
 
-// Get the translation function for this page
 const { t } = await getPageTranslations(locale as Locale, [
   "common",
   "ui",
@@ -54,30 +45,6 @@ const galleryImages = galleryData.map((image) => ({
   description: t(`gallery_items.${image.id}.description`, image.description),
   thumbnail: image.thumbnail,
 }));
-
-const ctaActions = [
-  {
-    label: "Забронировать через WhatsApp",
-    href: "https://wa.me/c/31642221525",
-    variant: "primary" as const,
-    size: "lg" as const,
-    icon: MessageCircle,
-  },
-  {
-    label: "Подписаться в Instagram",
-    href: "https://www.instagram.com/jasmine.tours.amsterdam",
-    variant: "outline" as const,
-    size: "lg" as const,
-    icon: Instagram,
-  },
-  {
-    label: "Следить в Facebook",
-    href: "https://www.facebook.com/jasmintoursevents/",
-    variant: "outline" as const,
-    size: "lg" as const,
-    icon: Facebook,
-  },
-];
 ---
 
 <IntlBaseLayout
@@ -86,15 +53,14 @@ const ctaActions = [
   seo={{
     title: t(
       "seo.title",
-      "Jasmine Tours - Discover Amazing Travel Destinations | Book Your Adventure"
+      "Jasmine Tours & Events - Откройте удивительные направления для путешествий | Забронируйте своё приключение"
     ),
     description: t(
       "seo.description",
-      "Explore breathtaking destinations with Jasmine Tours. Book your perfect adventure through WhatsApp or follow us on Instagram for travel inspiration."
+      "Откройте захватывающие туры вместе с Jasmine Tours & Events. Забронируйте свою идеальную экскурсию через WhatsApp или подпишитесь на нас в Instagram, чтобы вдохновляться идеями для новых приключений."
     ),
   }}
 >
-  <!-- Hero Section -->
   <section class="relative">
     {
       heroData && (
@@ -109,17 +75,14 @@ const ctaActions = [
     }
   </section>
 
-  <!-- Tour Filter Panel Section -->
   <section id="tours">
     <TourFilter t={t} tourCategories={tourCategoriesData} locale={locale} />
   </section>
 
-  <!-- Testimonials Section -->
   <section id="testimonials">
     <Testemonials t={t} testimonials={testimonialsData} />
   </section>
 
-  <!-- Gallery Section -->
   <section class="py-20 bg-muted/30">
     <Container size="xl" padding="lg">
       <div class="text-center mb-16 animate-fade-up">
@@ -148,21 +111,5 @@ const ctaActions = [
     </Container>
   </section>
 
-  <!-- CTA Section -->
-  <section
-    id="contact"
-    class="bg-primary text-primary-foreground relative overflow-hidden"
-  >
-    <Container size="md" padding="xs" class="relative z-10">
-      <CallToAction
-        title="Готовы к новому приключению?"
-        subtitle="Свяжитесь со мной, и я помогу спланировать ваше путешествие мечты"
-        description="Напишите мне в WhatsApp для быстрой брони или загляните в мой Instagram — вдохновляйтесь идеями и атмосферой настоящей Голландии."
-        actions={ctaActions}
-        variant="default"
-        backgroundColor="primary"
-        class="animate-fade-up"
-      />
-    </Container>
-  </section>
+  <CTASection t={t} locale={locale} backgroundColor="primary" />
 </IntlBaseLayout>

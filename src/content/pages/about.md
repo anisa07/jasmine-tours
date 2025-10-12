@@ -1,13 +1,22 @@
 ---
-title: "About Jasmine"
-subtitle: "Your Personal Indonesia Travel Guide"
-profileImage: "/images/jasmine-profile.jpg"
+title: "Откройте Нидерланды вместе со мной"
+subtitle: "Я — Зара, ваш личный гид по Нидерландам. Покажу этот удивительный край с душой и любовью"
+profileImage: "/src/assets/images/Zaraprofile.jpg"
+introduction: |
+  Меня зовут Зара, и я живу в Амстердаме уже более пяти лет. Я — профессиональный гид и организатор путешествий по Нидерландам для русскоязычных туристов.
+  Я провожу индивидуальные и групповые экскурсии, подстраиваясь под ваши интересы и настроение. На прогулке я делюсь увлекательными фактами, легендами и советами, чтобы ваше путешествие стало по-настоящему незабываемым.
+  Не стесняйтесь писать и задавать вопросы — я всегда рада помочь спланировать идеальную поездку!
+services:
+  tours:
+    title: "Экскурсии с Зарой"
+    description: "Откройте Нидерланды глазами местного жителя. Я провожу индивидуальные и групповые экскурсии, где сочетаются история, культура и живые впечатления. Вместе мы исследуем уютные города, живописные каналы и скрытые уголки, о которых не рассказывают путеводители. Каждый маршрут создаётся с душой — под ваши интересы и настроение."
+    image: "/src/assets/images/tours-service.jpeg"
+  events:
+    title: "Организация особых мероприятий"
+    description: "На протяжении трёх лет наша команда успешно проводит самые разные события по всей территории Нидерландов — от камерных встреч и деловых бранчей до концертов, фестивалей и корпоративных вечеринок. Мы берём на себя всё: концепцию, планирование, координацию и сопровождение. Каждое событие создаём с вниманием к деталям, чтобы оно стало незабываемым для вас и ваших гостей."
+    image: "/src/assets/images/events-service.png"
 ---
 
-My name is Jasmine Sanjaya, I am currently living and working in Jakarta, Indonesia as both full-time tour guide and freelance Travel Experience Designer.
+# About Jasmine Tours
 
-What can I say, I love my job! I am having trouble writing compelling texts, not to mention about myself so I will try to make this as short and informative as possible.
-
-Growing up in Indonesia, I discovered that our country holds some of the world's most incredible hidden treasures. From the mystical temples of Borobudur to the pristine waters of Raja Ampat, every corner tells a unique story.
-
-But what truly moves me is connecting people with these places in meaningful ways. I don't just show you destinations – I help you experience the soul of Indonesia through local communities, authentic cuisine, and moments that become lifelong memories.
+This is the about page content managed through the CMS.
