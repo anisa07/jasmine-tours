@@ -49,7 +49,7 @@ Astro.response.status = 404;
         if (window.history.length > 1) {
           window.history.back();
         } else {
-          window.location.href = `/${document.documentElement.lang || "en"}`;
+          window.location.href = `/${document.documentElement.lang || "ru"}`;
         }
       };
     </script>
@@ -68,20 +68,13 @@ Astro.response.status = 404;
         class="bg-background/80 backdrop-blur-sm border rounded-lg p-3 shadow-lg"
       >
         <div class="flex gap-2 justify-center">
-          <!-- <a
-            href="/en/404"
-            class="btn btn-ghost btn-sm"
-            class:list={[detectedLocale === "en" && "bg-muted"]}
-          >
-            {t("common.languages.en", "English")}
-          </a> -->
-          <a
-            href="/ru/404"
-            class="btn btn-ghost btn-sm"
-            class:list={[detectedLocale === "ru" && "bg-muted"]}
-          >
-            {t("common.languages.nl", "Nederlands")}
+          <a href="/ru/404" class="btn btn-ghost btn-sm bg-muted">
+            {t("common.languages.ru", "Русский")}
           </a>
+          <!-- English language support can be added when locale config is updated -->
+          <span class="btn btn-ghost btn-sm opacity-50 cursor-not-allowed">
+            English (Coming Soon)
+          </span>
         </div>
       </div>
     </div>

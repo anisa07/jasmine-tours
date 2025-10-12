@@ -1,0 +1,12 @@
+{
+  "languages": {
+    "ru": "Русский",
+    "en": "English"
+  },
+  "navigation": {
+    "home": "Главная",
+    "about": "О нас",
+    "tours": "Туры",
+    "contact": "Контакты"
+  }
+}
