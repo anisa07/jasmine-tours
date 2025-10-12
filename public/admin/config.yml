@@ -177,5 +177,5 @@ collections:
 
 backend:
   name: git-gateway
-  repo: anisa07/mvp-netlify-cms
+  repo: anisa07/jasmine-tours
   branch: master
