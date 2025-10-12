@@ -1,44 +1,47 @@
 import { defineCollection, z } from "astro:content";
+import { glob } from "astro/loaders";
 
 const heroCollection = defineCollection({
-  type: "content",
-  schema: z.object({
-    title: z.string(),
-    subtitle: z.string(),
-    description: z.string(),
-    images: z.object({
-      mainImage: z.string(),
-      mainImageAlt: z.string(),
-      secondaryImage: z.string(),
-      secondaryImageAlt: z.string(),
+  loader: glob({ pattern: "**/*.md", base: "./src/content/hero" }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      subtitle: z.string(),
+      description: z.string(),
+      images: z.object({
+        mainImage: image(),
+        mainImageAlt: z.string(),
+        secondaryImage: image(),
+        secondaryImageAlt: z.string(),
+      }),
     }),
-  }),
 });
 
 const tourCategoriesCollection = defineCollection({
-  type: "content",
-  schema: z.object({
-    categories: z.array(
-      z.object({
-        id: z.string(),
-        title: z.string(),
-        tours: z.array(
-          z.object({
-            title: z.string(),
-            price: z.string(),
-            duration: z.string(),
-            image: z.string(),
-            alt: z.string(),
-            slug: z.string().optional(),
-          })
-        ),
-      })
-    ),
-  }),
+  loader: glob({ pattern: "**/*.md", base: "./src/content/tour-categories" }),
+  schema: ({ image }) =>
+    z.object({
+      categories: z.array(
+        z.object({
+          id: z.string(),
+          title: z.string(),
+          tours: z.array(
+            z.object({
+              title: z.string(),
+              price: z.string(),
+              duration: z.string(),
+              image: image(),
+              alt: z.string(),
+              slug: z.string().optional(),
+            })
+          ),
+        })
+      ),
+    }),
 });
 
 const toursCollection = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.md", base: "src/content/tours" }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -68,7 +71,7 @@ const toursCollection = defineCollection({
 });
 
 const pagesCollection = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/about.md", base: "src/content/pages" }),
   schema: z.object({
     title: z.string(),
     subtitle: z.string().optional(),
@@ -77,7 +80,8 @@ const pagesCollection = defineCollection({
 });
 
 const testimonialsCollection = defineCollection({
-  type: "content",
+  // loader: file("src/content/testimonials/testimonials.md"),
+  loader: glob({ pattern: "**/*.md", base: "src/content/testimonials" }),
   schema: z.object({
     testimonials: z.array(
       z.object({
