@@ -33,41 +33,13 @@ const tourCategoriesCollection = defineCollection({
               image: image(),
               alt: z.string(),
               slug: z.string().optional(),
+              description: z.string(),
+              shortDescription: z.string().optional(),
             })
           ),
         })
       ),
     }),
-});
-
-const toursCollection = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "src/content/tours" }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    price: z.number(),
-    duration: z.string(),
-    groupSize: z.string(),
-    rating: z.number(),
-    reviewCount: z.number(),
-    mainImage: z.string(),
-    gallery: z.array(z.string()).optional(),
-    location: z.string(),
-    country: z.string().default("Indonesia"),
-    highlights: z.array(z.string()).optional(),
-    itinerary: z
-      .array(
-        z.object({
-          day: z.number(),
-          title: z.string(),
-          activities: z.array(z.string()),
-        })
-      )
-      .optional(),
-    included: z.array(z.string()).optional(),
-    notIncluded: z.array(z.string()).optional(),
-    published: z.boolean().default(true),
-  }),
 });
 
 const aboutCollection = defineCollection({
@@ -133,7 +105,6 @@ const galleryCollection = defineCollection({
 export const collections = {
   hero: heroCollection,
   "tour-categories": tourCategoriesCollection,
-  tours: toursCollection,
   about: aboutCollection,
   testimonials: testimonialsCollection,
   gallery: galleryCollection,

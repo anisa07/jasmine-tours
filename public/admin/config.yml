@@ -53,6 +53,19 @@ collections:
                 widget: "list"
                 fields:
                   - { label: "Tour Title", name: "title", widget: "string" }
+                  - {
+                      label: "Tour Description",
+                      name: "description",
+                      widget: "markdown",
+                      hint: "Full description with formatting support (bold, italic, lists, etc.)",
+                    }
+                  - {
+                      label: "Short Description",
+                      name: "shortDescription",
+                      widget: "string",
+                      required: false,
+                      hint: "Optional brief summary for cards/previews",
+                    }
                   - { label: "Price", name: "price", widget: "string" }
                   - { label: "Duration", name: "duration", widget: "string" }
                   - { label: "Tour Image", name: "image", widget: "image" }
@@ -109,70 +122,6 @@ collections:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
               - { label: "Thumbnail", name: "thumbnail", widget: "image" }
-
-  - name: "tours"
-    label: "Tours"
-    folder: "src/content/tours"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Detailed Description", name: "body", widget: "markdown" }
-      - { label: "Price (USD)", name: "price", widget: "number" }
-      - { label: "Duration", name: "duration", widget: "string" }
-      - { label: "Group Size", name: "groupSize", widget: "string" }
-      - {
-          label: "Rating",
-          name: "rating",
-          widget: "number",
-          min: 1,
-          max: 5,
-          step: 0.1,
-        }
-      - { label: "Review Count", name: "reviewCount", widget: "number" }
-      - { label: "Main Image", name: "mainImage", widget: "image" }
-      - {
-          label: "Gallery Images",
-          name: "gallery",
-          widget: "list",
-          field: { label: "Image", name: "image", widget: "image" },
-        }
-      - { label: "Location", name: "location", widget: "string" }
-      - {
-          label: "Country",
-          name: "country",
-          widget: "string",
-          default: "Indonesia",
-        }
-      - label: "Highlights"
-        name: "highlights"
-        widget: "list"
-        field: { label: "Highlight", name: "highlight", widget: "string" }
-      - label: "Itinerary"
-        name: "itinerary"
-        widget: "list"
-        fields:
-          - { label: "Day", name: "day", widget: "number" }
-          - { label: "Title", name: "title", widget: "string" }
-          - label: "Activities"
-            name: "activities"
-            widget: "list"
-            field: { label: "Activity", name: "activity", widget: "string" }
-      - label: "Included"
-        name: "included"
-        widget: "list"
-        field: { label: "Item", name: "item", widget: "string" }
-      - label: "Not Included"
-        name: "notIncluded"
-        widget: "list"
-        field: { label: "Item", name: "item", widget: "string" }
-      - {
-          label: "Published",
-          name: "published",
-          widget: "boolean",
-          default: true,
-        }
 
   - name: "pages"
     label: "Pages"

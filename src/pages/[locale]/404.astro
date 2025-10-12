@@ -54,8 +54,8 @@ const alternates = Object.fromEntries(
     if (window.history.length > 1) {
       window.history.back();
     } else {
-      // If no history, go to homepage
-      const currentLocale = window.location.pathname.split("/")[1] || "en";
+      // If no history, go to homepage - default to Russian if locale not found
+      const currentLocale = window.location.pathname.split("/")[1] || "ru";
       window.location.href = `/${currentLocale}`;
     }
   };

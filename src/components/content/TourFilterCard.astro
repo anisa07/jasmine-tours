@@ -11,6 +11,7 @@ interface Props {
   className?: string;
   tourSlug?: string;
   locale?: string;
+  description?: string;
 }
 
 const {
@@ -22,6 +23,7 @@ const {
   className = "",
   tourSlug,
   locale = "ru",
+  description = "",
 } = Astro.props;
 ---
 
@@ -65,12 +67,17 @@ const {
       </div>
 
       <!-- More Details Button -->
-      <a
-        href={tourSlug ? `/${locale}/tour/${tourSlug}` : "#"}
-        class="w-full py-2 px-4 bg-primary-foreground/20 backdrop-blur-sm border border-primary-foreground/30 rounded text-primary-foreground text-sm font-medium transition-all duration-200 hover:bg-primary-foreground/30 hover:border-primary-foreground/50 block text-center"
+      <button
+        class="tour-details-btn w-full py-2 px-4 bg-primary-foreground/20 backdrop-blur-sm border border-primary-foreground/30 rounded text-primary-foreground text-sm font-medium transition-all duration-200 hover:bg-primary-foreground/30 hover:border-primary-foreground/50"
+        data-tour-title={title}
+        data-tour-price={price}
+        data-tour-duration={duration}
+        data-tour-description={description}
+        data-tour-image={image}
+        data-tour-alt={alt}
       >
         Подробнее
-      </a>
+      </button>
     </div>
   </div>
 </div>
