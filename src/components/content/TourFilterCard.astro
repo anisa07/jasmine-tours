@@ -52,16 +52,14 @@ const {
         <div class="text-lg font-semibold">
           {price}
         </div>
-        <div class="text-sm opacity-90">
-          / {duration}
-        </div>
+        {duration && <div class="text-sm opacity-90">{duration}</div>}
       </div>
 
       <!-- More Details Button -->
       <button
         class="w-full py-2 px-4 bg-primary-foreground/20 backdrop-blur-sm border border-primary-foreground/30 rounded text-primary-foreground text-sm font-medium transition-all duration-200 hover:bg-primary-foreground/30 hover:border-primary-foreground/50"
       >
-        MORE DETAILS
+        Подробнее
       </button>
     </div>
   </div>

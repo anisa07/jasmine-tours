@@ -182,6 +182,16 @@ declare module 'astro:content' {
   rendered?: RenderedContent;
   filePath?: string;
 }>;
+"tour-categories": Record<string, {
+  id: string;
+  render(): Render[".md"];
+  slug: string;
+  body: string;
+  collection: "tour-categories";
+  data: InferEntrySchema<"tour-categories">;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
 "tours": Record<string, {
   id: string;
   render(): Render[".md"];

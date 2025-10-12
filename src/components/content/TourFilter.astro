@@ -2,155 +2,39 @@
 import Container from "@/components/layout/Container.astro";
 import TourFilterCard from "@/components/content/TourFilterCard.astro";
 
+// Type definitions
+type Tour = {
+  title: string;
+  price: string;
+  duration: string;
+  image: string;
+  alt: string;
+};
+
+type TourCategory = {
+  id: string;
+  title: string;
+  tours: Tour[];
+};
+
+type TourCategories = TourCategory[];
+
 interface Props {
   t: (
     key: string,
     fallback: string,
     vars?: Record<string, string | number>
   ) => string;
+  tourCategories: TourCategories;
 }
 
-const { t } = Astro.props;
+const { t, tourCategories: rawTourCategories } = Astro.props;
 
-// Tour data structure
-const tourCategories = [
-  {
-    id: "popular",
-    title: t("tours.filters.popular", "Popular Tours"),
-    tours: [
-      {
-        title: t("tours.popular.1.title", "Labuan Bajo"),
-        price: "$1100",
-        duration: "4 Days",
-        image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=320&fit=crop&crop=center",
-        alt: "Labuan Bajo landscape"
-      },
-      {
-        title: t("tours.popular.2.title", "Nihi Sumba"),
-        price: "$2500",
-        duration: "5 Days",
-        image: "/assets/tour2.jpg",
-        alt: "Nihi Sumba beach resort"
-      },
-      {
-        title: t("tours.popular.3.title", "Pink Beach"),
-        price: "$580",
-        duration: "3 Days",
-        image: "/assets/tour3.jpg",
-        alt: "Pink Beach coastline"
-      },
-      {
-        title: "Komodo Island",
-        price: "$890",
-        duration: "3 Days",
-        image: "/assets/tour4.jpeg",
-        alt: "Komodo Island"
-      }
-    ]
-  },
-  {
-    id: "amsterdam",
-    title: t("tours.filters.amsterdam", "Amsterdam Tours"),
-    tours: [
-      {
-        title: t("tours.amsterdam.1.title", "Canal District Tour"),
-        price: "$120",
-        duration: "Half Day",
-        image: "/images/canals1.jpg",
-        alt: "Amsterdam canals"
-      },
-      {
-        title: t("tours.amsterdam.2.title", "Museums Quarter"),
-        price: "$85",
-        duration: "Full Day",
-        image: "/images/museum1.jpg",
-        alt: "Amsterdam museums"
-      },
-      {
-        title: t("tours.amsterdam.3.title", "Bike City Tour"),
-        price: "$45",
-        duration: "3 Hours",
-        image: "/assets/bike1.jpg",
-        alt: "Amsterdam bike tour"
-      },
-      {
-        title: "Red Light District",
-        price: "$35",
-        duration: "2 Hours",
-        image: "/images/city1.jpg",
-        alt: "Amsterdam Red Light District"
-      }
-    ]
-  },
-  {
-    id: "boat",
-    title: t("tours.filters.boat", "Boat Tours"),
-    tours: [
-      {
-        title: t("tours.boat.1.title", "Sunset Sailing"),
-        price: "$180",
-        duration: "4 Hours",
-        image: "/assets/boat1.jpg",
-        alt: "Sunset sailing boat"
-      },
-      {
-        title: t("tours.boat.2.title", "Island Hopping"),
-        price: "$220",
-        duration: "Full Day",
-        image: "/assets/island1.jpg",
-        alt: "Tropical islands"
-      },
-      {
-        title: t("tours.boat.3.title", "Fishing Adventure"),
-        price: "$150",
-        duration: "6 Hours",
-        image: "/images/fishing1.jpg",
-        alt: "Deep sea fishing"
-      },
-      {
-        title: "Snorkeling Adventure",
-        price: "$95",
-        duration: "3 Hours",
-        image: "/assets/snorkel1.jpg",
-        alt: "Snorkeling adventure"
-      }
-    ]
-  },
-  {
-    id: "other",
-    title: t("tours.filters.other", "Other Tours"),
-    tours: [
-      {
-        title: t("tours.other.1.title", "Mountain Adventure"),
-        price: "$350",
-        duration: "2 Days",
-        image: "/assets/mountain1.jpg",
-        alt: "Mountain landscape"
-      },
-      {
-        title: t("tours.other.2.title", "Night Photography"),
-        price: "$95",
-        duration: "4 Hours",
-        image: "https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?w=400&h=320&fit=crop&crop=center",
-        alt: "Night cityscape"
-      },
-      {
-        title: t("tours.other.3.title", "Theater & Shows"),
-        price: "$75",
-        duration: "3 Hours",
-        image: "https://images.unsplash.com/photo-1507924538820-ede94a04019d?w=400&h=320&fit=crop&crop=center",
-        alt: "Theater performance"
-      },
-      {
-        title: "Wine Tasting",
-        price: "$125",
-        duration: "5 Hours",
-        image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=320&fit=crop&crop=center",
-        alt: "Wine tasting experience"
-      }
-    ]
-  }
-];
+// Apply translations to tour categories
+const tourCategories = rawTourCategories.map(category => ({
+  ...category,
+  title: t(`tours.filters.${category.id}`, category.title)
+}));
 ---
 
 <!-- Tour Filter Panel Section -->
@@ -158,15 +42,10 @@ const tourCategories = [
   <Container size="xl" padding="lg">
     <div class="text-center mb-12">
       <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-4">
-        {t("tours.title", "Explore Our Tours")}
+        Познакомьтесь с нашими турами
       </h2>
       <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
-        {
-          t(
-            "tours.description",
-            "Discover amazing experiences with our carefully curated tour packages"
-          )
-        }
+        Откройте удивительные впечатления с нашими тщательно продуманными туристическими программами
       </p>
     </div>
 
@@ -221,13 +100,13 @@ const tourCategories = [
                 class="more-tours-btn px-8 py-3 bg-primary text-primary-foreground rounded-full font-semibold hover:bg-primary/90 transition-all duration-200 shadow-md hover:shadow-lg"
                 data-category={category.id}
               >
-                {t("tours.more", "More Tours")} ({category.tours.length - 3})
+                Показать больше туров ({category.tours.length - 3})
               </button>
               <button
                 class="less-tours-btn hidden px-8 py-3 bg-muted text-muted-foreground rounded-full font-semibold hover:bg-muted/80 transition-all duration-200 shadow-md hover:shadow-lg ml-4"
                 data-category={category.id}
               >
-                {t("tours.less", "Show Less")}
+                Показать меньше
               </button>
             </div>
           )}

@@ -33,6 +33,29 @@ collections:
                   widget: "string",
                 }
 
+  - name: "tour-categories"
+    label: "Tour Categories"
+    files:
+      - label: "Tour Filter Categories"
+        name: "tour-categories"
+        file: "src/content/tour-categories/categories.md"
+        fields:
+          - label: "Categories"
+            name: "categories"
+            widget: "list"
+            fields:
+              - { label: "Category ID", name: "id", widget: "string" }
+              - { label: "Category Title", name: "title", widget: "string" }
+              - label: "Tours"
+                name: "tours"
+                widget: "list"
+                fields:
+                  - { label: "Tour Title", name: "title", widget: "string" }
+                  - { label: "Price", name: "price", widget: "string" }
+                  - { label: "Duration", name: "duration", widget: "string" }
+                  - { label: "Tour Image", name: "image", widget: "image" }
+                  - { label: "Image Alt Text", name: "alt", widget: "string" }
+
   - name: "tours"
     label: "Tours"
     folder: "src/content/tours"
