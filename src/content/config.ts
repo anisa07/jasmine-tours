@@ -80,23 +80,38 @@ const pagesCollection = defineCollection({
 });
 
 const testimonialsCollection = defineCollection({
-  // loader: file("src/content/testimonials/testimonials.md"),
   loader: glob({ pattern: "**/*.md", base: "src/content/testimonials" }),
-  schema: z.object({
-    testimonials: z.array(
-      z.object({
-        quote: z.string(),
-        author: z.object({
-          name: z.string(),
+  schema: ({ image }) =>
+    z.object({
+      testimonials: z.array(
+        z.object({
+          quote: z.string(),
+          tour: z.string(),
+          author: z.object({
+            name: z.string(),
+            avatar: image(),
+          }),
+          rating: z.number(),
+        })
+      ),
+    }),
+});
+
+const galleryCollection = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "src/content/gallery" }),
+  schema: ({ image }) =>
+    z.object({
+      images: z.array(
+        z.object({
+          id: z.string(),
+          src: image(),
+          alt: z.string(),
           title: z.string(),
-          company: z.string(),
-          avatar: z.string(),
-        }),
-        rating: z.number(),
-        featured: z.boolean().default(false),
-      })
-    ),
-  }),
+          description: z.string(),
+          thumbnail: image(),
+        })
+      ),
+    }),
 });
 
 export const collections = {
@@ -105,4 +120,5 @@ export const collections = {
   tours: toursCollection,
   pages: pagesCollection,
   testimonials: testimonialsCollection,
+  gallery: galleryCollection,
 };

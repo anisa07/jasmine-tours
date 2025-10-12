@@ -1,7 +1,0 @@
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" preserveAspectRatio="xMidYMid meet">
-  <!-- White circle background -->
-  <circle cx="32" cy="32" r="30" fill="white" stroke="#45324b" stroke-width="2"/>
-  
-  <!-- Dark "J" letter -->
-  <text x="32" y="45" font-family="serif" font-size="36" font-weight="bold" text-anchor="middle" fill="#45324b">J</text>
-</svg>
