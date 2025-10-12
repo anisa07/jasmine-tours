@@ -9,9 +9,9 @@ const heroCollection = defineCollection({
       subtitle: z.string(),
       description: z.string(),
       images: z.object({
-        mainImage: image().optional(),
+        mainImage: image(),
         mainImageAlt: z.string(),
-        secondaryImage: image().optional(),
+        secondaryImage: image(),
         secondaryImageAlt: z.string(),
       }),
     }),
@@ -30,7 +30,7 @@ const tourCategoriesCollection = defineCollection({
               title: z.string(),
               price: z.string(),
               duration: z.string(),
-              image: image().optional(),
+              image: image(),
               alt: z.string(),
               slug: z.string().optional(),
             })

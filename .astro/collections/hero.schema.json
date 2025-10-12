@@ -30,7 +30,9 @@
             }
           },
           "required": [
+            "mainImage",
             "mainImageAlt",
+            "secondaryImage",
             "secondaryImageAlt"
           ],
           "additionalProperties": false

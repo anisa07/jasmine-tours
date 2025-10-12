@@ -34,16 +34,7 @@ const { t } = await getPageTranslations(locale as Locale, [
 
 // Load hero content from CMS
 const heroEntry = await getEntry("hero", "hero");
-const heroData = heroEntry?.data || {
-  title: "Discover Your Best Trip!",
-  subtitle: "LET'S GO HOLIDAY",
-  description:
-    "Much of beautiful and refreshing places as you need to satisfy your best trip and make an amazing experience. Go explore our Packages.",
-  images: {
-    mainImageAlt: "Sunset in Amsterdam",
-    secondaryImageAlt: "Sunset an water",
-  },
-};
+const heroData = heroEntry?.data;
 
 // Load tour categories from CMS
 const tourCategoriesEntry = await getEntry("tour-categories", "categories");
@@ -175,13 +166,17 @@ const ctaActions = [
 >
   <!-- Hero Section -->
   <section class="relative">
-    <Hero
-      variant="split"
-      subtitle={heroData.subtitle}
-      title={heroData.title}
-      description={heroData.description}
-      images={heroData.images}
-    />
+    {
+      heroData && (
+        <Hero
+          variant="split"
+          subtitle={heroData.subtitle}
+          title={heroData.title}
+          description={heroData.description}
+          images={heroData.images}
+        />
+      )
+    }
   </section>
 
   <!-- Tour Filter Panel Section -->

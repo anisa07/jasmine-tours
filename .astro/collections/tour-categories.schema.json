@@ -43,6 +43,7 @@
                     "title",
                     "price",
                     "duration",
+                    "image",
                     "alt"
                   ],
                   "additionalProperties": false
