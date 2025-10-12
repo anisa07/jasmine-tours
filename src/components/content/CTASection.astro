@@ -1,0 +1,80 @@
+---
+import Container from "@/components/layout/Container.astro";
+import CallToAction from "@/components/content/CallToAction.astro";
+import { MessageCircle, Instagram, Facebook } from "@lucide/astro";
+
+interface Props {
+  t: (
+    key: string,
+    fallback: string,
+    vars?: Record<string, string | number>
+  ) => string;
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  locale?: string;
+  variant?: "default" | "centered";
+  backgroundColor?: "primary" | "secondary" | "surface" | "gradient";
+  className?: string;
+}
+
+const {
+  t,
+  title = t("cta.title", "Готовы к новому приключению?"),
+  subtitle = t(
+    "cta.subtitle",
+    "Свяжитесь со мной, и я помогу спланировать ваше путешествие мечты"
+  ),
+  description = t(
+    "cta.description",
+    "Напишите мне в WhatsApp для быстрой брони или загляните в мой Instagram — вдохновляйтесь идеями и атмосферой настоящей Голландии."
+  ),
+  locale = "ru",
+  variant = "default",
+  backgroundColor = "primary",
+  className = "",
+} = Astro.props;
+
+// CTA Actions with proper translations
+const ctaActions = [
+  {
+    label: t("actions.whatsapp", "Забронировать через WhatsApp"),
+    href: "https://wa.me/c/31642221525",
+    variant: "primary" as const,
+    size: "lg" as const,
+    icon: MessageCircle,
+  },
+  {
+    label: t("actions.instagram", "Подписаться в Instagram"),
+    href: "https://www.instagram.com/jasmine.tours.amsterdam",
+    variant: "outline" as const,
+    size: "lg" as const,
+    icon: Instagram,
+  },
+  {
+    label: t("actions.facebook", "Следить в Facebook"),
+    href: "https://www.facebook.com/jasmintoursevents/",
+    variant: "outline" as const,
+    size: "lg" as const,
+    icon: Facebook,
+  },
+];
+---
+
+<!-- CTA Section -->
+<section
+  id="contact"
+  class={`bg-${backgroundColor} ${backgroundColor === "primary" ? "text-primary-foreground" : "text-foreground"} relative overflow-hidden ${className}`}
+>
+  <Container size="md" padding="xs" class="relative z-10">
+    <CallToAction
+      title={title}
+      subtitle={subtitle}
+      description={description}
+      actions={ctaActions}
+      variant={variant}
+      backgroundColor={backgroundColor}
+      class="animate-fade-up"
+    />
+  </Container>
+</section>

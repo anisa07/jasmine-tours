@@ -183,8 +183,34 @@ collections:
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Subtitle", name: "subtitle", widget: "string" }
-          - { label: "Content", name: "body", widget: "markdown" }
           - { label: "Profile Image", name: "profileImage", widget: "image" }
+          - { label: "Introduction", name: "introduction", widget: "markdown" }
+          - label: "Services"
+            name: "services"
+            widget: "object"
+            fields:
+              - label: "Tours"
+                name: "tours"
+                widget: "object"
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - {
+                      label: "Description",
+                      name: "description",
+                      widget: "text",
+                    }
+                  - { label: "Image", name: "image", widget: "image" }
+              - label: "Events"
+                name: "events"
+                widget: "object"
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - {
+                      label: "Description",
+                      name: "description",
+                      widget: "text",
+                    }
+                  - { label: "Image", name: "image", widget: "image" }
 
 backend:
   name: git-gateway

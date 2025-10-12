@@ -2,25 +2,24 @@
 import IntlBaseLayout from "@/layouts/IntlBaseLayout.astro";
 import { getPageTranslations, getLocaleStaticPaths } from "@/i18n/i18n";
 import type { Locale } from "@/i18n/config";
-
-// Layout components
+import { getEntry } from "astro:content";
 import Container from "@/components/layout/Container.astro";
 import { Image } from "astro:assets";
-
-// Icons
+import CTASection from "@/components/content/CTASection.astro";
 import {
   MessageCircle,
   Instagram,
-  MapPin,
-  Heart,
-  Camera,
-  Plane,
+  Ship,
+  Facebook
 } from "@lucide/astro";
 
 // Generate static paths for all supported locales
 export async function getStaticPaths() {
   return getLocaleStaticPaths();
 }
+
+const aboutEntry = await getEntry("about", "about");
+const aboutMeData = aboutEntry?.data;
 
 // Get locale from dynamic route params
 const { locale } = Astro.params;
@@ -32,88 +31,26 @@ const { t } = await getPageTranslations(locale as Locale, [
   "home",
 ]);
 
-// Personal journey highlights
-const journeyHighlights = [
-  {
-    year: "2018",
-    title: t("journey.start.title", "Started My Journey"),
-    description: t(
-      "journey.start.description",
-      "Began exploring Indonesia's hidden gems and fell in love with sustainable tourism."
-    ),
-    icon: "🌟",
-  },
-  {
-    year: "2020",
-    title: t("journey.guide.title", "Became Certified Guide"),
-    description: t(
-      "journey.guide.description",
-      "Obtained professional tourism certification and started guiding small groups."
-    ),
-    icon: "🎓",
-  },
-  {
-    year: "2022",
-    title: t("journey.business.title", "Founded Jasmine Tours"),
-    description: t(
-      "journey.business.description",
-      "Launched my own tour company focusing on authentic, personalized experiences."
-    ),
-    icon: "🚀",
-  },
-  {
-    year: "2025",
-    title: t("journey.present.title", "500+ Happy Travelers"),
-    description: t(
-      "journey.present.description",
-      "Proud to have guided hundreds of travelers to discover Indonesia's magic."
-    ),
-    icon: "❤️",
-  },
-];
-
-// Personal values
-const values = [
-  {
-    title: t("values.authentic.title", "Authentic Experiences"),
-    description: t(
-      "values.authentic.description",
-      "I believe in showing the real Indonesia, beyond typical tourist spots."
-    ),
-    icon: Heart,
-  },
-  {
-    title: t("values.sustainable.title", "Sustainable Tourism"),
-    description: t(
-      "values.sustainable.description",
-      "Supporting local communities and protecting our beautiful environment."
-    ),
-    icon: MapPin,
-  },
-  {
-    title: t("values.personal.title", "Personal Touch"),
-    description: t(
-      "values.personal.description",
-      "Every tour is tailored to your interests and travel style."
-    ),
-    icon: Camera,
-  },
-];
-
 const ctaActions = [
   {
-    label: t("actions.whatsapp", "Let's Plan Your Adventure"),
-    href: "https://wa.me/1234567890?text=Hi Jasmine! I'd love to learn more about your tours",
+    label: "Забронировать через WhatsApp",
+    href: "https://wa.me/c/31642221525",
     variant: "primary" as const,
     size: "lg" as const,
     icon: MessageCircle,
   },
   {
-    label: t("actions.instagram", "Follow My Journey"),
-    href: "https://instagram.com/jasmintours",
+    label: "Подписаться в Instagram",
+    href: "https://www.instagram.com/jasmine.tours.amsterdam",
     variant: "outline" as const,
     size: "lg" as const,
     icon: Instagram,
+  },
+    {label: t("actions.facebook", "Следить в Facebook"),
+    href: "https://www.facebook.com/jasmintoursevents/",
+    variant: "outline" as const,
+    size: "lg" as const,
+    icon: Facebook,
   },
 ];
 ---
@@ -122,14 +59,18 @@ const ctaActions = [
   locale={locale}
   pageNS={["common", "ui", "home"]}
   seo={{
-    title: t(
-      "seo.title",
-      "About Jasmine - Your Personal Indonesia Travel Guide | Jasmine Tours"
-    ),
-    description: t(
-      "seo.description",
-      "Meet Jasmine, your passionate local guide to Indonesia's hidden gems. Discover authentic experiences and sustainable tourism with a personal touch."
-    ),
+    title: aboutMeData?.title
+      ? `${aboutMeData.title} | Jasmine Tours`
+      : t(
+          "seo.title",
+          "Зара — ваш личный гид по Нидерландам | Индивидуальные экскурсии и путешествия по Амстердаму и всей стране"
+        ),
+    description:
+      aboutMeData?.subtitle ||
+      t(
+        "seo.description",
+        "Познакомьтесь с Зарой — вашим личным гидом, который покажет настоящие Нидерланды. Путешествуйте осознанно, открывайте культуру, людей и атмосферу страны"
+      ),
   }}
 >
   <!-- Hero Section -->
@@ -140,50 +81,63 @@ const ctaActions = [
     </div>
 
     <Container size="lg" class="relative z-10">
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
         <!-- Content -->
-        <div class="space-y-8 animate-fade-up">
+        <div class="lg:col-span-7 space-y-8 animate-fade-up">
           <div class="space-y-6">
             <h1 class="text-4xl lg:text-6xl font-bold leading-tight">
-              <span class="text-foreground">Hello there!</span>
+              <span class="text-foreground"
+                >{aboutMeData?.title || "About Me"}</span
+              >
             </h1>
             <div class="text-xl lg:text-2xl text-muted-foreground space-y-2">
-              <p>
-                <span class="text-foreground font-semibold"
-                  >My name is Jasmine</span
-                >
-                <span class="text-foreground"> and I </span>
-                <span class="text-primary font-semibold">guide</span>
-                <span class="text-foreground"> and </span>
-                <span class="text-primary font-semibold">explore</span>
-                <span class="text-muted-foreground italic">
-                  (most of the time)</span
-                >
-                <span class="text-foreground">.</span>
+              <p class="text-foreground font-medium">
+                {aboutMeData?.subtitle || "Your personal guide"}
               </p>
             </div>
           </div>
 
           <div class="prose prose-lg max-w-none text-muted-foreground">
-            <p>
-              My name is Jasmine Sanjaya, I am currently living and working in
-              Jakarta, Indonesia as both full-time tour guide and freelance
-              Travel Experience Designer.
-            </p>
-            <p>
-              What can I say, I love my job! I am having trouble writing
-              compelling texts, not to mention about myself so I will try to
-              make this as short and informative as possible.
-            </p>
+            <div class="whitespace-pre-line">
+              {aboutMeData?.introduction || "Welcome to my about page."}
+            </div>
           </div>
+        </div>
 
+        <!-- Profile Image -->
+        <div class="lg:col-span-5 relative animate-fade-up animate-delay-200">
+          <div class="relative max-w-md mx-auto">
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl transform rotate-3"
+            >
+            </div>
+            <div
+              class="relative bg-gradient-to-br from-amber-50 to-orange-100 rounded-2xl p-8 shadow-xl"
+            >
+              {aboutMeData?.profileImage && <Image
+                  src={aboutMeData.profileImage}
+                  alt={`${aboutMeData?.title || "Guide"} - Professional Tour Guide`}
+                  class="w-full h-80 object-cover rounded-xl shadow-lg"
+                  width={400}
+                  height={320}
+                  format="webp"
+                  quality={80}
+              />}
+              <div
+                class="absolute -bottom-4 -right-4 bg-primary text-primary-foreground p-3 rounded-full shadow-lg"
+              >
+                <Ship class="w-6 h-6" />
+              </div>
+            </div>
+          </div>
+          
           <!-- CTA Buttons -->
-          <div class="flex flex-wrap gap-4 pt-4">
+          <div class="flex flex-col gap-4 pt-8">
             {
               ctaActions.map((action) => (
                 <a
                   href={action.href}
-                  class={`inline-flex items-center gap-3 px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
+                  class={`inline-flex items-center justify-center gap-3 px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
                     action.variant === "primary"
                       ? "bg-primary text-primary-foreground hover:opacity-90 shadow-md hover:shadow-lg"
                       : "border border-border bg-background hover:bg-muted text-foreground"
@@ -198,163 +152,90 @@ const ctaActions = [
             }
           </div>
         </div>
-
-        <!-- Profile Image -->
-        <div class="relative animate-fade-up animate-delay-200">
-          <div class="relative max-w-md mx-auto">
-            <div
-              class="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl transform rotate-3"
-            >
-            </div>
-            <div
-              class="relative bg-gradient-to-br from-amber-50 to-orange-100 rounded-2xl p-8 shadow-xl"
-            >
-              <Image
-                src="/images/jasmine-profile.jpg"
-                alt="Jasmine Sanjaya - Professional Tour Guide"
-                class="w-full h-80 object-cover rounded-xl shadow-lg"
-                width={400}
-                height={320}
-                format="webp"
-                quality={80}
-              />
-              <div
-                class="absolute -bottom-4 -right-4 bg-primary text-primary-foreground p-3 rounded-full shadow-lg"
-              >
-                <Plane class="w-6 h-6" />
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </Container>
   </section>
 
-  <!-- Journey Timeline -->
-  <section class="py-20 bg-muted/30">
-    <Container size="lg">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl lg:text-4xl font-bold mb-4">My Journey</h2>
-        <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
-          From a travel enthusiast to your trusted guide through Indonesia's
-          wonders
-        </p>
-      </div>
+  <!-- Services Section -->
+  {aboutMeData?.services && (
+    <section class="py-20">
+      <Container size="lg">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl lg:text-4xl font-bold mb-4">Мои услуги</h2>
+          <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Откройте услуги, которые сделают ваше путешествие незабываемым
+          </p>
+        </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {
-          journeyHighlights.map((milestone, index) => (
-            <div
-              class="relative animate-fade-up"
-              style={`animation-delay: ${index * 150}ms`}
-            >
-              <div class="bg-background rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow border border-border">
-                <div class="text-4xl mb-4">{milestone.icon}</div>
-                <div class="text-sm font-semibold text-primary mb-2">
-                  {milestone.year}
+        <div class="grid md:grid-cols-2 gap-12">
+          <!-- Tours Service -->
+          {aboutMeData.services.tours && (
+            <div class="animate-fade-up">
+              <div class="bg-background rounded-2xl p-8 shadow-lg border border-border hover:shadow-xl transition-shadow">
+                <div class="mb-6">
+                  {typeof aboutMeData.services.tours.image === 'string' ? (
+                    <img
+                      src={aboutMeData.services.tours.image}
+                      alt={aboutMeData.services.tours.title}
+                      class="w-full h-48 object-cover rounded-xl"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <Image
+                      src={aboutMeData.services.tours.image}
+                      alt={aboutMeData.services.tours.title}
+                      class="w-full h-48 object-cover rounded-xl"
+                      width={400}
+                      height={192}
+                      format="webp"
+                      quality={80}
+                    />
+                  )}
                 </div>
-                <h3 class="text-lg font-semibold mb-3">{milestone.title}</h3>
-                <p class="text-muted-foreground text-sm leading-relaxed">
-                  {milestone.description}
+                <h3 class="text-2xl font-bold mb-4">{aboutMeData.services.tours.title}</h3>
+                <p class="text-muted-foreground leading-relaxed">
+                  {aboutMeData.services.tours.description}
                 </p>
               </div>
             </div>
-          ))
-        }
-      </div>
-    </Container>
-  </section>
+          )}
 
-  <!-- Values Section -->
-  <section class="py-20">
-    <Container size="lg">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl lg:text-4xl font-bold mb-4">What I Believe In</h2>
-        <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
-          The principles that guide every tour and interaction
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8">
-        {
-          values.map((value, index) => (
-            <div
-              class="text-center animate-fade-up"
-              style={`animation-delay: ${index * 200}ms`}
-            >
-              <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <value.icon class="w-8 h-8 text-primary" />
+          <!-- Events Service -->
+          {aboutMeData.services.events && (
+            <div class="animate-fade-up animate-delay-200">
+              <div class="bg-background rounded-2xl p-8 shadow-lg border border-border hover:shadow-xl transition-shadow">
+                <div class="mb-6">
+                  {typeof aboutMeData.services.events.image === 'string' ? (
+                    <img
+                      src={aboutMeData.services.events.image}
+                      alt={aboutMeData.services.events.title}
+                      class="w-full h-48 object-cover rounded-xl"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <Image
+                      src={aboutMeData.services.events.image}
+                      alt={aboutMeData.services.events.title}
+                      class="w-full h-48 object-cover rounded-xl"
+                      width={400}
+                      height={192}
+                      format="webp"
+                      quality={80}
+                    />
+                  )}
+                </div>
+                <h3 class="text-2xl font-bold mb-4">{aboutMeData.services.events.title}</h3>
+                <p class="text-muted-foreground leading-relaxed">
+                  {aboutMeData.services.events.description}
+                </p>
               </div>
-              <h3 class="text-xl font-semibold mb-4">{value.title}</h3>
-              <p class="text-muted-foreground leading-relaxed">
-                {value.description}
-              </p>
             </div>
-          ))
-        }
-      </div>
-    </Container>
-  </section>
-
-  <!-- Personal Story -->
-  <section class="py-20 bg-gradient-to-r from-primary/5 to-accent/5">
-    <Container size="md">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl lg:text-4xl font-bold mb-4">Why I Do This</h2>
-      </div>
-
-      <div class="prose prose-lg max-w-none text-center">
-        <p class="text-xl leading-relaxed text-muted-foreground mb-8">
-          Growing up in Indonesia, I discovered that our country holds some of
-          the world's most incredible hidden treasures. From the mystical
-          temples of Borobudur to the pristine waters of Raja Ampat, every
-          corner tells a unique story.
-        </p>
-        <p class="text-xl leading-relaxed text-muted-foreground mb-8">
-          But what truly moves me is connecting people with these places in
-          meaningful ways. I don't just show you destinations – I help you
-          experience the soul of Indonesia through local communities, authentic
-          cuisine, and moments that become lifelong memories.
-        </p>
-        <p class="text-xl leading-relaxed text-muted-foreground">
-          When you travel with me, you're not just a tourist. You become part of
-          the story, contributing to local communities and taking home
-          experiences that will change how you see the world.
-        </p>
-      </div>
-    </Container>
-  </section>
+          )}
+        </div>
+      </Container>
+    </section>
+  )}
 
   <!-- Call to Action -->
-  <section class="py-20 bg-primary text-primary-foreground">
-    <Container size="md" class="text-center">
-      <h2 class="text-3xl lg:text-4xl font-bold mb-6">
-        Ready for Your Adventure?
-      </h2>
-      <p class="text-xl mb-8 opacity-90">
-        Let's create unforgettable memories together in Indonesia's most
-        beautiful destinations
-      </p>
-
-      <div class="flex flex-wrap justify-center gap-4">
-        {
-          ctaActions.map((action) => (
-            <a
-              href={action.href}
-              class={`inline-flex items-center gap-3 px-8 py-4 rounded-lg font-medium transition-all duration-200 ${
-                action.variant === "primary"
-                  ? "bg-background text-foreground hover:bg-muted shadow-md hover:shadow-lg"
-                  : "border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
-              }`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <action.icon class="w-5 h-5" />
-              {action.label}
-            </a>
-          ))
-        }
-      </div>
-    </Container>
-  </section>
+  <CTASection t={t} locale={locale} backgroundColor="primary" />
 </IntlBaseLayout>

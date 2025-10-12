@@ -70,13 +70,29 @@ const toursCollection = defineCollection({
   }),
 });
 
-const pagesCollection = defineCollection({
+const aboutCollection = defineCollection({
   loader: glob({ pattern: "**/about.md", base: "src/content/pages" }),
-  schema: z.object({
-    title: z.string(),
-    subtitle: z.string().optional(),
-    profileImage: z.string().optional(),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      subtitle: z.string().optional(),
+      profileImage: image().optional(),
+      introduction: z.string().optional(),
+      services: z
+        .object({
+          tours: z.object({
+            title: z.string(),
+            description: z.string(),
+            image: image(),
+          }),
+          events: z.object({
+            title: z.string(),
+            description: z.string(),
+            image: image(),
+          }),
+        })
+        .optional(),
+    }),
 });
 
 const testimonialsCollection = defineCollection({
@@ -118,7 +134,7 @@ export const collections = {
   hero: heroCollection,
   "tour-categories": tourCategoriesCollection,
   tours: toursCollection,
-  pages: pagesCollection,
+  about: aboutCollection,
   testimonials: testimonialsCollection,
   gallery: galleryCollection,
 };
