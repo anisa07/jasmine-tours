@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable no-undef, no-console */
 
 /**
  * Responsive Breakpoint Testing Script
@@ -376,7 +377,7 @@ For each component, verify the following at each breakpoint:
 | Component | xs (475px) | sm (640px) | md (768px) | lg (1024px) | xl (1280px) | 2xl (1536px) |
 |-----------|------------|------------|------------|-------------|-------------|--------------|
 ${Object.entries(checklist.components)
-  .flatMap(([category, components]) =>
+  .flatMap(([, components]) =>
     components.map(
       (component) => `| ${component.name} | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |`
     )

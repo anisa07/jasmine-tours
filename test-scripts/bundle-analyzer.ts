@@ -88,7 +88,7 @@ export class BundleAnalyzer {
 
     try {
       await walkDir(this.distDir);
-    } catch (error) {
+    } catch {
       // Dist directory might not exist
       return [];
     }
@@ -200,7 +200,7 @@ export class BundleAnalyzer {
       }
 
       return depStats;
-    } catch (error) {
+    } catch {
       return [];
     }
   }
@@ -225,7 +225,7 @@ export class BundleAnalyzer {
   private async countDependencyUsage(depName: string): Promise<number> {
     try {
       const { stdout } = await execAsync(
-        `find src -name "*.astro" -o -name "*.ts" -o -name "*.tsx" -o -name "*.js" -o -name "*.jsx" | xargs grep -l "from ['\"]${depName}" | wc -l`
+        `find src -name "*.astro" -o -name "*.ts" -o -name "*.tsx" -o -name "*.js" -o -name "*.jsx" | xargs grep -l "from ['"]${depName}" | wc -l`
       );
       return parseInt(stdout.trim()) || 0;
     } catch {

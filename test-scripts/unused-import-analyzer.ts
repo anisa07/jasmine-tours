@@ -1,9 +1,5 @@
 import fs from "fs/promises";
 import path from "path";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 interface ImportInfo {
   file: string;
@@ -286,7 +282,7 @@ export class UnusedImportAnalyzer {
       // Remove from named imports
       cleanedContent = cleanedContent.replace(
         new RegExp(`\\s*,?\\s*${this.escapeRegex(unusedImport)}\\s*,?`, "g"),
-        (match, offset, string) => {
+        (match) => {
           // Handle comma placement
           if (match.includes(",")) {
             return match.startsWith(",") ? "" : ",";
@@ -307,6 +303,7 @@ export class UnusedImportAnalyzer {
 }
 
 // CLI usage
+/* eslint-disable no-undef, no-console */
 if (import.meta.url === `file://${process.argv[1]}`) {
   const analyzer = new UnusedImportAnalyzer();
 

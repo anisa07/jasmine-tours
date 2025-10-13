@@ -2,6 +2,14 @@
 import Container from "@/components/layout/Container.astro";
 import TourFilterCard from "@/components/content/TourFilterCard.astro";
 import type { ImageType } from "@/types";
+import WhatsAppIcon from "@/assets/images/svg/whatsapp.svg?raw";
+import FacebookIcon from "@/assets/images/svg/facebook.svg?raw";
+import TwitterIcon from "@/assets/images/svg/twitter.svg?raw";
+import InstagramIcon from "@/assets/images/svg/instagram.svg?raw";
+import WhatsAppContactIcon from "@/assets/images/svg/whatsapp-contact.svg?raw";
+import CloseIcon from "@/assets/images/svg/close.svg?raw";
+import ChevronLeftIcon from "@/assets/images/svg/chevron-left.svg?raw";
+import ChevronRightIcon from "@/assets/images/svg/chevron-right.svg?raw";
 
 // Type definitions
 type Tour = {
@@ -124,14 +132,18 @@ const tourCategories = rawTourCategories.map(category => ({
 
   <!-- Tour Details Modal -->
   <div id="tourModal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
-    <div class="bg-background rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl">
-      <!-- Modal Header -->
+    <div class="relative flex items-center justify-center w-full max-w-4xl">
+      <!-- Previous Button - Desktop/Tablet (left side) -->
+      <button id="prevTourBtn" class="tour-nav-btn tour-nav-btn-left hidden sm:flex" aria-label="Previous tour">
+        <div class="w-6 h-6" set:html={ChevronLeftIcon} />
+      </button>
+
+      <div class="bg-background rounded-2xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl">
+        <!-- Modal Header -->
       <div class="flex items-center justify-between p-6 border-b border-border flex-shrink-0">
         <h2 id="modalTitle" class="text-2xl font-bold text-foreground"></h2>
         <button id="closeModal" class="p-2 hover:bg-muted rounded-full transition-colors">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
+          <div class="w-6 h-6" set:html={CloseIcon} />
         </button>
       </div>
       
@@ -153,19 +165,74 @@ const tourCategories = rawTourCategories.map(category => ({
         <div id="modalDescription" class="prose prose-sm max-w-none modal-content mb-6"></div>
       </div>
       
-      <!-- Contact Button - Fixed at bottom -->
-      <div class="flex-shrink-0 p-6 pt-0 border-t border-border">
-        <a 
-          href="https://wa.me/c/31642221525" 
-          target="_blank"
-          class="w-full py-3 px-6 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors flex items-center justify-center gap-2"
-        >
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.119"/>
-          </svg>
-          Связаться через WhatsApp
-        </a>
+      <!-- Contact Button and Share Links - Fixed at bottom -->
+      <div class="flex-shrink-0 p-6 border-t border-border">
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+          <!-- WhatsApp Contact Button -->
+          <a 
+            href="https://wa.me/c/31642221525" 
+            target="_blank"
+            class="flex-1 py-3 px-6 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors flex items-center justify-center gap-2"
+          >
+            <div class="w-5 h-5" set:html={WhatsAppContactIcon} />
+            Связаться через WhatsApp
+          </a>
+          
+          <!-- Share and Navigation Buttons -->
+          <div class="flex gap-2 items-center justify-center sm:justify-start flex-shrink-0">
+            <!-- Mobile Navigation - Previous (hidden on desktop/tablet) -->
+            <button id="prevTourBtnMobile" class="tour-nav-btn-mobile sm:hidden" aria-label="Previous tour">
+              <div class="w-5 h-5" set:html={ChevronLeftIcon} />
+            </button>
+
+            <!-- WhatsApp Share -->
+            <button 
+              class="share-btn share-whatsapp"
+              aria-label="Share on WhatsApp"
+              title="Поделиться в WhatsApp"
+            >
+              <div class="share-icon" set:html={WhatsAppIcon} />
+            </button>
+            
+            <!-- Facebook Share -->
+            <button 
+              class="share-btn share-facebook"
+              aria-label="Share on Facebook"
+              title="Поделиться в Facebook"
+            >
+              <div class="share-icon" set:html={FacebookIcon} />
+            </button>
+            
+            <!-- X (Twitter) Share -->
+            <button 
+              class="share-btn share-twitter"
+              aria-label="Share on X (Twitter)"
+              title="Поделиться в X"
+            >
+              <div class="share-icon" set:html={TwitterIcon} />
+            </button>
+            
+            <!-- Instagram (Copy Link) -->
+            <button 
+              class="share-btn share-instagram"
+              aria-label="Copy link to share on Instagram"
+              title="Скопировать ссылку"
+            >
+              <div class="share-icon" set:html={InstagramIcon} />
+            </button>
+
+            <!-- Mobile Navigation - Next (hidden on desktop/tablet) -->
+            <button id="nextTourBtnMobile" class="tour-nav-btn-mobile sm:hidden" aria-label="Next tour">
+              <div class="w-5 h-5" set:html={ChevronRightIcon} />
+            </button>
+          </div>
+        </div>
       </div>
+
+      <!-- Next Button - Desktop/Tablet (right side) -->
+      <button id="nextTourBtn" class="tour-nav-btn tour-nav-btn-right hidden sm:flex" aria-label="Next tour">
+        <div class="w-6 h-6" set:html={ChevronRightIcon} />
+      </button>
     </div>
   </div>
 </section>
@@ -252,6 +319,185 @@ const tourCategories = rawTourCategories.map(category => ({
     .modal-content em {
         font-style: italic;
         font-size: 1rem;
+    }
+    
+    /* Share buttons styling */
+    .share-btn {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.5rem;
+        transition: all 0.2s ease-in-out;
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        cursor: pointer;
+        border: none;
+    }
+    
+    .share-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    }
+    
+    .share-btn:active {
+        transform: scale(0.95);
+    }
+    
+    .share-icon {
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .share-icon :global(svg) {
+        width: 100%;
+        height: 100%;
+    }
+    
+    /* Individual button colors */
+    .share-whatsapp {
+        background-color: #25D366;
+    }
+    
+    .share-whatsapp:hover {
+        background-color: #20BA5A;
+    }
+    
+    .share-facebook {
+        background-color: #1877F2;
+    }
+    
+    .share-facebook:hover {
+        background-color: #166FE5;
+    }
+    
+    .share-twitter {
+        background-color: #000000;
+    }
+    
+    .share-twitter:hover {
+        background-color: #1a1a1a;
+    }
+    
+    .share-instagram {
+        background: linear-gradient(135deg, #833AB4 0%, #E1306C 50%, #F56040 100%);
+    }
+    
+    .share-instagram:hover {
+        opacity: 0.9;
+    }
+    
+    /* Tour navigation buttons - Desktop/Tablet (hidden on mobile) */
+    .tour-nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: hsl(var(--background));
+        border: 2px solid hsl(var(--border));
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 10;
+    }
+    
+    .tour-nav-btn:hover {
+        background-color: hsl(var(--muted));
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    }
+    
+    .tour-nav-btn:active {
+        transform: translateY(-50%) scale(0.95);
+    }
+    
+    .tour-nav-btn-left {
+        left: -25px;
+    }
+    
+    .tour-nav-btn-right {
+        right: -25px;
+    }
+    
+    .tour-nav-btn :global(svg) {
+        color: hsl(var(--foreground));
+    }
+    
+    /* Hide desktop/tablet navigation on mobile */
+    @media (max-width: 640px) {
+        .tour-nav-btn {
+            display: none;
+        }
+    }
+    
+    /* Mobile navigation buttons - Inline with share buttons (mobile only) */
+    .tour-nav-btn-mobile {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: hsl(var(--background));
+        border: 2px solid hsl(var(--border));
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        flex-shrink: 0;
+    }
+    
+    .tour-nav-btn-mobile:hover {
+        background-color: hsl(var(--muted));
+        transform: scale(1.1);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    }
+    
+    .tour-nav-btn-mobile:active {
+        transform: scale(0.95);
+    }
+    
+    .tour-nav-btn-mobile :global(svg) {
+        color: hsl(var(--foreground));
+    }
+    
+    /* Hide mobile navigation buttons on desktop/tablet */
+    @media (min-width: 640px) {
+        .tour-nav-btn-mobile {
+            display: none;
+        }
+    }
+    
+    /* Share button animations */
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideOut {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
     }
 </style>
 
@@ -391,14 +637,32 @@ const tourCategories = rawTourCategories.map(category => ({
       // Tour details button
       if (e.target.closest(".tour-details-btn")) {
         const btn = e.target.closest(".tour-details-btn");
-        openTourModal({
-          title: btn.getAttribute("data-tour-title"),
-          price: btn.getAttribute("data-tour-price"),
-          duration: btn.getAttribute("data-tour-duration"),
-          description: btn.getAttribute("data-tour-description"),
-          image: btn.getAttribute("data-tour-image"),
-          alt: btn.getAttribute("data-tour-alt")
+        const tourCard = btn.closest(".tour-card");
+        
+        // Get the category grid
+        const categoryGrid = tourCard.closest('[data-category]');
+        
+        // Collect all tour cards in this category
+        const tourCards = categoryGrid ? Array.from(categoryGrid.querySelectorAll('.tour-card')) : [tourCard];
+        
+        // Find the index of the current tour
+        const tourIndex = tourCards.indexOf(tourCard);
+        
+        // Build array of all tours data
+        const toursData = tourCards.map(card => {
+          const detailsBtn = card.querySelector('.tour-details-btn');
+          return {
+            title: detailsBtn.getAttribute("data-tour-title"),
+            price: detailsBtn.getAttribute("data-tour-price"),
+            duration: detailsBtn.getAttribute("data-tour-duration"),
+            description: detailsBtn.getAttribute("data-tour-description"),
+            image: detailsBtn.getAttribute("data-tour-image"),
+            alt: detailsBtn.getAttribute("data-tour-alt")
+          };
         });
+        
+        // Open modal with current tour and navigation context
+        openTourModal(toursData[tourIndex], tourIndex, toursData);
       }
 
       // Close modal button
@@ -494,13 +758,24 @@ const tourCategories = rawTourCategories.map(category => ({
     };
 
     // Modal functions
-    function openTourModal(tourData) {
+    let currentTourData = null; // Store current tour data for sharing
+    let allTours = []; // Store all tours in current category
+    let currentTourIndex = 0; // Current tour index
+    
+    function openTourModal(tourData, tourIndex = 0, tours = []) {
+      currentTourData = tourData; // Save tour data for sharing
+      currentTourIndex = tourIndex;
+      allTours = tours;
+      
       const modal = document.getElementById("tourModal");
       const modalTitle = document.getElementById("modalTitle");
       const modalPrice = document.getElementById("modalPrice");
       const modalDuration = document.getElementById("modalDuration");
       const modalDescription = document.getElementById("modalDescription");
       const scrollableArea = modal?.querySelector(".overflow-y-auto");
+      
+      // Update navigation buttons state
+      updateNavigationButtons();
 
       if (modal && modalTitle && modalPrice && modalDuration && modalDescription) {
         modalTitle.textContent = tourData.title;
@@ -574,10 +849,112 @@ const tourCategories = rawTourCategories.map(category => ({
       }
     }
 
-    // Close modal on escape key
+    // Navigation functions
+    function updateNavigationButtons() {
+      // No need to disable buttons since we're wrapping around
+      // Buttons are always enabled when there's more than 1 tour
+    }
+
+    function navigateToTour(direction) {
+      if (allTours.length <= 1) return; // No navigation if only 1 tour
+      
+      let newIndex;
+      if (direction === 'prev') {
+        // Wrap to last tour if at first tour
+        newIndex = currentTourIndex === 0 ? allTours.length - 1 : currentTourIndex - 1;
+      } else {
+        // Wrap to first tour if at last tour
+        newIndex = currentTourIndex === allTours.length - 1 ? 0 : currentTourIndex + 1;
+      }
+      
+      const newTourData = allTours[newIndex];
+      openTourModal(newTourData, newIndex, allTours);
+    }
+
+    // Navigation button event listeners
+    document.addEventListener("click", function(e) {
+      if (e.target.closest("#prevTourBtn") || e.target.closest("#prevTourBtnMobile")) {
+        navigateToTour('prev');
+      }
+      if (e.target.closest("#nextTourBtn") || e.target.closest("#nextTourBtnMobile")) {
+        navigateToTour('next');
+      }
+    });
+
+    // Close modal on escape key, navigate with arrow keys
     document.addEventListener("keydown", function(e) {
       if (e.key === "Escape") {
         closeTourModal();
+      }
+      if (e.key === "ArrowLeft") {
+        navigateToTour('prev');
+      }
+      if (e.key === "ArrowRight") {
+        navigateToTour('next');
+      }
+    });
+    
+    // Share button functionality
+    function getShareUrl() {
+      return window.location.href;
+    }
+    
+    function getShareText() {
+      if (!currentTourData) return '';
+      return `${currentTourData.title} - ${currentTourData.price} | Jasmine Tours`;
+    }
+    
+    // Add event listeners for share buttons
+    document.addEventListener("click", function(e) {
+      const shareBtn = e.target.closest(".share-btn");
+      if (!shareBtn || !currentTourData) return;
+      
+      const url = getShareUrl();
+      const text = getShareText();
+      const encodedText = encodeURIComponent(text);
+      const encodedUrl = encodeURIComponent(url);
+      
+      if (shareBtn.classList.contains("share-whatsapp")) {
+        // WhatsApp share
+        const whatsappUrl = `https://wa.me/?text=${encodedText}%20${encodedUrl}`;
+        window.open(whatsappUrl, "_blank");
+      } else if (shareBtn.classList.contains("share-facebook")) {
+        // Facebook share
+        const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+        window.open(facebookUrl, "_blank", "width=600,height=400");
+      } else if (shareBtn.classList.contains("share-twitter")) {
+        // Twitter/X share
+        const twitterUrl = `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`;
+        window.open(twitterUrl, "_blank", "width=600,height=400");
+      } else if (shareBtn.classList.contains("share-instagram")) {
+        // Instagram - copy link to clipboard
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(() => {
+            // Show a temporary success message
+            const originalTitle = shareBtn.getAttribute("title");
+            shareBtn.setAttribute("title", "Ссылка скопирована!");
+            
+            // Create a tooltip-like notification
+            const notification = document.createElement("div");
+            notification.textContent = "Ссылка скопирована!";
+            notification.style.cssText = "position: fixed; bottom: 100px; right: 24px; background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); padding: 12px 20px; border-radius: 8px; font-size: 14px; font-weight: 500; z-index: 100; box-shadow: 0 4px 6px rgba(0,0,0,0.1); animation: slideIn 0.3s ease-out;";
+            document.body.appendChild(notification);
+            
+            // Remove notification after 2 seconds
+            setTimeout(() => {
+              notification.style.animation = "slideOut 0.3s ease-in";
+              setTimeout(() => {
+                document.body.removeChild(notification);
+                shareBtn.setAttribute("title", originalTitle);
+              }, 300);
+            }, 2000);
+          }).catch(() => {
+            alert("Не удалось скопировать ссылку");
+          });
+        } else {
+          // Fallback for older browsers
+          alert("Скопируйте ссылку: " + url);
+        }
       }
     });
   });
