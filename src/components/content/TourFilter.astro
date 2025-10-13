@@ -7,9 +7,7 @@ import FacebookIcon from "@/assets/images/svg/facebook.svg?raw";
 import TwitterIcon from "@/assets/images/svg/twitter.svg?raw";
 import InstagramIcon from "@/assets/images/svg/instagram.svg?raw";
 import WhatsAppContactIcon from "@/assets/images/svg/whatsapp-contact.svg?raw";
-import CloseIcon from "@/assets/images/svg/close.svg?raw";
-import ChevronLeftIcon from "@/assets/images/svg/chevron-left.svg?raw";
-import ChevronRightIcon from "@/assets/images/svg/chevron-right.svg?raw";
+import { X, ChevronLeft, ChevronRight } from "@lucide/astro";
 
 // Type definitions
 type Tour = {
@@ -135,7 +133,7 @@ const tourCategories = rawTourCategories.map(category => ({
     <div class="relative flex items-center justify-center w-full max-w-4xl">
       <!-- Previous Button - Desktop/Tablet (left side) -->
       <button id="prevTourBtn" class="tour-nav-btn tour-nav-btn-left hidden sm:flex" aria-label="Previous tour">
-        <div class="w-6 h-6" set:html={ChevronLeftIcon} />
+        <ChevronLeft class="w-6 h-6" />
       </button>
 
       <div class="bg-background rounded-2xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl">
@@ -143,7 +141,7 @@ const tourCategories = rawTourCategories.map(category => ({
       <div class="flex items-center justify-between p-6 border-b border-border flex-shrink-0">
         <h2 id="modalTitle" class="text-2xl font-bold text-foreground"></h2>
         <button id="closeModal" class="p-2 hover:bg-muted rounded-full transition-colors">
-          <div class="w-6 h-6" set:html={CloseIcon} />
+          <X class="w-6 h-6" />
         </button>
       </div>
       
@@ -182,7 +180,7 @@ const tourCategories = rawTourCategories.map(category => ({
           <div class="flex gap-2 items-center justify-center sm:justify-start flex-shrink-0">
             <!-- Mobile Navigation - Previous (hidden on desktop/tablet) -->
             <button id="prevTourBtnMobile" class="tour-nav-btn-mobile sm:hidden" aria-label="Previous tour">
-              <div class="w-5 h-5" set:html={ChevronLeftIcon} />
+              <ChevronLeft class="w-5 h-5" />
             </button>
 
             <!-- WhatsApp Share -->
@@ -223,7 +221,7 @@ const tourCategories = rawTourCategories.map(category => ({
 
             <!-- Mobile Navigation - Next (hidden on desktop/tablet) -->
             <button id="nextTourBtnMobile" class="tour-nav-btn-mobile sm:hidden" aria-label="Next tour">
-              <div class="w-5 h-5" set:html={ChevronRightIcon} />
+              <ChevronRight class="w-5 h-5" />
             </button>
           </div>
         </div>
@@ -231,7 +229,7 @@ const tourCategories = rawTourCategories.map(category => ({
 
       <!-- Next Button - Desktop/Tablet (right side) -->
       <button id="nextTourBtn" class="tour-nav-btn tour-nav-btn-right hidden sm:flex" aria-label="Next tour">
-        <div class="w-6 h-6" set:html={ChevronRightIcon} />
+        <ChevronRight class="w-6 h-6" />
       </button>
     </div>
   </div>

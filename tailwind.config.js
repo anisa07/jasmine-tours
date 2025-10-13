@@ -7,15 +7,6 @@ export default {
       // Custom breakpoints - only truly unique ones
       screens: {
         xs: "475px", // Extra small devices (Tailwind doesn't have xs by default)
-        "3xl": "1920px", // Ultra-wide monitors
-        // Height-based breakpoints
-        "h-sm": { raw: "(min-height: 600px)" },
-        "h-md": { raw: "(min-height: 768px)" },
-        "h-lg": { raw: "(min-height: 1024px)" },
-        // Preference-based breakpoints
-        "motion-safe": { raw: "(prefers-reduced-motion: no-preference)" },
-        "motion-reduce": { raw: "(prefers-reduced-motion: reduce)" },
-        "high-contrast": { raw: "(prefers-contrast: high)" },
       },
       colors: {
         primary: {
@@ -80,27 +71,6 @@ export default {
           DEFAULT: "rgb(var(--color-disabled) / <alpha-value>)",
           foreground: "rgb(var(--color-disabled-foreground) / <alpha-value>)",
         },
-        // 60-30-10 Color Rule Schemes
-        "scheme-professional": {
-          60: "rgb(var(--scheme-professional-60) / <alpha-value>)",
-          30: "rgb(var(--scheme-professional-30) / <alpha-value>)",
-          10: "rgb(var(--scheme-professional-10) / <alpha-value>)",
-        },
-        "scheme-modern": {
-          60: "rgb(var(--scheme-modern-60) / <alpha-value>)",
-          30: "rgb(var(--scheme-modern-30) / <alpha-value>)",
-          10: "rgb(var(--scheme-modern-10) / <alpha-value>)",
-        },
-        "scheme-elegant": {
-          60: "rgb(var(--scheme-elegant-60) / <alpha-value>)",
-          30: "rgb(var(--scheme-elegant-30) / <alpha-value>)",
-          10: "rgb(var(--scheme-elegant-10) / <alpha-value>)",
-        },
-        "scheme-corporate": {
-          60: "rgb(var(--scheme-corporate-60) / <alpha-value>)",
-          30: "rgb(var(--scheme-corporate-30) / <alpha-value>)",
-          10: "rgb(var(--scheme-corporate-10) / <alpha-value>)",
-        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -117,20 +87,11 @@ export default {
       spacing: {
         // Custom spacing extensions
         18: "4.5rem",
-        88: "22rem",
-        128: "32rem",
       },
       borderRadius: {
-        xl2: "1rem",
-        xl3: "1.5rem",
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
-      },
-      boxShadow: {
-        soft: "0 2px 15px 0 rgba(0, 0, 0, 0.08)",
-        medium: "0 4px 25px 0 rgba(0, 0, 0, 0.12)",
-        hard: "0 8px 30px 0 rgba(0, 0, 0, 0.16)",
       },
       keyframes: {
         "fade-in": {
