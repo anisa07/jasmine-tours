@@ -71,7 +71,7 @@ const getActionButtonClasses = (
       case "secondary":
         return `${baseClasses} bg-secondary text-secondary-foreground hover:bg-secondary/90 focus:ring-secondary`;
       case "outline":
-        return `${baseClasses} border-2 border-primary-foreground text-primary-foreground bg-transparent hover:bg-primary-foreground hover:text-primary focus:ring-primary-foreground`;
+        return `${baseClasses} border-2 border-primary-foreground text-primary-foreground bg-transparent hover:bg-primary-foreground/90 hover:text-primary focus:ring-primary-foreground`;
       default:
         return `${baseClasses} bg-background text-foreground hover:bg-background/90 focus:ring-background`;
     }
@@ -80,7 +80,7 @@ const getActionButtonClasses = (
       case "secondary":
         return `${baseClasses} bg-secondary text-secondary-foreground hover:bg-secondary/90 focus:ring-secondary`;
       case "outline":
-        return `${baseClasses} border-2 border-primary text-primary bg-transparent hover:bg-primary hover:text-primary-foreground focus:ring-primary`;
+        return `${baseClasses} border-2 border-primary text-primary bg-transparent hover:bg-primary/90 hover:text-primary-foreground focus:ring-primary`;
       default:
         return `${baseClasses} bg-primary text-primary-foreground hover:bg-primary/90 focus:ring-primary`;
     }

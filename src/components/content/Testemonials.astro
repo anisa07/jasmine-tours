@@ -2,7 +2,7 @@
 import Container from "@/components/layout/Container.astro";
 import { Image } from "astro:assets";
 import { ChevronLeft, ChevronRight } from "@lucide/astro";
-import type { ImageType } from "@/types";
+import type { ImageMetadata } from "astro";
 
 // Type definitions
 type Testimonial = {
@@ -10,7 +10,7 @@ type Testimonial = {
   tour: string;
   author: {
     name: string;
-    avatar: ImageType;
+    avatar: ImageMetadata;
   };
   rating: number;
 };

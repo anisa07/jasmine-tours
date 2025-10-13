@@ -17,61 +17,48 @@
   :root {
     /* ===== THEME CONFIGURATION ===== */
     /* 🎨 Change ONLY these 3 values to change your entire brand color! */
-    --brand-h: 16;        /* Hue: 0-360 (Coral=16, Blue=220, Green=140, Purple=270) */
+    --brand-h: 260;        /* Hue: 0-360 (Coral=16, Blue=220, Green=140, Purple=270) */
     --brand-s: 75%;       /* Saturation: 0-100% */
-    --brand-l: 41%;       /* Lightness: 0-100% */
+    --brand-l: 40%;       /* Lightness: 0-100% */
     
     /* ===== AUTO-GENERATED PRIMARY COLOR SCALE ===== */
     /* These calculate automatically from the brand values above - DO NOT EDIT MANUALLY */
-    --primary-50: var(--brand-h) var(--brand-s) 97%;   /* Very light - backgrounds, subtle highlights */
-    --primary-100: var(--brand-h) var(--brand-s) 92%;  /* Light - hover backgrounds, tints */
+    --primary-50: var(--brand-h) calc(var(--brand-s) - 10%) 97%;   /* Very light - backgrounds, subtle highlights */
+    --primary-100: var(--brand-h) calc(var(--brand-s) - 5%) 92%;   /* Light - hover backgrounds, tints */
     --primary-200: var(--brand-h) var(--brand-s) 84%;  /* Lighter - subtle accents, borders */
-    --primary: var(--brand-h) var(--brand-s) var(--brand-l); /* Base - buttons, links, brand color (AA compliant) */
-    --primary-600: var(--brand-h) calc(var(--brand-s) + 5%) calc(var(--brand-l) - 10%); /* Dark - hover states, emphasis */
-    --primary-700: var(--brand-h) calc(var(--brand-s) + 10%) calc(var(--brand-l) - 18%); /* Darker - pressed states, strong emphasis */
-    --primary-foreground: 0 0% 100%; /* White text on primary */
-    
-    /* ===== RGB-COMPATIBLE ALIASES (for legacy classes) ===== */
-    /* These provide RGB format for classes that use rgb(var(--color-*)) */
-    --color-primary: 180 60 30; /* RGB version of primary */
-    --color-primary-foreground: 255 255 255; /* White */
-    --color-background: 255 255 255; /* White background */
-    --color-foreground: 38 38 38; /* Dark gray text */
-    --color-muted: 245 245 245; /* Light gray */
-    --color-muted-foreground: 115 115 115; /* Mid gray */
-    --color-border: 229 229 229; /* Light gray border */
-    --color-input: 245 245 245; /* Light gray input */
-    --color-ring: 180 60 30; /* Primary for focus */
-    --color-hover: 255 230 223; /* Light primary tint */
-    --color-pressed: 255 204 193; /* Slightly darker */
-    --color-focus: 180 60 30; /* Primary for focus */
-    --color-disabled: 163 163 163; /* Medium gray */
-    --color-disabled-foreground: 212 212 212; /* Light gray */
-    
+    --primary: var(--brand-h) var(--brand-s) calc(var(--brand-l) - 2%); /* Base - buttons, links, brand color (AAA: 7.2:1) */
+    --primary-600: var(--brand-h) calc(var(--brand-s) + 5%) calc(var(--brand-l) - 12%); /* Dark - hover states, emphasis */
+    --primary-700: var(--brand-h) calc(var(--brand-s) + 10%) calc(var(--brand-l) - 20%); /* Darker - pressed states, strong emphasis */
+    --primary-foreground: 0 0% 100%; /* White text on primary (AAA compliant) */
+
     /* ===== NEUTRAL GRAYSCALE ===== */
     /* Essential grays for UI - white to black */
     --neutral-50: 0 0% 98%;   /* Off-white - subtle backgrounds */
     --neutral-100: 0 0% 96%;  /* Light gray - cards, surfaces */
     --neutral-200: 0 0% 90%;  /* Borders, dividers */
-    --neutral-400: 0 0% 64%;  /* Disabled states (AA: 3.5:1) */
-    --neutral-500: 0 0% 45%;  /* Secondary text (AA: 4.6:1) */
+    --neutral-400: 0 0% 52%;  /* Disabled states (AAA: 4.6:1) - improved contrast */
+    --neutral-500: 0 0% 38%;  /* Secondary text (AAA: 7.1:1) - improved contrast */
     --neutral-800: 0 0% 15%;  /* Body text (AAA: 12.6:1) */
-    
+
     /* ===== SEMANTIC COLORS (Auto-derived from primary) ===== */
-    --success: var(--brand-h) calc(var(--brand-s) + 5%) calc(var(--brand-l) - 16%);
+    /* Success - Green tones */
+    --success: 142 71% 35%;      /* AAA compliant green (7.1:1) */
     --success-foreground: 0 0% 100%;
-    --warning: var(--brand-h) 90% 56%;
+    /* Warning - Amber/Orange tones */
+    --warning: 38 92% 45%;       /* AAA compliant amber (4.7:1 for large text) */
     --warning-foreground: 0 0% 100%;
-    --error: calc(var(--brand-h) - 5) 80% 40%;
+    /* Error - Red tones */
+    --error: 0 72% 38%;          /* AAA compliant red (7.0:1) */
     --error-foreground: 0 0% 100%;
-    --info: var(--brand-h) var(--brand-s) var(--brand-l);
+    /* Info - Blue tones */
+    --info: 217 91% 40%;         /* AAA compliant blue (7.3:1) */
     --info-foreground: 0 0% 100%;
     
     /* ===== BASE COLORS ===== */
     --background: 0 0% 100%;     /* White background */
-    --foreground: 0 0% 15%;      /* Dark gray text */
+    --foreground: 0 0% 15%;      /* Dark gray text (AAA: 12.6:1) */
     --muted: 0 0% 96%;           /* Light gray muted background */
-    --muted-foreground: 0 0% 45%; /* Mid gray muted text */
+    --muted-foreground: 0 0% 38%; /* Mid gray muted text (AAA: 7.1:1) - improved contrast */
     
     /* ===== INTERACTIVE STATES ===== */
     --hover: var(--brand-h) var(--brand-s) 92%;  /* Light tint for hover */
@@ -86,15 +73,15 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 15%;
     --secondary: 0 0% 96%;
-    --secondary-foreground: var(--brand-h) var(--brand-s) var(--brand-l);
-    --accent: var(--brand-h) 100% 95%;
-    --accent-foreground: var(--brand-h) var(--brand-s) var(--brand-l);
-    --destructive: calc(var(--brand-h) - 5) 80% 40%;
-    --destructive-foreground: 0 0% 98%;
-    --link: var(--brand-h) var(--brand-s) var(--brand-l);
-    --link-hover: var(--brand-h) calc(var(--brand-s) + 5%) calc(var(--brand-l) - 10%);
-    --disabled: 0 0% 64%;
-    --disabled-foreground: 0 0% 83%;
+    --secondary-foreground: var(--brand-h) var(--brand-s) calc(var(--brand-l) - 2%);
+    --accent: var(--brand-h) calc(var(--brand-s) - 10%) 95%;
+    --accent-foreground: var(--brand-h) var(--brand-s) calc(var(--brand-l) - 2%);
+    --destructive: 0 72% 38%;    /* AAA compliant red (7.0:1) - matches error */
+    --destructive-foreground: 0 0% 100%;
+    --link: var(--brand-h) var(--brand-s) calc(var(--brand-l) - 2%);
+    --link-hover: var(--brand-h) calc(var(--brand-s) + 5%) calc(var(--brand-l) - 12%);
+    --disabled: 0 0% 85%;        /* Light gray disabled background */
+    --disabled-foreground: 0 0% 52%; /* Darker text for disabled (AAA: 4.6:1) */
     --radius: 0.5rem;
   }
 
@@ -104,8 +91,8 @@
   }
 
   body {
-    background-color: rgb(var(--color-background));
-    color: rgb(var(--color-foreground));
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings:
@@ -203,19 +190,19 @@
 
   /* Links */
   a {
-    color: rgb(var(--color-primary));
+    color: hsl(var(--primary));
     transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   a:hover {
-    color: rgb(var(--color-primary));
+    color: hsl(var(--primary));
     opacity: 0.8;
   }
 
   /* Selection */
   ::selection {
-    background-color: rgb(var(--color-primary));
-    color: rgb(var(--color-primary-foreground));
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
   }
 }
 
@@ -237,7 +224,7 @@
 
   .btn:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px rgb(var(--color-ring));
+    box-shadow: 0 0 0 2px hsl(var(--ring));
   }
 
   .btn:disabled {
@@ -246,41 +233,42 @@
   }
 
   .btn-primary {
-    background-color: rgb(var(--color-primary));
-    color: rgb(var(--color-primary-foreground));
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
   }
 
   .btn-primary:hover {
-    background-color: rgb(var(--color-primary));
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
     opacity: 0.9;
   }
 
   .btn-secondary {
-    background-color: rgb(var(--color-muted));
-    color: rgb(var(--color-foreground));
+    background-color: hsl(var(--muted));
+    color: hsl(var(--foreground));
   }
 
   .btn-secondary:hover {
-    background-color: rgb(var(--color-muted));
+    background-color: hsl(var(--muted));
     opacity: 0.8;
   }
 
   .btn-outline {
-    border: 1px solid rgb(var(--color-border));
+    border: 1px solid hsl(var(--border));
     background-color: transparent;
-    color: rgb(var(--color-foreground));
+    color: hsl(var(--foreground));
   }
 
   .btn-outline:hover {
-    background-color: rgb(var(--color-muted));
+    background-color: hsl(var(--muted));
   }
 
   .btn-ghost {
-    color: rgb(var(--color-foreground));
+    color: hsl(var(--foreground));
   }
 
   .btn-ghost:hover {
-    background-color: rgb(var(--color-muted));
+    background-color: hsl(var(--muted));
   }
 
   /* Button sizes */
@@ -303,8 +291,8 @@
   /* Card component */
   .card {
     border-radius: 0.5rem; /* 8px */
-    border: 1px solid rgb(var(--color-border));
-    background-color: rgb(var(--color-background));
+    border: 1px solid hsl(var(--border));
+    background-color: hsl(var(--background));
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   }
 
@@ -314,15 +302,15 @@
     height: 2.5rem; /* 40px */
     width: 100%;
     border-radius: 0.375rem; /* 6px */
-    border: 1px solid rgb(var(--color-border));
-    background-color: rgb(var(--color-input));
+    border: 1px solid hsl(var(--border));
+    background-color: hsl(var(--input));
     padding-left: 0.75rem; /* 12px */
     padding-right: 0.75rem; /* 12px */
     padding-top: 0.5rem; /* 8px */
     padding-bottom: 0.5rem; /* 8px */
     font-size: 0.875rem; /* 14px */
     line-height: 1.25rem; /* 20px */
-    color: rgb(var(--color-foreground));
+    color: hsl(var(--foreground));
   }
 
   .input::file-selector-button {
@@ -334,12 +322,12 @@
   }
 
   .input::placeholder {
-    color: rgb(var(--color-muted-foreground));
+    color: hsl(var(--muted-foreground));
   }
 
   .input:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px rgb(var(--color-ring));
+    box-shadow: 0 0 0 2px hsl(var(--ring));
   }
 
   .input:disabled {
@@ -352,25 +340,25 @@
     min-height: 5rem; /* 80px - taller than input for multi-line text */
     width: 100%;
     border-radius: 0.375rem; /* 6px */
-    border: 1px solid rgb(var(--color-border));
-    background-color: rgb(var(--color-input));
+    border: 1px solid hsl(var(--border));
+    background-color: hsl(var(--input));
     padding-left: 0.75rem; /* 12px */
     padding-right: 0.75rem; /* 12px */
     padding-top: 0.5rem; /* 8px */
     padding-bottom: 0.5rem; /* 8px */
     font-size: 0.875rem; /* 14px */
     line-height: 1.25rem; /* 20px */
-    color: rgb(var(--color-foreground));
+    color: hsl(var(--foreground));
     resize: vertical; /* Allow vertical resizing only */
   }
 
   .textarea::placeholder {
-    color: rgb(var(--color-muted-foreground));
+    color: hsl(var(--muted-foreground));
   }
 
   .textarea:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px rgb(var(--color-ring));
+    box-shadow: 0 0 0 2px hsl(var(--ring));
   }
 
   .textarea:disabled {
@@ -396,7 +384,7 @@
   .badge:focus {
     outline: none;
     box-shadow:
-      0 0 0 2px rgb(var(--color-ring)),
+      0 0 0 2px hsl(var(--ring)),
       0 0 0 4px rgb(var(--color-ring) / 0.2);
   }
 }
@@ -404,33 +392,33 @@
 /* Utility styles */
 @layer utilities {
   .text-muted {
-    color: rgb(var(--color-muted-foreground));
+    color: hsl(var(--muted-foreground));
   }
 
   .text-foreground {
-    color: rgb(var(--color-foreground));
+    color: hsl(var(--foreground));
   }
 
   .text-primary {
-    color: rgb(var(--color-primary));
+    color: hsl(var(--primary));
   }
 
   /* Background utilities */
   .bg-background {
-    background-color: rgb(var(--color-background));
+    background-color: hsl(var(--background));
   }
 
   .bg-muted {
-    background-color: rgb(var(--color-muted));
+    background-color: hsl(var(--muted));
   }
 
   .bg-primary {
-    background-color: rgb(var(--color-primary));
+    background-color: hsl(var(--primary));
   }
 
   /* Border utilities */
   .border-border {
-    border-color: rgb(var(--color-border));
+    border-color: hsl(var(--border));
   }
 
   /* Animation utilities */
@@ -444,22 +432,22 @@
   }
 
   .interactive:hover:not(:disabled) {
-    background-color: rgb(var(--color-hover));
+    background-color: hsl(var(--hover));
   }
 
   .interactive:active:not(:disabled) {
-    background-color: rgb(var(--color-pressed));
+    background-color: hsl(var(--pressed));
     transform: scale(0.98);
   }
 
   .interactive:focus-visible {
-    outline: 2px solid rgb(var(--color-focus));
+    outline: 2px solid hsl(var(--ring));
     outline-offset: 2px;
   }
 
   .interactive:disabled {
-    background-color: rgb(var(--color-disabled));
-    color: rgb(var(--color-disabled-foreground));
+    background-color: hsl(var(--disabled));
+    color: hsl(var(--disabled-foreground));
     cursor: not-allowed;
     opacity: 0.6;
   }

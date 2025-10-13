@@ -1,15 +1,15 @@
 ---
 import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, RotateCcw } from "@lucide/astro";
 import { Image } from "astro:assets";
-import type { ImageType } from "@/types";
+import type { ImageMetadata } from "astro";
 
 export interface GalleryImage {
   id: string;
-  src: ImageType | string;
+  src: ImageMetadata | string;
   alt: string;
   title?: string;
   description?: string;
-  thumbnail?: ImageType | string;
+  thumbnail?: ImageMetadata | string;
 }
 
 export interface Props {
@@ -113,7 +113,7 @@ const getGridClasses = () => {
           />
         ) : (
           <Image
-            src={(image.thumbnail || image.src) as ImageType}
+            src={(image.thumbnail || image.src) as ImageMetadata}
             alt={image.alt}
             class={`w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-90 ${imageClassName}`}
             loading={lazy ? "lazy" : "eager"}

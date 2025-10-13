@@ -1,12 +1,12 @@
 ---
-import type { ImageType } from "@/types";
+import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 
 interface Props {
   title: string;
   price: string;
   duration?: string;
-  image?: ImageType;
+  image?: ImageMetadata;
   alt?: string;
   className?: string;
   tourSlug?: string;
