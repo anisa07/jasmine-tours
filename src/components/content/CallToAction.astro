@@ -15,6 +15,7 @@ export interface Props {
   variant?: "default" | "centered" | "split" | "minimal" | "banner";
   backgroundColor?: "primary" | "secondary" | "surface" | "gradient";
   backgroundImage?: string;
+  backgroundAlt?: string;
   overlayOpacity?: number;
   size?: "sm" | "md" | "lg";
   class?: string;
@@ -28,6 +29,7 @@ const {
   variant = "default",
   backgroundColor = "primary",
   backgroundImage,
+  backgroundAlt,
   overlayOpacity = 0.8,
   size = "md",
   class: className = "",
@@ -38,9 +40,9 @@ const getBackgroundClasses = (bgType: string) => {
     case "secondary":
       return "bg-secondary text-secondary-foreground";
     case "surface":
-      return "bg-surface-2 text-foreground";
+      return "bg-neutral-100 text-foreground";
     case "gradient":
-      return "bg-gradient-to-r from-primary-600 to-primary-800 text-primary-foreground";
+      return "bg-gradient-to-r from-primary-600 to-primary-700 text-primary-foreground";
     default:
       return "bg-primary text-primary-foreground";
   }
@@ -108,7 +110,10 @@ const isOnPrimaryBg =
       <div class="absolute inset-0 z-0">
         <img
           src={backgroundImage}
-          alt="Amsterdam tours and experiences - Book your perfect tour"
+          alt={
+            backgroundAlt ||
+            "Amsterdam tours and experiences - Book your perfect tour"
+          }
           class="w-full h-full object-cover"
           loading="lazy"
         />
