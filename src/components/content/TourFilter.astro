@@ -500,6 +500,7 @@ const tourCategories = rawTourCategories.map(category => ({
       const modalPrice = document.getElementById("modalPrice");
       const modalDuration = document.getElementById("modalDuration");
       const modalDescription = document.getElementById("modalDescription");
+      const scrollableArea = modal?.querySelector(".overflow-y-auto");
 
       if (modal && modalTitle && modalPrice && modalDuration && modalDescription) {
         modalTitle.textContent = tourData.title;
@@ -552,6 +553,11 @@ const tourCategories = rawTourCategories.map(category => ({
           .replace(/(<\/ul>)\s*<br>/g, '$1');
         
         modalDescription.innerHTML = htmlDescription;
+        
+        // Reset scroll position to top before showing modal
+        if (scrollableArea) {
+          scrollableArea.scrollTop = 0;
+        }
         
         modal.classList.remove("hidden");
         modal.classList.add("flex");
