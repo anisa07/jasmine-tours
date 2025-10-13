@@ -59,7 +59,7 @@ const getSizeClasses = (size: string) => {
 
 const getActionButtonClasses = (
   actionVariant: string = "primary",
-  isOnPrimary: boolean = false
+  isOnPrimary: boolean = false,
 ) => {
   const baseClasses =
     "inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2";
@@ -130,7 +130,7 @@ const isOnPrimaryBg =
               <div
                 class={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
                   isOnPrimaryBg
-                    ? "bg-background/10 text-primary-foreground"
+                    ? "bg-white/90 text-primary"
                     : "bg-primary/10 text-primary"
                 }`}
               >
@@ -154,7 +154,7 @@ const isOnPrimaryBg =
               <p
                 class={`leading-relaxed ${
                   isOnPrimaryBg
-                    ? "text-primary-foreground/90"
+                    ? "text-primary-foreground"
                     : "text-muted-foreground"
                 } ${
                   size === "lg" ? "text-lg md:text-xl" : "text-base md:text-lg"
@@ -203,7 +203,7 @@ const isOnPrimaryBg =
                 variant === "centered" ? "mx-auto" : ""
               } ${
                 isOnPrimaryBg
-                  ? "bg-background/10 text-primary-foreground"
+                  ? "bg-white/90 text-primary"
                   : "bg-primary/10 text-primary"
               }`}
             >
@@ -229,7 +229,7 @@ const isOnPrimaryBg =
             <p
               class={`leading-relaxed max-w-3xl ${
                 variant === "centered" ? "mx-auto" : ""
-              } ${isOnPrimaryBg ? "text-primary-foreground/90" : "text-muted-foreground"} ${
+              } ${isOnPrimaryBg ? "text-primary-foreground" : "text-muted-foreground"} ${
                 variant === "banner" || size === "sm"
                   ? "text-base"
                   : size === "lg"
@@ -256,7 +256,7 @@ const isOnPrimaryBg =
                   href={action.href}
                   class={getActionButtonClasses(
                     action.variant,
-                    !!isOnPrimaryBg
+                    !!isOnPrimaryBg,
                   )}
                   target={action.external ? "_blank" : undefined}
                   rel={action.external ? "noopener noreferrer" : undefined}

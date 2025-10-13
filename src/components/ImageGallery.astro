@@ -73,8 +73,6 @@ const getGridClasses = () => {
   id="image-gallery"
   class={`grid ${getGridClasses()} ${className}`}
   style={`gap: ${gap}px;`}
-  role="grid"
-  aria-label="Image gallery"
   data-show-fullscreen={showFullscreen}
   data-show-thumbnails={showThumbnails}
   data-show-caption={showCaption}
@@ -98,7 +96,6 @@ const getGridClasses = () => {
       data-alt={image.alt}
       data-title={image.title || ""}
       data-description={image.description || ""}
-      role="gridcell"
     >
       <!-- Image -->
       <button

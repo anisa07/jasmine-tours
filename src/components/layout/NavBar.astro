@@ -40,9 +40,13 @@ const {
 >
   <!-- Logo/Brand -->
   <div class="flex items-center">
-    <a href={logoHref} class="flex items-center space-x-2 rounded-md">
+    <a
+      href={logoHref}
+      class="flex items-center space-x-2 rounded-md"
+      aria-label={`${logoAlt} - Home`}
+    >
       {logo && <img src={logo} alt={logoAlt} class="h-8 w-auto" />}
-      <span class="text-xl font-bold text-foreground">
+      <span class="text-xl font-bold text-foreground" aria-hidden="true">
         <slot name="logo">{logoAlt}</slot>
       </span>
     </a>
@@ -170,7 +174,7 @@ const {
 
     dropdowns.forEach((dropdown) => {
       const trigger = dropdown.querySelector(
-        '[data-dropdown-trigger="true"]'
+        '[data-dropdown-trigger="true"]',
       ) as HTMLElement;
       const menu = dropdown.querySelector('[role="menu"]') as HTMLElement;
 

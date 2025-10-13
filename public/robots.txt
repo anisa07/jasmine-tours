@@ -1,0 +1,26 @@
+# robots.txt for jasmine-tours.nl
+# This file controls how search engines crawl and index our website
+
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /src/
+Disallow: /.env
+Disallow: /node_modules/
+Crawl-delay: 10
+
+# Special rules for Googlebot
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+
+# Special rules for Bingbot
+User-agent: bingbot
+Allow: /
+Disallow: /admin/
+
+# Sitemap location (main index file that references all sitemaps)
+Sitemap: https://jasmine-tours.nl/sitemap-index.xml

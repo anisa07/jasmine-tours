@@ -1,19 +1,36 @@
 {
   "default": {
-    "name": "Mega Template",
-    "title": "Mega Template - Modern Astro + React Starter",
-    "description": "A powerful, production-ready template built with Astro v5, React v19, TypeScript, Tailwind CSS, and comprehensive i18n support. Perfect for building fast, accessible, and SEO-optimized websites.",
+    "name": "Jasmine Tours",
+    "title": "Jasmine Tours - Премиум туры в Амстердаме",
+    "description": "Откройте для себя Амстердам с Jasmine Tours. Экспертные экскурсии с гидом, круизы по каналам и персонализированные маршруты, демонстрирующие лучшее из голландской культуры, истории и скрытых жемчужин.",
     "openGraph": {
-      "title": "Mega Template - Modern Astro + React Starter",
-      "description": "Build lightning-fast websites with our comprehensive Astro template featuring React integration, TypeScript, Tailwind CSS, and built-in internationalization support.",
+      "title": "Jasmine Tours - Премиум туры в Амстердаме",
+      "description": "Познайте Амстердам с опытными местными гидами. Частные туры, круизы по каналам и аутентичные голландские впечатления. Откройте скрытые жемчужины и знаковые достопримечательности вместе с Зарой.",
       "type": "website",
-      "url": "https://mega-template.dev",
+      "url": "https://jasmine-tours.nl",
       "image": "/images/og-image.jpg"
     },
     "twitter": {
-      "title": "Mega Template - Modern Astro + React Starter 🚀",
-      "description": "⚡ Lightning-fast Astro template with React, TypeScript & Tailwind CSS. Built for modern web development with i18n support out of the box.",
-      "creator": "@megatemplate"
+      "title": "Jasmine Tours - Премиум туры в Амстердаме 🌷",
+      "description": "🚲 Исследуйте Амстердам с опытными гидами. Частные туры, круизы по каналам и аутентичные голландские впечатления. Откройте для себя магию Амстердама вместе с нами!",
+      "creator": "@jasminetours"
+    },
+    "social": {
+      "instagram": {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/jasmine.tours.amsterdam",
+        "handle": "@jasmine.tours.amsterdam"
+      },
+      "facebook": {
+        "name": "Facebook",
+        "url": "https://www.facebook.com/jasmintoursevents/",
+        "handle": "jasmintoursevents"
+      },
+      "whatsapp": {
+        "name": "WhatsApp",
+        "url": "https://wa.me/c/31642221525",
+        "phone": "+31642221525"
+      }
     }
   }
 }
