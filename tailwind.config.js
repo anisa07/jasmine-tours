@@ -9,38 +9,64 @@ export default {
         xs: "475px", // Extra small devices (Tailwind doesn't have xs by default)
       },
       colors: {
+        // ===== BRAND COLOR SCALE (Internal - prefer using 'primary' instead) =====
+        coral: {
+          50: "rgb(var(--color-coral-50) / <alpha-value>)",
+          100: "rgb(var(--color-coral-100) / <alpha-value>)",
+          200: "rgb(var(--color-coral-200) / <alpha-value>)",
+          300: "rgb(var(--color-coral-300) / <alpha-value>)",
+          400: "rgb(var(--color-coral-400) / <alpha-value>)",
+          500: "rgb(var(--color-coral-500) / <alpha-value>)", // Base brand color
+          600: "rgb(var(--color-coral-600) / <alpha-value>)",
+          700: "rgb(var(--color-coral-700) / <alpha-value>)",
+          800: "rgb(var(--color-coral-800) / <alpha-value>)",
+          DEFAULT: "rgb(var(--color-coral-500) / <alpha-value>)", // Alias to 500
+        },
+        // ===== NEUTRAL GRAYSCALE =====
+        neutral: {
+          50: "rgb(var(--color-neutral-50) / <alpha-value>)",
+          100: "rgb(var(--color-neutral-100) / <alpha-value>)",
+          200: "rgb(var(--color-neutral-200) / <alpha-value>)",
+          300: "rgb(var(--color-neutral-300) / <alpha-value>)",
+          400: "rgb(var(--color-neutral-400) / <alpha-value>)",
+          500: "rgb(var(--color-neutral-500) / <alpha-value>)",
+          800: "rgb(var(--color-neutral-800) / <alpha-value>)",
+        },
+        // ===== PRIMARY (semantic color scale) =====
         primary: {
+          50: "rgb(var(--color-primary-50) / <alpha-value>)",
+          100: "rgb(var(--color-primary-100) / <alpha-value>)",
+          200: "rgb(var(--color-primary-200) / <alpha-value>)",
+          300: "rgb(var(--color-primary-300) / <alpha-value>)",
+          400: "rgb(var(--color-primary-400) / <alpha-value>)",
           DEFAULT: "rgb(var(--color-primary) / <alpha-value>)",
+          600: "rgb(var(--color-primary-600) / <alpha-value>)",
+          700: "rgb(var(--color-primary-700) / <alpha-value>)",
+          800: "rgb(var(--color-primary-800) / <alpha-value>)",
+          hover: "rgb(var(--color-primary-hover) / <alpha-value>)",
+          pressed: "rgb(var(--color-primary-pressed) / <alpha-value>)",
           foreground: "rgb(var(--color-primary-foreground) / <alpha-value>)",
         },
+        // ===== SECONDARY (light neutral with primary accent) =====
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },
+        // ===== ACCENT (light primary tint) =====
         accent: {
-          DEFAULT: "rgb(var(--color-accent) / <alpha-value>)",
+          DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
-        "accent-hover": "rgb(var(--color-accent-hover))",
+        // ===== BASE COLORS =====
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+        // ===== SURFACE VARIATIONS =====
+        surface: {
+          1: "rgb(var(--color-surface-1) / <alpha-value>)",
+          2: "rgb(var(--color-surface-2) / <alpha-value>)",
+          3: "rgb(var(--color-surface-3) / <alpha-value>)",
         },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        // Semantic colors
+        // ===== SEMANTIC COLORS (primary-based) =====
         success: {
           DEFAULT: "rgb(var(--color-success) / <alpha-value>)",
           foreground: "rgb(var(--color-success-foreground) / <alpha-value>)",
@@ -57,19 +83,29 @@ export default {
           DEFAULT: "rgb(var(--color-info) / <alpha-value>)",
           foreground: "rgb(var(--color-info-foreground) / <alpha-value>)",
         },
-        // Surface color variations for visual depth
-        surface: {
-          1: "rgb(var(--color-surface-1) / <alpha-value>)",
-          2: "rgb(var(--color-surface-2) / <alpha-value>)",
-          3: "rgb(var(--color-surface-3) / <alpha-value>)",
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
         },
-        // Interactive state colors for user feedback
-        hover: "rgb(var(--color-hover))",
-        pressed: "rgb(var(--color-pressed))",
-        focus: "rgb(var(--color-focus))",
+        // ===== INTERACTIVE STATES =====
+        hover: "rgb(var(--color-hover) / <alpha-value>)",
+        pressed: "rgb(var(--color-pressed) / <alpha-value>)",
         disabled: {
           DEFAULT: "rgb(var(--color-disabled) / <alpha-value>)",
           foreground: "rgb(var(--color-disabled-foreground) / <alpha-value>)",
+        },
+        // ===== UI ELEMENTS =====
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

@@ -4,68 +4,104 @@
 
 /* Base styles */
 @layer base {
-  /* Custom CSS variables for consistent theming */
+  /* Simplified color system based on primary brand color + neutrals */
   :root {
-    --color-primary: 180 60 30; /* much darker coral/burnt orange for WCAG AA contrast with white */
-    --color-primary-foreground: 255 255 255;
-    --color-secondary: 138 43 226; /* blueviolet */
-    --color-secondary-foreground: 255 255 255;
-    --color-background: 255 255 255;
-    --color-foreground: 15 23 42; /* slate-900 */
-    --color-muted: 248 250 252; /* slate-50 */
-    --color-muted-foreground: 100 116 139; /* slate-500 */
-    --color-border: 226 232 240; /* slate-200 */
-    --color-input: 248 250 252; /* slate-50 */
-    --color-ring: 255 127 80; /* coral #FF7F50 */
-    --color-accent: 255 99 71; /* tomato - darker coral for light mode */
-    --color-accent-hover: 255 69 0; /* orangered - even darker for hover */
+    /* ===== BRAND COLOR SCALE (Internal) ===== */
+    /* Lightest to darkest variations - base color: rgb(180 60 30) */
+    --color-coral-50: 255 245 242; /* Very light tint - backgrounds */
+    --color-coral-100: 255 230 223; /* Light tint - subtle highlights */
+    --color-coral-200: 255 204 193; /* Lighter shade - hover backgrounds */
+    --color-coral-300: 255 159 137; /* Medium-light - borders, accents */
+    --color-coral-400: 230 100 70; /* Medium - warnings */
+    --color-coral-500: 180 60 30; /* Base brand color (AA compliant) */
+    --color-coral-600: 150 50 25; /* Dark - hover states, errors */
+    --color-coral-700: 120 40 20; /* Darker - pressed states, success */
+    --color-coral-800: 90 30 15; /* Very dark - gradients */
 
-    /* Semantic colors - Light theme */
-    --color-success: 34 197 94; /* green-500 */
+    /* ===== NEUTRAL COLOR SCALE ===== */
+    /* Grayscale from white to black */
+    --color-neutral-50: 250 250 250; /* Off-white - subtle backgrounds */
+    --color-neutral-100: 245 245 245; /* Light gray - cards, surfaces */
+    --color-neutral-200: 229 229 229; /* Lighter gray - borders */
+    --color-neutral-300: 212 212 212; /* Medium-light gray - disabled foreground */
+    --color-neutral-400: 163 163 163; /* Medium gray - disabled states */
+    --color-neutral-500: 115 115 115; /* Mid gray - secondary text (AA on white) */
+    --color-neutral-800: 38 38 38; /* Very dark gray - body text (AA on white) */
+
+    /* ===== PRIMARY COLOR MAPPINGS (Public API) ===== */
+    /* Use these semantic names in your components, not the internal scale above */
+    --color-primary-50: var(--color-coral-50); /* Very light tint */
+    --color-primary-100: var(--color-coral-100); /* Light tint */
+    --color-primary-200: var(--color-coral-200); /* Lighter shade */
+    --color-primary-300: var(--color-coral-300); /* Medium-light */
+    --color-primary-400: var(--color-coral-400); /* Medium - warnings */
+    --color-primary: 180 60 30; /* Base brand color */
+    --color-primary-600: var(--color-coral-600); /* Dark - hover/errors */
+    --color-primary-700: var(--color-coral-700); /* Darker - pressed/success */
+    --color-primary-800: var(--color-coral-800); /* Very dark - gradients */
+    --color-primary-hover: 150 50 25; /* Darker for hover states */
+    --color-primary-pressed: 120 40 20; /* Even darker for pressed state */
+    --color-primary-foreground: 255 255 255; /* White text on primary */
+
+    /* ===== BACKGROUND & FOREGROUND ===== */
+    --color-background: 255 255 255; /* White background */
+    --color-foreground: 38 38 38; /* Dark gray text (AA compliant) */
+
+    /* ===== SURFACE VARIATIONS ===== */
+    --color-surface-1: 250 250 250; /* Subtle background - cards */
+    --color-surface-2: 245 245 245; /* Elevated surface - dropdowns */
+    --color-surface-3: 229 229 229; /* Modal/overlay background */
+
+    /* ===== INTERACTIVE STATE COLORS ===== */
+    --color-hover: 255 230 223; /* Light tint for hover backgrounds */
+    --color-pressed: 255 204 193; /* Slightly darker for pressed */
+    --color-focus: 180 60 30; /* Primary color for focus rings */
+    --color-border: 229 229 229; /* Light gray borders */
+    --color-input: 245 245 245; /* Light gray input backgrounds */
+
+    /* ===== SEMANTIC COLORS (Primary-based) ===== */
+    --color-success: 120 40 20; /* Dark variation for success */
     --color-success-foreground: 255 255 255;
-    --color-warning: 245 158 11; /* amber-500 */
+    --color-warning: 230 100 70; /* Medium shade for warnings */
     --color-warning-foreground: 255 255 255;
-    --color-error: 239 68 68; /* red-500 */
+    --color-error: 150 50 25; /* Dark shade for errors */
     --color-error-foreground: 255 255 255;
-    --color-info: 255 127 80; /* coral #FF7F50 */
+    --color-info: 180 60 30; /* Base primary for info */
     --color-info-foreground: 255 255 255;
 
-    /* Surface color variations - Light theme */
-    --color-surface-1: 250 250 250; /* slate-50 - cards, panels */
-    --color-surface-2: 244 244 245; /* slate-100 - elevated cards, dropdowns */
-    --color-surface-3: 228 228 231; /* slate-200 - modals, overlays */
+    /* ===== DISABLED STATES ===== */
+    --color-disabled: 163 163 163; /* Medium gray */
+    --color-disabled-foreground: 212 212 212; /* Light gray text */
 
-    /* Interactive state colors - Light theme */
-    --color-hover: 0 0 0 / 0.05; /* subtle black overlay for hover */
-    --color-pressed: 0 0 0 / 0.1; /* stronger black overlay for pressed */
-    --color-focus: 255 127 80 / 0.5; /* coral with transparency for focus ring */
-    --color-disabled: 156 163 175; /* gray-400 for disabled states */
-    --color-disabled-foreground: 209 213 219; /* gray-300 for disabled text */
+    /* ===== MUTED ELEMENTS ===== */
+    --color-muted: 245 245 245; /* Light gray background */
+    --color-muted-foreground: 115 115 115; /* Mid gray text (AA on white) */
 
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 40.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    /* HSL tokens for links and badges */
-    --link: 221 83% 53%;
-    --link-hover: 224 76% 48%;
-    --badge-bg: 214 95% 93%;
-    --badge-text: 226 71% 40%;
+    /* ===== HSL VARIANTS (for shadcn/ui components) ===== */
+    /* These use HSL format for compatibility with certain UI libraries */
+    --background: 0 0% 100%; /* White */
+    --foreground: 0 0% 15%; /* Dark gray */
+    --card: 0 0% 100%; /* White */
+    --card-foreground: 0 0% 15%; /* Dark gray */
+    --popover: 0 0% 100%; /* White */
+    --popover-foreground: 0 0% 15%; /* Dark gray */
+    --primary: 16 75% 41%; /* Primary in HSL */
+    --primary-foreground: 0 0% 100%; /* White */
+    --secondary: 0 0% 96%; /* Very light gray */
+    --secondary-foreground: 16 75% 41%; /* Primary text */
+    --muted: 0 0% 96%; /* Light gray */
+    --muted-foreground: 0 0% 45%; /* Mid gray */
+    --accent: 16 100% 95%; /* Very light primary tint */
+    --accent-foreground: 16 75% 41%; /* Primary */
+    --destructive: 16 80% 34%; /* Dark shade for errors */
+    --destructive-foreground: 0 0% 98%; /* White */
+    --border: 0 0% 90%; /* Light gray */
+    --input: 0 0% 90%; /* Light gray */
+    --ring: 16 75% 41%; /* Primary */
+    --link: 16 75% 41%; /* Primary links */
+    --link-hover: 16 80% 34%; /* Darker primary on hover */
+    --badge-bg: 16 100% 95%; /* Light primary background */
+    --badge-text: 16 75% 41%; /* Primary text */
     --radius: 0.5rem;
   }
 

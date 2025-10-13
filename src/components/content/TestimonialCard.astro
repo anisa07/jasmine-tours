@@ -62,7 +62,7 @@ const getCardClasses = (variant: string, featured: boolean = false) => {
     case "minimal":
       return `${baseClasses} text-center space-y-4`;
     case "featured":
-      return `${baseClasses} bg-gradient-to-br from-primary/5 to-secondary/5 border border-primary/20 rounded-xl p-8 lg:p-10`;
+      return `${baseClasses} bg-gradient-to-br from-primary-50 to-primary-100 border border-primary/20 rounded-xl p-8 lg:p-10`;
     case "grid":
       return `${baseClasses} bg-background border border-border rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:border-primary/20 ${featured ? "ring-2 ring-primary/10" : ""}`;
     default:
@@ -74,7 +74,7 @@ const renderStars = (rating: number) => {
   return Array.from(
     { length: 5 },
     (_, i) =>
-      `<span class="text-sm ${i < rating ? "text-yellow-400" : "text-muted-foreground"}" aria-hidden="true">★</span>`
+      `<span class="text-sm ${i < rating ? "text-yellow-400" : "text-muted-foreground"}" aria-hidden="true">★</span>`,
   ).join("");
 };
 
@@ -129,7 +129,7 @@ const sectionClasses = [
                     role="img"
                     aria-label={t(
                       "testimonial.rating_aria",
-                      "{{rating}} out of 5 stars"
+                      "{{rating}} out of 5 stars",
                     ).replace("{{rating}}", testimonialItem.rating.toString())}
                     set:html={renderStars(testimonialItem.rating)}
                   />
@@ -243,7 +243,7 @@ const sectionClasses = [
                 role="img"
                 aria-label={t(
                   "testimonial.rating_aria",
-                  "{{rating}} out of 5 stars"
+                  "{{rating}} out of 5 stars",
                 ).replace("{{rating}}", singleTestimonial.rating.toString())}
                 set:html={renderStars(singleTestimonial.rating)}
               />
@@ -316,13 +316,13 @@ const sectionClasses = [
           <h3 class="text-lg font-semibold text-foreground mb-2">
             {t(
               "testimonial.no_testimonial_available",
-              "No Testimonial Available"
+              "No Testimonial Available",
             )}
           </h3>
           <p class="text-muted-foreground">
             {t(
               "testimonial.add_testimonial_message",
-              "Add a testimonial prop to display customer feedback here."
+              "Add a testimonial prop to display customer feedback here.",
             )}
           </p>
         </div>
