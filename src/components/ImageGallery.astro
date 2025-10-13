@@ -117,9 +117,10 @@ const getGridClasses = () => {
             alt={image.alt}
             class={`w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-90 ${imageClassName}`}
             loading={lazy ? "lazy" : "eager"}
-            width={400}
-            height={400}
-            format="webp"
+            widths={[300, 600, 900]}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            format="avif"
+            quality={75}
           />
         )}
       </button>

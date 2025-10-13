@@ -86,10 +86,11 @@ const sectionClasses = cn(
         alt="Amsterdam tours background - Canal views and historic architecture"
         class="w-full h-full object-cover"
         loading="eager"
-        width={2048}
-        height={1365}
+        fetchpriority="high"
+        widths={[640, 1024, 1536, 2048]}
+        sizes="100vw"
         format="webp"
-        quality={80}
+        quality={85}
       />
       <div 
         class="absolute inset-0 bg-background" 
@@ -192,6 +193,11 @@ const sectionClasses = cn(
                   alt={images.mainImageAlt}
                   class="w-full hero-main-image object-cover"
                   loading="eager"
+                  fetchpriority="high"
+                  widths={[400, 600, 800, 1000]}
+                  sizes="(max-width: 640px) 400px, (max-width: 1024px) 600px, 800px"
+                  format="webp"
+                  quality={85}
                 />
               </div>
               

@@ -1,0 +1,59 @@
+---
+/**
+ * OptimizedPicture Component
+ *
+ * A reusable component for responsive images with automatic format optimization.
+ * Generates AVIF and WebP versions with multiple sizes for optimal performance.
+ *
+ * @example
+ * <OptimizedPicture
+ *   src={tourImage}
+ *   alt="Amsterdam canal tour"
+ *   widths={[400, 800, 1200]}
+ *   sizes="(max-width: 768px) 100vw, 50vw"
+ *   loading="lazy"
+ * />
+ */
+
+import { Picture } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+export interface Props {
+  src: ImageMetadata;
+  alt: string;
+  widths?: number[];
+  sizes?: string;
+  formats?: ("avif" | "webp" | "jpeg" | "png")[];
+  loading?: "lazy" | "eager";
+  fetchpriority?: "high" | "low" | "auto";
+  quality?: number;
+  class?: string;
+  densities?: number[];
+}
+
+const {
+  src,
+  alt,
+  widths = [400, 800, 1200, 1600],
+  sizes = "100vw",
+  formats = ["avif", "webp"],
+  loading = "lazy",
+  fetchpriority = "auto",
+  quality = 80,
+  class: className = "",
+  densities,
+} = Astro.props;
+---
+
+<Picture
+  src={src}
+  widths={widths}
+  sizes={sizes}
+  formats={formats}
+  alt={alt}
+  loading={loading}
+  fetchpriority={fetchpriority}
+  quality={quality}
+  class={className}
+  densities={densities}
+/>
