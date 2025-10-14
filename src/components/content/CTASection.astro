@@ -47,12 +47,10 @@ const {
       {
         subtitle && (
           <div
-            class={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
+            class={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium text-primary ${
               variant === "centered" ? "mx-auto" : ""
             } ${
-              backgroundColor === "primary"
-                ? "bg-white/90 text-primary"
-                : "bg-primary/10 text-primary"
+              backgroundColor === "primary" ? "bg-white/90" : "bg-primary/10"
             }`}
           >
             {subtitle}
@@ -60,13 +58,7 @@ const {
         )
       }
 
-      <h2
-        class={`font-bold leading-tight ${
-          variant === "centered"
-            ? "text-3xl md:text-4xl lg:text-5xl"
-            : "text-3xl md:text-4xl lg:text-5xl"
-        }`}
-      >
+      <h2 class={`font-bold leading-tight text-3xl md:text-4xl lg:text-5xl`}>
         {title}
       </h2>
 

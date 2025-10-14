@@ -40,7 +40,7 @@ const currentLanguage = languages.find((lang) => lang.value === currentLocale);
         {currentLanguage?.label || "Select language"}
       </span>
     </span>
-    <ChevronDown class="h-4 w-4 opacity-50" />
+    <ChevronDown class="h-4 w-4 opacity-50" aria-hidden="true" />
   </button>
 
   <!-- Dropdown Menu -->
@@ -62,7 +62,9 @@ const currentLanguage = languages.find((lang) => lang.value === currentLocale);
             <span class="flex items-center gap-2">
               <span>{language.label}</span>
             </span>
-            {language.value === currentLocale && <Check class="h-4 w-4" />}
+            {language.value === currentLocale && (
+              <Check class="h-4 w-4" aria-hidden="true" />
+            )}
           </button>
         ))
       }
@@ -156,7 +158,7 @@ const currentLanguage = languages.find((lang) => lang.value === currentLocale);
         e.preventDefault();
         e.stopPropagation();
         const locale = (e.currentTarget as HTMLElement).getAttribute(
-          "data-locale"
+          "data-locale",
         );
         if (locale) {
           changeLocale(locale);
@@ -170,7 +172,7 @@ const currentLanguage = languages.find((lang) => lang.value === currentLocale);
           case " ": {
             e.preventDefault();
             const locale = (e.currentTarget as HTMLElement).getAttribute(
-              "data-locale"
+              "data-locale",
             );
             if (locale) {
               changeLocale(locale);

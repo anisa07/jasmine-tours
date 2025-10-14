@@ -133,7 +133,7 @@ const tourCategories = rawTourCategories.map(category => ({
     <div class="relative flex items-center justify-center w-full max-w-5xl">
       <!-- Previous Button - Desktop/Tablet (left side) -->
       <button id="prevTourBtn" class="tour-nav-btn tour-nav-btn-left hidden sm:flex" aria-label="Previous tour">
-        <ChevronLeft class="w-6 h-6" />
+        <ChevronLeft class="w-6 h-6" aria-hidden="true" />
       </button>
 
       <div class="bg-background rounded-3xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl transform transition-all duration-300">
@@ -144,8 +144,8 @@ const tourCategories = rawTourCategories.map(category => ({
               <div class="flex-1">
                 <h2 id="modalTitle" class="text-2xl sm:text-3xl font-bold text-foreground leading-tight"></h2>
               </div>
-              <button id="closeModal" class="p-2 hover:bg-background/80 rounded-full transition-all duration-200 hover:scale-110 hover:rotate-90 flex-shrink-0">
-                <X class="w-6 h-6" />
+              <button id="closeModal" class="p-2 hover:bg-background/80 rounded-full transition-all duration-200 hover:scale-110 hover:rotate-90 flex-shrink-0" aria-label="Close modal">
+                <X class="w-6 h-6" aria-hidden="true" />
               </button>
             </div>
           </div>
@@ -307,7 +307,7 @@ const tourCategories = rawTourCategories.map(category => ({
 
       <!-- Next Button - Desktop/Tablet (right side) -->
       <button id="nextTourBtn" class="tour-nav-btn tour-nav-btn-right hidden sm:flex" aria-label="Next tour">
-        <ChevronRight class="w-6 h-6" />
+        <ChevronRight class="w-6 h-6" aria-hidden="true" />
       </button>
     </div>
   </div>
