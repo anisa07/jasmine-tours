@@ -44,7 +44,7 @@ const t = createT(translations);
 <div class={`md:hidden ${className}`}>
   <button
     type="button"
-    class="inline-flex items-center justify-center p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-neutral-50"
+    class="inline-flex items-center justify-center p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-surface-subtle"
     aria-controls={menuId}
     aria-expanded="false"
     aria-label={t("mobile_menu.toggle", "Toggle mobile menu")}
@@ -82,7 +82,7 @@ const t = createT(translations);
     </h2>
     <button
       type="button"
-      class="inline-flex items-center justify-center p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-neutral-50"
+      class="inline-flex items-center justify-center p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-surface-subtle"
       aria-label={t("mobile_menu.close", "Close menu")}
       id={`${menuId}-close`}
     >
@@ -103,8 +103,8 @@ const t = createT(translations);
                 href={item.href}
                 class={`flex items-center w-full px-3 py-3 text-base rounded-md transition-colors ${
                   item.active
-                    ? "bg-neutral-100 text-foreground font-medium"
-                    : "text-muted-foreground hover:text-foreground hover:bg-neutral-50"
+                    ? "bg-surface-light text-foreground font-medium"
+                    : "text-muted-foreground hover:text-foreground hover:bg-surface-subtle"
                 } ${item.disabled ? "opacity-50 cursor-not-allowed" : ""}`}
                 tabindex={item.disabled ? -1 : undefined}
                 aria-disabled={item.disabled ? "true" : undefined}

@@ -11,22 +11,27 @@ export default {
       colors: {
         // ===== PRIMARY BRAND COLOR (Auto-generated from HSL scale) =====
         primary: {
-          50: "hsl(var(--primary-50) / <alpha-value>)",
-          100: "hsl(var(--primary-100) / <alpha-value>)",
-          200: "hsl(var(--primary-200) / <alpha-value>)",
+          subtle: "hsl(var(--primary-subtle) / <alpha-value>)",
+          light: "hsl(var(--primary-light) / <alpha-value>)",
+          accent: "hsl(var(--primary-accent) / <alpha-value>)",
           DEFAULT: "hsl(var(--primary) / <alpha-value>)",
-          600: "hsl(var(--primary-600) / <alpha-value>)",
-          700: "hsl(var(--primary-700) / <alpha-value>)",
+          hover: "hsl(var(--primary-hover) / <alpha-value>)",
+          pressed: "hsl(var(--primary-pressed) / <alpha-value>)",
           foreground: "hsl(var(--primary-foreground) / <alpha-value>)",
         },
         // ===== NEUTRAL GRAYSCALE =====
-        neutral: {
-          50: "hsl(var(--neutral-50) / <alpha-value>)",
-          100: "hsl(var(--neutral-100) / <alpha-value>)",
-          200: "hsl(var(--neutral-200) / <alpha-value>)",
-          400: "hsl(var(--neutral-400) / <alpha-value>)",
-          500: "hsl(var(--neutral-500) / <alpha-value>)",
-          800: "hsl(var(--neutral-800) / <alpha-value>)",
+        surface: {
+          subtle: "hsl(var(--surface-subtle) / <alpha-value>)",
+          light: "hsl(var(--surface-light) / <alpha-value>)",
+        },
+        border: {
+          light: "hsl(var(--border-light) / <alpha-value>)",
+          DEFAULT: "hsl(var(--border) / <alpha-value>)",
+        },
+        text: {
+          disabled: "hsl(var(--text-disabled) / <alpha-value>)",
+          secondary: "hsl(var(--text-secondary) / <alpha-value>)",
+          body: "hsl(var(--text-body) / <alpha-value>)",
         },
         // ===== SEMANTIC COLORS (Auto-derived from primary) =====
         success: {

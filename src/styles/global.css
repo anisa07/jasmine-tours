@@ -23,22 +23,22 @@
     
     /* ===== AUTO-GENERATED PRIMARY COLOR SCALE ===== */
     /* These calculate automatically from the brand values above - DO NOT EDIT MANUALLY */
-    --primary-50: var(--brand-h) calc(var(--brand-s) - 10%) 97%;   /* Very light - backgrounds, subtle highlights */
-    --primary-100: var(--brand-h) calc(var(--brand-s) - 5%) 92%;   /* Light - hover backgrounds, tints */
-    --primary-200: var(--brand-h) var(--brand-s) 84%;  /* Lighter - subtle accents, borders */
+    --primary-subtle: var(--brand-h) calc(var(--brand-s) - 10%) 97%;   /* Very light - backgrounds, subtle highlights */
+    --primary-light: var(--brand-h) calc(var(--brand-s) - 5%) 92%;   /* Light - hover backgrounds, tints */
+    --primary-accent: var(--brand-h) var(--brand-s) 84%;  /* Lighter - subtle accents, borders */
     --primary: var(--brand-h) var(--brand-s) calc(var(--brand-l) - 2%); /* Base - buttons, links, brand color (AAA: 7.2:1) */
-    --primary-600: var(--brand-h) calc(var(--brand-s) + 5%) calc(var(--brand-l) - 12%); /* Dark - hover states, emphasis */
-    --primary-700: var(--brand-h) calc(var(--brand-s) + 10%) calc(var(--brand-l) - 20%); /* Darker - pressed states, strong emphasis */
+    --primary-hover: var(--brand-h) calc(var(--brand-s) + 5%) calc(var(--brand-l) - 12%); /* Dark - hover states, emphasis */
+    --primary-pressed: var(--brand-h) calc(var(--brand-s) + 10%) calc(var(--brand-l) - 20%); /* Darker - pressed states, strong emphasis */
     --primary-foreground: 0 0% 100%; /* White text on primary (AAA compliant) */
 
     /* ===== NEUTRAL GRAYSCALE ===== */
     /* Essential grays for UI - white to black */
-    --neutral-50: 0 0% 98%;   /* Off-white - subtle backgrounds */
-    --neutral-100: 0 0% 96%;  /* Light gray - cards, surfaces */
-    --neutral-200: 0 0% 90%;  /* Borders, dividers */
-    --neutral-400: 0 0% 52%;  /* Disabled states (AAA: 4.6:1) - improved contrast */
-    --neutral-500: 0 0% 38%;  /* Secondary text (AAA: 7.1:1) - improved contrast */
-    --neutral-800: 0 0% 15%;  /* Body text (AAA: 12.6:1) */
+    --surface-subtle: 0 0% 98%;   /* Off-white - subtle backgrounds */
+    --surface-light: 0 0% 96%;  /* Light gray - cards, surfaces */
+    --border-light: 0 0% 90%;  /* Borders, dividers */
+    --text-disabled: 0 0% 52%;  /* Disabled states (AAA: 4.6:1) - improved contrast */
+    --text-secondary: 0 0% 38%;  /* Secondary text (AAA: 7.1:1) - improved contrast */
+    --text-body: 0 0% 15%;  /* Body text (AAA: 12.6:1) */
 
     /* ===== SEMANTIC COLORS (Auto-derived from primary) ===== */
     /* Success - Green tones */

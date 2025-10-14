@@ -107,9 +107,9 @@ const getBackgroundClasses = (background: Props["background"]) => {
     case "white":
       return ["bg-white"];
     case "muted":
-      return ["bg-neutral-50"];
+      return ["bg-surface-subtle"];
     case "primary":
-      return ["bg-primary-50"];
+      return ["bg-primary-subtle"];
     case "secondary":
       return ["bg-secondary-50"];
     case "accent":
@@ -120,7 +120,7 @@ const getBackgroundClasses = (background: Props["background"]) => {
 };
 
 const getBorderClasses = (bordered: boolean) => {
-  return bordered ? ["border-t", "border-b", "border-neutral-200"] : [];
+  return bordered ? ["border-t", "border-b", "border-light"] : [];
 };
 
 const getCenteredClasses = (centered: boolean) => {
@@ -168,25 +168,25 @@ if (dataSection) attributes["data-section"] = dataSection;
   }
 
   /* Custom background color utilities */
-  .bg-primary-50 {
-    background-color: rgb(var(--color-primary-50));
+  .bg-primary-subtle {
+    background-color: hsl(var(--primary-subtle));
   }
 
   .bg-secondary-50 {
-    background-color: rgb(var(--color-neutral-100));
+    background-color: hsl(var(--surface-light));
   }
 
   .bg-accent-50 {
-    background-color: rgb(var(--color-primary-100));
+    background-color: hsl(var(--primary-light));
   }
 
-  .bg-neutral-50 {
-    background-color: rgb(var(--color-neutral-50));
+  .bg-surface-subtle {
+    background-color: hsl(var(--surface-subtle));
   }
 
   /* Border color utilities */
-  .border-neutral-200 {
-    border-color: rgb(var(--color-neutral-200));
+  .border-light {
+    border-color: hsl(var(--border-light));
   }
 
   /* Full height flex support */

@@ -40,9 +40,9 @@ const getBackgroundClasses = (bgType: string) => {
     case "secondary":
       return "bg-secondary text-secondary-foreground";
     case "surface":
-      return "bg-neutral-100 text-foreground";
+      return "bg-surface-light text-foreground";
     case "gradient":
-      return "bg-gradient-to-r from-primary-600 to-primary-700 text-primary-foreground";
+      return "bg-gradient-to-r from-primary-hover to-primary-pressed text-primary-foreground";
     default:
       return "bg-primary text-primary-foreground";
   }
