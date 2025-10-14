@@ -8,17 +8,18 @@ import purgecss from "astro-purgecss";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://mega-template.dev",
+  site: "https://jasmine-tours.nl",
   integrations: [
     tailwind({ applyBaseStyles: false }),
     react(),
     sitemap({
       // Generate sitemap for all locales
       i18n: {
-        defaultLocale: "en",
+        defaultLocale: "ru",
         locales: {
+          ru: "ru",
           en: "en",
-          nl: "nl",
+          nl: "nl",  // Add Dutch locale
         },
       },
       // Custom filter to exclude certain pages
@@ -36,11 +37,12 @@ export default defineConfig({
           item.priority = 0.8;
         } else if (
           item.url.endsWith("/") ||
-          item.url.includes("/en") ||
-          item.url.includes("/nl")
+          item.url.includes("/ru") ||
+          item.url.includes("/nl") ||
+          item.url.includes("/en")
         ) {
           // Main pages get higher priority
-          item.priority = item.url === "https://mega-template.dev/" ? 1.0 : 0.9;
+          item.priority = item.url === "https://jasmine-tours.nl/" ? 1.0 : 0.9;
         } else {
           item.priority = 0.7;
         }
@@ -54,7 +56,25 @@ export default defineConfig({
         {
           userAgent: "*",
           allow: "/",
-          disallow: ["/api/", "/*.json$", "/src/", "/.env", "/node_modules/"],
+          disallow: [
+            "/admin/",
+            "/api/",
+            "/*.json$",
+            "/src/",
+            "/.env",
+            "/node_modules/",
+          ],
+          crawlDelay: 10,
+        },
+        {
+          userAgent: "Googlebot",
+          allow: "/",
+          disallow: ["/admin/"],
+        },
+        {
+          userAgent: "bingbot",
+          allow: "/",
+          disallow: ["/admin/"],
         },
       ],
       sitemap: true, // Automatically includes sitemap reference

@@ -59,7 +59,7 @@ const defaultCopyright =
   copyrightText ||
   t(
     "footer.copyright",
-    `© ${currentYear} ${logoText || t("footer.company_name", "Your Company")}. ${t("footer.rights_reserved", "All rights reserved")}.`
+    `© ${currentYear} ${logoText || t("footer.company_name", "Your Company")}. ${t("footer.rights_reserved", "All rights reserved")}.`,
   );
 ---
 
@@ -90,6 +90,35 @@ const defaultCopyright =
           </slot>
         </div>
 
+        <!-- Contact Information with Schema.org markup -->
+        <address
+          class="mt-6 text-sm text-muted-foreground not-italic"
+          itemscope
+          itemtype="https://schema.org/LocalBusiness"
+        >
+          <meta itemprop="name" content="Jasmine Tours" />
+          <div class="space-y-2">
+            <div
+              itemprop="address"
+              itemscope
+              itemtype="https://schema.org/PostalAddress"
+            >
+              <span itemprop="addressLocality">Amsterdam</span>,
+              <span itemprop="addressCountry">Netherlands</span>
+            </div>
+            <div>
+              <a
+                href="tel:+31642221525"
+                itemprop="telephone"
+                class="hover:text-foreground transition-colors inline-flex items-center gap-2"
+              >
+                <span aria-hidden="true">📞</span>
+                +31 6 42221525
+              </a>
+            </div>
+          </div>
+        </address>
+
         <!-- Social Links -->
         {
           socialLinks.length > 0 && (
@@ -101,7 +130,7 @@ const defaultCopyright =
                 {socialLinks.map((social) => (
                   <a
                     href={social.href}
-                    class="inline-flex items-center justify-center w-9 h-9 rounded-md text-muted-foreground hover:text-foreground hover:bg-surface-1 transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                    class="inline-flex items-center justify-center w-9 h-9 rounded-md text-muted-foreground hover:text-foreground hover:bg-surface-subtle transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
                     aria-label={
                       social.ariaLabel ||
                       t("footer.follow_on", `Follow us on ${social.name}`, {
@@ -175,7 +204,7 @@ const defaultCopyright =
                   {
                     t(
                       "footer.partners.ondernemersclub.name",
-                      "Ondernemersclub NL"
+                      "Ondernemersclub NL",
                     )
                   }
                 </p>
@@ -248,23 +277,23 @@ const defaultCopyright =
         backToTopButton!.classList.remove(
           "opacity-0",
           "invisible",
-          "translate-y-4"
+          "translate-y-4",
         );
         backToTopButton!.classList.add(
           "opacity-100",
           "visible",
-          "translate-y-0"
+          "translate-y-0",
         );
       } else {
         backToTopButton!.classList.add(
           "opacity-0",
           "invisible",
-          "translate-y-4"
+          "translate-y-4",
         );
         backToTopButton!.classList.remove(
           "opacity-100",
           "visible",
-          "translate-y-0"
+          "translate-y-0",
         );
       }
     }
@@ -297,7 +326,7 @@ const defaultCopyright =
   // Newsletter form enhancement
   function initNewsletter() {
     const newsletterForm = document.querySelector(
-      'form[action="#"]'
+      'form[action="#"]',
     ) as HTMLFormElement;
     if (!newsletterForm) return;
 
@@ -305,10 +334,10 @@ const defaultCopyright =
       e.preventDefault();
 
       const emailInput = newsletterForm.querySelector(
-        'input[type="email"]'
+        'input[type="email"]',
       ) as HTMLInputElement;
       const submitButton = newsletterForm.querySelector(
-        'button[type="submit"]'
+        'button[type="submit"]',
       ) as HTMLButtonElement;
 
       if (!emailInput || !submitButton) return;
@@ -340,7 +369,7 @@ const defaultCopyright =
       setTimeout(() => {
         // Show success message using Alert component
         const alertContainer = (document.querySelector(
-          "#newsletter-alert-container"
+          "#newsletter-alert-container",
         ) || newsletterForm.parentElement) as HTMLElement;
 
         // Check if AlertUtils is available (from Alert.astro component)
@@ -352,7 +381,7 @@ const defaultCopyright =
               message: string;
               dismissible?: boolean;
               duration?: number;
-            }
+            },
           ) => HTMLElement | null;
         }
         const alertUtils = (

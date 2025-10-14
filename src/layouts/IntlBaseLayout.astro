@@ -12,6 +12,7 @@ import { SEO, type SEOProps } from "astro-seo";
 // Layout components
 import Header from "@/components/layout/Header.astro";
 import Footer from "@/components/layout/Footer.astro";
+import ThemeProvider from "@/components/ThemeProvider.astro";
 
 // Props:
 // - locale: current locale (can be string from URL params, will be validated)
@@ -49,6 +50,9 @@ const url = new URL(Astro.url, site).href;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Dynamic Theme Color from CMS -->
+    <ThemeProvider />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/assets/favicon-j.svg" />
@@ -91,6 +95,57 @@ const url = new URL(Astro.url, site).href;
         creator: SiteData.default.twitter.creator,
       }}
     />
+
+    <!-- Schema.org Structured Data - LocalBusiness -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TouristInformationCenter",
+        "name": "Jasmine Tours",
+        "description": "Premium tours and experiences in Amsterdam. Private tours, canal cruises, and authentic Dutch experiences with expert local guides.",
+        "url": "https://jasmine-tours.nl",
+        "logo": "https://jasmine-tours.nl/assets/favicon-j.svg",
+        "image": "https://jasmine-tours.nl/images/og-image.jpg",
+        "telephone": "+31642221525",
+        "priceRange": "€€-€€€",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Amsterdam",
+          "addressCountry": "NL"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "52.3676",
+          "longitude": "4.9041"
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "09:00",
+          "closes": "21:00"
+        },
+        "sameAs": [
+          "https://www.instagram.com/jasmine.tours.amsterdam",
+          "https://www.facebook.com/jasmintoursevents/",
+          "https://wa.me/31642221525"
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "127",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      }
+    </script>
   </head>
 
   <body>
@@ -129,17 +184,40 @@ const url = new URL(Astro.url, site).href;
       logoHref={`/${activeLocale}`}
       copyrightText={t(
         "footer.copyright",
-        "© 2025 Jasmine Tours & Events. Все права защищены."
+        "© 2025 Jasmine Tours & Events. Все права защищены.",
       )}
       showNewsletter={true}
       newsletterTitle={t("footer.newsletter.title", "Будьте в курсе")}
       newsletterDescription={t(
         "footer.newsletter.description",
-        "Получайте последние новости и обновления на вашу электронную почту."
+        "Получайте последние новости и обновления на вашу электронную почту.",
       )}
     />
 
     <Toaster client:load />
+
+    <!-- Click-to-Call Button (Mobile Only) -->
+    <a
+      href="tel:+31642221525"
+      class="fixed bottom-6 right-6 z-40 md:hidden bg-primary text-primary-foreground rounded-full p-4 shadow-lg hover:bg-primary/90 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+      aria-label="Call Jasmine Tours"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        aria-hidden="true"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+        ></path>
+      </svg>
+    </a>
 
     <!-- Simple Scroll Animations (fallback for older browsers) -->
     <script src="/src/utils/scroll-animations.ts"></script>

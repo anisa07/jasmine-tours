@@ -30,29 +30,6 @@ const { t } = await getPageTranslations(locale as Locale, [
   "ui",
   "home",
 ]);
-
-const ctaActions = [
-  {
-    label: "Забронировать через WhatsApp",
-    href: "https://wa.me/c/31642221525",
-    variant: "primary" as const,
-    size: "lg" as const,
-    icon: MessageCircle,
-  },
-  {
-    label: "Подписаться в Instagram",
-    href: "https://www.instagram.com/jasmine.tours.amsterdam",
-    variant: "outline" as const,
-    size: "lg" as const,
-    icon: Instagram,
-  },
-    {label: t("actions.facebook", "Следить в Facebook"),
-    href: "https://www.facebook.com/jasmintoursevents/",
-    variant: "outline" as const,
-    size: "lg" as const,
-    icon: Facebook,
-  },
-];
 ---
 
 <IntlBaseLayout
@@ -62,13 +39,13 @@ const ctaActions = [
     title: aboutMeData?.title
       ? `${aboutMeData.title} | Jasmine Tours`
       : t(
-          "seo.title",
+          "seo.about_title",
           "Зара — ваш личный гид по Нидерландам | Индивидуальные экскурсии и путешествия по Амстердаму и всей стране"
         ),
     description:
       aboutMeData?.subtitle ||
       t(
-        "seo.description",
+        "seo.about_description",
         "Познакомьтесь с Зарой — вашим личным гидом, который покажет настоящие Нидерланды. Путешествуйте осознанно, открывайте культуру, людей и атмосферу страны"
       ),
   }}
@@ -133,23 +110,41 @@ const ctaActions = [
           
           <!-- CTA Buttons -->
           <div class="flex flex-col gap-4 pt-8">
-            {
-              ctaActions.map((action) => (
-                <a
-                  href={action.href}
-                  class={`inline-flex items-center justify-center gap-3 px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
-                    action.variant === "primary"
-                      ? "bg-primary text-primary-foreground hover:opacity-90 shadow-md hover:shadow-lg"
-                      : "border border-border bg-background hover:bg-muted text-foreground"
-                  }`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <action.icon class="w-5 h-5" />
-                  {action.label}
-                </a>
-              ))
-            }
+            <!-- WhatsApp Button - Primary -->
+            <a
+              id="about-whatsapp"
+              href="https://wa.me/c/31642221525"
+              class="btn-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MessageCircle class="w-5 h-5" />
+              {t("actions.whatsapp", "Забронировать через WhatsApp")}
+            </a>
+
+            <!-- Instagram Button - Outline -->
+            <a
+              id="about-instagram"
+              href="https://www.instagram.com/jasmine.tours.amsterdam"
+              class="btn-outline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Instagram class="w-5 h-5" />
+              {t("actions.instagram", "Подписаться в Instagram")}
+            </a>
+
+            <!-- Facebook Button - Outline -->
+            <a
+              id="about-facebook"
+              href="https://www.facebook.com/jasmintoursevents/"
+              class="btn-outline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Facebook class="w-5 h-5" />
+              {t("actions.facebook", "Следить в Facebook")}
+            </a>
           </div>
         </div>
       </div>
@@ -161,9 +156,9 @@ const ctaActions = [
     <section class="py-20">
       <Container size="lg">
         <div class="text-center mb-16">
-          <h2 class="text-3xl lg:text-4xl font-bold mb-4">Мои услуги</h2>
+          <h2 class="text-3xl lg:text-4xl font-bold mb-4">{t("about.services_title", "Мои услуги")}</h2>
           <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Откройте услуги, которые сделают ваше путешествие незабываемым
+            {t("about.services_description", "Откройте услуги, которые сделают ваше путешествие незабываемым")}
           </p>
         </div>
 

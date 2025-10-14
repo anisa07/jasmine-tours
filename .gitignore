@@ -34,3 +34,9 @@ docs
 # Local Netlify folder
 .netlify
 .env
+
+# Lighthouse CI
+.lighthouseci
+lighthouse-report.html
+lighthouse-report.json
+lhci-reports

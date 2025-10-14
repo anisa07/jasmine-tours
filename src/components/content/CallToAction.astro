@@ -15,6 +15,7 @@ export interface Props {
   variant?: "default" | "centered" | "split" | "minimal" | "banner";
   backgroundColor?: "primary" | "secondary" | "surface" | "gradient";
   backgroundImage?: string;
+  backgroundAlt?: string;
   overlayOpacity?: number;
   size?: "sm" | "md" | "lg";
   class?: string;
@@ -28,6 +29,7 @@ const {
   variant = "default",
   backgroundColor = "primary",
   backgroundImage,
+  backgroundAlt,
   overlayOpacity = 0.8,
   size = "md",
   class: className = "",
@@ -38,9 +40,9 @@ const getBackgroundClasses = (bgType: string) => {
     case "secondary":
       return "bg-secondary text-secondary-foreground";
     case "surface":
-      return "bg-surface-2 text-foreground";
+      return "bg-surface-light text-foreground";
     case "gradient":
-      return "bg-gradient-to-r from-primary to-secondary text-primary-foreground";
+      return "bg-gradient-to-r from-primary-hover to-primary-pressed text-primary-foreground";
     default:
       return "bg-primary text-primary-foreground";
   }
@@ -59,7 +61,7 @@ const getSizeClasses = (size: string) => {
 
 const getActionButtonClasses = (
   actionVariant: string = "primary",
-  isOnPrimary: boolean = false
+  isOnPrimary: boolean = false,
 ) => {
   const baseClasses =
     "inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2";
@@ -69,7 +71,7 @@ const getActionButtonClasses = (
       case "secondary":
         return `${baseClasses} bg-secondary text-secondary-foreground hover:bg-secondary/90 focus:ring-secondary`;
       case "outline":
-        return `${baseClasses} border-2 border-primary-foreground text-primary-foreground bg-transparent hover:bg-primary-foreground hover:text-primary focus:ring-primary-foreground`;
+        return `${baseClasses} border-2 border-primary-foreground text-primary-foreground bg-transparent hover:bg-primary-foreground/90 hover:text-primary focus:ring-primary-foreground`;
       default:
         return `${baseClasses} bg-background text-foreground hover:bg-background/90 focus:ring-background`;
     }
@@ -78,9 +80,9 @@ const getActionButtonClasses = (
       case "secondary":
         return `${baseClasses} bg-secondary text-secondary-foreground hover:bg-secondary/90 focus:ring-secondary`;
       case "outline":
-        return `${baseClasses} border-2 border-primary text-primary bg-transparent hover:bg-primary hover:text-primary-foreground focus:ring-primary`;
+        return `${baseClasses} border-2 border-primary text-primary bg-transparent hover:bg-primary/90 hover:text-primary-foreground focus:ring-primary`;
       default:
-        return `${baseClasses} bg-primary text-primary-foreground hover:bg-primary/90 focus:ring-primary`;
+        return `${baseClasses} bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-105 hover:shadow-xl focus:ring-primary`;
     }
   }
 };
@@ -108,7 +110,10 @@ const isOnPrimaryBg =
       <div class="absolute inset-0 z-0">
         <img
           src={backgroundImage}
-          alt=""
+          alt={
+            backgroundAlt ||
+            "Amsterdam tours and experiences - Book your perfect tour"
+          }
           class="w-full h-full object-cover"
           loading="lazy"
         />
@@ -128,10 +133,8 @@ const isOnPrimaryBg =
           <div class="space-y-6">
             {subtitle && (
               <div
-                class={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
-                  isOnPrimaryBg
-                    ? "bg-background/10 text-primary-foreground"
-                    : "bg-primary/10 text-primary"
+                class={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium text-primary ${
+                  isOnPrimaryBg ? "bg-white/90" : "bg-primary/10"
                 }`}
               >
                 {subtitle}
@@ -154,7 +157,7 @@ const isOnPrimaryBg =
               <p
                 class={`leading-relaxed ${
                   isOnPrimaryBg
-                    ? "text-primary-foreground/90"
+                    ? "text-primary-foreground"
                     : "text-muted-foreground"
                 } ${
                   size === "lg" ? "text-lg md:text-xl" : "text-base md:text-lg"
@@ -199,13 +202,9 @@ const isOnPrimaryBg =
         >
           {subtitle && (
             <div
-              class={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
+              class={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium text-primary ${
                 variant === "centered" ? "mx-auto" : ""
-              } ${
-                isOnPrimaryBg
-                  ? "bg-background/10 text-primary-foreground"
-                  : "bg-primary/10 text-primary"
-              }`}
+              } ${isOnPrimaryBg ? "bg-white/90" : "bg-primary/10"}`}
             >
               {subtitle}
             </div>
@@ -229,7 +228,7 @@ const isOnPrimaryBg =
             <p
               class={`leading-relaxed max-w-3xl ${
                 variant === "centered" ? "mx-auto" : ""
-              } ${isOnPrimaryBg ? "text-primary-foreground/90" : "text-muted-foreground"} ${
+              } ${isOnPrimaryBg ? "text-primary-foreground" : "text-muted-foreground"} ${
                 variant === "banner" || size === "sm"
                   ? "text-base"
                   : size === "lg"
@@ -256,7 +255,7 @@ const isOnPrimaryBg =
                   href={action.href}
                   class={getActionButtonClasses(
                     action.variant,
-                    !!isOnPrimaryBg
+                    !!isOnPrimaryBg,
                   )}
                   target={action.external ? "_blank" : undefined}
                   rel={action.external ? "noopener noreferrer" : undefined}
@@ -318,28 +317,30 @@ const isOnPrimaryBg =
     }
   }
 
-  /* Focus styles for CTA buttons */
+  /* Focus styles for CTA buttons - using HSL color system */
   .focus\:ring-primary:focus {
-    --tw-ring-color: rgb(var(--color-primary) / var(--tw-ring-opacity));
+    --tw-ring-opacity: 1;
+    --tw-ring-color: hsl(var(--primary) / var(--tw-ring-opacity));
   }
 
   .focus\:ring-secondary:focus {
-    --tw-ring-color: rgb(var(--color-secondary) / var(--tw-ring-opacity));
+    --tw-ring-opacity: 1;
+    --tw-ring-color: hsl(var(--secondary) / var(--tw-ring-opacity));
   }
 
   .focus\:ring-background:focus {
-    --tw-ring-color: rgb(var(--color-background) / var(--tw-ring-opacity));
+    --tw-ring-opacity: 1;
+    --tw-ring-color: hsl(var(--background) / var(--tw-ring-opacity));
   }
 
   .focus\:ring-primary-foreground:focus {
-    --tw-ring-color: rgb(
-      var(--color-primary-foreground) / var(--tw-ring-opacity)
-    );
+    --tw-ring-opacity: 1;
+    --tw-ring-color: hsl(var(--primary-foreground) / var(--tw-ring-opacity));
   }
 
   /* Ensure good contrast for buttons on dark backgrounds */
   .text-white {
-    color: rgb(var(--color-primary-foreground));
+    color: hsl(var(--primary-foreground));
   }
 
   /* Smooth transitions */

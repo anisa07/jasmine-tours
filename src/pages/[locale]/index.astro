@@ -52,12 +52,12 @@ const galleryImages = galleryData.map((image) => ({
   pageNS={["common", "ui", "home"]}
   seo={{
     title: t(
-      "seo.title",
-      "Jasmine Tours & Events - Откройте удивительные направления для путешествий | Забронируйте своё приключение"
+      "seo.home_title",
+      "Jasmine Tours & Events - Откройте удивительные направления для путешествий | Забронируйте своё приключение",
     ),
     description: t(
-      "seo.description",
-      "Откройте захватывающие туры вместе с Jasmine Tours & Events. Забронируйте свою идеальную экскурсию через WhatsApp или подпишитесь на нас в Instagram, чтобы вдохновляться идеями для новых приключений."
+      "seo.home_description",
+      "Откройте захватывающие туры вместе с Jasmine Tours & Events. Забронируйте свою идеальную экскурсию через WhatsApp или подпишитесь на нас в Instagram, чтобы вдохновляться идеями для новых приключений.",
     ),
   }}
 >
@@ -87,11 +87,15 @@ const galleryImages = galleryData.map((image) => ({
     <Container size="xl" padding="lg">
       <div class="text-center mb-16 animate-fade-up">
         <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-6">
-          Мгновения из наших туров
+          {t("gallery.section_title", "Мгновения из наших туров")}
         </h2>
         <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Лучшие кадры, наполненные атмосферой Амстердама и путешествий по
-          Нидерландам
+          {
+            t(
+              "gallery.section_description",
+              "Лучшие кадры, наполненные атмосферой Амстердама и путешествий по Нидерландам",
+            )
+          }
         </p>
       </div>
 

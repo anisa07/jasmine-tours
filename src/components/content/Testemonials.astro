@@ -2,7 +2,7 @@
 import Container from "@/components/layout/Container.astro";
 import { Image } from "astro:assets";
 import { ChevronLeft, ChevronRight } from "@lucide/astro";
-import type { ImageType } from "@/types";
+import type { ImageMetadata } from "astro";
 
 // Type definitions
 type Testimonial = {
@@ -10,7 +10,7 @@ type Testimonial = {
   tour: string;
   author: {
     name: string;
-    avatar: ImageType;
+    avatar: ImageMetadata;
   };
   rating: number;
 };
@@ -25,7 +25,39 @@ interface Props {
 }
 
 const { t, testimonials } = Astro.props;
+
+// Generate Schema.org Review markup
+const reviewsSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": testimonials.map((testimonial, index) => ({
+    "@type": "Review",
+    "position": index + 1,
+    "author": {
+      "@type": "Person",
+      "name": testimonial.author.name
+    },
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": testimonial.rating,
+      "bestRating": 5,
+      "worstRating": 1
+    },
+    "reviewBody": testimonial.quote,
+    "itemReviewed": {
+      "@type": "TouristAttraction",
+      "name": testimonial.tour,
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Jasmine Tours"
+      }
+    }
+  }))
+};
 ---
+
+<!-- Schema.org Review Markup -->
+<script type="application/ld+json" set:html={JSON.stringify(reviewsSchema)} />
 
 <!-- Testimonials Section -->
 <section class="py-20 bg-muted/30">
@@ -108,14 +140,16 @@ const { t, testimonials } = Astro.props;
       <button
         class="carousel-prev absolute left-4 top-1/2 transform -translate-y-1/2 bg-background/90 hover:bg-background rounded-full p-3 shadow-lg transition-all duration-200 z-10 border"
         data-carousel="testimonials"
+        aria-label="Previous testimonial"
       >
-        <ChevronLeft size={24} class="text-foreground" />
+        <ChevronLeft size={24} class="text-foreground" aria-hidden="true" />
       </button>
       <button
         class="carousel-next absolute right-4 top-1/2 transform -translate-y-1/2 bg-background/90 hover:bg-background rounded-full p-3 shadow-lg transition-all duration-200 z-10 border"
         data-carousel="testimonials"
+        aria-label="Next testimonial"
       >
-        <ChevronRight size={24} class="text-foreground" />
+        <ChevronRight size={24} class="text-foreground" aria-hidden="true" />
       </button>
 
       <!-- Dots Indicator -->
@@ -128,6 +162,7 @@ const { t, testimonials } = Astro.props;
               }`}
               data-carousel="testimonials"
               data-slide={index}
+              aria-label={`Go to testimonial ${index + 1}`}
             ></button>
           ))
         }

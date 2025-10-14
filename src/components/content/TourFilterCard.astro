@@ -1,12 +1,12 @@
 ---
-import type { ImageType } from "@/types";
+import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 
 interface Props {
   title: string;
   price: string;
   duration?: string;
-  image?: ImageType;
+  image?: ImageMetadata;
   alt?: string;
   className?: string;
   tourSlug?: string;
@@ -31,7 +31,7 @@ const {
   class={`relative overflow-hidden rounded-lg group cursor-pointer transition-transform duration-300 hover:scale-105 ${className}`}
 >
   <!-- Background Image -->
-  <div class="relative h-80 w-full">
+  <div class="relative h-80 w-full bg-muted">
     {
       image && (
         <Image
@@ -39,7 +39,7 @@ const {
           alt={alt || title}
           width={400}
           height={320}
-          class="w-full h-full object-cover"
+          class="w-full h-full object-contain"
           loading="lazy"
         />
       )

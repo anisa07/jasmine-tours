@@ -7,107 +7,94 @@ export default {
       // Custom breakpoints - only truly unique ones
       screens: {
         xs: "475px", // Extra small devices (Tailwind doesn't have xs by default)
-        "3xl": "1920px", // Ultra-wide monitors
-        // Height-based breakpoints
-        "h-sm": { raw: "(min-height: 600px)" },
-        "h-md": { raw: "(min-height: 768px)" },
-        "h-lg": { raw: "(min-height: 1024px)" },
-        // Preference-based breakpoints
-        "motion-safe": { raw: "(prefers-reduced-motion: no-preference)" },
-        "motion-reduce": { raw: "(prefers-reduced-motion: reduce)" },
-        "high-contrast": { raw: "(prefers-contrast: high)" },
       },
       colors: {
+        // ===== PRIMARY BRAND COLOR (Auto-generated from HSL scale) =====
         primary: {
-          DEFAULT: "rgb(var(--color-primary) / <alpha-value>)",
-          foreground: "rgb(var(--color-primary-foreground) / <alpha-value>)",
+          subtle: "hsl(var(--primary-subtle) / <alpha-value>)",
+          light: "hsl(var(--primary-light) / <alpha-value>)",
+          accent: "hsl(var(--primary-accent) / <alpha-value>)",
+          DEFAULT: "hsl(var(--primary) / <alpha-value>)",
+          hover: "hsl(var(--primary-hover) / <alpha-value>)",
+          pressed: "hsl(var(--primary-pressed) / <alpha-value>)",
+          foreground: "hsl(var(--primary-foreground) / <alpha-value>)",
         },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+        // ===== NEUTRAL GRAYSCALE =====
+        surface: {
+          subtle: "hsl(var(--surface-subtle) / <alpha-value>)",
+          light: "hsl(var(--surface-light) / <alpha-value>)",
         },
-        accent: {
-          DEFAULT: "rgb(var(--color-accent) / <alpha-value>)",
-          foreground: "hsl(var(--accent-foreground))",
+        border: {
+          light: "hsl(var(--border-light) / <alpha-value>)",
+          DEFAULT: "hsl(var(--border) / <alpha-value>)",
         },
-        "accent-hover": "rgb(var(--color-accent-hover))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+        text: {
+          disabled: "hsl(var(--text-disabled) / <alpha-value>)",
+          secondary: "hsl(var(--text-secondary) / <alpha-value>)",
+          body: "hsl(var(--text-body) / <alpha-value>)",
         },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        // Semantic colors
+        // ===== SEMANTIC COLORS (Auto-derived from primary) =====
         success: {
-          DEFAULT: "rgb(var(--color-success) / <alpha-value>)",
-          foreground: "rgb(var(--color-success-foreground) / <alpha-value>)",
+          DEFAULT: "hsl(var(--success) / <alpha-value>)",
+          foreground: "hsl(var(--success-foreground) / <alpha-value>)",
         },
         warning: {
-          DEFAULT: "rgb(var(--color-warning) / <alpha-value>)",
-          foreground: "rgb(var(--color-warning-foreground) / <alpha-value>)",
+          DEFAULT: "hsl(var(--warning) / <alpha-value>)",
+          foreground: "hsl(var(--warning-foreground) / <alpha-value>)",
         },
         error: {
-          DEFAULT: "rgb(var(--color-error) / <alpha-value>)",
-          foreground: "rgb(var(--color-error-foreground) / <alpha-value>)",
+          DEFAULT: "hsl(var(--error) / <alpha-value>)",
+          foreground: "hsl(var(--error-foreground) / <alpha-value>)",
         },
         info: {
-          DEFAULT: "rgb(var(--color-info) / <alpha-value>)",
-          foreground: "rgb(var(--color-info-foreground) / <alpha-value>)",
+          DEFAULT: "hsl(var(--info) / <alpha-value>)",
+          foreground: "hsl(var(--info-foreground) / <alpha-value>)",
         },
-        // Surface color variations for visual depth
-        surface: {
-          1: "rgb(var(--color-surface-1) / <alpha-value>)",
-          2: "rgb(var(--color-surface-2) / <alpha-value>)",
-          3: "rgb(var(--color-surface-3) / <alpha-value>)",
+        // ===== BASE COLORS =====
+        background: "hsl(var(--background) / <alpha-value>)",
+        foreground: "hsl(var(--foreground) / <alpha-value>)",
+        muted: {
+          DEFAULT: "hsl(var(--muted) / <alpha-value>)",
+          foreground: "hsl(var(--muted-foreground) / <alpha-value>)",
         },
-        // Interactive state colors for user feedback
-        hover: "rgb(var(--color-hover))",
-        pressed: "rgb(var(--color-pressed))",
-        focus: "rgb(var(--color-focus))",
+        // ===== UI ELEMENTS =====
+        card: {
+          DEFAULT: "hsl(var(--card) / <alpha-value>)",
+          foreground: "hsl(var(--card-foreground) / <alpha-value>)",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover) / <alpha-value>)",
+          foreground: "hsl(var(--popover-foreground) / <alpha-value>)",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary) / <alpha-value>)",
+          foreground: "hsl(var(--secondary-foreground) / <alpha-value>)",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent) / <alpha-value>)",
+          foreground: "hsl(var(--accent-foreground) / <alpha-value>)",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive) / <alpha-value>)",
+          foreground: "hsl(var(--destructive-foreground) / <alpha-value>)",
+        },
+        border: "hsl(var(--border) / <alpha-value>)",
+        input: "hsl(var(--input) / <alpha-value>)",
+        ring: "hsl(var(--ring) / <alpha-value>)",
+        link: "hsl(var(--link) / <alpha-value>)",
         disabled: {
-          DEFAULT: "rgb(var(--color-disabled) / <alpha-value>)",
-          foreground: "rgb(var(--color-disabled-foreground) / <alpha-value>)",
+          DEFAULT: "hsl(var(--disabled) / <alpha-value>)",
+          foreground: "hsl(var(--disabled-foreground) / <alpha-value>)",
         },
-        // 60-30-10 Color Rule Schemes
-        "scheme-professional": {
-          60: "rgb(var(--scheme-professional-60) / <alpha-value>)",
-          30: "rgb(var(--scheme-professional-30) / <alpha-value>)",
-          10: "rgb(var(--scheme-professional-10) / <alpha-value>)",
-        },
-        "scheme-modern": {
-          60: "rgb(var(--scheme-modern-60) / <alpha-value>)",
-          30: "rgb(var(--scheme-modern-30) / <alpha-value>)",
-          10: "rgb(var(--scheme-modern-10) / <alpha-value>)",
-        },
-        "scheme-elegant": {
-          60: "rgb(var(--scheme-elegant-60) / <alpha-value>)",
-          30: "rgb(var(--scheme-elegant-30) / <alpha-value>)",
-          10: "rgb(var(--scheme-elegant-10) / <alpha-value>)",
-        },
-        "scheme-corporate": {
-          60: "rgb(var(--scheme-corporate-60) / <alpha-value>)",
-          30: "rgb(var(--scheme-corporate-30) / <alpha-value>)",
-          10: "rgb(var(--scheme-corporate-10) / <alpha-value>)",
-        },
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        link: "hsl(var(--link))",
-        "link-hover": "hsl(var(--link-hover))",
-        "badge-bg": "hsl(var(--badge-bg))",
-        "badge-text": "hsl(var(--badge-text))",
+      },
+      ringColor: {
+        DEFAULT: "hsl(var(--ring) / <alpha-value>)",
+        primary: "hsl(var(--primary) / <alpha-value>)",
+        secondary: "hsl(var(--secondary) / <alpha-value>)",
+        background: "hsl(var(--background) / <alpha-value>)",
+      },
+      ringOffsetColor: {
+        DEFAULT: "hsl(var(--background) / <alpha-value>)",
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
@@ -117,20 +104,11 @@ export default {
       spacing: {
         // Custom spacing extensions
         18: "4.5rem",
-        88: "22rem",
-        128: "32rem",
       },
       borderRadius: {
-        xl2: "1rem",
-        xl3: "1.5rem",
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
-      },
-      boxShadow: {
-        soft: "0 2px 15px 0 rgba(0, 0, 0, 0.08)",
-        medium: "0 4px 25px 0 rgba(0, 0, 0, 0.12)",
-        hard: "0 8px 30px 0 rgba(0, 0, 0, 0.16)",
       },
       keyframes: {
         "fade-in": {

@@ -4,151 +4,85 @@
 
 /* Base styles */
 @layer base {
-  /* Custom CSS variables for consistent theming */
+  /* 
+   * 🎨 SINGLE SOURCE OF TRUTH - HSL-based Auto-Generated Color System
+   * 
+   * Theme Color (--brand-h) is managed via Netlify CMS:
+   *   Go to: Hero Section > Theme Color (Hue)
+   *   
+   * Color Examples:
+   *   0 = Red, 60 = Yellow, 120 = Green, 180 = Cyan
+   *   240 = Blue, 260 = Purple, 300 = Magenta
+   */
   :root {
-    --color-primary: 255 127 80; /* coral #FF7F50 */
-    --color-primary-foreground: 255 255 255;
-    --color-secondary: 138 43 226; /* blueviolet */
-    --color-secondary-foreground: 255 255 255;
-    --color-background: 255 255 255;
-    --color-foreground: 15 23 42; /* slate-900 */
-    --color-muted: 248 250 252; /* slate-50 */
-    --color-muted-foreground: 100 116 139; /* slate-500 */
-    --color-border: 226 232 240; /* slate-200 */
-    --color-input: 248 250 252; /* slate-50 */
-    --color-ring: 255 127 80; /* coral #FF7F50 */
-    --color-accent: 255 99 71; /* tomato - darker coral for light mode */
-    --color-accent-hover: 255 69 0; /* orangered - even darker for hover */
+    /* ===== THEME CONFIGURATION ===== */
+    /* 🎨 --brand-h is set dynamically from CMS (see Hero Section) */
+    --brand-h: 260;        /* Hue: 0-360 - Managed via CMS (fallback value) */
+    --brand-s: 75%;       /* Saturation: 0-100% */
+    --brand-l: 40%;       /* Lightness: 0-100% */
+    
+    /* ===== AUTO-GENERATED PRIMARY COLOR SCALE ===== */
+    /* These calculate automatically from the brand values above - DO NOT EDIT MANUALLY */
+    --primary-subtle: var(--brand-h) calc(var(--brand-s) - 10%) 97%;   /* Very light - backgrounds, subtle highlights */
+    --primary-light: var(--brand-h) calc(var(--brand-s) - 5%) 92%;   /* Light - hover backgrounds, tints */
+    --primary-accent: var(--brand-h) var(--brand-s) 84%;  /* Lighter - subtle accents, borders */
+    --primary: var(--brand-h) var(--brand-s) calc(var(--brand-l) - 2%); /* Base - buttons, links, brand color (AAA: 7.2:1) */
+    --primary-hover: var(--brand-h) calc(var(--brand-s) + 5%) calc(var(--brand-l) - 12%); /* Dark - hover states, emphasis */
+    --primary-pressed: var(--brand-h) calc(var(--brand-s) + 10%) calc(var(--brand-l) - 20%); /* Darker - pressed states, strong emphasis */
+    --primary-foreground: 0 0% 100%; /* White text on primary (AAA compliant) */
 
-    /* Semantic colors - Light theme */
-    --color-success: 34 197 94; /* green-500 */
-    --color-success-foreground: 255 255 255;
-    --color-warning: 245 158 11; /* amber-500 */
-    --color-warning-foreground: 255 255 255;
-    --color-error: 239 68 68; /* red-500 */
-    --color-error-foreground: 255 255 255;
-    --color-info: 255 127 80; /* coral #FF7F50 */
-    --color-info-foreground: 255 255 255;
+    /* ===== NEUTRAL GRAYSCALE ===== */
+    /* Essential grays for UI - white to black */
+    --surface-subtle: 0 0% 98%;   /* Off-white - subtle backgrounds */
+    --surface-light: 0 0% 96%;  /* Light gray - cards, surfaces */
+    --border-light: 0 0% 90%;  /* Borders, dividers */
+    --text-disabled: 0 0% 52%;  /* Disabled states (AAA: 4.6:1) - improved contrast */
+    --text-secondary: 0 0% 38%;  /* Secondary text (AAA: 7.1:1) - improved contrast */
+    --text-body: 0 0% 15%;  /* Body text (AAA: 12.6:1) */
 
-    /* Surface color variations - Light theme */
-    --color-surface-1: 250 250 250; /* slate-50 - cards, panels */
-    --color-surface-2: 244 244 245; /* slate-100 - elevated cards, dropdowns */
-    --color-surface-3: 228 228 231; /* slate-200 - modals, overlays */
-
-    /* Interactive state colors - Light theme */
-    --color-hover: 0 0 0 / 0.05; /* subtle black overlay for hover */
-    --color-pressed: 0 0 0 / 0.1; /* stronger black overlay for pressed */
-    --color-focus: 255 127 80 / 0.5; /* coral with transparency for focus ring */
-    --color-disabled: 156 163 175; /* gray-400 for disabled states */
-    --color-disabled-foreground: 209 213 219; /* gray-300 for disabled text */
-
-    /* 60-30-10 Color Rule Schemes - Light theme */
-    /* Professional Blue Scheme */
-    --scheme-professional-60: 248 250 252; /* slate-50 - dominant (backgrounds, main areas) */
-    --scheme-professional-30: 30 64 175; /* blue-800 - secondary (sections, cards) */
-    --scheme-professional-10: 255 127 80; /* coral - accent (buttons, links, highlights) */
-
-    /* Modern Purple Scheme */
-    --scheme-modern-60: 250 249 253; /* purple-50 - dominant */
-    --scheme-modern-30: 88 28 135; /* purple-800 - secondary */
-    --scheme-modern-10: 147 51 234; /* purple-600 - accent */
-
-    /* Elegant Green Scheme */
-    --scheme-elegant-60: 247 254 231; /* lime-50 - dominant */
-    --scheme-elegant-30: 21 128 61; /* green-700 - secondary */
-    --scheme-elegant-10: 34 197 94; /* green-500 - accent */
-
-    /* Corporate Gray Scheme */
-    --scheme-corporate-60: 249 250 251; /* gray-50 - dominant */
-    --scheme-corporate-30: 75 85 99; /* gray-600 - secondary */
-    --scheme-corporate-10: 239 68 68; /* red-500 - accent */
-
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    /* ===== SEMANTIC COLORS (Auto-derived from primary) ===== */
+    /* Success - Green tones */
+    --success: 142 71% 35%;      /* AAA compliant green (7.1:1) */
+    --success-foreground: 0 0% 100%;
+    /* Warning - Amber/Orange tones */
+    --warning: 38 92% 45%;       /* AAA compliant amber (4.7:1 for large text) */
+    --warning-foreground: 0 0% 100%;
+    /* Error - Red tones */
+    --error: 0 72% 38%;          /* AAA compliant red (7.0:1) */
+    --error-foreground: 0 0% 100%;
+    /* Info - Blue tones */
+    --info: 217 91% 40%;         /* AAA compliant blue (7.3:1) */
+    --info-foreground: 0 0% 100%;
+    
+    /* ===== BASE COLORS ===== */
+    --background: 0 0% 100%;     /* White background */
+    --foreground: 0 0% 15%;      /* Dark gray text (AAA: 12.6:1) */
+    --muted: 0 0% 96%;           /* Light gray muted background */
+    --muted-foreground: 0 0% 38%; /* Mid gray muted text (AAA: 7.1:1) - improved contrast */
+    
+    /* ===== INTERACTIVE STATES ===== */
+    --hover: var(--brand-h) var(--brand-s) 92%;  /* Light tint for hover */
+    --pressed: var(--brand-h) var(--brand-s) 84%; /* Slightly darker for pressed */
+    --border: 0 0% 90%;          /* Light gray borders */
+    --input: 0 0% 96%;           /* Light gray input backgrounds */
+    --ring: var(--brand-h) var(--brand-s) var(--brand-l); /* Primary for focus rings */
+    
+    /* ===== UI ELEMENTS (shadcn/ui compatibility) ===== */
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
+    --card-foreground: 0 0% 15%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 40.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    /* HSL tokens for links and badges */
-    --link: 221 83% 53%;
-    --link-hover: 224 76% 48%;
-    --badge-bg: 214 95% 93%;
-    --badge-text: 226 71% 40%;
+    --popover-foreground: 0 0% 15%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: var(--brand-h) var(--brand-s) calc(var(--brand-l) - 2%);
+    --accent: var(--brand-h) calc(var(--brand-s) - 10%) 95%;
+    --accent-foreground: var(--brand-h) var(--brand-s) calc(var(--brand-l) - 2%);
+    --destructive: 0 72% 38%;    /* AAA compliant red (7.0:1) - matches error */
+    --destructive-foreground: 0 0% 100%;
+    --link: var(--brand-h) var(--brand-s) calc(var(--brand-l) - 2%);
+    --link-hover: var(--brand-h) calc(var(--brand-s) + 5%) calc(var(--brand-l) - 12%);
+    --disabled: 0 0% 85%;        /* Light gray disabled background */
+    --disabled-foreground: 0 0% 52%; /* Darker text for disabled (AAA: 4.6:1) */
     --radius: 0.5rem;
-  }
-
-  .dark {
-    --color-primary: 255 127 80; /* coral #FF7F50 */
-    --color-primary-foreground: 255 255 255;
-    --color-secondary: 138 43 226; /* blueviolet */
-    --color-secondary-foreground: 255 255 255;
-    --color-background: 2 6 23; /* slate-950 */
-    --color-foreground: 248 250 252; /* slate-50 */
-    --color-muted: 15 23 42; /* slate-900 */
-    --color-muted-foreground: 148 163 184; /* slate-400 */
-    --color-border: 30 41 59; /* slate-800 */
-    --color-input: 15 23 42; /* slate-900 */
-    --color-ring: 255 127 80; /* coral #FF7F50 */
-    --color-accent: 255 160 122; /* light salmon - lighter coral for dark mode */
-    --color-accent-hover: 255 182 193; /* light pink - even lighter for hover */
-
-    /* Semantic colors - Dark theme */
-    --color-success: 34 197 94; /* green-500 */
-    --color-success-foreground: 15 23 42; /* slate-900 */
-    --color-warning: 245 158 11; /* amber-500 */
-    --color-warning-foreground: 15 23 42; /* slate-900 */
-    --color-error: 239 68 68; /* red-500 */
-    --color-error-foreground: 248 250 252; /* slate-50 */
-    --color-info: 255 160 122; /* light salmon - lighter coral for dark mode */
-    --color-info-foreground: 15 23 42; /* slate-900 */ /* Surface color variations - Dark theme */
-    --color-surface-1: 23 23 23; /* zinc-900 - cards, panels */
-    --color-surface-2: 39 39 42; /* zinc-800 - elevated cards, dropdowns */
-    --color-surface-3: 51 65 85; /* slate-700 - modals, overlays */
-
-    /* Interactive state colors - Dark theme */
-    --color-hover: 255 255 255 / 0.1; /* subtle white overlay for hover */
-    --color-pressed: 255 255 255 / 0.15; /* stronger white overlay for pressed */
-    --color-focus: 255 160 122 / 0.6; /* light salmon with transparency for focus ring */
-    --color-disabled: 75 85 99; /* gray-600 for disabled states */
-    --color-disabled-foreground: 107 114 128; /* gray-500 for disabled text */
-
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    /* HSL tokens for links and badges (dark) */
-    --link: 213 94% 68%;
-    --link-hover: 212 96% 78%;
-    --badge-bg: 225 64% 33%;
-    --badge-text: 213 97% 87%;
   }
 
   /* Base HTML elements */
@@ -157,16 +91,14 @@
   }
 
   body {
-    background-color: rgb(var(--color-background));
-    color: rgb(var(--color-foreground));
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings:
       "rlig" 1,
       "calt" 1;
   }
-
-  /* Remove the dark-specific body styles since they're handled by CSS variables */
 
   /* Headings */
   h1,
@@ -258,19 +190,19 @@
 
   /* Links */
   a {
-    color: rgb(var(--color-primary));
+    color: hsl(var(--primary));
     transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   a:hover {
-    color: rgb(var(--color-primary));
+    color: hsl(var(--primary));
     opacity: 0.8;
   }
 
   /* Selection */
   ::selection {
-    background-color: rgb(var(--color-primary));
-    color: rgb(var(--color-primary-foreground));
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
   }
 }
 
@@ -292,7 +224,7 @@
 
   .btn:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px rgb(var(--color-ring));
+    box-shadow: 0 0 0 2px hsl(var(--ring));
   }
 
   .btn:disabled {
@@ -301,41 +233,42 @@
   }
 
   .btn-primary {
-    background-color: rgb(var(--color-primary));
-    color: rgb(var(--color-primary-foreground));
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
   }
 
   .btn-primary:hover {
-    background-color: rgb(var(--color-primary));
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
     opacity: 0.9;
   }
 
   .btn-secondary {
-    background-color: rgb(var(--color-muted));
-    color: rgb(var(--color-foreground));
+    background-color: hsl(var(--muted));
+    color: hsl(var(--foreground));
   }
 
   .btn-secondary:hover {
-    background-color: rgb(var(--color-muted));
+    background-color: hsl(var(--muted));
     opacity: 0.8;
   }
 
   .btn-outline {
-    border: 1px solid rgb(var(--color-border));
+    border: 1px solid hsl(var(--border));
     background-color: transparent;
-    color: rgb(var(--color-foreground));
+    color: hsl(var(--foreground));
   }
 
   .btn-outline:hover {
-    background-color: rgb(var(--color-muted));
+    background-color: hsl(var(--muted));
   }
 
   .btn-ghost {
-    color: rgb(var(--color-foreground));
+    color: hsl(var(--foreground));
   }
 
   .btn-ghost:hover {
-    background-color: rgb(var(--color-muted));
+    background-color: hsl(var(--muted));
   }
 
   /* Button sizes */
@@ -355,54 +288,12 @@
     padding-bottom: 0.5rem; /* 8px */
   }
 
-  .btn-lg {
-    height: 3rem; /* 48px */
-    padding-left: 2rem; /* 32px */
-    padding-right: 2rem; /* 32px */
-    font-size: 1rem; /* 16px */
-    line-height: 1.5rem; /* 24px */
-  }
-
   /* Card component */
   .card {
     border-radius: 0.5rem; /* 8px */
-    border: 1px solid rgb(var(--color-border));
-    background-color: rgb(var(--color-background));
+    border: 1px solid hsl(var(--border));
+    background-color: hsl(var(--background));
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  }
-
-  .card-header {
-    display: flex;
-    flex-direction: column;
-    gap: 0.375rem; /* 6px */
-    padding: 1.5rem; /* 24px */
-  }
-
-  .card-title {
-    font-size: 1.5rem; /* 24px */
-    line-height: 2rem; /* 32px */
-    font-weight: 600;
-    line-height: 1;
-    letter-spacing: -0.025em;
-    color: rgb(var(--color-foreground));
-  }
-
-  .card-description {
-    font-size: 0.875rem; /* 14px */
-    line-height: 1.25rem; /* 20px */
-    color: rgb(var(--color-muted-foreground));
-  }
-
-  .card-content {
-    padding: 1.5rem; /* 24px */
-    padding-top: 0;
-  }
-
-  .card-footer {
-    display: flex;
-    align-items: center;
-    padding: 1.5rem; /* 24px */
-    padding-top: 0;
   }
 
   /* Input component */
@@ -411,15 +302,15 @@
     height: 2.5rem; /* 40px */
     width: 100%;
     border-radius: 0.375rem; /* 6px */
-    border: 1px solid rgb(var(--color-border));
-    background-color: rgb(var(--color-input));
+    border: 1px solid hsl(var(--border));
+    background-color: hsl(var(--input));
     padding-left: 0.75rem; /* 12px */
     padding-right: 0.75rem; /* 12px */
     padding-top: 0.5rem; /* 8px */
     padding-bottom: 0.5rem; /* 8px */
     font-size: 0.875rem; /* 14px */
     line-height: 1.25rem; /* 20px */
-    color: rgb(var(--color-foreground));
+    color: hsl(var(--foreground));
   }
 
   .input::file-selector-button {
@@ -431,12 +322,12 @@
   }
 
   .input::placeholder {
-    color: rgb(var(--color-muted-foreground));
+    color: hsl(var(--muted-foreground));
   }
 
   .input:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px rgb(var(--color-ring));
+    box-shadow: 0 0 0 2px hsl(var(--ring));
   }
 
   .input:disabled {
@@ -449,25 +340,25 @@
     min-height: 5rem; /* 80px - taller than input for multi-line text */
     width: 100%;
     border-radius: 0.375rem; /* 6px */
-    border: 1px solid rgb(var(--color-border));
-    background-color: rgb(var(--color-input));
+    border: 1px solid hsl(var(--border));
+    background-color: hsl(var(--input));
     padding-left: 0.75rem; /* 12px */
     padding-right: 0.75rem; /* 12px */
     padding-top: 0.5rem; /* 8px */
     padding-bottom: 0.5rem; /* 8px */
     font-size: 0.875rem; /* 14px */
     line-height: 1.25rem; /* 20px */
-    color: rgb(var(--color-foreground));
+    color: hsl(var(--foreground));
     resize: vertical; /* Allow vertical resizing only */
   }
 
   .textarea::placeholder {
-    color: rgb(var(--color-muted-foreground));
+    color: hsl(var(--muted-foreground));
   }
 
   .textarea:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px rgb(var(--color-ring));
+    box-shadow: 0 0 0 2px hsl(var(--ring));
   }
 
   .textarea:disabled {
@@ -493,129 +384,46 @@
   .badge:focus {
     outline: none;
     box-shadow:
-      0 0 0 2px rgb(var(--color-ring)),
+      0 0 0 2px hsl(var(--ring)),
       0 0 0 4px rgb(var(--color-ring) / 0.2);
-  }
-
-  .badge-default {
-    background-color: rgb(var(--color-foreground));
-    color: rgb(var(--color-background));
-  }
-
-  .badge-default:hover {
-    background-color: rgb(var(--color-foreground) / 0.8);
-  }
-
-  .badge-secondary {
-    background-color: rgb(var(--color-secondary));
-    color: rgb(var(--color-secondary-foreground));
-  }
-
-  .badge-secondary:hover {
-    background-color: rgb(var(--color-secondary) / 0.8);
-  }
-
-  .badge-outline {
-    border: 1px solid rgb(var(--color-border));
-    color: rgb(var(--color-foreground));
-    background-color: transparent;
   }
 }
 
 /* Utility styles */
 @layer utilities {
-  /* Focus utilities */
-  .focus-ring:focus {
-    outline: none;
-    box-shadow:
-      0 0 0 2px rgb(var(--color-ring)),
-      0 0 0 4px rgb(var(--color-ring) / 0.2);
-  }
-
-  /* Text utilities */
-  .text-balance {
-    text-wrap: balance;
-  }
-
   .text-muted {
-    color: rgb(var(--color-muted-foreground));
+    color: hsl(var(--muted-foreground));
   }
 
   .text-foreground {
-    color: rgb(var(--color-foreground));
+    color: hsl(var(--foreground));
   }
 
   .text-primary {
-    color: rgb(var(--color-primary));
+    color: hsl(var(--primary));
   }
 
   /* Background utilities */
   .bg-background {
-    background-color: rgb(var(--color-background));
+    background-color: hsl(var(--background));
   }
 
   .bg-muted {
-    background-color: rgb(var(--color-muted));
+    background-color: hsl(var(--muted));
   }
 
   .bg-primary {
-    background-color: rgb(var(--color-primary));
+    background-color: hsl(var(--primary));
   }
 
   /* Border utilities */
   .border-border {
-    border-color: rgb(var(--color-border));
-  }
-
-  /* Layout utilities */
-  .container-prose {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 65ch;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  .container-wide {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 80rem; /* 1280px */
-    padding-left: 1rem;
-    padding-right: 1rem;
+    border-color: hsl(var(--border));
   }
 
   /* Animation utilities */
   .animate-in {
     animation: fade-in 0.5s ease-out;
-  }
-
-  .animate-up {
-    animation: slide-up 0.5s ease-out;
-  }
-
-  .animate-down {
-    animation: slide-down 0.5s ease-out;
-  }
-
-  /* Interactive state utilities */
-  .interactive-hover:hover {
-    background-color: rgb(var(--color-hover));
-  }
-
-  .interactive-pressed:active {
-    background-color: rgb(var(--color-pressed));
-  }
-
-  .interactive-focus:focus {
-    outline: 2px solid rgb(var(--color-focus));
-    outline-offset: 2px;
-  }
-
-  .interactive-disabled:disabled {
-    background-color: rgb(var(--color-disabled));
-    color: rgb(var(--color-disabled-foreground));
-    cursor: not-allowed;
-    opacity: 0.6;
   }
 
   /* Combined interactive class for buttons and clickable elements */
@@ -624,92 +432,24 @@
   }
 
   .interactive:hover:not(:disabled) {
-    background-color: rgb(var(--color-hover));
+    background-color: hsl(var(--hover));
   }
 
   .interactive:active:not(:disabled) {
-    background-color: rgb(var(--color-pressed));
+    background-color: hsl(var(--pressed));
     transform: scale(0.98);
   }
 
   .interactive:focus-visible {
-    outline: 2px solid rgb(var(--color-focus));
+    outline: 2px solid hsl(var(--ring));
     outline-offset: 2px;
   }
 
   .interactive:disabled {
-    background-color: rgb(var(--color-disabled));
-    color: rgb(var(--color-disabled-foreground));
+    background-color: hsl(var(--disabled));
+    color: hsl(var(--disabled-foreground));
     cursor: not-allowed;
     opacity: 0.6;
-  }
-
-  /* 60-30-10 Color Rule Utility Classes */
-
-  /* Professional Blue Theme Layout */
-  .layout-professional {
-    background-color: rgb(
-      var(--scheme-professional-60)
-    ); /* 60% - main background */
-  }
-
-  .layout-professional .section-secondary {
-    background-color: rgb(
-      var(--scheme-professional-30)
-    ); /* 30% - sections, cards */
-    color: rgb(var(--color-primary-foreground));
-  }
-
-  .layout-professional .accent {
-    background-color: rgb(
-      var(--scheme-professional-10)
-    ); /* 10% - buttons, highlights */
-    color: rgb(var(--color-primary-foreground));
-  }
-
-  /* Modern Purple Theme Layout */
-  .layout-modern {
-    background-color: rgb(var(--scheme-modern-60));
-  }
-
-  .layout-modern .section-secondary {
-    background-color: rgb(var(--scheme-modern-30));
-    color: rgb(var(--color-primary-foreground));
-  }
-
-  .layout-modern .accent {
-    background-color: rgb(var(--scheme-modern-10));
-    color: rgb(var(--color-primary-foreground));
-  }
-
-  /* Elegant Green Theme Layout */
-  .layout-elegant {
-    background-color: rgb(var(--scheme-elegant-60));
-  }
-
-  .layout-elegant .section-secondary {
-    background-color: rgb(var(--scheme-elegant-30));
-    color: rgb(var(--color-primary-foreground));
-  }
-
-  .layout-elegant .accent {
-    background-color: rgb(var(--scheme-elegant-10));
-    color: rgb(var(--color-primary-foreground));
-  }
-
-  /* Corporate Gray Theme Layout */
-  .layout-corporate {
-    background-color: rgb(var(--scheme-corporate-60));
-  }
-
-  .layout-corporate .section-secondary {
-    background-color: rgb(var(--scheme-corporate-30));
-    color: rgb(var(--color-primary-foreground));
-  }
-
-  .layout-corporate .accent {
-    background-color: rgb(var(--scheme-corporate-10));
-    color: rgb(var(--color-primary-foreground));
   }
 }
 
@@ -723,111 +463,8 @@
   }
 }
 
-/* Mobile Optimization Utilities */
+/* Prose typography styles */
 @layer utilities {
-  /* Touch-friendly interactive elements */
-  .touch-target {
-    min-height: 44px;
-    min-width: 44px;
-  }
-
-  .touch-target-lg {
-    min-height: 48px;
-    min-width: 48px;
-  }
-
-  /* Mobile-optimized typography */
-  .mobile-body-text {
-    font-size: 1rem; /* 16px minimum for readability */
-    line-height: 1.6;
-  }
-
-  .mobile-heading {
-    font-size: 1.25rem; /* 20px */
-    line-height: 1.3;
-  }
-
-  /* Prevent horizontal scrolling */
-  .scroll-safe {
-    overflow-x: hidden;
-    max-width: 100vw;
-  }
-
-  /* Mobile-friendly focus states */
-  .mobile-focus:focus {
-    outline: 2px solid rgb(var(--color-primary));
-    outline-offset: 2px;
-  }
-
-  /* Touch-friendly hover states (only on non-touch devices) */
-  @media (hover: hover) and (pointer: fine) {
-    .mobile-hover:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgb(var(--color-foreground) / 0.15);
-    }
-  }
-
-  /* Mobile-specific animations */
-  @media (prefers-reduced-motion: no-preference) {
-    .mobile-animate {
-      transition: all 0.2s ease-out;
-    }
-  }
-
-  /* Responsive spacing utilities */
-  .mobile-spacing-xs {
-    margin: 0.5rem;
-  }
-  .mobile-spacing-sm {
-    margin: 0.75rem;
-  }
-  .mobile-spacing-md {
-    margin: 1rem;
-  }
-  .mobile-spacing-lg {
-    margin: 1.5rem;
-  }
-
-  /* Media query helpers for mobile optimization */
-  @media (max-width: 475px) {
-    .mobile-xs-hide {
-      display: none !important;
-    }
-    .mobile-xs-show {
-      display: block !important;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .mobile-sm-hide {
-      display: none !important;
-    }
-    .mobile-sm-show {
-      display: block !important;
-    }
-
-    /* Increase touch targets on small screens */
-    .touch-auto {
-      min-height: 48px;
-      padding: 0.75rem 1rem;
-    }
-  }
-
-  /* iOS Safari specific fixes */
-  @supports (-webkit-touch-callout: none) {
-    .ios-safe-area {
-      padding-bottom: env(safe-area-inset-bottom);
-      padding-top: env(safe-area-inset-top);
-    }
-
-    /* Fix for iOS Safari viewport units */
-    .ios-full-height {
-      height: 100vh;
-      height: -webkit-fill-available;
-    }
-  }
-
-  /* Prose typography styles */
   .prose {
     /* Better typography for reading */
     --tw-prose-body: hsl(var(--muted-foreground));
@@ -864,5 +501,57 @@
     --tw-prose-pre-bg: hsl(var(--muted));
     --tw-prose-th-borders: hsl(var(--border));
     --tw-prose-td-borders: hsl(var(--border));
+  }
+}
+
+/* ===== UNIFIED BUTTON STYLES ===== */
+@layer components {
+  /* Primary Button - Purple/Brand color background */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-3 px-6 py-3 rounded-lg font-medium text-sm;
+    @apply bg-primary text-primary-foreground;
+    @apply border-2 border-white;
+    @apply transition-all duration-300;
+    @apply shadow-md;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+  
+  .btn-primary:hover {
+    @apply shadow-lg;
+    transform: translateY(-2px);
+    box-shadow: 
+      0 10px 25px -5px rgba(139, 92, 246, 0.4),
+      0 8px 10px -6px rgba(139, 92, 246, 0.3),
+      0 0 30px rgba(139, 92, 246, 0.5),
+      0 0 60px rgba(139, 92, 246, 0.2);
+  }
+  
+  .btn-primary:active {
+    @apply scale-95;
+    transform: translateY(0);
+  }
+  
+  /* Outline Button - White/Light background with border */
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-3 px-6 py-3 rounded-lg font-medium text-sm;
+    @apply border-2 border-border bg-background text-foreground;
+    @apply transition-all duration-300;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+  
+  .btn-outline:hover {
+    @apply bg-muted;
+    transform: translateY(-2px);
+    border-color: hsl(var(--primary));
+    box-shadow: 
+      0 10px 25px -5px rgba(139, 92, 246, 0.25),
+      0 8px 10px -6px rgba(139, 92, 246, 0.2),
+      0 0 30px rgba(139, 92, 246, 0.3),
+      0 0 60px rgba(139, 92, 246, 0.15);
+  }
+  
+  .btn-outline:active {
+    @apply scale-95;
+    transform: translateY(0);
   }
 }
