@@ -7,9 +7,9 @@ description: Откройте для себя самые красивые и в�
   уже сегодня!
 themeColor: 200
 images:
-  mainImage: /src/assets/images/hero1.jpg
+  mainImage: /src/assets/images/hero1.webp
   mainImageAlt: Beautiful lake scenery
-  secondaryImage: src/assets/images/hero2.jpg
+  secondaryImage: src/assets/images/hero2.webp
   secondaryImageAlt: Beautiful sunset reflection
 ---
 

@@ -3,7 +3,7 @@ import { getEntry } from "astro:content";
 
 // Get theme color from hero content
 const heroEntry = await getEntry("hero", "hero");
-const themeColor = heroEntry?.data?.themeColor || 260;
+const themeColor = heroEntry?.data?.themeColor || 200;
 
 // Generate dynamic CSS
 const dynamicCSS = `:root { --brand-h: ${themeColor}; }`;
