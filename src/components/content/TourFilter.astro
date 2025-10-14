@@ -129,101 +129,178 @@ const tourCategories = rawTourCategories.map(category => ({
   </Container>
 
   <!-- Tour Details Modal -->
-  <div id="tourModal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
-    <div class="relative flex items-center justify-center w-full max-w-4xl">
+  <div id="tourModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+    <div class="relative flex items-center justify-center w-full max-w-5xl">
       <!-- Previous Button - Desktop/Tablet (left side) -->
       <button id="prevTourBtn" class="tour-nav-btn tour-nav-btn-left hidden sm:flex" aria-label="Previous tour">
         <ChevronLeft class="w-6 h-6" />
       </button>
 
-      <div class="bg-background rounded-2xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl">
-        <!-- Modal Header -->
-      <div class="flex items-center justify-between p-6 border-b border-border flex-shrink-0">
-        <h2 id="modalTitle" class="text-2xl font-bold text-foreground"></h2>
-        <button id="closeModal" class="p-2 hover:bg-muted rounded-full transition-colors">
-          <X class="w-6 h-6" />
-        </button>
-      </div>
-      
-      <!-- Modal Content - Scrollable Area -->
-      <div class="overflow-y-auto flex-1 p-6">
-        <!-- Price and Duration -->
-        <div class="flex items-center justify-between mb-6 p-4 bg-muted/50 rounded-lg">
-          <div>
-            <div id="modalPrice" class="text-2xl font-bold text-primary"></div>
-            <div class="text-sm text-muted-foreground">за тур</div>
+      <div class="bg-background rounded-3xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl transform transition-all duration-300">
+        <!-- Modal Header with Gradient Background -->
+        <div class="relative bg-gradient-to-br from-primary/10 via-primary/5 to-accent/10 border-b border-border/50 flex-shrink-0">
+          <div class="p-6 sm:p-8">
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex-1">
+                <h2 id="modalTitle" class="text-2xl sm:text-3xl font-bold text-foreground leading-tight"></h2>
+              </div>
+              <button id="closeModal" class="p-2 hover:bg-background/80 rounded-full transition-all duration-200 hover:scale-110 hover:rotate-90 flex-shrink-0">
+                <X class="w-6 h-6" />
+              </button>
+            </div>
           </div>
-          <div>
-            <div id="modalDuration" class="text-lg font-semibold"></div>
-            <div class="text-sm text-muted-foreground">продолжительность</div>
+        </div>
+      
+        <!-- Modal Content - Scrollable Area -->
+        <div class="overflow-y-auto flex-1 p-6 sm:p-8">
+          <!-- Price and Duration Cards -->
+          <div class="grid sm:grid-cols-2 gap-4 mb-8">
+            <!-- Price Card -->
+            <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 p-6">
+              <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl"></div>
+              <div class="relative">
+                <div class="text-sm font-medium text-muted-foreground mb-2">Стоимость</div>
+                <div id="modalPrice" class="text-3xl sm:text-4xl font-bold text-primary mb-1"></div>
+                <div class="text-xs text-muted-foreground">за тур</div>
+              </div>
+            </div>
+            
+            <!-- Duration Card -->
+            <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-accent/10 to-accent/5 border border-accent/20 p-6">
+              <div class="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full blur-3xl"></div>
+              <div class="relative">
+                <div class="text-sm font-medium text-muted-foreground mb-2">Продолжительность</div>
+                <div id="modalDuration" class="text-2xl sm:text-3xl font-bold text-foreground mb-1"></div>
+                <div class="text-xs text-muted-foreground">время тура</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Description with elegant styling -->
+          <div class="mb-8">
+            <div class="h-1 w-16 bg-gradient-to-r from-primary to-accent rounded-full mb-6"></div>
+            <div id="modalDescription" class="prose prose-base max-w-none modal-content text-foreground/90 leading-relaxed"></div>
           </div>
         </div>
         
-        <!-- Description -->
-        <div id="modalDescription" class="prose prose-sm max-w-none modal-content mb-6"></div>
-      </div>
-      
-      <!-- Contact Button and Share Links - Fixed at bottom -->
-      <div class="flex-shrink-0 p-6 border-t border-border">
-        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-          <!-- WhatsApp Contact Button -->
-          <a 
-            id="tour-modal-whatsapp"
-            href="https://wa.me/c/31642221525" 
-            target="_blank"
-            class="btn-primary flex-1"
-          >
-            <div class="w-5 h-5" set:html={WhatsAppContactIcon} />
-            Связаться через WhatsApp
-          </a>
+        <!-- Contact Button and Share Links - Fixed at bottom with gradient -->
+        <div class="flex-shrink-0 p-6 sm:p-8 border-t border-border/50 bg-gradient-to-t from-muted/30 to-transparent">
+          <!-- Desktop/Tablet Layout: Single Row -->
+          <div class="hidden sm:flex items-center gap-4">
+            <!-- Main CTA Button -->
+            <a 
+              id="tour-modal-whatsapp"
+              href="https://wa.me/c/31642221525" 
+              target="_blank"
+              class="btn-primary flex-1 justify-center text-base py-4"
+            >
+              <div class="w-6 h-6" set:html={WhatsAppContactIcon} />
+              Связаться через WhatsApp
+            </a>
+            
+            <!-- Share Buttons Group -->
+            <div class="flex gap-2 items-center">
+              <!-- WhatsApp Share -->
+              <button 
+                class="share-btn share-whatsapp"
+                aria-label="Share on WhatsApp"
+                title="Поделиться в WhatsApp"
+              >
+                <div class="share-icon" set:html={WhatsAppIcon} />
+              </button>
+              
+              <!-- Facebook Share -->
+              <button 
+                class="share-btn share-facebook"
+                aria-label="Share on Facebook"
+                title="Поделиться в Facebook"
+              >
+                <div class="share-icon" set:html={FacebookIcon} />
+              </button>
+              
+              <!-- X (Twitter) Share -->
+              <button 
+                class="share-btn share-twitter"
+                aria-label="Share on X (Twitter)"
+                title="Поделиться в X"
+              >
+                <div class="share-icon" set:html={TwitterIcon} />
+              </button>
+              
+              <!-- Instagram (Copy Link) -->
+              <button 
+                class="share-btn share-instagram"
+                aria-label="Copy link to share on Instagram"
+                title="Скопировать ссылку"
+              >
+                <div class="share-icon" set:html={InstagramIcon} />
+              </button>
+            </div>
+          </div>
           
-          <!-- Share and Navigation Buttons -->
-          <div class="flex gap-2 items-center justify-center sm:justify-start flex-shrink-0">
-            <!-- Mobile Navigation - Previous (hidden on desktop/tablet) -->
-            <button id="prevTourBtnMobile" class="tour-nav-btn-mobile sm:hidden" aria-label="Previous tour">
-              <ChevronLeft class="w-5 h-5" />
-            </button>
+          <!-- Mobile Layout: Stacked -->
+          <div class="sm:hidden">
+            <!-- Main CTA Button -->
+            <div class="mb-4">
+              <a 
+                id="tour-modal-whatsapp-mobile"
+                href="https://wa.me/c/31642221525" 
+                target="_blank"
+                class="btn-primary w-full justify-center text-base py-4"
+              >
+                <div class="w-6 h-6" set:html={WhatsAppContactIcon} />
+                Связаться через WhatsApp
+              </a>
+            </div>
+            
+            <!-- Share Buttons with Mobile Navigation -->
+            <div class="flex gap-2 items-center justify-center">
+              <!-- Mobile Navigation - Previous -->
+              <button id="prevTourBtnMobile" class="tour-nav-btn-mobile" aria-label="Previous tour">
+                <ChevronLeft class="w-5 h-5" />
+              </button>
 
-            <!-- WhatsApp Share -->
-            <button 
-              class="share-btn share-whatsapp"
-              aria-label="Share on WhatsApp"
-              title="Поделиться в WhatsApp"
-            >
-              <div class="share-icon" set:html={WhatsAppIcon} />
-            </button>
-            
-            <!-- Facebook Share -->
-            <button 
-              class="share-btn share-facebook"
-              aria-label="Share on Facebook"
-              title="Поделиться в Facebook"
-            >
-              <div class="share-icon" set:html={FacebookIcon} />
-            </button>
-            
-            <!-- X (Twitter) Share -->
-            <button 
-              class="share-btn share-twitter"
-              aria-label="Share on X (Twitter)"
-              title="Поделиться в X"
-            >
-              <div class="share-icon" set:html={TwitterIcon} />
-            </button>
-            
-            <!-- Instagram (Copy Link) -->
-            <button 
-              class="share-btn share-instagram"
-              aria-label="Copy link to share on Instagram"
-              title="Скопировать ссылку"
-            >
-              <div class="share-icon" set:html={InstagramIcon} />
-            </button>
+              <!-- WhatsApp Share -->
+              <button 
+                class="share-btn share-whatsapp"
+                aria-label="Share on WhatsApp"
+                title="Поделиться в WhatsApp"
+              >
+                <div class="share-icon" set:html={WhatsAppIcon} />
+              </button>
+              
+              <!-- Facebook Share -->
+              <button 
+                class="share-btn share-facebook"
+                aria-label="Share on Facebook"
+                title="Поделиться в Facebook"
+              >
+                <div class="share-icon" set:html={FacebookIcon} />
+              </button>
+              
+              <!-- X (Twitter) Share -->
+              <button 
+                class="share-btn share-twitter"
+                aria-label="Share on X (Twitter)"
+                title="Поделиться в X"
+              >
+                <div class="share-icon" set:html={TwitterIcon} />
+              </button>
+              
+              <!-- Instagram (Copy Link) -->
+              <button 
+                class="share-btn share-instagram"
+                aria-label="Copy link to share on Instagram"
+                title="Скопировать ссылку"
+              >
+                <div class="share-icon" set:html={InstagramIcon} />
+              </button>
 
-            <!-- Mobile Navigation - Next (hidden on desktop/tablet) -->
-            <button id="nextTourBtnMobile" class="tour-nav-btn-mobile sm:hidden" aria-label="Next tour">
-              <ChevronRight class="w-5 h-5" />
-            </button>
+              <!-- Mobile Navigation - Next -->
+              <button id="nextTourBtnMobile" class="tour-nav-btn-mobile" aria-label="Next tour">
+                <ChevronRight class="w-5 h-5" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -276,13 +353,34 @@ const tourCategories = rawTourCategories.map(category => ({
         -webkit-overflow-scrolling: touch;
     }
     
+    /* Tour Modal Animations */
+    #tourModal.show {
+        opacity: 1;
+    }
+    
+    #tourModal .bg-background {
+        animation: modalSlideUp 0.3s ease-out;
+    }
+    
+    @keyframes modalSlideUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+    
     /* Modal content styling */
     .modal-content h2 {
-        font-size: 1.25rem;
+        font-size: 1.375rem;
         font-weight: 700;
-        margin-top: 1.25rem;
-        margin-bottom: 0.5rem;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
         color: hsl(var(--foreground));
+        line-height: 1.4;
     }
     .modal-content h2:first-child {
         margin-top: 0;
@@ -290,34 +388,43 @@ const tourCategories = rawTourCategories.map(category => ({
     .modal-content h3 {
         font-size: 1.125rem;
         font-weight: 600;
-        margin-top: 1rem;
-        margin-bottom: 0.25rem;
+        margin-top: 1.25rem;
+        margin-bottom: 0.5rem;
         color: hsl(var(--foreground));
+        line-height: 1.5;
     }
     .modal-content p {
-        margin-bottom: 0.75rem;
+        margin-bottom: 1rem;
         font-size: 1rem;
-        color: hsl(var(--muted-foreground));
-        line-height: 1.625;
+        color: hsl(var(--foreground));
+        opacity: 0.9;
+        line-height: 1.75;
     }
     .modal-content ul {
-        margin-bottom: 0.75rem;
-        margin-top: 0.25rem;
+        margin-bottom: 1rem;
+        margin-top: 0.5rem;
+        padding-left: 1.5rem;
     }
     .modal-content li {
         font-size: 1rem;
-        color: hsl(var(--muted-foreground));
-        line-height: 1.625;
-        margin-bottom: 0.25rem;
+        color: hsl(var(--foreground));
+        opacity: 0.85;
+        line-height: 1.75;
+        margin-bottom: 0.5rem;
+        position: relative;
+    }
+    .modal-content li::marker {
+        color: hsl(var(--primary));
     }
     .modal-content strong {
-        font-weight: 600;
+        font-weight: 700;
         font-size: 1rem;
         color: hsl(var(--foreground));
     }
     .modal-content em {
         font-style: italic;
         font-size: 1rem;
+        color: hsl(var(--primary));
     }
     
     /* Share buttons styling */
@@ -825,15 +932,26 @@ const tourCategories = rawTourCategories.map(category => ({
         modal.classList.remove("hidden");
         modal.classList.add("flex");
         document.body.style.overflow = "hidden";
+        
+        // Trigger fade-in animation
+        requestAnimationFrame(() => {
+          modal.classList.add("show");
+        });
       }
     }
 
     function closeTourModal() {
       const modal = document.getElementById("tourModal");
       if (modal) {
-        modal.classList.add("hidden");
-        modal.classList.remove("flex");
-        document.body.style.overflow = "auto";
+        // Fade out animation
+        modal.classList.remove("show");
+        
+        // Wait for animation to complete before hiding
+        setTimeout(() => {
+          modal.classList.add("hidden");
+          modal.classList.remove("flex");
+          document.body.style.overflow = "auto";
+        }, 300);
       }
     }
 
