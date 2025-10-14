@@ -17,7 +17,7 @@
   :root {
     /* ===== THEME CONFIGURATION ===== */
     /* 🎨 --brand-h is set dynamically from CMS (see Hero Section) */
-    --brand-h: 260;        /* Hue: 0-360 - Managed via CMS (fallback value) */
+    /* Hue: 0-360 - Managed via CMS (ThemeProvider.astro) */
     --brand-s: 75%;       /* Saturation: 0-100% */
     --brand-l: 40%;       /* Lightness: 0-100% */
     
