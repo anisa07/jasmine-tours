@@ -162,27 +162,35 @@ const getGridClasses = () => {
 <!-- Fullscreen Modal -->
 <div
   id="gallery-fullscreen"
-  class="fixed inset-0 z-50 bg-background/90 cursor-pointer hidden"
+  class="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300"
   role="dialog"
   aria-modal="true"
   aria-labelledby="fullscreen-title"
   tabindex="-1"
 >
-  <!-- Close Button -->
-  <button
-    type="button"
-    id="fullscreen-close"
-    class="absolute top-4 right-4 z-[70] text-foreground hover:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md p-2 bg-background/80 backdrop-blur-sm"
-    aria-label="Close fullscreen view"
-  >
-    <X class="w-6 h-6" />
-  </button>
+  <!-- Top Bar with Close and Counter -->
+  <div class="absolute top-0 left-0 right-0 z-[70] flex items-center justify-between p-6 bg-gradient-to-b from-black/80 to-transparent">
+    <!-- Image Counter -->
+    <div id="fullscreen-counter" class="text-white text-sm font-medium px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hidden">
+      <span id="current-image-number">1</span> / <span id="total-images">1</span>
+    </div>
+    
+    <!-- Close Button -->
+    <button
+      type="button"
+      id="fullscreen-close"
+      class="text-white hover:text-white/80 focus:outline-none focus:ring-2 focus:ring-white/50 rounded-full p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 transition-all duration-200 hover:scale-110"
+      aria-label="Close fullscreen view"
+    >
+      <X class="w-6 h-6" />
+    </button>
+  </div>
 
   <!-- Navigation Arrows -->
   <button
     type="button"
     id="fullscreen-prev"
-    class="absolute left-4 top-1/2 -translate-y-1/2 z-[70] text-foreground hover:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md p-2 hidden bg-background/80 backdrop-blur-sm"
+    class="absolute left-6 top-1/2 -translate-y-1/2 z-[70] text-white hover:text-white/80 focus:outline-none focus:ring-2 focus:ring-white/50 rounded-full p-4 hidden bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 transition-all duration-200 hover:scale-110"
     aria-label="Previous image"
   >
     <ChevronLeft class="w-8 h-8" />
@@ -191,70 +199,73 @@ const getGridClasses = () => {
   <button
     type="button"
     id="fullscreen-next"
-    class="absolute right-4 top-1/2 -translate-y-1/2 z-[70] text-foreground hover:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md p-2 hidden bg-background/80 backdrop-blur-sm"
+    class="absolute right-6 top-1/2 -translate-y-1/2 z-[70] text-white hover:text-white/80 focus:outline-none focus:ring-2 focus:ring-white/50 rounded-full p-4 hidden bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 transition-all duration-200 hover:scale-110"
     aria-label="Next image"
   >
     <ChevronRight class="w-8 h-8" />
   </button>
 
-  <!-- Main Image Container -->
-  <div id="fullscreen-content" class="max-w-full max-h-full p-8 flex flex-col items-center justify-center overflow-hidden z-10">
-    <div id="image-zoom-container" class="relative cursor-zoom-in z-10 max-w-[90vw] max-h-[80vh] flex items-center justify-center">
+  <!-- Main Content Area -->
+  <div id="fullscreen-content" class="w-full h-full flex flex-col items-center justify-center px-4 pointer-events-none" style="padding-top: 100px; padding-bottom: 140px;">
+    <!-- Image Container -->
+    <div id="image-zoom-container" class="relative cursor-zoom-in z-10 flex items-center justify-center rounded-2xl overflow-hidden shadow-2xl pointer-events-auto" style="max-width: 85vw; max-height: 65vh;">
       <img
         id="fullscreen-image"
         src=""
         alt=""
-        class="max-w-full max-h-full w-auto h-auto object-contain transition-transform duration-200"
+        class="w-auto h-auto object-contain transition-all duration-300 ease-out"
         draggable="false"
-        style="max-width: 90vw; max-height: 80vh;"
+        style="max-width: 85vw; max-height: 65vh;"
       />
     </div>
 
-    <!-- Fullscreen Caption -->
-    <div id="fullscreen-caption" class="mt-7 text-center text-foreground hidden">
-      <h2 id="fullscreen-title" class="text-xl font-medium"></h2>
-      <p id="fullscreen-description" class="text-muted-foreground mt-2 hidden"></p>
+    <!-- Caption Area (directly below image, centered, with safe spacing) -->
+    <div id="fullscreen-caption" class="mt-3 max-w-2xl text-center text-white px-4 py-2.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 hidden animate-fade-up pointer-events-auto">
+      <h2 id="fullscreen-title" class="text-lg md:text-xl font-bold mb-1"></h2>
+      <p id="fullscreen-description" class="text-white/80 text-xs md:text-sm leading-relaxed hidden"></p>
     </div>
   </div>
 
-  <!-- Thumbnails Navigation -->
-  <div id="fullscreen-thumbnails" class="absolute bottom-20 left-1/2 -translate-x-1/2 space-x-2 max-w-full overflow-x-auto px-4 hidden z-[70] backdrop-blur-sm bg-background/20 rounded-lg py-2">
-    <!-- Thumbnails will be populated by JavaScript -->
-  </div>
-
-  <!-- Image Counter -->
-  <div id="fullscreen-counter" class="absolute top-4 left-4 text-foreground text-sm bg-background/80 border border-border px-3 py-1 rounded-md hidden z-[70] backdrop-blur-sm">
-    <span id="current-image-number">1</span> / <span id="total-images">1</span>
-  </div>
-
-  <!-- Zoom Controls -->
-  <div id="zoom-controls" class="absolute bottom-4 right-4 gap-2 hidden z-[70]">
-    <button
-      type="button"
-      id="zoom-out"
-      class="bg-background/80 border border-border text-foreground hover:bg-accent hover:text-accent-foreground p-2 rounded-md transition-colors backdrop-blur-sm"
-      aria-label="Zoom out"
-    >
-      <ZoomOut class="w-4 h-4" />
-    </button>
-    <button
-      type="button"
-      id="zoom-in"
-      class="bg-background/80 border border-border text-foreground hover:bg-accent hover:text-accent-foreground p-2 rounded-md transition-colors backdrop-blur-sm"
-      aria-label="Zoom in"
-    >
-      <ZoomIn class="w-4 h-4" />
-    </button>
-    <button
-      type="button"
-      id="zoom-reset"
-      class="bg-background/80 border border-border text-foreground hover:bg-accent hover:text-accent-foreground p-2 rounded-md transition-colors backdrop-blur-sm"
-      aria-label="Reset zoom"
-    >
-      <RotateCcw class="w-4 h-4" />
-    </button>
+  <!-- Bottom Bar with Thumbnails Only -->
+  <div class="absolute bottom-0 left-0 right-0 z-[70] bg-gradient-to-t from-black/95 via-black/80 to-transparent py-4">
+    <!-- Thumbnails Row -->
+    <div id="fullscreen-thumbnails" class="flex justify-center space-x-3 px-4 hidden scrollbar-hide overflow-x-auto">
+      <!-- Thumbnails will be populated by JavaScript -->
+    </div>
   </div>
 </div>
+
+<style>
+  /* Smooth fade-in animation */
+  #gallery-fullscreen.show {
+    opacity: 1;
+  }
+  
+  /* Hide scrollbar for thumbnails while maintaining functionality */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  /* Animate caption */
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-up {
+    animation: fade-up 0.4s ease-out;
+  }
+</style>
 
 <script>
   function initImageGallery() {
@@ -338,8 +349,8 @@ const getGridClasses = () => {
       fullscreenImage.alt = image.alt;
       
       // Reset image constraints for consistent sizing
-      fullscreenImage.style.maxWidth = '90vw';
-      fullscreenImage.style.maxHeight = '80vh';
+      fullscreenImage.style.maxWidth = '85vw';
+      fullscreenImage.style.maxHeight = '65vh';
       fullscreenImage.style.width = 'auto';
       fullscreenImage.style.height = 'auto';
       
@@ -383,16 +394,15 @@ const getGridClasses = () => {
       // Reset zoom
       resetZoom();
       
-      // Show zoom controls
-      if (zoomControls) {
-        zoomControls.classList.remove('hidden');
-        zoomControls.classList.add('flex');
-      }
-      
       if (fullscreen) {
         fullscreen.classList.remove('hidden');
         fullscreen.classList.add('flex', 'items-center', 'justify-center');
         document.body.style.overflow = 'hidden';
+        
+        // Trigger fade-in animation
+        requestAnimationFrame(() => {
+          fullscreen.classList.add('show');
+        });
         
         // Focus the fullscreen container for keyboard navigation
         fullscreen.focus();
@@ -402,16 +412,18 @@ const getGridClasses = () => {
     function closeFullscreen() {
       if (!fullscreen) return;
       
-      fullscreen.classList.add('hidden');
-      fullscreen.classList.remove('flex');
-      document.body.style.overflow = '';
+      // Fade out animation
+      fullscreen.classList.remove('show');
       
-      // Hide zoom controls and reset zoom
-      if (zoomControls) {
-        zoomControls.classList.add('hidden');
-        zoomControls.classList.remove('flex');
-      }
-      resetZoom();
+      // Wait for animation to complete before hiding
+      setTimeout(() => {
+        fullscreen.classList.add('hidden');
+        fullscreen.classList.remove('flex');
+        document.body.style.overflow = '';
+        
+        // Reset zoom
+        resetZoom();
+      }, 300);
     }
 
     function navigateFullscreen(direction: 'prev' | 'next') {
@@ -432,18 +444,21 @@ const getGridClasses = () => {
         const button = document.createElement('button');
         button.type = 'button';
         button.className = `
-          flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all duration-200
-          ${index === currentImageIndex ? 'border-primary' : 'border-transparent opacity-60 hover:opacity-100'}
+          flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all duration-200 hover:scale-105
+          ${index === currentImageIndex ? 'border-white shadow-lg shadow-white/30 scale-105' : 'border-white/30 opacity-60 hover:opacity-100 hover:border-white/50'}
         `;
         button.setAttribute('aria-label', `View ${image.title || image.alt}`);
         
         const img = document.createElement('img');
         img.src = image.thumbnail;
         img.alt = image.alt;
-        img.className = 'w-full h-full object-cover';
+        img.className = 'w-full h-full object-cover pointer-events-none';
         
         button.appendChild(img);
-        button.addEventListener('click', () => openFullscreen(index));
+        button.addEventListener('click', (e) => {
+          e.stopPropagation();
+          openFullscreen(index);
+        });
         fullscreenThumbnails.appendChild(button);
       });
     }
@@ -502,26 +517,14 @@ const getGridClasses = () => {
     prevBtn?.addEventListener('click', () => navigateFullscreen('prev'));
     nextBtn?.addEventListener('click', () => navigateFullscreen('next'));
 
-    // Click outside to close
+    // Click on background to close (but not on image or controls)
     fullscreen.addEventListener('click', (e) => {
-      if (e.target === fullscreen) {
+      const target = e.target as HTMLElement;
+      // Only close if clicking directly on the fullscreen background
+      if (target === fullscreen || target.id === 'fullscreen-content') {
         closeFullscreen();
       }
     });
-
-    // Zoom event listeners - ensure elements exist before adding listeners
-    const setupZoomListeners = () => {
-      const zoomInElement = document.getElementById('zoom-in');
-      const zoomOutElement = document.getElementById('zoom-out');
-      const zoomResetElement = document.getElementById('zoom-reset');
-      
-      zoomInElement?.addEventListener('click', zoomIn);
-      zoomOutElement?.addEventListener('click', zoomOut);
-      zoomResetElement?.addEventListener('click', resetZoom);
-    };
-    
-    // Setup zoom listeners immediately
-    setupZoomListeners();
 
     // Image click to zoom
     zoomContainer?.addEventListener('click', () => {
