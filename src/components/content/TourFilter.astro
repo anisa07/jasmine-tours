@@ -2,12 +2,7 @@
 import Container from "@/components/layout/Container.astro";
 import TourFilterCard from "@/components/content/TourFilterCard.astro";
 import type { ImageMetadata } from "astro";
-import WhatsAppIcon from "@/assets/images/svg/whatsapp.svg?raw";
-import FacebookIcon from "@/assets/images/svg/facebook.svg?raw";
-import TwitterIcon from "@/assets/images/svg/twitter.svg?raw";
-import InstagramIcon from "@/assets/images/svg/instagram.svg?raw";
-import WhatsAppContactIcon from "@/assets/images/svg/whatsapp-contact.svg?raw";
-import { X, ChevronLeft, ChevronRight } from "@lucide/astro";
+import { X, ChevronLeft, ChevronRight, MessageCircle, Facebook, Twitter, Instagram } from "@lucide/astro";
 
 // Type definitions
 type Tour = {
@@ -173,7 +168,7 @@ const tourCategories = rawTourCategories.map(category => ({
             target="_blank"
             class="btn-primary flex-1"
           >
-            <div class="w-5 h-5" set:html={WhatsAppContactIcon} />
+            <MessageCircle class="w-5 h-5" />
             Связаться через WhatsApp
           </a>
           
@@ -190,7 +185,7 @@ const tourCategories = rawTourCategories.map(category => ({
               aria-label="Share on WhatsApp"
               title="Поделиться в WhatsApp"
             >
-              <div class="share-icon" set:html={WhatsAppIcon} />
+              <MessageCircle class="share-icon" />
             </button>
             
             <!-- Facebook Share -->
@@ -199,7 +194,7 @@ const tourCategories = rawTourCategories.map(category => ({
               aria-label="Share on Facebook"
               title="Поделиться в Facebook"
             >
-              <div class="share-icon" set:html={FacebookIcon} />
+              <Facebook class="share-icon" />
             </button>
             
             <!-- X (Twitter) Share -->
@@ -208,7 +203,7 @@ const tourCategories = rawTourCategories.map(category => ({
               aria-label="Share on X (Twitter)"
               title="Поделиться в X"
             >
-              <div class="share-icon" set:html={TwitterIcon} />
+              <Twitter class="share-icon" />
             </button>
             
             <!-- Instagram (Copy Link) -->
@@ -217,7 +212,8 @@ const tourCategories = rawTourCategories.map(category => ({
               aria-label="Copy link to share on Instagram"
               title="Скопировать ссылку"
             >
-              <div class="share-icon" set:html={InstagramIcon} />
+
+            <Instagram class="share-icon" />
             </button>
 
             <!-- Mobile Navigation - Next (hidden on desktop/tablet) -->
@@ -348,14 +344,6 @@ const tourCategories = rawTourCategories.map(category => ({
     .share-icon {
         width: 24px;
         height: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .share-icon :global(svg) {
-        width: 100%;
-        height: 100%;
     }
     
     /* Individual button colors */

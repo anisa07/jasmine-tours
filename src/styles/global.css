@@ -511,32 +511,47 @@
     @apply inline-flex items-center justify-center gap-3 px-6 py-3 rounded-lg font-medium text-sm;
     @apply bg-primary text-primary-foreground;
     @apply border-2 border-white;
-    @apply transition-all duration-200;
+    @apply transition-all duration-300;
     @apply shadow-md;
     @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
   }
   
   .btn-primary:hover {
-    @apply opacity-90 shadow-lg;
+    @apply shadow-lg;
+    transform: translateY(-2px);
+    box-shadow: 
+      0 10px 25px -5px rgba(139, 92, 246, 0.4),
+      0 8px 10px -6px rgba(139, 92, 246, 0.3),
+      0 0 30px rgba(139, 92, 246, 0.5),
+      0 0 60px rgba(139, 92, 246, 0.2);
   }
   
   .btn-primary:active {
     @apply scale-95;
+    transform: translateY(0);
   }
   
   /* Outline Button - White/Light background with border */
   .btn-outline {
     @apply inline-flex items-center justify-center gap-3 px-6 py-3 rounded-lg font-medium text-sm;
-    @apply border border-border bg-background text-foreground;
-    @apply transition-all duration-200;
+    @apply border-2 border-border bg-background text-foreground;
+    @apply transition-all duration-300;
     @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
   }
   
   .btn-outline:hover {
-    @apply bg-muted shadow-md;
+    @apply bg-muted;
+    transform: translateY(-2px);
+    border-color: hsl(var(--primary));
+    box-shadow: 
+      0 10px 25px -5px rgba(139, 92, 246, 0.25),
+      0 8px 10px -6px rgba(139, 92, 246, 0.2),
+      0 0 30px rgba(139, 92, 246, 0.3),
+      0 0 60px rgba(139, 92, 246, 0.15);
   }
   
   .btn-outline:active {
     @apply scale-95;
+    transform: translateY(0);
   }
 }
