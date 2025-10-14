@@ -82,6 +82,15 @@ export default {
           foreground: "hsl(var(--disabled-foreground) / <alpha-value>)",
         },
       },
+      ringColor: {
+        DEFAULT: "hsl(var(--ring) / <alpha-value>)",
+        primary: "hsl(var(--primary) / <alpha-value>)",
+        secondary: "hsl(var(--secondary) / <alpha-value>)",
+        background: "hsl(var(--background) / <alpha-value>)",
+      },
+      ringOffsetColor: {
+        DEFAULT: "hsl(var(--background) / <alpha-value>)",
+      },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
         serif: ["Georgia", "serif"],

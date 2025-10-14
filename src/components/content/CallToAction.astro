@@ -82,7 +82,7 @@ const getActionButtonClasses = (
       case "outline":
         return `${baseClasses} border-2 border-primary text-primary bg-transparent hover:bg-primary/90 hover:text-primary-foreground focus:ring-primary`;
       default:
-        return `${baseClasses} bg-primary text-primary-foreground hover:bg-primary/90 focus:ring-primary`;
+        return `${baseClasses} bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-105 hover:shadow-xl focus:ring-primary`;
     }
   }
 };
@@ -323,28 +323,30 @@ const isOnPrimaryBg =
     }
   }
 
-  /* Focus styles for CTA buttons */
+  /* Focus styles for CTA buttons - using HSL color system */
   .focus\:ring-primary:focus {
-    --tw-ring-color: rgb(var(--color-primary) / var(--tw-ring-opacity));
+    --tw-ring-opacity: 1;
+    --tw-ring-color: hsl(var(--primary) / var(--tw-ring-opacity));
   }
 
   .focus\:ring-secondary:focus {
-    --tw-ring-color: rgb(var(--color-secondary) / var(--tw-ring-opacity));
+    --tw-ring-opacity: 1;
+    --tw-ring-color: hsl(var(--secondary) / var(--tw-ring-opacity));
   }
 
   .focus\:ring-background:focus {
-    --tw-ring-color: rgb(var(--color-background) / var(--tw-ring-opacity));
+    --tw-ring-opacity: 1;
+    --tw-ring-color: hsl(var(--background) / var(--tw-ring-opacity));
   }
 
   .focus\:ring-primary-foreground:focus {
-    --tw-ring-color: rgb(
-      var(--color-primary-foreground) / var(--tw-ring-opacity)
-    );
+    --tw-ring-opacity: 1;
+    --tw-ring-color: hsl(var(--primary-foreground) / var(--tw-ring-opacity));
   }
 
   /* Ensure good contrast for buttons on dark backgrounds */
   .text-white {
-    color: rgb(var(--color-primary-foreground));
+    color: hsl(var(--primary-foreground));
   }
 
   /* Smooth transitions */

@@ -8,6 +8,7 @@ const heroCollection = defineCollection({
       title: z.string(),
       subtitle: z.string(),
       description: z.string(),
+      themeColor: z.number().min(0).max(360).default(260),
       images: z.object({
         mainImage: image(),
         mainImageAlt: z.string(),

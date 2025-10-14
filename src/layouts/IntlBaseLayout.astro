@@ -12,6 +12,7 @@ import { SEO, type SEOProps } from "astro-seo";
 // Layout components
 import Header from "@/components/layout/Header.astro";
 import Footer from "@/components/layout/Footer.astro";
+import ThemeProvider from "@/components/ThemeProvider.astro";
 
 // Props:
 // - locale: current locale (can be string from URL params, will be validated)
@@ -49,6 +50,9 @@ const url = new URL(Astro.url, site).href;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Dynamic Theme Color from CMS -->
+    <ThemeProvider />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/assets/favicon-j.svg" />

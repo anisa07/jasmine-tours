@@ -63,10 +63,10 @@ const tourCategories = rawTourCategories.map(category => ({
     <div class="flex flex-wrap justify-center gap-2 mb-8">
       {tourCategories.map((category, index) => (
         <button
-          class={`tour-filter-tab px-6 py-3 rounded-full border-2 font-semibold transition-all duration-200 hover:shadow-md ${
+          class={`tour-filter-tab rounded-full font-semibold ${
             index === 0 
-              ? 'active border-primary bg-primary text-primary-foreground' 
-              : 'border-border bg-background text-foreground'
+              ? 'btn-primary active' 
+              : 'btn-outline'
           }`}
           data-filter={category.id}
         >
@@ -110,7 +110,7 @@ const tourCategories = rawTourCategories.map(category => ({
           {category.tours.length > 3 && (
             <div class="text-center">
               <button
-                class="more-tours-btn px-8 py-3 bg-primary text-primary-foreground rounded-full font-semibold hover:bg-primary/90 transition-all duration-200 shadow-md hover:shadow-lg"
+                class="more-tours-btn btn-primary rounded-full font-semibold"
                 data-category={category.id}
               >
                 Показать больше туров ({category.tours.length - 3})
@@ -168,9 +168,10 @@ const tourCategories = rawTourCategories.map(category => ({
         <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
           <!-- WhatsApp Contact Button -->
           <a 
+            id="tour-modal-whatsapp"
             href="https://wa.me/c/31642221525" 
             target="_blank"
-            class="flex-1 py-3 px-6 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors flex items-center justify-center gap-2"
+            class="btn-primary flex-1"
           >
             <div class="w-5 h-5" set:html={WhatsAppContactIcon} />
             Связаться через WhatsApp
@@ -236,19 +237,6 @@ const tourCategories = rawTourCategories.map(category => ({
 </section>
 
 <style>
-    /* Tour filter button styles */
-    .tour-filter-tab:not(.active):hover {
-        color: hsl(var(--primary));
-        border-color: hsl(var(--primary));
-    }
-    
-    .tour-filter-tab.active {
-        /* Ensure active buttons don't change on hover */
-        color: hsl(var(--primary-foreground)) !important;
-        background-color: hsl(var(--primary)) !important;
-        border-color: hsl(var(--primary)) !important;
-    }
-    
     .tour-card {
         transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     }
@@ -526,16 +514,11 @@ const tourCategories = rawTourCategories.map(category => ({
     });
 
     function switchTab(targetFilter) {
-      // Remove active class from all tabs and add hover states back
+      // Remove active class from all tabs and switch to outline style
       for (let i = 0; i < filterTabs.length; i++) {
         const tab = filterTabs[i];
-        tab.classList.remove("active");
-        tab.classList.remove(
-          "border-primary",
-          "bg-primary",
-          "text-primary-foreground"
-        );
-        tab.classList.add("border-border", "bg-background", "text-foreground");
+        tab.classList.remove("active", "btn-primary");
+        tab.classList.add("btn-outline");
       }
 
       // Hide all tour content
@@ -545,22 +528,14 @@ const tourCategories = rawTourCategories.map(category => ({
         content.classList.add("hidden");
       }
 
-      // Add active class to clicked tab
+      // Add active class to clicked tab and switch to primary style
       const activeTab = document.querySelector(
         '[data-filter="' + targetFilter + '"]'
       );
       if (activeTab) {
         activeTab.classList.add("active");
-        activeTab.classList.remove(
-          "border-border",
-          "bg-background",
-          "text-foreground"
-        );
-        activeTab.classList.add(
-          "border-primary",
-          "bg-primary",
-          "text-primary-foreground"
-        );
+        activeTab.classList.remove("btn-outline");
+        activeTab.classList.add("btn-primary");
       }
 
       // Show corresponding content

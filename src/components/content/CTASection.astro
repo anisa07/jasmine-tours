@@ -1,13 +1,12 @@
 ---
 import Container from "@/components/layout/Container.astro";
-import CallToAction from "@/components/content/CallToAction.astro";
 import { MessageCircle, Instagram, Facebook } from "@lucide/astro";
 
 interface Props {
   t: (
     key: string,
     fallback: string,
-    vars?: Record<string, string | number>
+    vars?: Record<string, string | number>,
   ) => string;
   title?: string;
   subtitle?: string;
@@ -23,58 +22,107 @@ const {
   title = t("cta.title", "Готовы к новому приключению?"),
   subtitle = t(
     "cta.subtitle",
-    "Свяжитесь со мной, и я помогу спланировать ваше путешествие мечты"
+    "Свяжитесь со мной, и я помогу спланировать ваше путешествие мечты",
   ),
   description = t(
     "cta.description",
-    "Напишите мне в WhatsApp для быстрой брони или загляните в мой Instagram — вдохновляйтесь идеями и атмосферой настоящей Голландии."
+    "Напишите мне в WhatsApp для быстрой брони или загляните в мой Instagram — вдохновляйтесь идеями и атмосферой настоящей Голландии.",
   ),
   locale = "ru",
   variant = "default",
   backgroundColor = "primary",
   className = "",
 } = Astro.props;
-
-// CTA Actions with proper translations
-const ctaActions = [
-  {
-    label: t("actions.whatsapp", "Забронировать через WhatsApp"),
-    href: "https://wa.me/c/31642221525",
-    variant: "primary" as const,
-    size: "lg" as const,
-    icon: MessageCircle,
-  },
-  {
-    label: t("actions.instagram", "Подписаться в Instagram"),
-    href: "https://www.instagram.com/jasmine.tours.amsterdam",
-    variant: "outline" as const,
-    size: "lg" as const,
-    icon: Instagram,
-  },
-  {
-    label: t("actions.facebook", "Следить в Facebook"),
-    href: "https://www.facebook.com/jasmintoursevents/",
-    variant: "outline" as const,
-    size: "lg" as const,
-    icon: Facebook,
-  },
-];
 ---
 
 <!-- CTA Section -->
 <section
   id="contact"
-  class={`bg-${backgroundColor} ${backgroundColor === "primary" ? "text-primary-foreground" : "text-foreground"} relative overflow-hidden ${className}`}
+  class={`bg-${backgroundColor} ${backgroundColor === "primary" ? "text-primary-foreground" : "text-foreground"} relative overflow-hidden ${className} py-16 md:py-20`}
 >
   <Container size="md" padding="xs" class="relative z-10">
-    <CallToAction
-      title={title}
-      subtitle={subtitle}
-      description={description}
-      actions={ctaActions}
-      variant={variant}
-      backgroundColor={backgroundColor}
-      class="animate-fade-up"
-    />
+    <div
+      class={`space-y-8 animate-fade-up ${variant === "centered" ? "text-center max-w-4xl mx-auto" : ""}`}
+    >
+      {
+        subtitle && (
+          <div
+            class={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
+              variant === "centered" ? "mx-auto" : ""
+            } ${
+              backgroundColor === "primary"
+                ? "bg-white/90 text-primary"
+                : "bg-primary/10 text-primary"
+            }`}
+          >
+            {subtitle}
+          </div>
+        )
+      }
+
+      <h2
+        class={`font-bold leading-tight ${
+          variant === "centered"
+            ? "text-3xl md:text-4xl lg:text-5xl"
+            : "text-3xl md:text-4xl lg:text-5xl"
+        }`}
+      >
+        {title}
+      </h2>
+
+      {
+        description && (
+          <p
+            class={`leading-relaxed max-w-3xl ${
+              variant === "centered" ? "mx-auto" : ""
+            } ${backgroundColor === "primary" ? "text-primary-foreground" : "text-muted-foreground"} text-base md:text-lg`}
+          >
+            {description}
+          </p>
+        )
+      }
+
+      <div
+        class={`flex flex-wrap gap-4 pt-4 ${
+          variant === "centered" ? "justify-center" : "justify-start"
+        }`}
+      >
+        <!-- WhatsApp Button - Outline -->
+        <a
+          id="cta-whatsapp"
+          href="https://wa.me/c/31642221525"
+          class="btn-outline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <MessageCircle class="w-5 h-5" />
+          {t("actions.whatsapp", "Забронировать через WhatsApp")}
+        </a>
+
+        <!-- Instagram Button - Primary -->
+        <a
+          id="cta-instagram"
+          href="https://www.instagram.com/jasmine.tours.amsterdam"
+          class="btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Instagram class="w-5 h-5" />
+          {t("actions.instagram", "Подписаться в Instagram")}
+        </a>
+
+        <!-- Facebook Button - Primary -->
+        <a
+          id="cta-facebook"
+          href="https://www.facebook.com/jasmintoursevents/"
+          class="btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Facebook class="w-5 h-5" />
+          {t("actions.facebook", "Следить в Facebook")}
+        </a>
+      </div>
+    </div>
   </Container>
 </section>

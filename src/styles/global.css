@@ -6,18 +6,18 @@
 @layer base {
   /* 
    * 🎨 SINGLE SOURCE OF TRUTH - HSL-based Auto-Generated Color System
-   * Change your entire theme by modifying only 3 values below!
    * 
-   * To switch themes:
-   * - Coral (current): --brand-h: 16
-   * - Blue: --brand-h: 220
-   * - Green: --brand-h: 140
-   * - Purple: --brand-h: 270
+   * Theme Color (--brand-h) is managed via Netlify CMS:
+   *   Go to: Hero Section > Theme Color (Hue)
+   *   
+   * Color Examples:
+   *   0 = Red, 60 = Yellow, 120 = Green, 180 = Cyan
+   *   240 = Blue, 260 = Purple, 300 = Magenta
    */
   :root {
     /* ===== THEME CONFIGURATION ===== */
-    /* 🎨 Change ONLY these 3 values to change your entire brand color! */
-    --brand-h: 260;        /* Hue: 0-360 (Coral=16, Blue=220, Green=140, Purple=270) */
+    /* 🎨 --brand-h is set dynamically from CMS (see Hero Section) */
+    --brand-h: 260;        /* Hue: 0-360 - Managed via CMS (fallback value) */
     --brand-s: 75%;       /* Saturation: 0-100% */
     --brand-l: 40%;       /* Lightness: 0-100% */
     
@@ -501,5 +501,42 @@
     --tw-prose-pre-bg: hsl(var(--muted));
     --tw-prose-th-borders: hsl(var(--border));
     --tw-prose-td-borders: hsl(var(--border));
+  }
+}
+
+/* ===== UNIFIED BUTTON STYLES ===== */
+@layer components {
+  /* Primary Button - Purple/Brand color background */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-3 px-6 py-3 rounded-lg font-medium text-sm;
+    @apply bg-primary text-primary-foreground;
+    @apply border-2 border-white;
+    @apply transition-all duration-200;
+    @apply shadow-md;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+  
+  .btn-primary:hover {
+    @apply opacity-90 shadow-lg;
+  }
+  
+  .btn-primary:active {
+    @apply scale-95;
+  }
+  
+  /* Outline Button - White/Light background with border */
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-3 px-6 py-3 rounded-lg font-medium text-sm;
+    @apply border border-border bg-background text-foreground;
+    @apply transition-all duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+  
+  .btn-outline:hover {
+    @apply bg-muted shadow-md;
+  }
+  
+  .btn-outline:active {
+    @apply scale-95;
   }
 }
