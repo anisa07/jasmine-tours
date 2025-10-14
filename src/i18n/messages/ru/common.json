@@ -1,12 +1,28 @@
 {
+  "site": {
+    "name": "Jasmine Tours",
+    "title": "Jasmine Tours & Events",
+    "description": "Экскурсии и туры по Амстердаму и Нидерландам с профессиональным гидом"
+  },
   "languages": {
     "ru": "Русский",
     "en": "English"
   },
-  "navigation": {
+  "nav": {
     "home": "Главная",
-    "about": "О нас",
+    "about": "Обо мне",
     "tours": "Туры",
-    "contact": "Контакты"
+    "features": "Экскурсии",
+    "team": "Отзывы",
+    "contact": "Связаться"
+  },
+  "footer": {
+    "company_name": "Jasmine Tours",
+    "rights_reserved": "Все права защищены",
+    "follow_us": "Следите за нами",
+    "legal": {
+      "privacy": "Политика конфиденциальности",
+      "terms": "Условия использования"
+    }
   }
 }

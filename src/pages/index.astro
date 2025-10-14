@@ -5,16 +5,14 @@ import { createT } from "@/i18n/t";
 
 // Since this is a redirect page, we'll provide basic Russian translations
 const redirectTranslations = {
-  ru: {
-    "redirect.title": "Перенаправление...",
-    "redirect.message": "Перенаправление на русскую версию...",
-    "redirect.fallback": "Если вы не были перенаправлены автоматически,",
-    "redirect.clickHere": "нажмите здесь",
-  },
+  "redirect.title": "Перенаправление...",
+  "redirect.message": "Перенаправление на русскую версию...",
+  "redirect.fallback": "Если вы не были перенаправлены автоматически,",
+  "redirect.clickHere": "нажмите здесь",
 };
 
 // Create translation function for Russian
-const t = createT([redirectTranslations[defaultLocale]]);
+const t = createT([redirectTranslations]);
 ---
 
 <!doctype html>

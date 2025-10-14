@@ -39,13 +39,13 @@ const { t } = await getPageTranslations(locale as Locale, [
     title: aboutMeData?.title
       ? `${aboutMeData.title} | Jasmine Tours`
       : t(
-          "seo.title",
+          "seo.about_title",
           "Зара — ваш личный гид по Нидерландам | Индивидуальные экскурсии и путешествия по Амстердаму и всей стране"
         ),
     description:
       aboutMeData?.subtitle ||
       t(
-        "seo.description",
+        "seo.about_description",
         "Познакомьтесь с Зарой — вашим личным гидом, который покажет настоящие Нидерланды. Путешествуйте осознанно, открывайте культуру, людей и атмосферу страны"
       ),
   }}
@@ -156,9 +156,9 @@ const { t } = await getPageTranslations(locale as Locale, [
     <section class="py-20">
       <Container size="lg">
         <div class="text-center mb-16">
-          <h2 class="text-3xl lg:text-4xl font-bold mb-4">Мои услуги</h2>
+          <h2 class="text-3xl lg:text-4xl font-bold mb-4">{t("about.services_title", "Мои услуги")}</h2>
           <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Откройте услуги, которые сделают ваше путешествие незабываемым
+            {t("about.services_description", "Откройте услуги, которые сделают ваше путешествие незабываемым")}
           </p>
         </div>
 
