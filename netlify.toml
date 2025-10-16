@@ -5,8 +5,8 @@ for = "/*"
   X-Frame-Options = "DENY"
   Referrer-Policy = "strict-origin-when-cross-origin"
   # Use one at a time:
-  Content-Security-Policy = "default-src 'self'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; object-src 'none'; connect-src 'self'; font-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; upgrade-insecure-requests"
   Cache-Control = "public, max-age=0, must-revalidate"
+  Content-Security-Policy = "default-src 'self' data: blob: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: blob: https:; connect-src 'self' https:; font-src 'self' data: https:; frame-src 'self' https:;"
 
 [build]
   command = "npm run build"
