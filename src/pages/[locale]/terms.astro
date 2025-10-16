@@ -64,18 +64,7 @@ const { t } = await getPageTranslations(locale as Locale, ["common"]);
           </p>
 
           <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">
-              1. Aanvaarding van voorwaarden
-            </h2>
-            <p class="text-muted-foreground">
-              Door gebruik te maken van de diensten van Jasmine Tours, gaat u
-              akkoord met deze Algemene Voorwaarden. Als u het niet eens bent
-              met een deel van deze voorwaarden, gebruik dan onze diensten niet.
-            </p>
-          </section>
-
-          <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">2. Bedrijfsinformatie</h2>
+            <h2 class="text-2xl font-semibold mb-4">1. Bedrijfsinformatie</h2>
             <div class="bg-surface-subtle p-6 rounded-lg">
               <p class="text-foreground">
                 <strong>Bedrijfsnaam:</strong> Jasmine Tours
@@ -85,16 +74,16 @@ const { t } = await getPageTranslations(locale as Locale, ["common"]);
                 (KvK)
               </p>
               <p class="text-muted-foreground">
-                <strong>KvK-nummer:</strong> [KVK_NUMMER]
+                <strong>KvK-nummer:</strong> 77170342
               </p>
               <p class="text-muted-foreground">
-                <strong>BTW-nummer:</strong> [BTW_NUMMER]
+                <strong>BTW-nummer:</strong> NL96INGB0008729747
               </p>
               <p class="text-muted-foreground">
-                <strong>Adres:</strong> [UW_ADRES]
+                <strong>Adres:</strong> 1058CB Amsterdam, Nederland
               </p>
               <p class="text-muted-foreground">
-                <strong>E-mail:</strong> [UW_EMAIL]
+                <strong>E-mail:</strong> zguliyeva@gmail.com
               </p>
               <p class="text-muted-foreground">
                 <strong>Telefoon:</strong> +31 6 42221525
@@ -103,7 +92,7 @@ const { t } = await getPageTranslations(locale as Locale, ["common"]);
           </section>
 
           <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">3. Onze diensten</h2>
+            <h2 class="text-2xl font-semibold mb-4">2. Onze diensten</h2>
             <p class="text-muted-foreground mb-4">Jasmine Tours biedt:</p>
             <ul class="list-disc pl-6 text-muted-foreground space-y-2">
               <li>Wandeltours in Amsterdam en andere Nederlandse steden</li>
@@ -114,56 +103,42 @@ const { t } = await getPageTranslations(locale as Locale, ["common"]);
           </section>
 
           <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">4. Boeken en betalingen</h2>
-            <h3 class="text-xl font-medium mb-3">4.1 Boekingsproces</h3>
+            <h2 class="text-2xl font-semibold mb-4">3. Boeken en betalingen</h2>
+            <h3 class="text-xl font-medium mb-3">3.1 Boekingsproces</h3>
             <p class="text-muted-foreground mb-4">
               Boekingen kunnen worden gemaakt via:
             </p>
             <ul class="list-disc pl-6 text-muted-foreground space-y-2">
               <li>Onze website</li>
               <li>WhatsApp: +31 6 42221525</li>
-              <li>E-mail: [UW_EMAIL]</li>
+              <li>E-mail: zguliyeva@gmail.com</li>
               <li>Instagram of Facebook</li>
             </ul>
 
             <h3 class="text-xl font-medium mb-3 mt-6">
-              4.2 Betalingsvoorwaarden
+              3.2 Betalingsvoorwaarden
             </h3>
             <p class="text-muted-foreground mb-4">
-              <strong>[SPECIFICEER UW BETALINGSBELEID]</strong>
+              De betalingsvoorwaarden worden tijdens het eerste contact
+              besproken en afgestemd. Betaling wordt verwacht op de dag van de
+              tour.
             </p>
-            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
-              <li>
-                Volledige vooruitbetaling is vereist om de boeking te
-                bevestigen, of
-              </li>
-              <li>
-                Aanbetaling van [XX%] vereist bij boeking, saldo verschuldigd
-                [specificeer tijdskader], of
-              </li>
-              <li>Contante betaling mogelijk op de dag van de tour</li>
-            </ul>
 
-            <h3 class="text-xl font-medium mb-3 mt-6">4.3 Betaalmethoden</h3>
+            <h3 class="text-xl font-medium mb-3 mt-6">3.3 Betaalmethoden</h3>
             <p class="text-muted-foreground mb-4">
-              Wij accepteren de volgende betaalmethoden:
+              Wij accepteren de volgende betaalmethoden op de dag van de tour:
             </p>
             <ul class="list-disc pl-6 text-muted-foreground space-y-2">
-              <li>Bankoverschrijving (IBAN: [UW_IBAN])</li>
-              <li>Contant (alleen Amsterdam tours)</li>
-              <li>[ANDERE BETAALMETHODEN]</li>
+              <li>Contant (cash)</li>
+              <li>Debetkaart</li>
+              <li>Creditcard</li>
             </ul>
           </section>
 
           <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">
-              5. Annulerings- en restitutiebeleid
-            </h2>
+            <h2 class="text-2xl font-semibold mb-4">4. Annuleringsbeleid</h2>
             <p class="text-muted-foreground mb-4">
-              <strong>[SPECIFICEER UW ANNULERINGSBELEID]</strong>
-            </p>
-            <p class="text-muted-foreground mb-4">
-              Voorbeeld annuleringsbeleid:
+              <strong>Annuleringsbeleid:</strong>
             </p>
             <ul class="list-disc pl-6 text-muted-foreground space-y-2">
               <li>
@@ -183,118 +158,52 @@ const { t } = await getPageTranslations(locale as Locale, ["common"]);
 
           <section class="mb-8">
             <h2 class="text-2xl font-semibold mb-4">
-              6. Wijzigingen en annuleringen door ons
+              5. Annuleringen door ons
             </h2>
             <p class="text-muted-foreground">
-              Wij behouden ons het recht voor om een tour te annuleren of te
-              wijzigen vanwege onvoorziene omstandigheden (bijv. slecht weer,
-              onvoldoende deelnemers, ziekte van de gids). In dergelijke
-              gevallen bieden wij:
+              Wij kunnen een tour annuleren wegens onvoorziene omstandigheden.
+              Dan bieden wij een alternatieve datum of volledige restitutie.
             </p>
-            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
-              <li>Een alternatieve datum</li>
-              <li>Volledige restitutie</li>
-            </ul>
           </section>
 
           <section class="mb-8">
             <h2 class="text-2xl font-semibold mb-4">
-              7. Verantwoordelijkheden van deelnemers
+              6. Verantwoordelijkheden deelnemers
             </h2>
             <p class="text-muted-foreground mb-4">Deelnemers moeten:</p>
             <ul class="list-disc pl-6 text-muted-foreground space-y-2">
-              <li>Op tijd zijn bij het ontmoetingspunt</li>
-              <li>De instructies van de gids opvolgen</li>
-              <li>
-                Respectvol gedragen ten opzichte van de gids en andere
-                deelnemers
-              </li>
-              <li>
-                Ons informeren over medische aandoeningen of beperkingen bij het
-                boeken
-              </li>
-              <li>Geschikt schoeisel en kleding dragen voor wandeltours</li>
+              <li>Op tijd zijn</li>
+              <li>Instructies van de gids opvolgen</li>
+              <li>Medische aandoeningen melden bij boeken</li>
             </ul>
           </section>
 
           <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">
-              8. Beperking van aansprakelijkheid
-            </h2>
+            <h2 class="text-2xl font-semibold mb-4">7. Aansprakelijkheid</h2>
             <p class="text-muted-foreground">
               Jasmine Tours is niet aansprakelijk voor:
             </p>
-            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
-              <li>
-                Persoonlijk letsel of ongevallen tijdens de tour (behalve in
-                geval van grove nalatigheid)
-              </li>
-              <li>Verlies of beschadiging van persoonlijke bezittingen</li>
-              <li>Vertragingen of wijzigingen veroorzaakt door overmacht</li>
-              <li>Handelingen van derden</li>
-            </ul>
-            <p class="text-muted-foreground mt-4">
-              Deelnemers nemen op eigen risico deel aan tours en moeten een
-              passende reisverzekering hebben.
-            </p>
-          </section>
-
-          <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">
-              9. Fotografie en marketing
-            </h2>
             <p class="text-muted-foreground">
-              Tijdens tours kunnen foto's worden gemaakt voor
-              marketingdoeleinden. Door deel te nemen aan een tour, stemt u in
-              met het gebruik van uw afbeelding in marketingmateriaal, tenzij u
-              ons anders laat weten.
+              Deelname is op eigen risico. Jasmine Tours is niet aansprakelijk
+              behalve bij grove nalatigheid. Reisverzekering wordt aanbevolen.
             </p>
           </section>
 
           <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">10. Recht op wijziging</h2>
+            <h2 class="text-2xl font-semibold mb-4">8. Toepasselijk recht</h2>
             <p class="text-muted-foreground">
-              Wij behouden ons het recht voor om prijzen, tour-itineraries en
-              deze voorwaarden op elk moment te wijzigen. Wijzigingen hebben
-              geen invloed op reeds bevestigde boekingen.
+              Nederlands recht is van toepassing. Geschillen worden behandeld
+              bij Nederlandse rechtbanken.
             </p>
           </section>
 
           <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">11. Toepasselijk recht</h2>
-            <p class="text-muted-foreground">
-              Deze voorwaarden worden beheerst door het Nederlands recht.
-              Eventuele geschillen worden behandeld bij Nederlandse rechtbanken.
-            </p>
-          </section>
-
-          <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">12. Contactinformatie</h2>
-            <p class="text-muted-foreground mb-4">
-              Als u vragen heeft over deze voorwaarden, neem dan contact met ons
-              op:
-            </p>
+            <h2 class="text-2xl font-semibold mb-4">9. Contact</h2>
             <div class="bg-surface-subtle p-6 rounded-lg">
               <p class="text-foreground"><strong>Jasmine Tours</strong></p>
-              <p class="text-muted-foreground">E-mail: [UW_EMAIL]</p>
-              <p class="text-muted-foreground">
-                WhatsApp/Telefoon: +31 6 42221525
-              </p>
-              <p class="text-muted-foreground">
-                Instagram: @jasmine.tours.amsterdam
-              </p>
-              <p class="text-muted-foreground">Facebook: jasmintoursevents</p>
+              <p class="text-muted-foreground">E-mail: zguliyeva@gmail.com</p>
+              <p class="text-muted-foreground">Telefoon: +31 6 42221525</p>
             </div>
-          </section>
-
-          <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">13. Klachten</h2>
-            <p class="text-muted-foreground">
-              Als u een klacht heeft, neem dan eerst contact met ons op. Wij
-              streven ernaar alle problemen op een vriendelijke en professionele
-              manier op te lossen. Als we geen oplossing kunnen bereiken, kunt u
-              contact opnemen met een onafhankelijke geschilleninstantie.
-            </p>
           </section>
         </div>
 
@@ -307,17 +216,8 @@ const { t } = await getPageTranslations(locale as Locale, ["common"]);
           </p>
 
           <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">1. Принятие условий</h2>
-            <p class="text-muted-foreground">
-              Используя услуги Jasmine Tours, вы соглашаетесь соблюдать
-              настоящие Условия использования. Если вы не согласны с какой-либо
-              частью этих условий, пожалуйста, не используйте наши услуги.
-            </p>
-          </section>
-
-          <section class="mb-8">
             <h2 class="text-2xl font-semibold mb-4">
-              2. Информация о компании
+              1. Информация о компании
             </h2>
             <div class="bg-surface-subtle p-6 rounded-lg">
               <p class="text-foreground">
@@ -328,16 +228,16 @@ const { t } = await getPageTranslations(locale as Locale, ["common"]);
                 Нидерландов (KvK)
               </p>
               <p class="text-muted-foreground">
-                <strong>KvK номер:</strong> [НОМЕР_KVK]
+                <strong>KvK номер:</strong> 77170342
               </p>
               <p class="text-muted-foreground">
-                <strong>BTW номер:</strong> [BTW_НОМЕР]
+                <strong>BTW номер:</strong> NL96INGB0008729747
               </p>
               <p class="text-muted-foreground">
-                <strong>Адрес:</strong> [ВАШ_АДРЕС]
+                <strong>Адрес:</strong> 1058CB Амстердам, Нидерланды
               </p>
               <p class="text-muted-foreground">
-                <strong>Email:</strong> [ВАШ_EMAIL]
+                <strong>Email:</strong> zguliyeva@gmail.com
               </p>
               <p class="text-muted-foreground">
                 <strong>Телефон:</strong> +31 6 42221525
@@ -346,7 +246,7 @@ const { t } = await getPageTranslations(locale as Locale, ["common"]);
           </section>
 
           <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">3. Наши услуги</h2>
+            <h2 class="text-2xl font-semibold mb-4">2. Наши услуги</h2>
             <p class="text-muted-foreground mb-4">
               Jasmine Tours предоставляет:
             </p>
@@ -362,53 +262,41 @@ const { t } = await getPageTranslations(locale as Locale, ["common"]);
 
           <section class="mb-8">
             <h2 class="text-2xl font-semibold mb-4">
-              4. Бронирование и платежи
+              3. Бронирование и платежи
             </h2>
-            <h3 class="text-xl font-medium mb-3">4.1 Процесс бронирования</h3>
+            <h3 class="text-xl font-medium mb-3">3.1 Процесс бронирования</h3>
             <p class="text-muted-foreground mb-4">
               Бронирование может быть сделано через:
             </p>
             <ul class="list-disc pl-6 text-muted-foreground space-y-2">
               <li>Наш веб-сайт</li>
               <li>WhatsApp: +31 6 42221525</li>
-              <li>Email: [ВАШ_EMAIL]</li>
+              <li>Email: zguliyeva@gmail.com</li>
               <li>Instagram или Facebook</li>
             </ul>
 
-            <h3 class="text-xl font-medium mb-3 mt-6">4.2 Условия оплаты</h3>
+            <h3 class="text-xl font-medium mb-3 mt-6">3.2 Условия оплаты</h3>
             <p class="text-muted-foreground mb-4">
-              <strong>[УКАЖИТЕ ВАШУ ПЛАТЕЖНУЮ ПОЛИТИКУ]</strong>
+              Условия оплаты обсуждаются и согласовываются при первом контакте.
+              Оплата ожидается в день проведения тура.
             </p>
-            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
-              <li>
-                Полная предоплата требуется для подтверждения бронирования, или
-              </li>
-              <li>
-                Депозит [XX%] требуется при бронировании, остаток до [указать
-                срок], или
-              </li>
-              <li>Оплата наличными возможна в день тура</li>
-            </ul>
 
-            <h3 class="text-xl font-medium mb-3 mt-6">4.3 Методы оплаты</h3>
+            <h3 class="text-xl font-medium mb-3 mt-6">3.3 Методы оплаты</h3>
             <p class="text-muted-foreground mb-4">
               Мы принимаем следующие методы оплаты:
             </p>
             <ul class="list-disc pl-6 text-muted-foreground space-y-2">
-              <li>Банковский перевод (IBAN: [ВАШ_IBAN])</li>
-              <li>Наличные (только для туров по Амстердаму)</li>
-              <li>[ДРУГИЕ МЕТОДЫ ОПЛАТЫ]</li>
+              <li>Наличные</li>
+              <li>Дебетовая карта</li>
+              <li>Кредитная карта</li>
             </ul>
           </section>
 
           <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">
-              5. Политика отмены и возврата
-            </h2>
+            <h2 class="text-2xl font-semibold mb-4">4. Политика отмены</h2>
             <p class="text-muted-foreground mb-4">
-              <strong>[УКАЖИТЕ ВАШУ ПОЛИТИКУ ОТМЕНЫ]</strong>
+              <strong>Политика отмены:</strong>
             </p>
-            <p class="text-muted-foreground mb-4">Пример политики отмены:</p>
             <ul class="list-disc pl-6 text-muted-foreground space-y-2">
               <li>
                 <strong>Более 48 часов до тура:</strong> Полный возврат средств
@@ -426,123 +314,51 @@ const { t } = await getPageTranslations(locale as Locale, ["common"]);
           </section>
 
           <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">
-              6. Изменения и отмены нами
-            </h2>
+            <h2 class="text-2xl font-semibold mb-4">5. Отмены нами</h2>
             <p class="text-muted-foreground">
-              Мы оставляем за собой право отменить или изменить тур по
-              непредвиденным обстоятельствам (например, плохая погода,
-              недостаточное количество участников, болезнь гида). В таких
-              случаях мы предложим:
+              Можем отменить тур по непредвиденным обстоятельствам. Предложим
+              другую дату или полный возврат.
             </p>
-            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
-              <li>Альтернативную дату</li>
-              <li>Полный возврат средств</li>
-            </ul>
           </section>
 
           <section class="mb-8">
             <h2 class="text-2xl font-semibold mb-4">
-              7. Ответственность участников
+              6. Обязанности участников
             </h2>
             <p class="text-muted-foreground mb-4">Участники обязаны:</p>
             <ul class="list-disc pl-6 text-muted-foreground space-y-2">
-              <li>Прибыть вовремя к месту встречи</li>
+              <li>Прибыть вовремя</li>
               <li>Следовать инструкциям гида</li>
-              <li>
-                Вести себя уважительно по отношению к гиду и другим участникам
-              </li>
-              <li>
-                Сообщить о любых медицинских состояниях или ограничениях при
-                бронировании
-              </li>
-              <li>Носить подходящую обувь и одежду для пешеходных туров</li>
+              <li>Сообщить о медицинских состояниях</li>
             </ul>
           </section>
 
           <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">
-              8. Ограничение ответственности
-            </h2>
+            <h2 class="text-2xl font-semibold mb-4">7. Ответственность</h2>
             <p class="text-muted-foreground">
               Jasmine Tours не несет ответственности за:
             </p>
-            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
-              <li>
-                Личные травмы или несчастные случаи во время тура (за
-                исключением случаев грубой халатности)
-              </li>
-              <li>Утерю или повреждение личных вещей</li>
-              <li>
-                Задержки или изменения, вызванные форс-мажорными
-                обстоятельствами
-              </li>
-              <li>Действия третьих лиц</li>
-            </ul>
-            <p class="text-muted-foreground mt-4">
-              Участники принимают туры на свой собственный риск и обязаны иметь
-              соответствующую туристическую страховку.
-            </p>
-          </section>
-
-          <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">
-              9. Фотографии и маркетинг
-            </h2>
             <p class="text-muted-foreground">
-              Во время туров могут быть сделаны фотографии для маркетинговых
-              целей. Участвуя в туре, вы даете согласие на использование вашего
-              изображения в маркетинговых материалах, если только вы не сообщите
-              нам об обратном.
+              Участие на свой риск. Jasmine Tours не несет ответственности,
+              кроме грубой халатности. Рекомендуется страховка.
             </p>
           </section>
 
           <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">10. Право на изменение</h2>
+            <h2 class="text-2xl font-semibold mb-4">8. Применимое право</h2>
             <p class="text-muted-foreground">
-              Мы оставляем за собой право изменять цены, маршруты туров и эти
-              условия в любое время. Изменения не влияют на уже подтвержденные
-              бронирования.
+              Применяется законодательство Нидерландов. Споры рассматриваются в
+              судах Нидерландов.
             </p>
           </section>
 
           <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">11. Применимое право</h2>
-            <p class="text-muted-foreground">
-              Эти условия регулируются законодательством Нидерландов. Любые
-              споры будут рассматриваться в судах Нидерландов.
-            </p>
-          </section>
-
-          <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">
-              12. Контактная информация
-            </h2>
-            <p class="text-muted-foreground mb-4">
-              Если у вас есть вопросы об этих условиях, пожалуйста, свяжитесь с
-              нами:
-            </p>
+            <h2 class="text-2xl font-semibold mb-4">9. Контакты</h2>
             <div class="bg-surface-subtle p-6 rounded-lg">
               <p class="text-foreground"><strong>Jasmine Tours</strong></p>
-              <p class="text-muted-foreground">Email: [ВАШ_EMAIL]</p>
-              <p class="text-muted-foreground">
-                WhatsApp/Телефон: +31 6 42221525
-              </p>
-              <p class="text-muted-foreground">
-                Instagram: @jasmine.tours.amsterdam
-              </p>
-              <p class="text-muted-foreground">Facebook: jasmintoursevents</p>
+              <p class="text-muted-foreground">Email: zguliyeva@gmail.com</p>
+              <p class="text-muted-foreground">Телефон: +31 6 42221525</p>
             </div>
-          </section>
-
-          <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">13. Жалобы</h2>
-            <p class="text-muted-foreground">
-              Если у вас есть жалоба, пожалуйста, свяжитесь с нами сначала. Мы
-              стремимся разрешить все проблемы дружественным и профессиональным
-              образом. Если мы не сможем прийти к решению, вы можете обратиться
-              в независимый орган по разрешению споров.
-            </p>
           </section>
         </div>
 
@@ -559,16 +375,7 @@ const { t } = await getPageTranslations(locale as Locale, ["common"]);
           </p>
 
           <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">1. Acceptance of Terms</h2>
-            <p class="text-muted-foreground">
-              By using Jasmine Tours services, you agree to comply with these
-              Terms of Service. If you do not agree with any part of these
-              terms, please do not use our services.
-            </p>
-          </section>
-
-          <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">2. Company Information</h2>
+            <h2 class="text-2xl font-semibold mb-4">1. Company Information</h2>
             <div class="bg-surface-subtle p-6 rounded-lg">
               <p class="text-foreground">
                 <strong>Business Name:</strong> Jasmine Tours
@@ -578,16 +385,16 @@ const { t } = await getPageTranslations(locale as Locale, ["common"]);
                 of Commerce (KvK)
               </p>
               <p class="text-muted-foreground">
-                <strong>KvK Number:</strong> [KVK_NUMBER]
+                <strong>KvK Number:</strong> 77170342
               </p>
               <p class="text-muted-foreground">
-                <strong>VAT Number:</strong> [VAT_NUMBER]
+                <strong>VAT Number:</strong> NL96INGB0008729747
               </p>
               <p class="text-muted-foreground">
-                <strong>Address:</strong> [YOUR_ADDRESS]
+                <strong>Address:</strong> 1058CB Amsterdam, Netherlands
               </p>
               <p class="text-muted-foreground">
-                <strong>Email:</strong> [YOUR_EMAIL]
+                <strong>Email:</strong> zguliyeva@gmail.com
               </p>
               <p class="text-muted-foreground">
                 <strong>Phone:</strong> +31 6 42221525
@@ -596,7 +403,7 @@ const { t } = await getPageTranslations(locale as Locale, ["common"]);
           </section>
 
           <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">3. Our Services</h2>
+            <h2 class="text-2xl font-semibold mb-4">2. Our Services</h2>
             <p class="text-muted-foreground mb-4">Jasmine Tours provides:</p>
             <ul class="list-disc pl-6 text-muted-foreground space-y-2">
               <li>Walking tours in Amsterdam and other Dutch cities</li>
@@ -607,51 +414,39 @@ const { t } = await getPageTranslations(locale as Locale, ["common"]);
           </section>
 
           <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">4. Booking and Payments</h2>
-            <h3 class="text-xl font-medium mb-3">4.1 Booking Process</h3>
+            <h2 class="text-2xl font-semibold mb-4">3. Booking and Payments</h2>
+            <h3 class="text-xl font-medium mb-3">3.1 Booking Process</h3>
             <p class="text-muted-foreground mb-4">
               Bookings can be made through:
             </p>
             <ul class="list-disc pl-6 text-muted-foreground space-y-2">
               <li>Our website</li>
               <li>WhatsApp: +31 6 42221525</li>
-              <li>Email: [YOUR_EMAIL]</li>
+              <li>Email: zguliyeva@gmail.com</li>
               <li>Instagram or Facebook</li>
             </ul>
 
-            <h3 class="text-xl font-medium mb-3 mt-6">4.2 Payment Terms</h3>
+            <h3 class="text-xl font-medium mb-3 mt-6">3.2 Payment Terms</h3>
             <p class="text-muted-foreground mb-4">
-              <strong>[SPECIFY YOUR PAYMENT POLICY]</strong>
+              Payment terms are discussed and arranged during initial contact.
+              Payment is expected on the date of the tour.
             </p>
-            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
-              <li>Full prepayment is required to confirm booking, or</li>
-              <li>
-                Deposit of [XX%] required upon booking, balance due [specify
-                timeframe], or
-              </li>
-              <li>Cash payment possible on the day of the tour</li>
-            </ul>
 
-            <h3 class="text-xl font-medium mb-3 mt-6">4.3 Payment Methods</h3>
+            <h3 class="text-xl font-medium mb-3 mt-6">3.3 Payment Methods</h3>
             <p class="text-muted-foreground mb-4">
               We accept the following payment methods:
             </p>
             <ul class="list-disc pl-6 text-muted-foreground space-y-2">
-              <li>Bank transfer (IBAN: [YOUR_IBAN])</li>
-              <li>Cash (Amsterdam tours only)</li>
-              <li>[OTHER PAYMENT METHODS]</li>
+              <li>Cash</li>
+              <li>Debit card</li>
+              <li>Credit card</li>
             </ul>
           </section>
 
           <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">
-              5. Cancellation and Refund Policy
-            </h2>
+            <h2 class="text-2xl font-semibold mb-4">4. Cancellation Policy</h2>
             <p class="text-muted-foreground mb-4">
-              <strong>[SPECIFY YOUR CANCELLATION POLICY]</strong>
-            </p>
-            <p class="text-muted-foreground mb-4">
-              Example cancellation policy:
+              <strong>Cancellation policy:</strong>
             </p>
             <ul class="list-disc pl-6 text-muted-foreground space-y-2">
               <li>
@@ -670,114 +465,50 @@ const { t } = await getPageTranslations(locale as Locale, ["common"]);
           </section>
 
           <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">
-              6. Changes and Cancellations by Us
-            </h2>
+            <h2 class="text-2xl font-semibold mb-4">5. Cancellations by Us</h2>
             <p class="text-muted-foreground">
-              We reserve the right to cancel or change a tour due to unforeseen
-              circumstances (e.g., bad weather, insufficient participants, guide
-              illness). In such cases, we will offer:
+              We may cancel tours due to unforeseen circumstances. We will offer
+              an alternative date or full refund.
             </p>
-            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
-              <li>An alternative date</li>
-              <li>A full refund</li>
-            </ul>
           </section>
 
           <section class="mb-8">
             <h2 class="text-2xl font-semibold mb-4">
-              7. Participant Responsibilities
+              6. Participant Responsibilities
             </h2>
             <p class="text-muted-foreground mb-4">Participants must:</p>
             <ul class="list-disc pl-6 text-muted-foreground space-y-2">
-              <li>Arrive on time at the meeting point</li>
+              <li>Arrive on time</li>
               <li>Follow the guide's instructions</li>
-              <li>
-                Behave respectfully towards the guide and other participants
-              </li>
-              <li>
-                Inform us of any medical conditions or limitations when booking
-              </li>
-              <li>Wear appropriate footwear and clothing for walking tours</li>
+              <li>Inform us of medical conditions</li>
             </ul>
           </section>
 
           <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">
-              8. Limitation of Liability
-            </h2>
+            <h2 class="text-2xl font-semibold mb-4">7. Liability</h2>
             <p class="text-muted-foreground">
               Jasmine Tours is not liable for:
             </p>
-            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
-              <li>
-                Personal injury or accidents during the tour (except in cases of
-                gross negligence)
-              </li>
-              <li>Loss or damage to personal belongings</li>
-              <li>Delays or changes caused by force majeure</li>
-              <li>Actions of third parties</li>
-            </ul>
-            <p class="text-muted-foreground mt-4">
-              Participants join tours at their own risk and should have
-              appropriate travel insurance.
-            </p>
-          </section>
-
-          <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">
-              9. Photography and Marketing
-            </h2>
             <p class="text-muted-foreground">
-              Photos may be taken during tours for marketing purposes. By
-              participating in a tour, you consent to the use of your image in
-              marketing materials unless you inform us otherwise.
+              Participation is at own risk. Jasmine Tours is not liable except
+              for gross negligence. Travel insurance is recommended.
             </p>
           </section>
 
           <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">10. Right to Modify</h2>
+            <h2 class="text-2xl font-semibold mb-4">8. Applicable Law</h2>
             <p class="text-muted-foreground">
-              We reserve the right to modify prices, tour itineraries, and these
-              terms at any time. Changes do not affect already confirmed
-              bookings.
+              Dutch law applies. Disputes will be handled in Dutch courts.
             </p>
           </section>
 
           <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">11. Applicable Law</h2>
-            <p class="text-muted-foreground">
-              These terms are governed by Dutch law. Any disputes will be
-              handled in Dutch courts.
-            </p>
-          </section>
-
-          <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">12. Contact Information</h2>
-            <p class="text-muted-foreground mb-4">
-              If you have questions about these terms, please contact us:
-            </p>
+            <h2 class="text-2xl font-semibold mb-4">9. Contact</h2>
             <div class="bg-surface-subtle p-6 rounded-lg">
               <p class="text-foreground"><strong>Jasmine Tours</strong></p>
-              <p class="text-muted-foreground">Email: [YOUR_EMAIL]</p>
-              <p class="text-muted-foreground">
-                WhatsApp/Phone: +31 6 42221525
-              </p>
-              <p class="text-muted-foreground">
-                Instagram: @jasmine.tours.amsterdam
-              </p>
-              <p class="text-muted-foreground">Facebook: jasmintoursevents</p>
+              <p class="text-muted-foreground">Email: zguliyeva@gmail.com</p>
+              <p class="text-muted-foreground">Phone: +31 6 42221525</p>
             </div>
-          </section>
-
-          <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">13. Complaints</h2>
-            <p class="text-muted-foreground">
-              If you have a complaint, please contact us first. We strive to
-              resolve all issues in a friendly and professional manner. If we
-              cannot reach a resolution, you may contact an independent dispute
-              resolution body.
-            </p>
           </section>
         </div>
       </div>
