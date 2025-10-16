@@ -41,9 +41,6 @@ const {
   translations = [],
   sections = [],
   socialLinks = [],
-  showNewsletter = false,
-  newsletterTitle,
-  newsletterDescription,
   copyrightText,
   logoText,
   logoHref = "/",
@@ -220,28 +217,58 @@ const defaultCopyright =
 
     <!-- Bottom Bar -->
     <div class="border-t border-border pt-8 mt-8">
-      <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
-        <!-- Copyright -->
-        <div class="text-sm text-muted-foreground">
-          {defaultCopyright}
+      <div class="flex flex-col sm:flex-row justify-between items-start gap-6">
+        <!-- Left Side: Copyright & Legal Links -->
+        <div class="flex flex-col gap-3 text-sm">
+          <!-- Copyright -->
+          <div class="text-muted-foreground">
+            {defaultCopyright}
+          </div>
+
+          <!-- Legal Links -->
+          <div class="flex items-center space-x-4">
+            <slot name="legal">
+              <a
+                href={`/${locale}/privacy`}
+                class="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded-sm"
+              >
+                {t("footer.legal.privacy", "Privacy Policy")}
+              </a>
+              <a
+                href={`/${locale}/terms`}
+                class="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded-sm"
+              >
+                {t("footer.legal.terms", "Terms of Service")}
+              </a>
+            </slot>
+          </div>
         </div>
 
-        <!-- Legal Links -->
-        <div class="flex items-center space-x-4 text-sm">
-          <slot name="legal">
+        <!-- Right Side: Developer Credit -->
+        <div class="flex flex-col items-start sm:items-end gap-1 text-sm">
+          <p class="text-sm text-muted-foreground sm:text-right">
+            Website developed by{" "}
             <a
-              href={`/${locale}/privacy`}
-              class="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded-sm"
+              href="https://www.ai-friends.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-medium text-foreground hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded-sm"
             >
-              {t("footer.legal.privacy", "Privacy Policy")}
+              AI Friends Agency
             </a>
+            {" "}- Professional websites with perfect SEO and Performance.
+          </p>
+          <p class="text-xs text-muted-foreground sm:text-right">
+            Visit us at{" "}
             <a
-              href={`/${locale}/terms`}
-              class="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded-sm"
+              href="https://www.ai-friends.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded-sm"
             >
-              {t("footer.legal.terms", "Terms of Service")}
+              www.ai-friends.org
             </a>
-          </slot>
+          </p>
         </div>
       </div>
     </div>
