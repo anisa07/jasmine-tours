@@ -5,7 +5,7 @@ for = "/*"
   X-Frame-Options = "DENY"
   Referrer-Policy = "strict-origin-when-cross-origin"
   # Use one at a time:
-  Content-Security-Policy = "default-src 'self'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; object-src 'none'; connect-src 'self'; font-src 'self'; img-src 'self' data:; script-src 'self'; style-src 'self'; upgrade-insecure-requests"
+  Content-Security-Policy = "default-src 'self'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; object-src 'none'; connect-src 'self'; font-src 'self'; img-src 'self' data:; script-src 'self'; style-src 'self' 'unsafe-inline'; upgrade-insecure-requests"
   Cache-Control = "public, max-age=0, must-revalidate"
 
 [build]
@@ -15,21 +15,6 @@ for = "/*"
  
 [functions]
   node_bundler = "esbuild"
-
-[[redirects]]
-  from = "/oauth"
-  to   = "/.netlify/functions/oauth"
-  status = 200
-
-[[redirects]]
-  from = "/callback"
-  to   = "/.netlify/functions/oauth"
-  status = 200
-
-[[redirects]]
-  from = "/token"
-  to   = "/.netlify/functions/oauth"
-  status = 200
 
 [[headers]]
 for = "/assets/*"
