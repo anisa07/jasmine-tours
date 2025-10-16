@@ -79,7 +79,9 @@ export default defineConfig({
       ],
       sitemap: true, // Automatically includes sitemap reference
     }),
-    (await import("@playform/compress")).default(),
+    (await import("@playform/compress")).default({
+      Image: false,
+    }),
     purgecss({
       content: [
         "./src/**/*.{astro,html,js,jsx,ts,tsx,vue,svelte}",

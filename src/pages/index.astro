@@ -1,6 +1,5 @@
 ---
 // Root index page - redirects to Russian locale
-import { defaultLocale } from "@/i18n/config";
 import { createT } from "@/i18n/t";
 
 // Since this is a redirect page, we'll provide basic Russian translations
@@ -34,7 +33,7 @@ const t = createT([redirectTranslations]);
     </script>
 
     <!-- Fallback meta refresh for users with JS disabled -->
-    <meta http-equiv="refresh" content="0; url={defaultLocale}" />
+    <meta http-equiv="refresh" content="0; url=/ru" />
   </head>
   <body>
     <!-- Empty body - redirect happens instantly via JavaScript -->

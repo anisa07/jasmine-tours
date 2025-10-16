@@ -1,0 +1,731 @@
+---
+import IntlBaseLayout from "@/layouts/IntlBaseLayout.astro";
+import { getPageTranslations, getLocaleStaticPaths } from "@/i18n/i18n";
+import type { Locale } from "@/i18n/config";
+import Container from "@/components/layout/Container.astro";
+
+// Generate static paths for all supported locales
+export async function getStaticPaths() {
+  return getLocaleStaticPaths();
+}
+
+// Get locale from dynamic route params
+const { locale } = Astro.params;
+
+// Get the translation function for this page
+const { t } = await getPageTranslations(locale as Locale, ["common"]);
+---
+
+<IntlBaseLayout
+  locale={locale}
+  pageNS={["common"]}
+  seo={{
+    title:
+      "Privacy Policy | Privacybeleid | Политика конфиденциальности | Jasmine Tours",
+    description:
+      "Jasmine Tours Privacy Policy - how we collect, use and protect your personal information",
+  }}
+>
+  <section class="py-20">
+    <Container size="md">
+      <!-- Language Switcher -->
+      <div class="flex justify-center gap-2 mb-8 pb-4 border-b border-border">
+        <button
+          data-lang="nl"
+          class="legal-lang-btn px-4 py-2 rounded-md font-medium transition-colors hover:bg-primary hover:text-primary-foreground"
+        >
+          Nederlands
+        </button>
+        <button
+          data-lang="ru"
+          class="legal-lang-btn px-4 py-2 rounded-md font-medium transition-colors hover:bg-primary hover:text-primary-foreground bg-primary text-primary-foreground"
+        >
+          Русский
+        </button>
+        <button
+          data-lang="en"
+          class="legal-lang-btn px-4 py-2 rounded-md font-medium transition-colors hover:bg-primary hover:text-primary-foreground"
+        >
+          English
+        </button>
+      </div>
+
+      <div class="prose prose-lg max-w-none">
+        <!-- Dutch Content -->
+        <div
+          class="legal-content"
+          data-content-lang="nl"
+          style="display: none;"
+        >
+          <h1 class="text-4xl font-bold mb-8">Privacybeleid</h1>
+          <p class="text-muted-foreground mb-6">
+            <strong>Ingangsdatum:</strong>
+            {new Date().toLocaleDateString("nl-NL")}
+          </p>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">1. Inleiding</h2>
+            <p class="text-muted-foreground">
+              Jasmine Tours ("wij", "ons", "onze") streeft ernaar uw privacy te
+              beschermen. Dit privacybeleid legt uit hoe wij uw informatie
+              verzamelen, gebruiken, openbaar maken en beschermen wanneer u onze
+              website en diensten gebruikt.
+            </p>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">
+              2. Informatie die wij verzamelen
+            </h2>
+            <h3 class="text-xl font-medium mb-3">
+              2.1 Persoonlijke informatie
+            </h3>
+            <p class="text-muted-foreground mb-4">
+              Bij het boeken van een tour of contact met ons, kunnen wij het
+              volgende verzamelen:
+            </p>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>Voor- en achternaam</li>
+              <li>E-mailadres</li>
+              <li>Telefoonnummer</li>
+              <li>Tourvoorkeuren en speciale verzoeken</li>
+              <li>
+                Betalingsinformatie (verwerkt via beveiligde
+                betalingsprocessors)
+              </li>
+            </ul>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">
+              3. Hoe wij uw informatie gebruiken
+            </h2>
+            <p class="text-muted-foreground mb-4">
+              Wij gebruiken de verzamelde informatie om:
+            </p>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>Onze tourdiensten te leveren en te beheren</li>
+              <li>Boekingen en betalingen te verwerken</li>
+              <li>Met u te communiceren over uw boekingen</li>
+              <li>Onze diensten te verbeteren</li>
+              <li>Marketingberichten te verzenden (met uw toestemming)</li>
+            </ul>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">
+              4. Rechtsgrondslag voor verwerking (AVG)
+            </h2>
+            <p class="text-muted-foreground mb-4">
+              Onder de AVG (Algemene Verordening Gegevensbescherming), verwerken
+              wij uw persoonlijke informatie op basis van:
+            </p>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>
+                <strong>Contractuele noodzaak:</strong> Om de diensten te leveren
+                die u heeft geboekt
+              </li>
+              <li><strong>Toestemming:</strong> Voor marketingcommunicatie</li>
+              <li>
+                <strong>Gerechtvaardigde belangen:</strong> Om onze diensten te verbeteren
+              </li>
+            </ul>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">
+              5. Gegevensdeling en overdracht
+            </h2>
+            <p class="text-muted-foreground">
+              Wij verkopen uw persoonlijke informatie niet aan derden. Wij
+              kunnen informatie alleen delen met:
+            </p>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>Betalingsdienstverleners om transacties te verwerken</li>
+              <li>
+                Dienstverleners die ons helpen met onze activiteiten (bijv.
+                boekingssystemen)
+              </li>
+              <li>Wanneer dit wettelijk verplicht is</li>
+            </ul>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">6. Gegevensbewaring</h2>
+            <p class="text-muted-foreground">
+              Wij bewaren uw persoonlijke informatie alleen zo lang als nodig is
+              voor de doeleinden waarvoor deze is verzameld en om aan wettelijke
+              verplichtingen te voldoen (minimaal 7 jaar voor financiële
+              gegevens volgens de Nederlandse wet).
+            </p>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">7. Uw rechten</h2>
+            <p class="text-muted-foreground mb-4">
+              Onder de AVG heeft u het recht op:
+            </p>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>
+                <strong>Inzage:</strong> Kopieën van uw persoonlijke informatie opvragen
+              </li>
+              <li>
+                <strong>Rectificatie:</strong> Correctie van onjuiste gegevens verzoeken
+              </li>
+              <li>
+                <strong>Wissing:</strong> Verwijdering van uw gegevens verzoeken
+              </li>
+              <li>
+                <strong>Beperking:</strong> Beperking van de verwerking van uw gegevens
+                verzoeken
+              </li>
+              <li>
+                <strong>Dataportabiliteit:</strong> Uw gegevens in een gestructureerd
+                formaat ontvangen
+              </li>
+              <li>
+                <strong>Bezwaar:</strong> Bezwaar maken tegen de verwerking van uw
+                gegevens
+              </li>
+              <li>
+                <strong>Toestemming intrekken:</strong> Toestemming voor gegevensverwerking
+                op elk moment intrekken
+              </li>
+            </ul>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">8. Cookies</h2>
+            <p class="text-muted-foreground">
+              Onze website gebruikt cookies om uw ervaring te verbeteren. Wij
+              gebruiken:
+            </p>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>
+                <strong>Essentiële cookies:</strong> Voor basisfunctionaliteit van
+                de website
+              </li>
+              <li>
+                <strong>Analytische cookies:</strong> Om websitegebruik te begrijpen
+                (met uw toestemming)
+              </li>
+            </ul>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">9. Beveiliging</h2>
+            <p class="text-muted-foreground">
+              Wij implementeren passende technische en organisatorische
+              maatregelen om uw persoonlijke informatie te beschermen tegen
+              ongeautoriseerde toegang, wijziging, openbaarmaking of
+              vernietiging.
+            </p>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">10. Contactinformatie</h2>
+            <p class="text-muted-foreground mb-4">
+              Voor vragen over dit privacybeleid of om uw rechten uit te
+              oefenen, neem contact met ons op:
+            </p>
+            <div class="bg-surface-subtle p-6 rounded-lg">
+              <p class="text-foreground"><strong>Jasmine Tours</strong></p>
+              <p class="text-muted-foreground">KvK: [KVK_NUMMER]</p>
+              <p class="text-muted-foreground">E-mail: [UW_EMAIL]</p>
+              <p class="text-muted-foreground">Telefoon: +31 6 42221525</p>
+              <p class="text-muted-foreground">Adres: [UW_ADRES]</p>
+            </div>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">11. Klachten</h2>
+            <p class="text-muted-foreground">
+              Als u een klacht heeft over hoe wij uw persoonlijke gegevens
+              verwerken, heeft u het recht om een klacht in te dienen bij de
+              Autoriteit Persoonsgegevens: <a
+                href="https://autoriteitpersoonsgegevens.nl"
+                class="text-primary hover:underline"
+                target="_blank"
+                rel="noopener noreferrer">autoriteitpersoonsgegevens.nl</a
+              >
+            </p>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">
+              12. Wijzigingen in dit beleid
+            </h2>
+            <p class="text-muted-foreground">
+              Wij kunnen dit privacybeleid van tijd tot tijd bijwerken. Wij
+              zullen u op de hoogte stellen van eventuele wijzigingen door het
+              nieuwe privacybeleid op deze pagina te plaatsen.
+            </p>
+          </section>
+        </div>
+
+        <!-- Russian Content -->
+        <div class="legal-content" data-content-lang="ru">
+          <h1 class="text-4xl font-bold mb-8">Политика конфиденциальности</h1>
+          <p class="text-muted-foreground mb-6">
+            <strong>Дата вступления в силу:</strong>
+            {new Date().toLocaleDateString("ru-RU")}
+          </p>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">1. Введение</h2>
+            <p class="text-muted-foreground">
+              Jasmine Tours ("мы", "нас", "наш") стремится защищать вашу
+              конфиденциальность. Эта Политика конфиденциальности объясняет, как
+              мы собираем, используем, раскрываем и защищаем вашу информацию при
+              использовании нашего веб-сайта и услуг.
+            </p>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">
+              2. Информация, которую мы собираем
+            </h2>
+            <h3 class="text-xl font-medium mb-3">2.1 Личная информация</h3>
+            <p class="text-muted-foreground mb-4">
+              При бронировании тура или связи с нами мы можем собирать:
+            </p>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>Имя и фамилию</li>
+              <li>Адрес электронной почты</li>
+              <li>Номер телефона</li>
+              <li>Предпочтения по турам и особые пожелания</li>
+              <li>
+                Информацию о платеже (обрабатывается безопасными платежными
+                системами)
+              </li>
+            </ul>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">
+              3. Как мы используем вашу информацию
+            </h2>
+            <p class="text-muted-foreground mb-4">
+              Мы используем собранную информацию для:
+            </p>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>
+                Предоставления и управления нашими туристическими услугами
+              </li>
+              <li>Обработки бронирований и платежей</li>
+              <li>Связи с вами по поводу ваших бронирований</li>
+              <li>Улучшения наших услуг</li>
+              <li>Отправки маркетинговых сообщений (с вашего согласия)</li>
+            </ul>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">
+              4. Правовая основа обработки (GDPR)
+            </h2>
+            <p class="text-muted-foreground mb-4">
+              В соответствии с GDPR (AVG в Нидерландах), мы обрабатываем вашу
+              личную информацию на основании:
+            </p>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>
+                <strong>Договорная необходимость:</strong> Для предоставления забронированных
+                вами услуг
+              </li>
+              <li><strong>Согласие:</strong> Для маркетинговых коммуникаций</li>
+              <li>
+                <strong>Законные интересы:</strong> Для улучшения наших услуг
+              </li>
+            </ul>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">
+              5. Обмен данными и передача
+            </h2>
+            <p class="text-muted-foreground">
+              Мы не продаем вашу личную информацию третьим лицам. Мы можем
+              делиться информацией только с:
+            </p>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>Поставщиками платежных услуг для обработки транзакций</li>
+              <li>
+                Поставщиками услуг, которые помогают нам в работе (например,
+                системы бронирования)
+              </li>
+              <li>Когда это требуется по закону</li>
+            </ul>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">6. Хранение данных</h2>
+            <p class="text-muted-foreground">
+              Мы храним вашу личную информацию только до тех пор, пока это
+              необходимо для целей, для которых она была собрана, и для
+              выполнения юридических обязательств (минимум 7 лет для финансовых
+              записей в соответствии с голландским законодательством).
+            </p>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">7. Ваши права</h2>
+            <p class="text-muted-foreground mb-4">
+              В соответствии с GDPR, вы имеете право на:
+            </p>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>
+                <strong>Доступ:</strong> Запросить копии вашей личной информации
+              </li>
+              <li>
+                <strong>Исправление:</strong> Запросить исправление неточных данных
+              </li>
+              <li>
+                <strong>Удаление:</strong> Запросить удаление ваших данных
+              </li>
+              <li>
+                <strong>Ограничение обработки:</strong> Запросить ограничение обработки
+                ваших данных
+              </li>
+              <li>
+                <strong>Переносимость данных:</strong> Получить ваши данные в структурированном
+                формате
+              </li>
+              <li>
+                <strong>Возражение:</strong> Возразить против обработки ваших данных
+              </li>
+              <li>
+                <strong>Отзыв согласия:</strong> Отозвать согласие на обработку данных
+                в любое время
+              </li>
+            </ul>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">8. Cookies</h2>
+            <p class="text-muted-foreground">
+              Наш веб-сайт использует cookies для улучшения вашего опыта. Мы
+              используем:
+            </p>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>
+                <strong>Необходимые cookies:</strong> Для основной функциональности
+                сайта
+              </li>
+              <li>
+                <strong>Аналитические cookies:</strong> Для понимания использования
+                сайта (с вашего согласия)
+              </li>
+            </ul>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">9. Безопасность</h2>
+            <p class="text-muted-foreground">
+              Мы применяем соответствующие технические и организационные меры
+              для защиты вашей личной информации от несанкционированного
+              доступа, изменения, раскрытия или уничтожения.
+            </p>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">
+              10. Контактная информация
+            </h2>
+            <p class="text-muted-foreground mb-4">
+              Для вопросов о данной Политике конфиденциальности или для
+              реализации ваших прав, свяжитесь с нами:
+            </p>
+            <div class="bg-surface-subtle p-6 rounded-lg">
+              <p class="text-foreground"><strong>Jasmine Tours</strong></p>
+              <p class="text-muted-foreground">KvK: [НОМЕР_KVK]</p>
+              <p class="text-muted-foreground">Email: [ВАШ_EMAIL]</p>
+              <p class="text-muted-foreground">Телефон: +31 6 42221525</p>
+              <p class="text-muted-foreground">Адрес: [ВАШ_АДРЕС]</p>
+            </div>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">11. Жалобы</h2>
+            <p class="text-muted-foreground">
+              Если у вас есть жалоба на то, как мы обрабатываем ваши
+              персональные данные, вы имеете право подать жалобу в Нидерландский
+              орган по защите данных (Autoriteit Persoonsgegevens): <a
+                href="https://autoriteitpersoonsgegevens.nl"
+                class="text-primary hover:underline"
+                target="_blank"
+                rel="noopener noreferrer">autoriteitpersoonsgegevens.nl</a
+              >
+            </p>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">
+              12. Изменения в этой политике
+            </h2>
+            <p class="text-muted-foreground">
+              Мы можем обновлять эту Политику конфиденциальности время от
+              времени. Мы уведомим вас о любых изменениях, разместив новую
+              Политику конфиденциальности на этой странице.
+            </p>
+          </section>
+        </div>
+
+        <!-- English Content -->
+        <div
+          class="legal-content"
+          data-content-lang="en"
+          style="display: none;"
+        >
+          <h1 class="text-4xl font-bold mb-8">Privacy Policy</h1>
+          <p class="text-muted-foreground mb-6">
+            <strong>Effective Date:</strong>
+            {new Date().toLocaleDateString("en-US")}
+          </p>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">1. Introduction</h2>
+            <p class="text-muted-foreground">
+              Jasmine Tours ("we", "us", "our") is committed to protecting your
+              privacy. This Privacy Policy explains how we collect, use,
+              disclose, and safeguard your information when you use our website
+              and services.
+            </p>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">
+              2. Information We Collect
+            </h2>
+            <h3 class="text-xl font-medium mb-3">2.1 Personal Information</h3>
+            <p class="text-muted-foreground mb-4">
+              When booking a tour or contacting us, we may collect:
+            </p>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>Name and surname</li>
+              <li>Email address</li>
+              <li>Phone number</li>
+              <li>Tour preferences and special requests</li>
+              <li>
+                Payment information (processed through secure payment
+                processors)
+              </li>
+            </ul>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">
+              3. How We Use Your Information
+            </h2>
+            <p class="text-muted-foreground mb-4">
+              We use the collected information to:
+            </p>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>Provide and manage our tour services</li>
+              <li>Process bookings and payments</li>
+              <li>Communicate with you about your bookings</li>
+              <li>Improve our services</li>
+              <li>Send marketing communications (with your consent)</li>
+            </ul>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">
+              4. Legal Basis for Processing (GDPR)
+            </h2>
+            <p class="text-muted-foreground mb-4">
+              Under GDPR (AVG in the Netherlands), we process your personal
+              information based on:
+            </p>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>
+                <strong>Contractual Necessity:</strong> To provide the services you
+                booked
+              </li>
+              <li><strong>Consent:</strong> For marketing communications</li>
+              <li>
+                <strong>Legitimate Interests:</strong> To improve our services
+              </li>
+            </ul>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">
+              5. Data Sharing and Transfer
+            </h2>
+            <p class="text-muted-foreground">
+              We do not sell your personal information to third parties. We may
+              share information only with:
+            </p>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>Payment service providers to process transactions</li>
+              <li>
+                Service providers who assist us in operations (e.g., booking
+                systems)
+              </li>
+              <li>When required by law</li>
+            </ul>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">6. Data Retention</h2>
+            <p class="text-muted-foreground">
+              We retain your personal information only for as long as necessary
+              for the purposes for which it was collected and to comply with
+              legal obligations (minimum 7 years for financial records under
+              Dutch law).
+            </p>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">7. Your Rights</h2>
+            <p class="text-muted-foreground mb-4">
+              Under GDPR, you have the right to:
+            </p>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>
+                <strong>Access:</strong> Request copies of your personal information
+              </li>
+              <li>
+                <strong>Rectification:</strong> Request correction of inaccurate
+                data
+              </li>
+              <li><strong>Erasure:</strong> Request deletion of your data</li>
+              <li>
+                <strong>Restriction:</strong> Request restriction of processing your
+                data
+              </li>
+              <li>
+                <strong>Data Portability:</strong> Receive your data in a structured
+                format
+              </li>
+              <li>
+                <strong>Object:</strong> Object to processing of your data
+              </li>
+              <li>
+                <strong>Withdraw Consent:</strong> Withdraw consent for data processing
+                at any time
+              </li>
+            </ul>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">8. Cookies</h2>
+            <p class="text-muted-foreground">
+              Our website uses cookies to improve your experience. We use:
+            </p>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>
+                <strong>Essential cookies:</strong> For basic website functionality
+              </li>
+              <li>
+                <strong>Analytics cookies:</strong> To understand website usage (with
+                your consent)
+              </li>
+            </ul>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">9. Security</h2>
+            <p class="text-muted-foreground">
+              We implement appropriate technical and organizational measures to
+              protect your personal information against unauthorized access,
+              alteration, disclosure, or destruction.
+            </p>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">10. Contact Information</h2>
+            <p class="text-muted-foreground mb-4">
+              For questions about this Privacy Policy or to exercise your
+              rights, contact us:
+            </p>
+            <div class="bg-surface-subtle p-6 rounded-lg">
+              <p class="text-foreground"><strong>Jasmine Tours</strong></p>
+              <p class="text-muted-foreground">KvK: [KVK_NUMBER]</p>
+              <p class="text-muted-foreground">Email: [YOUR_EMAIL]</p>
+              <p class="text-muted-foreground">Phone: +31 6 42221525</p>
+              <p class="text-muted-foreground">Address: [YOUR_ADDRESS]</p>
+            </div>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">11. Complaints</h2>
+            <p class="text-muted-foreground">
+              If you have a complaint about how we handle your personal data,
+              you have the right to lodge a complaint with the Dutch Data
+              Protection Authority (Autoriteit Persoonsgegevens): <a
+                href="https://autoriteitpersoonsgegevens.nl"
+                class="text-primary hover:underline"
+                target="_blank"
+                rel="noopener noreferrer">autoriteitpersoonsgegevens.nl</a
+              >
+            </p>
+          </section>
+
+          <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">
+              12. Changes to This Policy
+            </h2>
+            <p class="text-muted-foreground">
+              We may update this Privacy Policy from time to time. We will
+              notify you of any changes by posting the new Privacy Policy on
+              this page.
+            </p>
+          </section>
+        </div>
+      </div>
+    </Container>
+  </section>
+</IntlBaseLayout>
+
+<script>
+  // Language switcher functionality
+  function initLegalLanguageSwitcher() {
+    const buttons = document.querySelectorAll(".legal-lang-btn");
+    const contents = document.querySelectorAll(".legal-content");
+
+    // Get saved language or default to Russian
+    const savedLang = localStorage.getItem("legalPageLang") || "ru";
+
+    // Set initial state
+    switchLanguage(savedLang);
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const lang = button.getAttribute("data-lang");
+        if (lang) {
+          switchLanguage(lang);
+          localStorage.setItem("legalPageLang", lang);
+        }
+      });
+    });
+
+    function switchLanguage(lang: string) {
+      // Update button states
+      buttons.forEach((btn) => {
+        if (btn.getAttribute("data-lang") === lang) {
+          btn.classList.add("bg-primary", "text-primary-foreground");
+        } else {
+          btn.classList.remove("bg-primary", "text-primary-foreground");
+        }
+      });
+
+      // Update content visibility
+      contents.forEach((content) => {
+        const contentLang = content.getAttribute("data-content-lang");
+        if (contentLang === lang) {
+          (content as HTMLElement).style.display = "block";
+        } else {
+          (content as HTMLElement).style.display = "none";
+        }
+      });
+    }
+  }
+
+  // Initialize on page load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initLegalLanguageSwitcher);
+  } else {
+    initLegalLanguageSwitcher();
+  }
+</script>
