@@ -9,7 +9,6 @@ interface Props {
     vars?: Record<string, string | number>,
   ) => string;
   title?: string;
-  subtitle?: string;
   description?: string;
   locale?: string;
   variant?: "default" | "centered";
@@ -20,15 +19,10 @@ interface Props {
 const {
   t,
   title = t("cta.title", "Готовы к новому приключению?"),
-  subtitle = t(
-    "cta.subtitle",
-    "Свяжитесь со мной, и я помогу спланировать ваше путешествие мечты",
-  ),
   description = t(
     "cta.description",
     "Напишите мне в WhatsApp для быстрой брони или загляните в мой Instagram — вдохновляйтесь идеями и атмосферой настоящей Голландии.",
   ),
-  locale = "ru",
   variant = "default",
   backgroundColor = "primary",
   className = "",
@@ -38,26 +32,12 @@ const {
 <!-- CTA Section -->
 <section
   id="contact"
-  class={`bg-${backgroundColor} ${backgroundColor === "primary" ? "text-primary-foreground" : "text-foreground"} relative overflow-hidden ${className} py-16 md:py-20`}
+  class={`bg-primary/85 ${backgroundColor === "primary" ? "text-primary-foreground" : "text-foreground"} relative overflow-hidden ${className} py-16 md:py-20`}
 >
   <Container size="md" padding="xs" class="relative z-10">
     <div
       class={`space-y-8 animate-fade-up ${variant === "centered" ? "text-center max-w-4xl mx-auto" : ""}`}
     >
-      {
-        subtitle && (
-          <div
-            class={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium text-primary ${
-              variant === "centered" ? "mx-auto" : ""
-            } ${
-              backgroundColor === "primary" ? "bg-white/90" : "bg-primary/10"
-            }`}
-          >
-            {subtitle}
-          </div>
-        )
-      }
-
       <h2 class={`font-bold leading-tight text-3xl md:text-4xl lg:text-5xl`}>
         {title}
       </h2>
