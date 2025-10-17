@@ -1,7 +1,7 @@
 ---
 import IntlBaseLayout from "@/layouts/IntlBaseLayout.astro";
 import { getPageTranslations, getLocaleStaticPaths } from "@/i18n/i18n";
-import type { Locale } from "@/i18n/config";
+import { defaultLocale, type Locale } from "@/i18n/config";
 import { getEntry } from "astro:content";
 import Container from "@/components/layout/Container.astro";
 import { Image } from "astro:assets";
@@ -21,11 +21,8 @@ export async function getStaticPaths() {
 const aboutEntry = await getEntry("about", "about");
 const aboutMeData = aboutEntry?.data;
 
-// Get locale from dynamic route params
-const { locale } = Astro.params;
-
 // Get the translation function for this page
-const { t } = await getPageTranslations(locale as Locale, [
+const { t } = await getPageTranslations(defaultLocale as Locale, [
   "common",
   "ui",
   "home",
@@ -33,7 +30,7 @@ const { t } = await getPageTranslations(locale as Locale, [
 ---
 
 <IntlBaseLayout
-  locale={locale}
+  locale={defaultLocale}
   pageNS={["common", "ui", "home"]}
   seo={{
     title: aboutMeData?.title
@@ -232,5 +229,5 @@ const { t } = await getPageTranslations(locale as Locale, [
   )}
 
   <!-- Call to Action -->
-  <CTASection t={t} locale={locale} backgroundColor="primary" />
+  <CTASection t={t} locale={defaultLocale} backgroundColor="primary" />
 </IntlBaseLayout>
