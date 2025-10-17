@@ -50,7 +50,10 @@ const url = new URL(Astro.url, site).href;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+    <meta
+      name="google-site-verification"
+      content="ibshIHUL36vOe2ldvh3WW7JT8DICzb23nSiFobq3pC8"
+    />
     <!-- Dynamic Theme Color from CMS -->
     <ThemeProvider />
 
@@ -156,11 +159,11 @@ const url = new URL(Astro.url, site).href;
       navItems={[
         {
           label: t("nav.features", "Экскурсии"),
-          href: `#tours`,
+          href: `/#tours`,
         },
         {
           label: t("nav.team", "Отзывы"),
-          href: `#testimonials`,
+          href: `/#testimonials`,
         },
         { label: t("nav.about", "Обо мне"), href: `/about-me` },
         {
@@ -184,13 +187,13 @@ const url = new URL(Astro.url, site).href;
       logoHref={`/`}
       copyrightText={t(
         "footer.copyright",
-        "© 2025 Jasmine Tours & Events. Все права защищены."
+        "© 2025 Jasmine Tours & Events. Все права защищены.",
       )}
       showNewsletter={true}
       newsletterTitle={t("footer.newsletter.title", "Будьте в курсе")}
       newsletterDescription={t(
         "footer.newsletter.description",
-        "Получайте последние новости и обновления на вашу электронную почту."
+        "Получайте последние новости и обновления на вашу электронную почту.",
       )}
     />
 
