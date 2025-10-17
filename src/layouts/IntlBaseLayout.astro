@@ -4,7 +4,7 @@ import "@/styles/global.css";
 import "@/styles/animations.css";
 import SiteData from "@/config/siteData.json";
 // If you already have config files, import them here:
-import { locales, defaultLocale, type Locale } from "@/i18n/config";
+import { defaultLocale, type Locale } from "@/i18n/config";
 import { getPageTranslations } from "@/i18n/i18n";
 import { Toaster } from "@/components/ui/sonner";
 import { SEO, type SEOProps } from "astro-seo";
@@ -152,20 +152,20 @@ const url = new URL(Astro.url, site).href;
     <!-- Navigation Header -->
     <Header
       logoText={t("site.name", "Jasmine Tours")}
-      logoHref={`/${activeLocale}`}
+      logoHref={`/`}
       navItems={[
         {
           label: t("nav.features", "Экскурсии"),
-          href: `/${activeLocale}#tours`,
+          href: `#tours`,
         },
         {
           label: t("nav.team", "Отзывы"),
-          href: `/${activeLocale}#testimonials`,
+          href: `#testimonials`,
         },
-        { label: t("nav.about", "Обо мне"), href: `/${activeLocale}/about-me` },
+        { label: t("nav.about", "Обо мне"), href: `/about-me` },
         {
           label: t("nav.contact", "Связаться"),
-          href: `/${activeLocale}#contact`,
+          href: `#contact`,
         },
       ]}
       fixed={true}
@@ -181,16 +181,16 @@ const url = new URL(Astro.url, site).href;
     <Footer
       locale={activeLocale}
       logoText={t("site.name", "Jasmine Tours & Events")}
-      logoHref={`/${activeLocale}`}
+      logoHref={`/`}
       copyrightText={t(
         "footer.copyright",
-        "© 2025 Jasmine Tours & Events. Все права защищены.",
+        "© 2025 Jasmine Tours & Events. Все права защищены."
       )}
       showNewsletter={true}
       newsletterTitle={t("footer.newsletter.title", "Будьте в курсе")}
       newsletterDescription={t(
         "footer.newsletter.description",
-        "Получайте последние новости и обновления на вашу электронную почту.",
+        "Получайте последние новости и обновления на вашу электронную почту."
       )}
     />
 

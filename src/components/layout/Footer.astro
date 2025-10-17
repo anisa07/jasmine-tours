@@ -59,7 +59,7 @@ const defaultCopyright =
   copyrightText ||
   t(
     "footer.copyright",
-    `© ${currentYear} ${logoText || t("footer.company_name", "Your Company")}. ${t("footer.rights_reserved", "All rights reserved")}.`,
+    `© ${currentYear} ${logoText || t("footer.company_name", "Your Company")}. ${t("footer.rights_reserved", "All rights reserved")}.`
   );
 ---
 
@@ -204,7 +204,7 @@ const defaultCopyright =
                   {
                     t(
                       "footer.partners.ondernemersclub.name",
-                      "Ondernemersclub NL",
+                      "Ondernemersclub NL"
                     )
                   }
                 </p>
@@ -230,13 +230,13 @@ const defaultCopyright =
         <div class="flex items-center space-x-4 text-sm">
           <slot name="legal">
             <a
-              href={`/${locale}/privacy`}
+              href={`/privacy`}
               class="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded-sm"
             >
               {t("footer.legal.privacy", "Privacy Policy")}
             </a>
             <a
-              href={`/${locale}/terms`}
+              href={`/terms`}
               class="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded-sm"
             >
               {t("footer.legal.terms", "Terms of Service")}
@@ -277,23 +277,23 @@ const defaultCopyright =
         backToTopButton!.classList.remove(
           "opacity-0",
           "invisible",
-          "translate-y-4",
+          "translate-y-4"
         );
         backToTopButton!.classList.add(
           "opacity-100",
           "visible",
-          "translate-y-0",
+          "translate-y-0"
         );
       } else {
         backToTopButton!.classList.add(
           "opacity-0",
           "invisible",
-          "translate-y-4",
+          "translate-y-4"
         );
         backToTopButton!.classList.remove(
           "opacity-100",
           "visible",
-          "translate-y-0",
+          "translate-y-0"
         );
       }
     }
@@ -326,7 +326,7 @@ const defaultCopyright =
   // Newsletter form enhancement
   function initNewsletter() {
     const newsletterForm = document.querySelector(
-      'form[action="#"]',
+      'form[action="#"]'
     ) as HTMLFormElement;
     if (!newsletterForm) return;
 
@@ -334,10 +334,10 @@ const defaultCopyright =
       e.preventDefault();
 
       const emailInput = newsletterForm.querySelector(
-        'input[type="email"]',
+        'input[type="email"]'
       ) as HTMLInputElement;
       const submitButton = newsletterForm.querySelector(
-        'button[type="submit"]',
+        'button[type="submit"]'
       ) as HTMLButtonElement;
 
       if (!emailInput || !submitButton) return;
@@ -369,7 +369,7 @@ const defaultCopyright =
       setTimeout(() => {
         // Show success message using Alert component
         const alertContainer = (document.querySelector(
-          "#newsletter-alert-container",
+          "#newsletter-alert-container"
         ) || newsletterForm.parentElement) as HTMLElement;
 
         // Check if AlertUtils is available (from Alert.astro component)
@@ -381,7 +381,7 @@ const defaultCopyright =
               message: string;
               dismissible?: boolean;
               duration?: number;
-            },
+            }
           ) => HTMLElement | null;
         }
         const alertUtils = (

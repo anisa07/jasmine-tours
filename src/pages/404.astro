@@ -1,82 +1,46 @@
 ---
-// 404 page - handles missing pages and invalid routes
-import { defaultLocale, locales } from "@/i18n/config";
-import type { Locale } from "@/i18n/config";
+// Locale-specific 404 page
+import IntlBaseLayout from "@/layouts/IntlBaseLayout.astro";
 import { getPageTranslations } from "@/i18n/i18n";
-import { THEME_KEY } from "@/config/variables";
+import { defaultLocale, locales } from "@/i18n/config";
 import NotFoundContent from "@/components/state/NotFoundContent.astro";
 
-// Import global styles
-import "../styles/global.css";
+// Generate static paths for all supported locales
+export async function getStaticPaths() {
+  return locales.map((locale) => ({
+    params: { locale },
+  }));
+}
 
-// Use default locale for root 404 page (static build)
-// Users can use language selector to switch to localized versions
-const detectedLocale = defaultLocale;
-
-// Get translations using centralized system
-const { t } = await getPageTranslations(detectedLocale as Locale, [
-  "errors",
-  "common",
-]);
+// Get the translation function for this page
+const { t } = await getPageTranslations(defaultLocale, ["common", "errors"]);
 
 // Set 404 status
 Astro.response.status = 404;
 ---
 
-<!doctype html>
-<html lang={detectedLocale}>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{t("404.title", "Page Not Found")}</title>
+<IntlBaseLayout
+  locale={defaultLocale}
+  pageNS={["common", "errors"]}
+  seo={{
+    title: t("404.title", "Page Not Found"),
+    description: t(
+      "404.description",
+      "The page you are looking for could not be found."
+    ),
+  }}
+>
+  <NotFoundContent
+    locale={defaultLocale}
+    homeHref="/"
+    onBackClick="handleGoBack()"
+  />
+</IntlBaseLayout>
 
-    <!-- No-flash theme restore -->
-    <script is:inline define:vars={{ THEME_KEY }}>
-      try {
-        const theme = localStorage.getItem(THEME_KEY);
-        if (theme === "dark") {
-          document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.remove("dark");
-        }
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      } catch (e) {}
-    </script>
+<script is:inline>
+  function redirectToRussian() {
+    window.location.replace("/");
+  }
 
-    <!-- Simple back functionality -->
-    <script is:inline>
-      window.goBack = function () {
-        if (window.history.length > 1) {
-          window.history.back();
-        } else {
-          window.location.href = `/${document.documentElement.lang || "ru"}`;
-        }
-      };
-    </script>
-  </head>
-
-  <body>
-    <NotFoundContent
-      locale={detectedLocale as Locale}
-      homeHref={`/${detectedLocale}`}
-      onBackClick="goBack()"
-    />
-
-    <!-- Language selector -->
-    <div class="fixed bottom-8 left-1/2 transform -translate-x-1/2">
-      <div
-        class="bg-background/80 backdrop-blur-sm border rounded-lg p-3 shadow-lg"
-      >
-        <div class="flex gap-2 justify-center">
-          <a href="/ru/404" class="btn btn-ghost btn-sm bg-muted">
-            {t("common.languages.ru", "Русский")}
-          </a>
-          <!-- English language support can be added when locale config is updated -->
-          <span class="btn btn-ghost btn-sm opacity-50 cursor-not-allowed">
-            English (Coming Soon)
-          </span>
-        </div>
-      </div>
-    </div>
-  </body>
-</html>
+  redirectToRussian();
+</script>
