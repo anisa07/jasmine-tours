@@ -76,7 +76,17 @@ const tourCategories = rawTourCategories.map(category => ({
     </div>
 
     <!-- Tour Content Area -->
-    <div class="tour-content-area">
+    <div class="tour-content-area relative">
+      <!-- Unified Tours Grid (for both categories and search) -->
+      <div id="unified-tours-container" class="mb-8">
+        <h3 id="tours-section-title" class="text-xl font-semibold text-foreground mb-4 hidden">Search Results</h3>
+        <div id="unified-tours-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Tours from categories or search results will be shown here -->
+        </div>
+      </div>
+
+      <!-- Original category containers (now hidden, used as data source) -->
+      <div id="category-containers" class="hidden">
       {tourCategories.map((category, categoryIndex) => (
         <div 
           id={`${category.id}-tours`} 
@@ -125,6 +135,7 @@ const tourCategories = rawTourCategories.map(category => ({
           )}
         </div>
       ))}
+      </div>
     </div>
   </Container>
 
@@ -628,24 +639,26 @@ const tourCategories = rawTourCategories.map(category => ({
 
     // Grid expansion states for each category
     const gridStates = {};
-    document.querySelectorAll('[data-category]').forEach((grid) => {
+    document.querySelectorAll('#category-containers [data-category]').forEach((grid) => {
       const category = grid.getAttribute('data-category');
       gridStates[category] = { expanded: false };
     });
 
     function switchTab(targetFilter) {
+      // Exit search mode
+      isSearchMode = false;
+      
+      // Hide search results title
+      const sectionTitle = document.getElementById('tours-section-title');
+      if (sectionTitle) {
+        sectionTitle.classList.add('hidden');
+      }
+      
       // Remove active class from all tabs and switch to outline style
       for (let i = 0; i < filterTabs.length; i++) {
         const tab = filterTabs[i];
         tab.classList.remove("active", "btn-primary");
         tab.classList.add("btn-outline");
-      }
-
-      // Hide all tour content
-      for (let i = 0; i < tourContents.length; i++) {
-        const content = tourContents[i];
-        content.classList.remove("active");
-        content.classList.add("hidden");
       }
 
       // Add active class to clicked tab and switch to primary style
@@ -658,21 +671,45 @@ const tourCategories = rawTourCategories.map(category => ({
         activeTab.classList.add("btn-primary");
       }
 
-      // Show corresponding content
-      const activeContent = document.getElementById(targetFilter + "-tours");
-      if (activeContent) {
-        activeContent.classList.add("active");
-        activeContent.classList.remove("hidden");
+      // Get category tours from hidden container
+      const categoryGrid = document.querySelector(`#category-containers [data-category="${targetFilter}"]`);
+      const unifiedGrid = document.getElementById('unified-tours-grid');
+      
+      if (categoryGrid && unifiedGrid) {
+        const categoryTours = categoryGrid.querySelectorAll('.tour-card');
         
-        // Reset grid state when switching tabs
-        if (gridStates[targetFilter] && gridStates[targetFilter].expanded) {
-          collapseGrid(targetFilter);
+        // Clear unified grid
+        unifiedGrid.innerHTML = '';
+        
+        // Add category tours to unified grid (respecting show more/less state)
+        categoryTours.forEach((card, index) => {
+          const cardClone = card.cloneNode(true);
+          cardClone.style.display = '';
+          cardClone.style.border = '';
+          cardClone.style.transform = '';
+          cardClone.classList.remove('search-highlight', 'exact-match', 'partial-match', 'search-hidden');
+          
+          // Show only first 3 cards if not expanded
+          if (index >= 3 && !gridStates[targetFilter].expanded) {
+            cardClone.classList.add('hidden');
+          } else {
+            cardClone.classList.remove('hidden');
+          }
+          
+          unifiedGrid.appendChild(cardClone);
+        });
+        
+        // Update the original content for grid states tracking
+        const activeContent = document.getElementById(targetFilter + "-tours");
+        if (activeContent) {
+          activeContent.classList.add("active");
+          activeContent.classList.remove("hidden");
         }
       }
     }
 
     function expandGrid(category) {
-      const grid = document.querySelector(`[data-category="${category}"]`);
+      const grid = document.querySelector(`#category-containers [data-category="${category}"]`);
       const moreBtn = document.querySelector(`.more-tours-btn[data-category="${category}"]`);
       const lessBtn = document.querySelector(`.less-tours-btn[data-category="${category}"]`);
       
@@ -690,11 +727,18 @@ const tourCategories = rawTourCategories.map(category => ({
         if (lessBtn) lessBtn.style.display = 'inline-block';
         
         gridStates[category].expanded = true;
+        
+        // Refresh unified grid display
+        setTimeout(() => {
+          if (!isSearchMode) {
+            switchTab(category);
+          }
+        }, hiddenCards.length * 100);
       }
     }
 
     function collapseGrid(category) {
-      const grid = document.querySelector(`[data-category="${category}"]`);
+      const grid = document.querySelector(`#category-containers [data-category="${category}"]`);
       const moreBtn = document.querySelector(`.more-tours-btn[data-category="${category}"]`);
       const lessBtn = document.querySelector(`.less-tours-btn[data-category="${category}"]`);
       
@@ -712,6 +756,11 @@ const tourCategories = rawTourCategories.map(category => ({
         if (lessBtn) lessBtn.style.display = 'none';
         
         gridStates[category].expanded = false;
+        
+        // Refresh unified grid display
+        if (!isSearchMode) {
+          switchTab(category);
+        }
       }
     }
 
@@ -745,17 +794,15 @@ const tourCategories = rawTourCategories.map(category => ({
         const btn = e.target.closest(".tour-details-btn");
         const tourCard = btn.closest(".tour-card");
         
-        // Get the category grid
-        const categoryGrid = tourCard.closest('[data-category]');
-        
-        // Collect all tour cards in this category
-        const tourCards = categoryGrid ? Array.from(categoryGrid.querySelectorAll('.tour-card')) : [tourCard];
+        // Get all visible tour cards from the unified grid
+        const unifiedGrid = document.getElementById('unified-tours-grid');
+        const visibleTourCards = unifiedGrid ? Array.from(unifiedGrid.querySelectorAll('.tour-card:not(.hidden)')) : [tourCard];
         
         // Find the index of the current tour
-        const tourIndex = tourCards.indexOf(tourCard);
+        const tourIndex = visibleTourCards.indexOf(tourCard);
         
-        // Build array of all tours data
-        const toursData = tourCards.map(card => {
+        // Build array of all visible tours data
+        const toursData = visibleTourCards.map(card => {
           const detailsBtn = card.querySelector('.tour-details-btn');
           return {
             title: detailsBtn.getAttribute("data-tour-title"),
@@ -782,86 +829,241 @@ const tourCategories = rawTourCategories.map(category => ({
       }
     });
 
+    // Enhanced search functionality
+    const popularSearches = [
+      'amsterdam', 'canal', 'boat', 'museum', 'private', 'group',
+      'countryside', 'windmill', 'cheese', 'tulip', 'dutch', 'netherlands'
+    ];
+
+    // Fuzzy matching function
+    function fuzzyMatch(searchTerm, text) {
+      const words = searchTerm.toLowerCase().split(' ').filter(word => word.length > 0);
+      const textLower = text.toLowerCase();
+      
+      // Check if all words are present (in any order)
+      return words.every(word => textLower.includes(word));
+    }
+
+    // Search ranking function
+    function calculateSearchScore(searchTerm, card) {
+      const titleElement = card.querySelector('h3, .font-semibold');
+      const title = titleElement?.textContent?.toLowerCase() || '';
+      
+      // Get description from data attribute on the details button
+      const detailsBtn = card.querySelector('.tour-details-btn');
+      const description = detailsBtn?.getAttribute('data-tour-description')?.toLowerCase() || '';
+      const price = detailsBtn?.getAttribute('data-tour-price')?.toLowerCase() || '';
+      const duration = detailsBtn?.getAttribute('data-tour-duration')?.toLowerCase() || '';
+      
+      let score = 0;
+      const searchLower = searchTerm.toLowerCase();
+      
+      // Exact title match gets highest score
+      if (title.includes(searchLower)) score += 10;
+      
+      // Title starts with search term gets bonus
+      if (title.startsWith(searchLower)) score += 5;
+      
+      // Description match gets lower score
+      if (description.includes(searchLower)) score += 3;
+      
+      // Price and duration matches
+      if (price.includes(searchLower)) score += 2;
+      if (duration.includes(searchLower)) score += 2;
+      
+      // Fuzzy matching bonus
+      if (fuzzyMatch(searchTerm, title)) score += 1;
+      if (fuzzyMatch(searchTerm, description)) score += 1;
+      
+      return score;
+    }
+
+    // Generate smart suggestions for no results
+    function generateSmartSuggestions(searchTerm) {
+      const suggestions = [];
+      const searchLower = searchTerm.toLowerCase();
+      
+      // Check for common typos
+      if (searchLower.includes('amsterd')) {
+        suggestions.push('Try "Amsterdam"');
+      }
+      if (searchLower.includes('canel')) {
+        suggestions.push('Try "canal"');
+      }
+      
+      // Suggest related terms
+      if (searchLower.includes('boat')) {
+        suggestions.push('Try "canal tour" or "boat trip"');
+      }
+      if (searchLower.includes('museum')) {
+        suggestions.push('Try "Rijksmuseum" or "Van Gogh"');
+      }
+      
+      // Show available categories
+      suggestions.push('Browse by category: Amsterdam, Countryside, Group Tours');
+      
+      // Show popular searches
+      const matchingPopular = popularSearches.filter(term => 
+        term.includes(searchLower) && term !== searchLower
+      );
+      if (matchingPopular.length > 0) {
+        suggestions.push(`Popular: ${matchingPopular.slice(0, 3).join(', ')}`);
+      }
+      
+      return suggestions;
+    }
+
+    // Track whether we're in search mode
+    let isSearchMode = false;
+    
+    // Display tours in unified grid
+    function displayToursInUnifiedGrid(tours, isSearch = false) {
+      const unifiedGrid = document.getElementById('unified-tours-grid');
+      const sectionTitle = document.getElementById('tours-section-title');
+      
+      // Clear previous content
+      unifiedGrid.innerHTML = '';
+      
+      // Show/hide section title
+      if (isSearch) {
+        sectionTitle.textContent = 'Search Results';
+        sectionTitle.classList.remove('hidden');
+      } else {
+        sectionTitle.classList.add('hidden');
+      }
+      
+      // Add tours to unified grid
+      tours.forEach(card => {
+        const cardClone = card.cloneNode(true);
+        cardClone.style.display = '';
+        unifiedGrid.appendChild(cardClone);
+      });
+    }
+    
+    // Clear search and restore category view
+    function clearSearchResults() {
+      isSearchMode = false;
+      const activeTab = document.querySelector('.tour-filter-tab.active');
+      const activeFilter = activeTab?.getAttribute('data-filter') || 'popular';
+      
+      // Show active category tours
+      switchTab(activeFilter);
+      
+      // Show all "Show more/less" buttons again
+      document.querySelectorAll('.more-tours-btn, .less-tours-btn').forEach(btn => {
+        btn.style.display = '';
+      });
+    }
+
     // Global search function that can be called from Hero component
     window.searchTours = function(searchTerm) {
-      let foundResults = false;
-      let matchingCategory = null;
+      if (!searchTerm || searchTerm.trim().length < 2) {
+        clearSearchResults();
+        return;
+      }
 
-      // Search through all tours in all categories
-      document.querySelectorAll('[data-category]').forEach((grid) => {
+      isSearchMode = true;
+      let foundResults = false;
+      const searchResults = [];
+      const unifiedGrid = document.getElementById('unified-tours-grid');
+      const sectionTitle = document.getElementById('tours-section-title');
+
+      // Search through ALL tours in ALL categories
+      document.querySelectorAll('#category-containers [data-category]').forEach((grid) => {
         const category = grid.getAttribute('data-category');
         const categoryTours = grid.querySelectorAll('.tour-card');
-        let hasMatchInCategory = false;
 
         categoryTours.forEach((card) => {
-          // Look for tour title in the card
-          const titleElement = card.querySelector('h3, .font-semibold');
-          const title = titleElement?.textContent?.toLowerCase() || '';
+          const score = calculateSearchScore(searchTerm, card);
           
-          if (title.includes(searchTerm)) {
-            hasMatchInCategory = true;
+          if (score > 0) {
             foundResults = true;
-            // Highlight the card
-            card.style.border = '2px solid rgb(59, 130, 246)'; // primary color
-            card.style.transform = 'scale(1.02)';
-            card.style.transition = 'all 0.3s ease';
-            setTimeout(() => {
-              card.style.border = '';
-              card.style.transform = '';
-            }, 2000);
+            searchResults.push({ card, score, category });
           }
         });
-
-        if (hasMatchInCategory && !matchingCategory) {
-          matchingCategory = category;
-        }
       });
 
-      // Switch to the category with matches
-      if (matchingCategory) {
-        switchTab(matchingCategory);
-        
-        // Expand the grid to show all tours if collapsed
-        if (!gridStates[matchingCategory].expanded) {
-          setTimeout(() => {
-            expandGrid(matchingCategory);
-          }, 300);
-        }
-      }
+      // Hide all "Show more/less" buttons during search
+      document.querySelectorAll('.more-tours-btn, .less-tours-btn').forEach(btn => {
+        btn.style.display = 'none';
+      });
 
-      // Show no results message if nothing found
-      if (!foundResults) {
-        // Create or show no results message
-        let noResultsMsg = document.getElementById('no-search-results');
-        if (!noResultsMsg) {
-          noResultsMsg = document.createElement('div');
-          noResultsMsg.id = 'no-search-results';
-          noResultsMsg.className = 'text-center py-8 text-muted-foreground';
-          noResultsMsg.innerHTML = `<p class="text-lg">No tours found for "${searchTerm}". Try searching for destinations like "Amsterdam", "Labuan Bajo", or activities like "boat", "mountain".</p>`;
-          
-          const tourContentArea = document.querySelector('.tour-content-area');
-          if (tourContentArea) {
-            tourContentArea.appendChild(noResultsMsg);
-          }
-        } else {
-          noResultsMsg.innerHTML = `<p class="text-lg">No tours found for "${searchTerm}". Try searching for destinations like "Amsterdam", "Labuan Bajo", or activities like "boat", "mountain".</p>`;
-          noResultsMsg.style.display = 'block';
-        }
+      if (foundResults) {
+        // Sort results by score (highest first)
+        searchResults.sort((a, b) => b.score - a.score);
+
+        // Show section title
+        sectionTitle.textContent = 'Search Results';
+        sectionTitle.classList.remove('hidden');
         
-        // Hide the message after 3 seconds
-        setTimeout(() => {
-          if (noResultsMsg) {
-            noResultsMsg.style.display = 'none';
+        // Clear unified grid
+        unifiedGrid.innerHTML = '';
+
+        // Add matching cards to unified grid
+        searchResults.forEach((result) => {
+          const cardClone = result.card.cloneNode(true);
+          cardClone.classList.add('search-highlight');
+          cardClone.style.display = '';
+          
+          // Different highlight for exact matches vs partial matches
+          if (result.score >= 10) {
+            cardClone.classList.add('exact-match');
+            cardClone.style.border = '2px solid rgb(34, 197, 94)'; // green for exact matches
+          } else if (result.score >= 5) {
+            cardClone.classList.add('partial-match');
+            cardClone.style.border = '2px solid rgb(59, 130, 246)'; // blue for partial matches
+          } else {
+            cardClone.style.border = '2px solid rgb(168, 85, 247)'; // purple for fuzzy matches
           }
-        }, 3000);
+          
+          cardClone.style.transform = 'scale(1.02)';
+          cardClone.style.transition = 'all 0.3s ease';
+          
+          // Add to unified grid
+          unifiedGrid.appendChild(cardClone);
+          
+          // Remove highlight after 3 seconds
+          setTimeout(() => {
+            cardClone.style.border = '';
+            cardClone.style.transform = '';
+            cardClone.classList.remove('exact-match', 'partial-match');
+          }, 3000);
+        });
       } else {
-        // Hide no results message if it exists
-        const noResultsMsg = document.getElementById('no-search-results');
-        if (noResultsMsg) {
-          noResultsMsg.style.display = 'none';
-        }
+        // Show no results message
+        sectionTitle.textContent = 'Search Results';
+        sectionTitle.classList.remove('hidden');
+        
+        const suggestions = generateSmartSuggestions(searchTerm);
+        const suggestionsHtml = suggestions.map(suggestion => 
+          `<li class="text-sm text-muted-foreground">${suggestion}</li>`
+        ).join('');
+        
+        unifiedGrid.innerHTML = `
+          <div class="col-span-full text-center py-8 text-muted-foreground">
+            <div class="max-w-md mx-auto">
+              <p class="text-lg mb-4">No tours found for "${searchTerm}"</p>
+              <div class="text-left">
+                <p class="text-sm font-medium mb-2">Suggestions:</p>
+                <ul class="space-y-1">${suggestionsHtml}</ul>
+              </div>
+            </div>
+          </div>
+        `;
       }
     };
+
+    // Clear search function
+    window.clearSearch = function() {
+      clearSearchResults();
+    };
+    
+    // Initialize unified grid with first category on page load
+    const firstTab = document.querySelector('.tour-filter-tab.active');
+    if (firstTab) {
+      const firstCategory = firstTab.getAttribute('data-filter');
+      switchTab(firstCategory);
+    }
 
     // Modal functions
     let currentTourData = null; // Store current tour data for sharing
