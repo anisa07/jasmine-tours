@@ -42,7 +42,7 @@ const { t, dir } = await getPageTranslations(activeLocale, [
 ]);
 
 // Build absolute URL for canonical
-const site = Astro.site?.origin ?? "https://example.com";
+const site = Astro.site?.origin ?? "https://jasmine-tours.nl";
 const url = new URL(Astro.url, site).href;
 ---
 
@@ -93,6 +93,7 @@ const url = new URL(Astro.url, site).href;
         },
       }}
       twitter={seo?.twitter ?? {
+        card: "summary_large_image",
         title: SiteData.default.twitter.title,
         description: SiteData.default.twitter.description,
         creator: SiteData.default.twitter.creator,
@@ -103,11 +104,16 @@ const url = new URL(Astro.url, site).href;
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "TouristInformationCenter",
+        "@type": "TravelAgency",
         "name": "Jasmine Tours",
         "description": "Premium tours and experiences in Amsterdam. Private tours, canal cruises, and authentic Dutch experiences with expert local guides.",
         "url": "https://jasmine-tours.nl",
-        "logo": "https://jasmine-tours.nl/assets/favicon-j.svg",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://jasmine-tours.nl/assets/favicon-j.svg",
+          "width": 512,
+          "height": 512
+        },
         "image": "https://jasmine-tours.nl/images/og-image.jpg",
         "telephone": "+31642221525",
         "priceRange": "€€-€€€",

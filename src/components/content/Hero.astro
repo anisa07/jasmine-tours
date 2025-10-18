@@ -150,7 +150,15 @@ const sectionClasses = cn(
                 type="text"
                 placeholder={t("hero.search_placeholder", "Куда вы хотели бы отправиться?")}
                 class="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                autocomplete="off"
               />
+              {/* Search Suggestions Dropdown */}
+              <div id="search-suggestions" class="absolute top-full left-0 right-0 bg-background border border-border rounded-lg shadow-lg z-50 hidden mt-1 max-h-60 overflow-y-auto">
+                <div class="p-2">
+                  <div class="text-xs text-muted-foreground mb-2 font-medium">Popular searches:</div>
+                  <div id="popular-suggestions" class="space-y-1"></div>
+                </div>
+              </div>
             </div>
             <button
               id="hero-search-button"
@@ -386,14 +394,80 @@ const sectionClasses = cn(
 </style>
 
 <script is:inline>
-  // Hero search functionality
+  // Enhanced Hero search functionality
   document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("hero-search-input");
     const searchButton = document.getElementById("hero-search-button");
+    const suggestionsDropdown = document.getElementById("search-suggestions");
+    const popularSuggestions = document.getElementById("popular-suggestions");
+
+    // Popular searches
+    const popularSearches = [
+      'amsterdam', 'canal', 'boat', 'museum', 'private', 'group',
+      'countryside', 'windmill', 'cheese', 'tulip', 'dutch', 'netherlands'
+    ];
+
+    let searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
+
+    // Initialize popular suggestions
+    function initializeSuggestions() {
+      if (popularSuggestions) {
+        popularSearches.slice(0, 6).forEach(term => {
+          const suggestion = document.createElement('div');
+          suggestion.className = 'px-2 py-1 text-sm text-muted-foreground hover:bg-muted rounded cursor-pointer transition-colors';
+          suggestion.textContent = term;
+          suggestion.addEventListener('click', () => {
+            searchInput.value = term;
+            hideSuggestions();
+            performSearch();
+          });
+          popularSuggestions.appendChild(suggestion);
+        });
+      }
+    }
+
+    // Show suggestions dropdown
+    function showSuggestions() {
+      if (suggestionsDropdown) {
+        suggestionsDropdown.classList.remove('hidden');
+      }
+    }
+
+    // Hide suggestions dropdown
+    function hideSuggestions() {
+      if (suggestionsDropdown) {
+        suggestionsDropdown.classList.add('hidden');
+      }
+    }
+
+    // Save search to history
+    function saveSearchHistory(searchTerm) {
+      if (!searchHistory.includes(searchTerm)) {
+        searchHistory.unshift(searchTerm);
+        searchHistory = searchHistory.slice(0, 5); // Keep only last 5 searches
+        localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+      }
+    }
+
+    // Clear search results
+    function clearSearch() {
+      if (window.clearSearch) {
+        window.clearSearch();
+      }
+    }
 
     function performSearch() {
-      const searchTerm = searchInput?.value?.trim().toLowerCase();
-      if (!searchTerm) return;
+      const searchTerm = searchInput?.value?.trim();
+      if (!searchTerm || searchTerm.length < 2) {
+        clearSearch();
+        return;
+      }
+
+      // Save to search history
+      saveSearchHistory(searchTerm);
+
+      // Hide suggestions
+      hideSuggestions();
 
       // Scroll to tours section
       const toursSection = document.getElementById("tours");
@@ -419,5 +493,28 @@ const sectionClasses = cn(
         performSearch();
       }
     });
+
+    // Clear search when input is empty
+    searchInput?.addEventListener("input", function (e) {
+      const searchTerm = e.target.value.trim();
+      
+      if (searchTerm.length === 0) {
+        clearSearch();
+        hideSuggestions();
+      }
+    });
+
+    // Show suggestions on focus
+    searchInput?.addEventListener("focus", showSuggestions);
+
+    // Hide suggestions when clicking outside
+    document.addEventListener("click", function (e) {
+      if (!searchInput?.contains(e.target) && !suggestionsDropdown?.contains(e.target)) {
+        hideSuggestions();
+      }
+    });
+
+    // Initialize suggestions
+    initializeSuggestions();
   });
 </script>

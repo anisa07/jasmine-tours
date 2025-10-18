@@ -64,7 +64,7 @@ export default defineConfig({
             "/.env",
             "/node_modules/",
           ],
-          crawlDelay: 10,
+          crawlDelay: 1,
         },
         {
           userAgent: "Googlebot",
