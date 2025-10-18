@@ -26,38 +26,33 @@ interface Props {
 
 const { t, testimonials } = Astro.props;
 
-// Generate Schema.org Review markup
-const reviewsSchema = {
+// Generate Schema.org Review markup - Individual reviews pointing to the main business
+const reviewsSchema = testimonials.map((testimonial) => ({
   "@context": "https://schema.org",
-  "@type": "ItemList",
-  "itemListElement": testimonials.map((testimonial, index) => ({
-    "@type": "Review",
-    "position": index + 1,
-    "author": {
-      "@type": "Person",
-      "name": testimonial.author.name
-    },
-    "reviewRating": {
-      "@type": "Rating",
-      "ratingValue": testimonial.rating,
-      "bestRating": 5,
-      "worstRating": 1
-    },
-    "reviewBody": testimonial.quote,
-    "itemReviewed": {
-      "@type": "TouristAttraction",
-      "name": testimonial.tour,
-      "provider": {
-        "@type": "LocalBusiness",
-        "name": "Jasmine Tours"
-      }
-    }
-  }))
-};
+  "@type": "Review",
+  "itemReviewed": {
+    "@type": "TravelAgency",
+    "name": "Jasmine Tours",
+    "url": "https://jasmine-tours.nl"
+  },
+  "author": {
+    "@type": "Person",
+    "name": testimonial.author.name
+  },
+  "reviewRating": {
+    "@type": "Rating",
+    "ratingValue": testimonial.rating,
+    "bestRating": 5,
+    "worstRating": 1
+  },
+  "reviewBody": testimonial.quote
+}));
 ---
 
-<!-- Schema.org Review Markup -->
-<script type="application/ld+json" set:html={JSON.stringify(reviewsSchema)} />
+<!-- Schema.org Review Markup - Individual reviews -->
+{reviewsSchema.map((review) => (
+  <script type="application/ld+json" set:html={JSON.stringify(review)} />
+))}
 
 <!-- Testimonials Section -->
 <section class="py-20 bg-muted/30">
