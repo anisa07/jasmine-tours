@@ -27,7 +27,56 @@ const { t } = await getPageTranslations(defaultLocale as Locale, [
   "ui",
   "home",
 ]);
+
+// Schema.org markup for BreadcrumbList
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://jasmine-tours.nl"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "About Me",
+      "item": "https://jasmine-tours.nl/about-me"
+    }
+  ]
+};
+
+// Schema.org markup for Person (Tour Guide)
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Zara",
+  "jobTitle": "Tour Guide",
+  "description": "Professional tour guide specializing in Amsterdam and Netherlands tours, offering personalized experiences and authentic cultural insights.",
+  "worksFor": {
+    "@type": "TravelAgency",
+    "name": "Jasmine Tours",
+    "url": "https://jasmine-tours.nl"
+  },
+  "knowsAbout": ["Amsterdam", "Netherlands", "Dutch Culture", "Canal Tours", "Historical Tours", "City Tours"],
+  "sameAs": [
+    "https://www.instagram.com/jasmine.tours.amsterdam",
+    "https://www.facebook.com/jasmintoursevents/"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+31642221525",
+    "contactType": "customer service",
+    "availableLanguage": ["Russian", "English", "Dutch"]
+  }
+};
 ---
+
+<!-- Schema.org Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
 
 <IntlBaseLayout
   locale={defaultLocale}

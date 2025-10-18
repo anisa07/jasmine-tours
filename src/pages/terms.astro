@@ -14,7 +14,33 @@ const { locale } = Astro.params;
 
 // Get the translation function for this page
 const { t } = await getPageTranslations(locale as Locale, ["common"]);
+
+// Schema.org markup for BreadcrumbList
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://jasmine-tours.nl",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Terms of Service",
+      item: "https://jasmine-tours.nl/terms",
+    },
+  ],
+};
 ---
+
+<!-- Schema.org Structured Data -->
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(breadcrumbSchema)}
+/>
 
 <IntlBaseLayout
   locale={locale}

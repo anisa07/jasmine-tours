@@ -10,7 +10,7 @@ Disallow: /*.json$
 Disallow: /src/
 Disallow: /.env
 Disallow: /node_modules/
-Crawl-delay: 10
+Crawl-delay: 1
 
 # Special rules for Googlebot
 User-agent: Googlebot

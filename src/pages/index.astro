@@ -33,7 +33,47 @@ const testimonialsData = testimonialsEntry?.data?.testimonials || [];
 
 const galleryEntry = await getEntry("gallery", "gallery");
 const galleryData = galleryEntry?.data?.images || [];
+
+// Generate Schema.org TouristTrip markup for tours
+const tourSchemas = tourCategoriesData.flatMap((category) =>
+  category.tours.map((tour) => {
+    // Handle image path - convert ImageMetadata object to string path
+    const imagePath =
+      typeof tour.image === "string" ? tour.image : tour.image?.src || "";
+
+    return {
+      "@context": "https://schema.org",
+      "@type": "TouristTrip",
+      name: tour.title,
+      description: tour.shortDescription || tour.description.substring(0, 200),
+      provider: {
+        "@type": "TravelAgency",
+        name: "Jasmine Tours",
+        url: "https://jasmine-tours.nl",
+      },
+      touristType: category.title,
+      duration: tour.duration || "Flexible",
+      offers: {
+        "@type": "Offer",
+        price: tour.price || "Contact for pricing",
+        priceCurrency: "EUR",
+        availability: "https://schema.org/InStock",
+        url: "https://jasmine-tours.nl/#tours",
+      },
+      image: imagePath.startsWith("http")
+        ? imagePath
+        : `https://jasmine-tours.nl${imagePath}`,
+      url: `https://jasmine-tours.nl/#tours`,
+    };
+  }),
+);
 ---
+
+<!-- Schema.org Structured Data for Tours -->{
+  tourSchemas.map((tourSchema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(tourSchema)} />
+  ))
+}
 
 <IntlBaseLayout
   locale={defaultLocale}
@@ -41,11 +81,11 @@ const galleryData = galleryEntry?.data?.images || [];
   seo={{
     title: t(
       "seo.home_title",
-      "Jasmine Tours & Events - Откройте удивительные направления для путешествий | Забронируйте своё приключение"
+      "Jasmine Tours & Events - Откройте удивительные направления для путешествий | Забронируйте своё приключение",
     ),
     description: t(
       "seo.home_description",
-      "Откройте захватывающие туры вместе с Jasmine Tours & Events. Забронируйте свою идеальную экскурсию через WhatsApp или подпишитесь на нас в Instagram, чтобы вдохновляться идеями для новых приключений."
+      "Откройте захватывающие туры вместе с Jasmine Tours & Events. Забронируйте свою идеальную экскурсию через WhatsApp или подпишитесь на нас в Instagram, чтобы вдохновляться идеями для новых приключений.",
     ),
   }}
 >
@@ -85,7 +125,7 @@ const galleryData = galleryEntry?.data?.images || [];
           {
             t(
               "gallery.section_description",
-              "Лучшие кадры, наполненные атмосферой Амстердама и путешествий по Нидерландам"
+              "Лучшие кадры, наполненные атмосферой Амстердама и путешествий по Нидерландам",
             )
           }
         </p>
