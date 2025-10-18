@@ -831,8 +831,8 @@ const tourCategories = rawTourCategories.map(category => ({
 
     // Enhanced search functionality
     const popularSearches = [
-      'amsterdam', 'canal', 'boat', 'museum', 'private', 'group',
-      'countryside', 'windmill', 'cheese', 'tulip', 'dutch', 'netherlands'
+      'амстердам', 'канал', 'лодка', 'музей', 'групповой', 'индивидуальный',
+      'сыр', 'мельниц', 'тюльпан', 'дегустация', 'качели'
     ];
 
     // Fuzzy matching function
@@ -883,31 +883,34 @@ const tourCategories = rawTourCategories.map(category => ({
       const suggestions = [];
       const searchLower = searchTerm.toLowerCase();
       
-      // Check for common typos
-      if (searchLower.includes('amsterd')) {
-        suggestions.push('Try "Amsterdam"');
+      // Check for common typos and partial matches
+      if (searchLower.includes('амстер') || searchLower.includes('amsterd')) {
+        suggestions.push('Попробуйте "амстердам"');
       }
-      if (searchLower.includes('canel')) {
-        suggestions.push('Try "canal"');
+      if (searchLower.includes('канал') || searchLower.includes('canal')) {
+        suggestions.push('Попробуйте "канал"');
       }
       
       // Suggest related terms
-      if (searchLower.includes('boat')) {
-        suggestions.push('Try "canal tour" or "boat trip"');
+      if (searchLower.includes('лодк') || searchLower.includes('boat')) {
+        suggestions.push('Попробуйте "лодка" или "канал"');
       }
-      if (searchLower.includes('museum')) {
-        suggestions.push('Try "Rijksmuseum" or "Van Gogh"');
+      if (searchLower.includes('музе') || searchLower.includes('museum')) {
+        suggestions.push('Попробуйте "музей" или "фотосессия"');
+      }
+      if (searchLower.includes('сыр') || searchLower.includes('cheese')) {
+        suggestions.push('Попробуйте "сыр", "дегустация" или "мельниц"');
       }
       
       // Show available categories
-      suggestions.push('Browse by category: Amsterdam, Countryside, Group Tours');
+      suggestions.push('Просмотрите по категориям: Популярные туры, Амстердам, Прогулки на лодках');
       
       // Show popular searches
       const matchingPopular = popularSearches.filter(term => 
         term.includes(searchLower) && term !== searchLower
       );
       if (matchingPopular.length > 0) {
-        suggestions.push(`Popular: ${matchingPopular.slice(0, 3).join(', ')}`);
+        suggestions.push(`Популярные запросы: ${matchingPopular.slice(0, 3).join(', ')}`);
       }
       
       return suggestions;
@@ -1030,26 +1033,33 @@ const tourCategories = rawTourCategories.map(category => ({
           }, 3000);
         });
       } else {
-        // Show no results message
-        sectionTitle.textContent = 'Search Results';
-        sectionTitle.classList.remove('hidden');
+        // No results found - show all tours instead
+        sectionTitle.classList.add('hidden');
+        unifiedGrid.innerHTML = '';
         
-        const suggestions = generateSmartSuggestions(searchTerm);
-        const suggestionsHtml = suggestions.map(suggestion => 
-          `<li class="text-sm text-muted-foreground">${suggestion}</li>`
-        ).join('');
+        // Collect all tours from all categories
+        const allToursArray = [];
+        document.querySelectorAll('#category-containers [data-category]').forEach((grid) => {
+          const categoryTours = grid.querySelectorAll('.tour-card');
+          categoryTours.forEach(card => {
+            allToursArray.push(card);
+          });
+        });
         
-        unifiedGrid.innerHTML = `
-          <div class="col-span-full text-center py-8 text-muted-foreground">
-            <div class="max-w-md mx-auto">
-              <p class="text-lg mb-4">No tours found for "${searchTerm}"</p>
-              <div class="text-left">
-                <p class="text-sm font-medium mb-2">Suggestions:</p>
-                <ul class="space-y-1">${suggestionsHtml}</ul>
-              </div>
-            </div>
-          </div>
-        `;
+        // Display all tours in unified grid
+        allToursArray.forEach((card, index) => {
+          const cardClone = card.cloneNode(true);
+          cardClone.style.display = '';
+          cardClone.style.border = '';
+          cardClone.style.transform = '';
+          cardClone.classList.remove('search-highlight', 'exact-match', 'partial-match', 'search-hidden', 'hidden');
+          unifiedGrid.appendChild(cardClone);
+        });
+        
+        // Hide all "Show more/less" buttons
+        document.querySelectorAll('.more-tours-btn, .less-tours-btn').forEach(btn => {
+          btn.style.display = 'none';
+        });
       }
     };
 
