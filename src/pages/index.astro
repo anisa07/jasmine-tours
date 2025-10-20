@@ -72,6 +72,17 @@ const tourSchemas = tourCategoriesData.flatMap((category) =>
         "@type": "TravelAgency",
         name: "Jasmine Tours",
         url: "https://jasmine-tours.nl",
+        description:
+          "Русскоязычный гид по Амстердаму и Нидерландам - групповые и индивидуальные экскурсии",
+        areaServed: [
+          "Amsterdam",
+          "Netherlands",
+          "Volendam",
+          "Zaanse Schans",
+          "Rotterdam",
+          "Den Haag",
+        ],
+        availableLanguage: ["Russian", "ru"],
       },
       touristType: category.title,
       duration: tour.duration || "Flexible",
@@ -97,12 +108,54 @@ const tourSchemas = tourCategoriesData.flatMap((category) =>
   seo={{
     title: t(
       "seo.home_title",
-      "Jasmine Tours & Events - Откройте удивительные направления для путешествий | Забронируйте своё приключение",
+      "Экскурсии по Амстердаму | Гид Зара | Туры на Русском по Нидерландам",
     ),
     description: t(
       "seo.home_description",
-      "Откройте захватывающие туры вместе с Jasmine Tours & Events. Забронируйте свою идеальную экскурсию через WhatsApp или подпишитесь на нас в Instagram, чтобы вдохновляться идеями для новых приключений.",
+      "Экскурсии по Амстердаму на русском с гидом Зарой. Прогулки по каналам, велотуры, индивидуальные и групповые туры. Бронируйте через WhatsApp!",
     ),
+    openGraph: {
+      basic: {
+        title:
+          "Экскурсии по Амстердаму на Русском | Гид Зара | Групповые и Индивидуальные Туры",
+        type: "website",
+        image: "https://jasmine-tours.nl/images/og-image.jpg",
+        url: "https://jasmine-tours.nl",
+      },
+      optional: {
+        description:
+          "Экскурсии по Амстердаму и Нидерландам с русскоязычным гидом Зарой. Индивидуальные и групповые туры на русском: прогулки по каналам, велотуры, экскурсии в Воленд ам, Заансе Сханс.",
+        siteName: "Jasmine Tours",
+        locale: "ru_RU",
+      },
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Экскурсии по Амстердаму на Русском | Гид Зара",
+      description:
+        "Индивидуальные и групповые туры по Амстердаму и Нидерландам с русскоязычным гидом. Прогулки по каналам, велотуры, экскурсии.",
+    },
+    extend: {
+      meta: [
+        {
+          name: "keywords",
+          content:
+            "экскурсии по амстердаму, русскоязычный гид амстердам, экскурсии на русском амстердам, туры в амстердаме, гид в нидерландах, прогулки по каналам амстердама, велотуры амстердам, групповые туры нидерланды, индивидуальные экскурсии амстердам, экскурсии воленд ам, туры заансе сханс, гид зара амстердам",
+        },
+        {
+          name: "author",
+          content: "Zara - Русскоязычный гид в Амстердаме",
+        },
+        {
+          name: "robots",
+          content: "index, follow",
+        },
+        {
+          property: "og:locale:alternate",
+          content: "en_US",
+        },
+      ],
+    },
   }}
 >
   <!-- Schema.org Structured Data for Tours and Reviews -->

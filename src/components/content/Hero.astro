@@ -145,12 +145,16 @@ const sectionClasses = cn(
           {/* Search Bar */}
           <div class="flex mt-6 sm:mt-8">
             <div class="flex-1 relative">
+              <label for="hero-search-input" class="sr-only">
+                {t("hero.search_label", "Search for tours")}
+              </label>
               <input
                 id="hero-search-input"
                 type="text"
                 placeholder={t("hero.search_placeholder", "Куда вы хотели бы отправиться?")}
                 class="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-primary"
                 autocomplete="off"
+                aria-label={t("hero.search_label", "Search for tours")}
               />
               {/* Search Suggestions Dropdown */}
               <div id="search-suggestions" class="absolute top-full left-0 right-0 bg-background border border-border rounded-lg shadow-lg z-50 hidden mt-1 max-h-60 overflow-y-auto">

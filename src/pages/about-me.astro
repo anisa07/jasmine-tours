@@ -53,14 +53,26 @@ const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Zara",
-  "jobTitle": "Tour Guide",
-  "description": "Professional tour guide specializing in Amsterdam and Netherlands tours, offering personalized experiences and authentic cultural insights.",
+  "jobTitle": "Русскоязычный гид по Амстердаму и Нидерландам",
+  "description": "Профессиональный русскоязычный гид Зара специализируется на экскурсиях по Амстердаму и Нидерландам. Проводит индивидуальные и групповые туры на русском языке: прогулки по каналам, велотуры, экскурсии по историческим местам, фотосессии в костюмах XVII века. Туры в Амстердам, Воленда м, Заансе Сханс, Роттердам, Гаагу.",
   "worksFor": {
     "@type": "TravelAgency",
     "name": "Jasmine Tours",
-    "url": "https://jasmine-tours.nl"
+    "url": "https://jasmine-tours.nl",
+    "description": "Экскурсии по Амстердаму и Нидерландам с русскоязычным гидом"
   },
-  "knowsAbout": ["Amsterdam", "Netherlands", "Dutch Culture", "Canal Tours", "Historical Tours", "City Tours"],
+  "knowsAbout": [
+    "Экскурсии по Амстердаму на русском",
+    "Русскоязычный гид в Нидерландах",
+    "Прогулки по каналам Амстердама",
+    "Велотуры по Амстердаму",
+    "Групповые туры в Нидерландах",
+    "Индивидуальные экскурсии Амстердам",
+    "Экскурсии в Воленд ам",
+    "Туры в Заансе Сханс",
+    "Голландская культура",
+    "Исторические туры Амстердам"
+  ],
   "sameAs": [
     "https://www.instagram.com/jasmine.tours.amsterdam",
     "https://www.facebook.com/jasmintoursevents/"
@@ -69,7 +81,20 @@ const personSchema = {
     "@type": "ContactPoint",
     "telephone": "+31642221525",
     "contactType": "customer service",
-    "availableLanguage": ["Russian", "English", "Dutch"]
+    "availableLanguage": ["Russian", "ru"],
+    "hoursAvailable": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    }
+  },
+  "serviceArea": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": "52.3676",
+      "longitude": "4.9041"
+    },
+    "geoRadius": "50000"
   }
 };
 ---
@@ -82,14 +107,52 @@ const personSchema = {
       ? `${aboutMeData.title} | Jasmine Tours`
       : t(
           "seo.about_title",
-          "Зара — ваш личный гид по Нидерландам | Индивидуальные экскурсии и путешествия по Амстердаму и всей стране"
+          "Зара - Русскоязычный Гид в Амстердаме | Туры по Нидерландам"
         ),
     description:
       aboutMeData?.subtitle ||
       t(
         "seo.about_description",
-        "Познакомьтесь с Зарой — вашим личным гидом, который покажет настоящие Нидерланды. Путешествуйте осознанно, открывайте культуру, людей и атмосферу страны"
+        "Профессиональный гид Зара проводит экскурсии по Амстердаму на русском языке. Индивидуальные и групповые туры, прогулки по каналам, велотуры."
       ),
+    openGraph: {
+      basic: {
+        title: "Зара - Русскоязычный Гид в Амстердаме | Экскурсии на Русском",
+        type: "profile",
+        image: "https://jasmine-tours.nl/images/og-image.jpg",
+        url: "https://jasmine-tours.nl/about-me",
+      },
+      optional: {
+        description: "Профессиональный русскоязычный гид Зара. Индивидуальные и групповые туры по Амстердаму и Нидерландам на русском языке: каналы, велотуры, Воленд ам, Заансе Сханс.",
+        siteName: "Jasmine Tours",
+        locale: "ru_RU",
+      },
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Зара - Русскоязычный Гид в Амстердаме",
+      description: "Профессиональный гид проводит индивидуальные и групповые экскурсии по Амстердаму и Нидерландам на русском языке.",
+    },
+    extend: {
+      meta: [
+        {
+          name: "keywords",
+          content: "зара гид амстердам, русскоязычный гид нидерланды, гид в амстердаме, профессиональный гид голландия, экскурсии на русском амстердам, местный гид нидерланды, индивидуальные туры амстердам, групповые экскурсии голландия",
+        },
+        {
+          name: "author",
+          content: "Zara",
+        },
+        {
+          name: "robots",
+          content: "index, follow",
+        },
+        {
+          property: "og:locale:alternate",
+          content: "en_US",
+        },
+      ],
+    },
   }}
 >
   <!-- Schema.org Structured Data -->
