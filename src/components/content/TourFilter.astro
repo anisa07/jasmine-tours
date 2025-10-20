@@ -156,7 +156,7 @@ const tourCategories = rawTourCategories.map(category => ({
           <div class="p-6 sm:p-8">
             <div class="flex items-start justify-between gap-4">
               <div class="flex-1">
-                <h2 id="modalTitle" class="text-2xl sm:text-3xl font-bold text-foreground leading-tight"></h2>
+                <h2 id="modalTitle" class="text-2xl sm:text-3xl font-bold text-foreground leading-tight" aria-live="polite"></h2>
               </div>
               <button type="button" id="closeModal" class="p-2 hover:bg-background/80 rounded-full transition-all duration-200 hover:scale-110 hover:rotate-90 flex-shrink-0" aria-label="Close modal">
                 <X class="w-6 h-6" aria-hidden="true" />
@@ -220,9 +220,9 @@ const tourCategories = rawTourCategories.map(category => ({
                 type="button"
                 class="share-btn share-whatsapp"
                 aria-label="Share on WhatsApp"
-                :title="t('modal.share_whatsapp', 'Поделиться в WhatsApp')"
+                title={t('modal.share_whatsapp', 'Поделиться в WhatsApp')}
               >
-                <div class="share-icon" set:html={WhatsAppIcon} />
+                <span class="share-icon" set:html={WhatsAppIcon} />
               </button>
               
               <!-- Facebook Share -->
@@ -230,9 +230,9 @@ const tourCategories = rawTourCategories.map(category => ({
                 type="button"
                 class="share-btn share-facebook"
                 aria-label="Share on Facebook"
-                :title="t('modal.share_facebook', 'Поделиться в Facebook')"
+                title={t('modal.share_facebook', 'Поделиться в Facebook')}
               >
-                <div class="share-icon" set:html={FacebookIcon} />
+                <span class="share-icon" set:html={FacebookIcon} />
               </button>
               
               <!-- X (Twitter) Share -->
@@ -240,9 +240,9 @@ const tourCategories = rawTourCategories.map(category => ({
                 type="button"
                 class="share-btn share-twitter"
                 aria-label="Share on X (Twitter)"
-                :title="t('modal.share_twitter', 'Поделиться в X')"
+                title={t('modal.share_twitter', 'Поделиться в X')}
               >
-                <div class="share-icon" set:html={TwitterIcon} />
+                <span class="share-icon" set:html={TwitterIcon} />
               </button>
               
               <!-- Instagram (Copy Link) -->
@@ -250,9 +250,9 @@ const tourCategories = rawTourCategories.map(category => ({
                 type="button"
                 class="share-btn share-instagram"
                 aria-label="Copy link to share on Instagram"
-                :title="t('modal.share_instagram', 'Скопировать ссылку')"
+                title={t('modal.share_instagram', 'Скопировать ссылку')}
               >
-                <div class="share-icon" set:html={InstagramIcon} />
+                <span class="share-icon" set:html={InstagramIcon} />
               </button>
             </div>
           </div>
@@ -285,9 +285,9 @@ const tourCategories = rawTourCategories.map(category => ({
                 type="button"
                 class="share-btn share-whatsapp"
                 aria-label="Share on WhatsApp"
-                :title="t('modal.share_whatsapp', 'Поделиться в WhatsApp')"
+                title={t('modal.share_whatsapp', 'Поделиться в WhatsApp')}
               >
-                <div class="share-icon" set:html={WhatsAppIcon} />
+                <span class="share-icon" set:html={WhatsAppIcon} />
               </button>
               
               <!-- Facebook Share -->
@@ -295,9 +295,9 @@ const tourCategories = rawTourCategories.map(category => ({
                 type="button"
                 class="share-btn share-facebook"
                 aria-label="Share on Facebook"
-                :title="t('modal.share_facebook', 'Поделиться в Facebook')"
+                title={t('modal.share_facebook', 'Поделиться в Facebook')}
               >
-                <div class="share-icon" set:html={FacebookIcon} />
+                <span class="share-icon" set:html={FacebookIcon} />
               </button>
               
               <!-- X (Twitter) Share -->
@@ -305,9 +305,9 @@ const tourCategories = rawTourCategories.map(category => ({
                 type="button"
                 class="share-btn share-twitter"
                 aria-label="Share on X (Twitter)"
-                :title="t('modal.share_twitter', 'Поделиться в X')"
+                title={t('modal.share_twitter', 'Поделиться в X')}
               >
-                <div class="share-icon" set:html={TwitterIcon} />
+                <span class="share-icon" set:html={TwitterIcon} />
               </button>
               
               <!-- Instagram (Copy Link) -->
@@ -315,9 +315,9 @@ const tourCategories = rawTourCategories.map(category => ({
                 type="button"
                 class="share-btn share-instagram"
                 aria-label="Copy link to share on Instagram"
-                :title="t('modal.share_instagram', 'Скопировать ссылку')"
+                title={t('modal.share_instagram', 'Скопировать ссылку')}
               >
-                <div class="share-icon" set:html={InstagramIcon} />
+                <span class="share-icon" set:html={InstagramIcon} />
               </button>
 
               <!-- Mobile Navigation - Next -->

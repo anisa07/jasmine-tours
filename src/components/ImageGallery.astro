@@ -211,7 +211,7 @@ const getGridClasses = () => {
     <div id="image-zoom-container" class="relative cursor-zoom-in z-10 flex items-center justify-center rounded-2xl overflow-hidden shadow-2xl pointer-events-auto" style="max-width: 85vw; max-height: 65vh;">
       <img
         id="fullscreen-image"
-        src=""
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E"
         alt="Gallery image in fullscreen view"
         class="w-auto h-auto object-contain transition-all duration-300 ease-out"
         draggable="false"
@@ -221,7 +221,7 @@ const getGridClasses = () => {
 
     <!-- Caption Area (directly below image, centered, with safe spacing) -->
     <div id="fullscreen-caption" class="mt-3 max-w-2xl text-center text-white px-4 py-2.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 hidden animate-fade-up pointer-events-auto">
-      <h2 id="fullscreen-title" class="text-lg md:text-xl font-bold mb-1"></h2>
+      <h2 id="fullscreen-title" class="text-lg md:text-xl font-bold mb-1" aria-live="polite"></h2>
       <p id="fullscreen-description" class="text-white/80 text-xs md:text-sm leading-relaxed hidden"></p>
     </div>
   </div>
