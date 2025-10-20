@@ -1,6 +1,6 @@
 ---
 import IntlBaseLayout from "@/layouts/IntlBaseLayout.astro";
-import { getPageTranslations, getLocaleStaticPaths } from "@/i18n/i18n";
+import { getPageTranslations } from "@/i18n/i18n";
 import { defaultLocale, type Locale } from "@/i18n/config";
 import { getEntry } from "astro:content";
 import Container from "@/components/layout/Container.astro";
@@ -12,11 +12,6 @@ import {
   Ship,
   Facebook
 } from "@lucide/astro";
-
-// Generate static paths for all supported locales
-export async function getStaticPaths() {
-  return getLocaleStaticPaths();
-}
 
 const aboutEntry = await getEntry("about", "about");
 const aboutMeData = aboutEntry?.data;
