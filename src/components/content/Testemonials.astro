@@ -26,8 +26,8 @@ interface Props {
 
 const { t, testimonials } = Astro.props;
 
-// Generate Schema.org Review markup - Individual reviews pointing to the main business
-const reviewsSchema = testimonials.map((testimonial) => ({
+// Export review schemas for parent pages to use
+export const generateReviewsSchema = (testimonials: Testimonial[]) => testimonials.map((testimonial) => ({
   "@context": "https://schema.org",
   "@type": "Review",
   "itemReviewed": {
@@ -48,11 +48,6 @@ const reviewsSchema = testimonials.map((testimonial) => ({
   "reviewBody": testimonial.quote
 }));
 ---
-
-<!-- Schema.org Review Markup - Individual reviews -->
-{reviewsSchema.map((review) => (
-  <script type="application/ld+json" set:html={JSON.stringify(review)} />
-))}
 
 <!-- Testimonials Section -->
 <section class="py-20 bg-muted/30">
@@ -132,6 +127,7 @@ const reviewsSchema = testimonials.map((testimonial) => ({
 
       <!-- Navigation Controls -->
       <button
+        type="button"
         class="carousel-prev absolute -left-2 top-1/2 transform -translate-y-1/2 bg-background/90 hover:bg-background rounded-full p-3 shadow-lg transition-all duration-200 z-10 border"
         data-carousel="testimonials"
         aria-label="Previous testimonial"
@@ -139,6 +135,7 @@ const reviewsSchema = testimonials.map((testimonial) => ({
         <ChevronLeft size={24} class="text-foreground" aria-hidden="true" />
       </button>
       <button
+        type="button"
         class="carousel-next absolute -right-2 top-1/2 transform -translate-y-1/2 bg-background/90 hover:bg-background rounded-full p-3 shadow-lg transition-all duration-200 z-10 border"
         data-carousel="testimonials"
         aria-label="Next testimonial"
@@ -151,6 +148,7 @@ const reviewsSchema = testimonials.map((testimonial) => ({
         {
           testimonials.map((_, index) => (
             <button
+              type="button"
               class={`carousel-dot w-3 h-3 rounded-full transition-all duration-200 ${
                 index === 0 ? 'bg-primary' : 'bg-muted-foreground/40 hover:bg-muted-foreground/60'
               }`}

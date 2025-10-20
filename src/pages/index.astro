@@ -34,6 +34,28 @@ const testimonialsData = testimonialsEntry?.data?.testimonials || [];
 const galleryEntry = await getEntry("gallery", "gallery");
 const galleryData = galleryEntry?.data?.images || [];
 
+// Generate Schema.org Review markup for testimonials
+const reviewsSchema = testimonialsData.map((testimonial) => ({
+  "@context": "https://schema.org",
+  "@type": "Review",
+  itemReviewed: {
+    "@type": "TravelAgency",
+    name: "Jasmine Tours",
+    url: "https://jasmine-tours.nl",
+  },
+  author: {
+    "@type": "Person",
+    name: testimonial.author.name,
+  },
+  reviewRating: {
+    "@type": "Rating",
+    ratingValue: testimonial.rating,
+    bestRating: 5,
+    worstRating: 1,
+  },
+  reviewBody: testimonial.quote,
+}));
+
 // Generate Schema.org TouristTrip markup for tours
 const tourSchemas = tourCategoriesData.flatMap((category) =>
   category.tours.map((tour) => {
@@ -69,12 +91,6 @@ const tourSchemas = tourCategoriesData.flatMap((category) =>
 );
 ---
 
-<!-- Schema.org Structured Data for Tours -->{
-  tourSchemas.map((tourSchema) => (
-    <script type="application/ld+json" set:html={JSON.stringify(tourSchema)} />
-  ))
-}
-
 <IntlBaseLayout
   locale={defaultLocale}
   pageNS={["common", "ui", "home"]}
@@ -89,6 +105,23 @@ const tourSchemas = tourCategoriesData.flatMap((category) =>
     ),
   }}
 >
+  <!-- Schema.org Structured Data for Tours and Reviews -->
+  <Fragment slot="head">
+    {
+      tourSchemas.map((tourSchema) => (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify(tourSchema)}
+        />
+      ))
+    }
+    {
+      reviewsSchema.map((review) => (
+        <script type="application/ld+json" set:html={JSON.stringify(review)} />
+      ))
+    }
+  </Fragment>
+
   <section class="relative">
     {
       heroData && (

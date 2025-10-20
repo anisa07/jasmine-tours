@@ -313,14 +313,14 @@ const sectionClasses = cn(
   )}
 
   <!-- Scroll Indicator -->
-  <div class="absolute bottom- left-1/2 transform -translate-x-1/2 animate-bounce">
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
     <slot name="scroll-indicator">
       {variant !== 'minimal' && (
         <button
           type="button"
+          id="scroll-down-btn"
           class="inline-flex items-center justify-center w-8 h-8 text-muted-foreground hover:text-foreground transition-colors"
           aria-label={t("hero.scroll_down", "Scroll down")}
-          onclick="window.scrollTo({ top: window.innerHeight - 200, behavior: 'smooth' })"
         >
           <ChevronDown size={20} aria-hidden="true" />
         </button>
@@ -516,5 +516,13 @@ const sectionClasses = cn(
 
     // Initialize suggestions
     initializeSuggestions();
+    
+    // Handle scroll down button
+    const scrollDownBtn = document.getElementById('scroll-down-btn');
+    if (scrollDownBtn) {
+      scrollDownBtn.addEventListener('click', () => {
+        window.scrollTo({ top: window.innerHeight - 200, behavior: 'smooth' });
+      });
+    }
   });
 </script>

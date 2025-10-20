@@ -74,10 +74,6 @@ const personSchema = {
 };
 ---
 
-<!-- Schema.org Structured Data -->
-<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
-
 <IntlBaseLayout
   locale={defaultLocale}
   pageNS={["common", "ui", "home"]}
@@ -96,6 +92,18 @@ const personSchema = {
       ),
   }}
 >
+  <!-- Schema.org Structured Data -->
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(breadcrumbSchema)}
+    />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(personSchema)}
+    />
+  </Fragment>
+
   <!-- Hero Section -->
   <section
     class="relative bg-gradient-to-br from-primary/10 via-background to-accent/5 py-20 overflow-hidden"

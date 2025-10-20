@@ -26,13 +26,13 @@ const title = t("404.title", "Page Not Found");
 const heading = t("404.heading", "Page Not Found");
 const message = t(
   "404.message",
-  "Sorry, the page you are looking for doesn't exist or has been moved."
+  "Sorry, the page you are looking for doesn't exist or has been moved.",
 );
 const suggestions = t("404.suggestions", "What can you do?");
 const checkUrl = t("404.checkUrl", "Check if the URL is spelled correctly");
 const useNav = t(
   "404.useNav",
-  "Use the navigation menu to find what you're looking for"
+  "Use the navigation menu to find what you're looking for",
 );
 const contact = t("404.contact", "Contact us if you think this is an error");
 const homeText = t("404.home", "Go to Homepage");
@@ -98,7 +98,8 @@ const backText = t("404.back", "Go Back");
       </a>
 
       <button
-        onclick={onBackClick}
+        type="button"
+        id="back-button"
         class="btn btn-secondary btn-md"
         data-back={dataAttributes ? "" : undefined}
       >
@@ -107,3 +108,17 @@ const backText = t("404.back", "Go Back");
     </div>
   </div>
 </main>
+
+<script>
+  // Handle back button click
+  const backButton = document.getElementById("back-button");
+  if (backButton) {
+    backButton.addEventListener("click", () => {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = "/";
+      }
+    });
+  }
+</script>

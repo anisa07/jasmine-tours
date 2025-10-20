@@ -36,12 +36,6 @@ const breadcrumbSchema = {
 };
 ---
 
-<!-- Schema.org Structured Data -->
-<script
-  type="application/ld+json"
-  set:html={JSON.stringify(breadcrumbSchema)}
-/>
-
 <IntlBaseLayout
   locale={locale}
   pageNS={["common"]}
@@ -52,6 +46,14 @@ const breadcrumbSchema = {
       "Jasmine Tours Privacy Policy - how we collect, use and protect your personal information",
   }}
 >
+  <!-- Schema.org Structured Data -->
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(breadcrumbSchema)}
+    />
+  </Fragment>
+
   <section class="py-20">
     <Container size="md">
       <!-- Language Switcher -->
