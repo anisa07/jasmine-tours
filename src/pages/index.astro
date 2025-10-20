@@ -34,6 +34,28 @@ const testimonialsData = testimonialsEntry?.data?.testimonials || [];
 const galleryEntry = await getEntry("gallery", "gallery");
 const galleryData = galleryEntry?.data?.images || [];
 
+// Generate Schema.org Review markup for testimonials
+const reviewsSchema = testimonialsData.map((testimonial) => ({
+  "@context": "https://schema.org",
+  "@type": "Review",
+  itemReviewed: {
+    "@type": "TravelAgency",
+    name: "Jasmine Tours",
+    url: "https://jasmine-tours.nl",
+  },
+  author: {
+    "@type": "Person",
+    name: testimonial.author.name,
+  },
+  reviewRating: {
+    "@type": "Rating",
+    ratingValue: testimonial.rating,
+    bestRating: 5,
+    worstRating: 1,
+  },
+  reviewBody: testimonial.quote,
+}));
+
 // Generate Schema.org TouristTrip markup for tours
 const tourSchemas = tourCategoriesData.flatMap((category) =>
   category.tours.map((tour) => {
@@ -50,6 +72,17 @@ const tourSchemas = tourCategoriesData.flatMap((category) =>
         "@type": "TravelAgency",
         name: "Jasmine Tours",
         url: "https://jasmine-tours.nl",
+        description:
+          "Русскоязычный гид по Амстердаму и Нидерландам - групповые и индивидуальные экскурсии",
+        areaServed: [
+          "Amsterdam",
+          "Netherlands",
+          "Volendam",
+          "Zaanse Schans",
+          "Rotterdam",
+          "Den Haag",
+        ],
+        availableLanguage: ["Russian", "ru"],
       },
       touristType: category.title,
       duration: tour.duration || "Flexible",
@@ -69,26 +102,79 @@ const tourSchemas = tourCategoriesData.flatMap((category) =>
 );
 ---
 
-<!-- Schema.org Structured Data for Tours -->{
-  tourSchemas.map((tourSchema) => (
-    <script type="application/ld+json" set:html={JSON.stringify(tourSchema)} />
-  ))
-}
-
 <IntlBaseLayout
   locale={defaultLocale}
   pageNS={["common", "ui", "home"]}
   seo={{
     title: t(
       "seo.home_title",
-      "Jasmine Tours & Events - Откройте удивительные направления для путешествий | Забронируйте своё приключение",
+      "Экскурсии по Амстердаму | Гид Зара | Туры на Русском по Нидерландам",
     ),
     description: t(
       "seo.home_description",
-      "Откройте захватывающие туры вместе с Jasmine Tours & Events. Забронируйте свою идеальную экскурсию через WhatsApp или подпишитесь на нас в Instagram, чтобы вдохновляться идеями для новых приключений.",
+      "Экскурсии по Амстердаму на русском с гидом Зарой. Прогулки по каналам, велотуры, индивидуальные и групповые туры. Бронируйте через WhatsApp!",
     ),
+    openGraph: {
+      basic: {
+        title:
+          "Экскурсии по Амстердаму на Русском | Гид Зара | Групповые и Индивидуальные Туры",
+        type: "website",
+        image: "https://jasmine-tours.nl/images/og-image.jpg",
+        url: "https://jasmine-tours.nl",
+      },
+      optional: {
+        description:
+          "Экскурсии по Амстердаму и Нидерландам с русскоязычным гидом Зарой. Индивидуальные и групповые туры на русском: прогулки по каналам, велотуры, экскурсии в Воленд ам, Заансе Сханс.",
+        siteName: "Jasmine Tours",
+        locale: "ru_RU",
+      },
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Экскурсии по Амстердаму на Русском | Гид Зара",
+      description:
+        "Индивидуальные и групповые туры по Амстердаму и Нидерландам с русскоязычным гидом. Прогулки по каналам, велотуры, экскурсии.",
+    },
+    extend: {
+      meta: [
+        {
+          name: "keywords",
+          content:
+            "экскурсии по амстердаму, русскоязычный гид амстердам, экскурсии на русском амстердам, туры в амстердаме, гид в нидерландах, прогулки по каналам амстердама, велотуры амстердам, групповые туры нидерланды, индивидуальные экскурсии амстердам, экскурсии воленд ам, туры заансе сханс, гид зара амстердам",
+        },
+        {
+          name: "author",
+          content: "Zara - Русскоязычный гид в Амстердаме",
+        },
+        {
+          name: "robots",
+          content: "index, follow",
+        },
+        {
+          property: "og:locale:alternate",
+          content: "en_US",
+        },
+      ],
+    },
   }}
 >
+  <!-- Schema.org Structured Data for Tours and Reviews -->
+  <Fragment slot="head">
+    {
+      tourSchemas.map((tourSchema) => (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify(tourSchema)}
+        />
+      ))
+    }
+    {
+      reviewsSchema.map((review) => (
+        <script type="application/ld+json" set:html={JSON.stringify(review)} />
+      ))
+    }
+  </Fragment>
+
   <section class="relative">
     {
       heroData && (

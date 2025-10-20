@@ -63,6 +63,7 @@ const tourCategories = rawTourCategories.map(category => ({
     <div class="flex flex-wrap justify-center gap-2 mb-8">
       {tourCategories.map((category, index) => (
         <button
+          type="button"
           class={`tour-filter-tab rounded-full font-semibold ${
             index === 0 
               ? 'btn-primary active' 
@@ -120,12 +121,14 @@ const tourCategories = rawTourCategories.map(category => ({
           {category.tours.length > 3 && (
             <div class="text-center">
               <button
+                type="button"
                 class="more-tours-btn btn-primary rounded-full font-semibold"
                 data-category={category.id}
               >
 {t("tours.show_more", "Показать больше туров")} ({category.tours.length - 3})
               </button>
               <button
+                type="button"
                 class="less-tours-btn hidden px-8 py-3 bg-muted text-muted-foreground rounded-full font-semibold hover:bg-muted/80 transition-all duration-200 shadow-md hover:shadow-lg ml-4"
                 data-category={category.id}
               >
@@ -143,7 +146,7 @@ const tourCategories = rawTourCategories.map(category => ({
   <div id="tourModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300">
     <div class="relative flex items-center justify-center w-full max-w-5xl">
       <!-- Previous Button - Desktop/Tablet (left side) -->
-      <button id="prevTourBtn" class="tour-nav-btn tour-nav-btn-left hidden sm:flex" aria-label="Previous tour">
+      <button type="button" id="prevTourBtn" class="tour-nav-btn tour-nav-btn-left hidden sm:flex" aria-label="Previous tour">
         <ChevronLeft class="w-6 h-6" aria-hidden="true" />
       </button>
 
@@ -155,7 +158,7 @@ const tourCategories = rawTourCategories.map(category => ({
               <div class="flex-1">
                 <h2 id="modalTitle" class="text-2xl sm:text-3xl font-bold text-foreground leading-tight"></h2>
               </div>
-              <button id="closeModal" class="p-2 hover:bg-background/80 rounded-full transition-all duration-200 hover:scale-110 hover:rotate-90 flex-shrink-0" aria-label="Close modal">
+              <button type="button" id="closeModal" class="p-2 hover:bg-background/80 rounded-full transition-all duration-200 hover:scale-110 hover:rotate-90 flex-shrink-0" aria-label="Close modal">
                 <X class="w-6 h-6" aria-hidden="true" />
               </button>
             </div>
@@ -214,6 +217,7 @@ const tourCategories = rawTourCategories.map(category => ({
             <div class="flex gap-2 items-center">
               <!-- WhatsApp Share -->
               <button 
+                type="button"
                 class="share-btn share-whatsapp"
                 aria-label="Share on WhatsApp"
                 :title="t('modal.share_whatsapp', 'Поделиться в WhatsApp')"
@@ -223,6 +227,7 @@ const tourCategories = rawTourCategories.map(category => ({
               
               <!-- Facebook Share -->
               <button 
+                type="button"
                 class="share-btn share-facebook"
                 aria-label="Share on Facebook"
                 :title="t('modal.share_facebook', 'Поделиться в Facebook')"
@@ -232,6 +237,7 @@ const tourCategories = rawTourCategories.map(category => ({
               
               <!-- X (Twitter) Share -->
               <button 
+                type="button"
                 class="share-btn share-twitter"
                 aria-label="Share on X (Twitter)"
                 :title="t('modal.share_twitter', 'Поделиться в X')"
@@ -241,6 +247,7 @@ const tourCategories = rawTourCategories.map(category => ({
               
               <!-- Instagram (Copy Link) -->
               <button 
+                type="button"
                 class="share-btn share-instagram"
                 aria-label="Copy link to share on Instagram"
                 :title="t('modal.share_instagram', 'Скопировать ссылку')"
@@ -269,12 +276,13 @@ const tourCategories = rawTourCategories.map(category => ({
             <!-- Share Buttons with Mobile Navigation -->
             <div class="flex gap-2 items-center justify-center">
               <!-- Mobile Navigation - Previous -->
-              <button id="prevTourBtnMobile" class="tour-nav-btn-mobile" aria-label="Previous tour">
+              <button type="button" id="prevTourBtnMobile" class="tour-nav-btn-mobile" aria-label="Previous tour">
                 <ChevronLeft class="w-5 h-5" />
               </button>
 
               <!-- WhatsApp Share -->
               <button 
+                type="button"
                 class="share-btn share-whatsapp"
                 aria-label="Share on WhatsApp"
                 :title="t('modal.share_whatsapp', 'Поделиться в WhatsApp')"
@@ -284,6 +292,7 @@ const tourCategories = rawTourCategories.map(category => ({
               
               <!-- Facebook Share -->
               <button 
+                type="button"
                 class="share-btn share-facebook"
                 aria-label="Share on Facebook"
                 :title="t('modal.share_facebook', 'Поделиться в Facebook')"
@@ -293,6 +302,7 @@ const tourCategories = rawTourCategories.map(category => ({
               
               <!-- X (Twitter) Share -->
               <button 
+                type="button"
                 class="share-btn share-twitter"
                 aria-label="Share on X (Twitter)"
                 :title="t('modal.share_twitter', 'Поделиться в X')"
@@ -302,6 +312,7 @@ const tourCategories = rawTourCategories.map(category => ({
               
               <!-- Instagram (Copy Link) -->
               <button 
+                type="button"
                 class="share-btn share-instagram"
                 aria-label="Copy link to share on Instagram"
                 :title="t('modal.share_instagram', 'Скопировать ссылку')"
@@ -310,7 +321,7 @@ const tourCategories = rawTourCategories.map(category => ({
               </button>
 
               <!-- Mobile Navigation - Next -->
-              <button id="nextTourBtnMobile" class="tour-nav-btn-mobile" aria-label="Next tour">
+              <button type="button" id="nextTourBtnMobile" class="tour-nav-btn-mobile" aria-label="Next tour">
                 <ChevronRight class="w-5 h-5" />
               </button>
             </div>
@@ -319,7 +330,7 @@ const tourCategories = rawTourCategories.map(category => ({
       </div>
 
       <!-- Next Button - Desktop/Tablet (right side) -->
-      <button id="nextTourBtn" class="tour-nav-btn tour-nav-btn-right hidden sm:flex" aria-label="Next tour">
+      <button type="button" id="nextTourBtn" class="tour-nav-btn tour-nav-btn-right hidden sm:flex" aria-label="Next tour">
         <ChevronRight class="w-6 h-6" aria-hidden="true" />
       </button>
     </div>

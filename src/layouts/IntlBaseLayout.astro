@@ -59,7 +59,6 @@ const url = new URL(Astro.url, site).href;
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/assets/favicon-j.svg" />
-    <link rel="icon" type="image/png" href="/assets/favicon-j.svg" />
     <link rel="apple-touch-icon" href="/assets/favicon-j.svg" />
     <link rel="shortcut icon" href="/favicon2.ico" />
 
@@ -105,9 +104,26 @@ const url = new URL(Astro.url, site).href;
       {
         "@context": "https://schema.org",
         "@type": "TravelAgency",
-        "name": "Jasmine Tours",
-        "description": "Premium tours and experiences in Amsterdam. Private tours, canal cruises, and authentic Dutch experiences with expert local guides.",
+        "name": "Jasmine Tours - Экскурсии по Амстердаму на Русском",
+        "description": "Экскурсии по Амстердаму и Нидерландам с русскоязычным гидом Зарой. Индивидуальные и групповые туры на русском языке: прогулки по каналам, велотуры, исторические экскурсии. Туры в Амстердам, Воленд ам, Заансе Сханс, Роттердам.",
         "url": "https://jasmine-tours.nl",
+        "slogan": "Откройте настоящие Нидерланды с русскоязычным гидом",
+        "areaServed": [
+          "Amsterdam",
+          "Volendam",
+          "Zaanse Schans",
+          "Rotterdam",
+          "Den Haag",
+          "Netherlands"
+        ],
+        "serviceType": [
+          "Экскурсии на русском языке",
+          "Групповые туры",
+          "Индивидуальные туры",
+          "Прогулки по каналам",
+          "Велотуры"
+        ],
+        "availableLanguage": ["Russian", "ru"],
         "logo": {
           "@type": "ImageObject",
           "url": "https://jasmine-tours.nl/assets/favicon-j.svg",
@@ -155,6 +171,9 @@ const url = new URL(Astro.url, site).href;
         }
       }
     </script>
+
+    <!-- Allow pages to inject additional head content -->
+    <slot name="head" />
   </head>
 
   <body>
@@ -204,7 +223,7 @@ const url = new URL(Astro.url, site).href;
     />
 
     <Toaster client:load />
-    <!-- Simple Scroll Animations (fallback for older browsers) -->
-    <script src="/src/utils/scroll-animations.ts"></script>
   </body>
 </html>
+
+<script src="../utils/scroll-animations.ts"></script>

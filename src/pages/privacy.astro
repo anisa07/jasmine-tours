@@ -36,12 +36,6 @@ const breadcrumbSchema = {
 };
 ---
 
-<!-- Schema.org Structured Data -->
-<script
-  type="application/ld+json"
-  set:html={JSON.stringify(breadcrumbSchema)}
-/>
-
 <IntlBaseLayout
   locale={locale}
   pageNS={["common"]}
@@ -52,24 +46,38 @@ const breadcrumbSchema = {
       "Jasmine Tours Privacy Policy - how we collect, use and protect your personal information",
   }}
 >
+  <!-- Schema.org Structured Data -->
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(breadcrumbSchema)}
+    />
+  </Fragment>
+
   <section class="py-20">
     <Container size="md">
       <!-- Language Switcher -->
       <div class="flex justify-center gap-2 mb-8 pb-4 border-b border-border">
         <button
+          type="button"
           data-lang="nl"
+          aria-label="Schakel over naar Nederlands"
           class="legal-lang-btn px-4 py-2 rounded-md font-medium transition-colors hover:bg-primary hover:text-primary-foreground"
         >
           Nederlands
         </button>
         <button
+          type="button"
           data-lang="ru"
+          aria-label="Переключить на русский язык"
           class="legal-lang-btn px-4 py-2 rounded-md font-medium transition-colors hover:bg-primary hover:text-primary-foreground bg-primary text-primary-foreground"
         >
           Русский
         </button>
         <button
+          type="button"
           data-lang="en"
+          aria-label="Switch to English"
           class="legal-lang-btn px-4 py-2 rounded-md font-medium transition-colors hover:bg-primary hover:text-primary-foreground"
         >
           English
@@ -83,7 +91,7 @@ const breadcrumbSchema = {
           data-content-lang="nl"
           style="display: none;"
         >
-          <h1 class="text-4xl font-bold mb-8">Privacybeleid</h1>
+          <h2 class="text-4xl font-bold mb-8">Privacybeleid</h2>
           <p class="text-muted-foreground mb-6">
             <strong>Ingangsdatum:</strong>
             {new Date().toLocaleDateString("nl-NL")}
@@ -316,7 +324,7 @@ const breadcrumbSchema = {
           data-content-lang="en"
           style="display: none;"
         >
-          <h1 class="text-4xl font-bold mb-8">Privacy Policy</h1>
+          <h2 class="text-4xl font-bold mb-8">Privacy Policy</h2>
           <p class="text-muted-foreground mb-6">
             <strong>Effective Date:</strong>
             {new Date().toLocaleDateString("en-US")}
