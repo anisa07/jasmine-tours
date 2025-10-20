@@ -1,6 +1,6 @@
 ---
 import IntlBaseLayout from "@/layouts/IntlBaseLayout.astro";
-import { getPageTranslations, getLocaleStaticPaths } from "@/i18n/i18n";
+import { getPageTranslations } from "@/i18n/i18n";
 import { defaultLocale, type Locale } from "@/i18n/config";
 import { getEntry } from "astro:content";
 import Container from "@/components/layout/Container.astro";
@@ -9,11 +9,6 @@ import TourFilter from "@/components/content/TourFilter.astro";
 import Testemonials from "@/components/content/Testemonials.astro";
 import ImageGallery from "@/components/ImageGallery.astro";
 import CTASection from "@/components/content/CTASection.astro";
-
-// Generate static paths for all supported locales
-export async function getStaticPaths() {
-  return getLocaleStaticPaths();
-}
 
 const { t } = await getPageTranslations(defaultLocale as Locale, [
   "common",

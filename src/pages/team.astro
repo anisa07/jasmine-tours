@@ -1,18 +1,12 @@
 ---
 import IntlBaseLayout from "@/layouts/IntlBaseLayout.astro";
-import { getPageTranslations, getLocaleStaticPaths } from "@/i18n/i18n";
-import type { Locale } from "@/i18n/config";
+import { getPageTranslations } from "@/i18n/i18n";
+import { defaultLocale, type Locale } from "@/i18n/config";
 
 // Layout components
 import Container from "@/components/layout/Container.astro";
 
-// Generate static paths for all supported locales
-export async function getStaticPaths() {
-  return getLocaleStaticPaths();
-}
-
-// Get locale from dynamic route params
-const locale = "en";
+const locale = defaultLocale;
 
 // Get the translation function for this page
 const { t } = await getPageTranslations(locale as Locale, ["common"]);
